@@ -45,7 +45,7 @@ const bodyDescription = project.data.subtitle || project.data.description;
 
     <ProjectMedia
       title={project.data.title}
-      alt={project.data.coverAlt || project.data.title}
+      alt={project.data.coverAlt || `${project.data.title} banner`}
       image={project.data.image || project.data.thumbnail}
       media={project.data.media}
       screenshots={project.data.screenshots}

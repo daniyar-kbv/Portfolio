@@ -10,9 +10,9 @@ const { tags, class: className = '' } = Astro.props as Props;
 <ul class:list={['flex flex-wrap gap-2', className]}>
   {tags.map((tag) => (
     <li
-      class="rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] px-3 py-1 text-xs font-medium tracking-wide text-[var(--color-text-muted)]"
+      class="max-w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] px-3 py-1 text-xs font-medium tracking-wide text-[var(--color-text-muted)]"
     >
-      {tag}
+      <span class="block max-w-full break-words">{tag}</span>
     </li>
   ))}
 </ul>

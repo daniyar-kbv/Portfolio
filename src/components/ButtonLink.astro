@@ -16,7 +16,7 @@ const {
 } = Astro.props as Props;
 
 const base =
-  'inline-flex items-center gap-2 rounded-sm border px-3 py-2 text-sm font-medium transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-0';
+  'inline-flex max-w-full items-center gap-2 rounded-sm border px-3 py-2 text-sm font-medium leading-5 transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-0';
 
 const variants = {
   primary:
@@ -32,8 +32,10 @@ const variants = {
   href={href}
   target={external ? '_blank' : undefined}
   rel={external ? 'noreferrer noopener' : undefined}
-  class:list={[base, variants[variant], className]}
+  class:list={[base, variants[variant], 'text-left', className]}
 >
-  <slot />
+  <span class="min-w-0 break-words whitespace-normal">
+    <slot />
+  </span>
   {external ? <ArrowUpRight class="h-4 w-4" aria-hidden="true" /> : <ChevronRight class="h-4 w-4" aria-hidden="true" />}
 </a>

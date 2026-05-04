@@ -9,18 +9,22 @@ interface Props {
   ogImage?: string;
   ogImageAlt?: string;
   ogType?: 'website' | 'article';
+  noindex?: boolean;
 }
 
 const {
-  title = 'Daniyar Kurmanbayev',
-  description = 'Portfolio foundation for Daniyar Kurmanbayev.',
+  title = 'Daniyar Kurmanbayev | Portfolio',
+  description = 'Daniyar Kurmanbayev portfolio.',
   canonicalPath,
   ogImage,
   ogImageAlt = title,
   ogType = 'website',
+  noindex = false,
 } = Astro.props as Props;
 
-const canonicalHref = canonicalPath ? canonicalPath : undefined;
+const canonicalHref =
+  canonicalPath && Astro.site ? new URL(canonicalPath, Astro.site).toString() : canonicalPath;
+const ogImageHref = ogImage && Astro.site ? new URL(ogImage, Astro.site).toString() : ogImage;
 ---
 
 <!doctype html>
@@ -30,14 +34,20 @@ const canonicalHref = canonicalPath ? canonicalPath : undefined;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
     {canonicalHref && <link rel="canonical" href={canonicalHref} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Daniyar Kurmanbayev" />
     {canonicalHref && <meta property="og:url" content={canonicalHref} />}
-    {ogImage && <meta property="og:image" content={ogImage} />}
-    {ogImage && <meta property="og:image:alt" content={ogImageAlt} />}
-    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    {ogImageHref && <meta property="og:image" content={ogImageHref} />}
+    {ogImageHref && <meta property="og:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:card" content={ogImageHref ? 'summary_large_image' : 'summary'} />
+    {ogImageHref && <meta name="twitter:image" content={ogImageHref} />}
+    {ogImageHref && <meta name="twitter:image:alt" content={ogImageAlt} />}
     <meta name="theme-color" content="#1E2A38" />
   </head>
   <body>

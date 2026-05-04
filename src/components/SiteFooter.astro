@@ -24,7 +24,7 @@ const { contactLinks: links } = Astro.props as Props;
 
       <div class="flex flex-wrap gap-3">
         {links.map((link) => (
-          <ButtonLink href={link.url} external variant="secondary">
+          <ButtonLink href={link.url} external={link.url.startsWith('http')} variant="secondary">
             {link.label}
           </ButtonLink>
         ))}

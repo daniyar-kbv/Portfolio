@@ -41,21 +41,30 @@ function getLabel(type: string, label: string) {
   if (label && label !== type) return label;
   return type;
 }
+
+function getAriaLabel(type: string, label: string, url: string) {
+  const resolvedLabel = getLabel(type, label);
+  return `Open ${resolvedLabel}`;
+}
 ---
 
 {links.length > 0 && (
   <div class="flex flex-wrap gap-2">
     {links.map((link) => {
       const Icon = getIcon(link.type);
+      const label = getLabel(link.type, link.label);
+      const isExternal = link.url.startsWith('http');
       return (
         <a
           href={link.url}
-          target="_blank"
-          rel="noreferrer noopener"
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noreferrer noopener' : undefined}
+          aria-label={getAriaLabel(link.type, link.label, link.url)}
+          title={label}
           class="inline-flex items-center gap-2 rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] px-3 py-2 text-sm text-white transition hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)] hover:text-[var(--color-accent-hover)]"
         >
           <Icon class="h-4 w-4" aria-hidden="true" />
-          <span>{getLabel(link.type, link.label)}</span>
+          <span class="min-w-0 whitespace-normal break-words">{label}</span>
           <ArrowUpRight class="h-4 w-4" aria-hidden="true" />
         </a>
       );

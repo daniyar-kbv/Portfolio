@@ -57,7 +57,14 @@ const { title, description, stats, image, featured } = Astro.props as Props;
 
     <div class="rounded-sm border border-[var(--color-border)] p-4 sm:p-5">
       <div class="overflow-hidden rounded-sm border border-[var(--color-border)]">
-        <img src={image} alt="Portfolio banner" class="aspect-[16/10] w-full object-cover" />
+        <img
+          src={image}
+          alt="Portfolio banner"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="aspect-[16/10] w-full object-cover"
+        />
       </div>
       <div class="mt-4 grid gap-3 sm:grid-cols-2">
         {featured.map((project) => (
@@ -76,6 +83,8 @@ const { title, description, stats, image, featured } = Astro.props as Props;
               <img
                 src={project.image}
                 alt={project.title}
+                loading="lazy"
+                decoding="async"
                 class="mt-4 aspect-[16/10] w-full rounded-sm object-cover"
               />
             )}

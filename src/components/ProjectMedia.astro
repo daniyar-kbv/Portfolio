@@ -21,23 +21,25 @@ const additionalShots = screenshots.slice(0, 3);
           controls
           playsinline
           preload="metadata"
+          aria-label={`${title} project video`}
           poster={image || screenshots[0] || undefined}
         >
           <source src={media[0]} />
         </video>
       ) : (
-        <img src={heroMedia} alt={alt} class="aspect-[16/9] w-full object-cover" />
+        <img src={heroMedia} alt={alt} loading="eager" decoding="async" fetchpriority="high" class="aspect-[16/9] w-full object-cover" />
       )}
     </div>
 
     {additionalShots.length > 0 && (
       <div class="mt-4 grid gap-3 md:grid-cols-3">
-        {additionalShots.map((shot) => (
+        {additionalShots.map((shot, index) => (
           <img
             src={shot}
-            alt={`${title} screenshot`}
+            alt={`${title} screenshot ${index + 1}`}
             class="aspect-[4/3] w-full rounded-sm border border-[var(--color-border)] object-cover"
             loading="lazy"
+            decoding="async"
           />
         ))}
       </div>

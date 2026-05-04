@@ -119,7 +119,7 @@ Key highlights:
 ## Solution
 
 We rebuilt the dataset around full-face frames and annotated eyes + yawning states, then used augmentation to simulate real driving conditions (brightness, blur, noise). After benchmarking Detectron2 Faster R-CNN and tuning thresholds, we moved to YOLOv5 for better practical accuracy. The final demo is a Flask web app that accepts a video upload, runs PyTorch inference frame-by-frame, overlays detections, and returns a processed video with warning/alert events.
-- Implemented event logic: “yawn warning” and “eyes closed > 1s” alert
+- Implemented event logic: “yawn warning” and “eyes closed &gt; 1s” alert
 
 ## Architecture
 

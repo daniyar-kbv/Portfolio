@@ -88,7 +88,7 @@ I built a lightweight library that enforces an explicit endpoint definition (End
 
 - EndPoint protocol defines baseURL, path, method, headers, params, and content type
 - EndPoint extensions build merged headers, full URL with query items, and multipart form-data append logic
-- Router<EP> orchestrates requests using Alamofire (AF.request / AF.upload)
+- Router&lt;EP&gt; orchestrates requests using Alamofire (AF.request / AF.upload)
 - NetworkLogger protocol + DefaultNetworkLogger for cURL-style request logs and response summaries
 - ErrorHandler protocol + DefaultErrorHandler to map status codes into consistent results/messages
 - Generic response decoding into Codable models with consistent error messages for missing/invalid payloads

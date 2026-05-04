@@ -171,6 +171,8 @@ function normalizeText(value) {
 
 function markdownizeText(value) {
   return normalizeText(value)
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
     .split('\n')
     .map((line) => line.replace(/^\s*•\s*/, '- '))
     .join('\n');

@@ -1,0 +1,38 @@
+---
+import ButtonLink from './ButtonLink.astro';
+
+interface Props {
+  contactLinks: Array<{
+    type: string;
+    label: string;
+    url: string;
+  }>;
+}
+
+const { contactLinks: links } = Astro.props as Props;
+---
+
+<footer id="contact" class="mx-auto w-full max-w-7xl px-6 pb-10 pt-4 sm:px-8 lg:px-10">
+  <div class="border-t border-[var(--color-border)] pt-6">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="max-w-2xl">
+        <p class="text-xs uppercase tracking-[0.24em] text-[var(--color-text-soft)]">Contact</p>
+        <p class="mt-2 text-sm leading-6 text-[var(--color-text-muted)]">
+          Available for iOS, backend, and technical product work.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        {links.map((link) => (
+          <ButtonLink href={link.url} external variant="secondary">
+            {link.label}
+          </ButtonLink>
+        ))}
+      </div>
+    </div>
+
+    <p class="mt-6 text-xs text-[var(--color-text-soft)]">
+      Built as a static Astro site for Cloudflare Pages.
+    </p>
+  </div>
+</footer>

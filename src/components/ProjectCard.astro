@@ -1,0 +1,82 @@
+---
+import ButtonLink from './ButtonLink.astro';
+import TagList from './TagList.astro';
+
+interface LinkItem {
+  type: string;
+  label: string;
+  url: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  tags: string[];
+  image?: string | null;
+  alt?: string;
+  links?: LinkItem[];
+  status?: string;
+  year?: number;
+  index?: number;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  tags,
+  image,
+  alt = title,
+  links = [],
+  status,
+  year,
+  index,
+} = Astro.props as Props;
+---
+
+<article class="group overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] transition duration-150 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)]">
+  <div class="border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-elevated)_86%,transparent)]">
+    {image ? (
+      <img src={image} alt={alt} loading="lazy" class="aspect-[16/10] w-full object-cover" />
+    ) : (
+      <div class="flex aspect-[16/10] items-end justify-between p-4">
+        <div class="flex flex-col gap-2">
+          <span class="text-xs uppercase tracking-[0.24em] text-[var(--color-text-soft)]">
+            {status || 'Project'}
+          </span>
+          <span class="max-w-[12rem] text-lg font-semibold leading-tight text-white">
+            {title}
+          </span>
+        </div>
+        {typeof index === 'number' && (
+          <span class="text-sm text-[var(--color-text-soft)]">0{index}</span>
+        )}
+      </div>
+    )}
+  </div>
+
+  <div class="p-5 sm:p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-[0.24em] text-[var(--color-text-soft)]">{subtitle}</p>
+        <h3 class="mt-2 text-xl font-semibold text-white">{title}</h3>
+      </div>
+      {year && <span class="text-xs text-[var(--color-text-soft)]">{year}</span>}
+    </div>
+
+    <p class="mt-4 text-sm leading-6 text-[var(--color-text-muted)]">{description}</p>
+
+    <TagList tags={tags} class="mt-5" />
+
+    {links.length > 0 && (
+      <div class="mt-5 flex flex-wrap gap-2">
+        {links.slice(0, 3).map((link) => (
+          <ButtonLink href={link.url} external variant="ghost">
+            {link.label}
+          </ButtonLink>
+        ))}
+      </div>
+    )}
+  </div>
+</article>

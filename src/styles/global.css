@@ -1,10 +1,14 @@
 :root {
-  --bg: #1e2a38;
-  --elevated: #29394c;
-  --accent: #ff6600;
-  --text: #ffffff;
-  --muted: rgba(255, 255, 255, 0.72);
-  --border: rgba(255, 255, 255, 0.1);
+  --color-background: #1e2a38;
+  --color-elevated: #29394c;
+  --color-elevated-2: #344a63;
+  --color-accent: #ff6600;
+  --color-accent-hover: #ff7a1a;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.72);
+  --color-text-soft: rgba(255, 255, 255, 0.56);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
   color-scheme: dark;
 }
 
@@ -13,18 +17,21 @@
 @tailwind utilities;
 
 html {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--color-background);
+  color: var(--color-text);
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--color-background);
+  color: var(--color-text);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -32,10 +39,37 @@ a {
   text-decoration: none;
 }
 
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 ::selection {
-  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+.surface {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+}
+
+.surface-strong {
+  background: var(--color-elevated-2);
+  border: 1px solid var(--color-border-strong);
 }

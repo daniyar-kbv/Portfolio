@@ -1,0 +1,39 @@
+---
+import { ArrowUpRight, ChevronRight } from '@lucide/astro';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'secondary',
+  external = false,
+  class: className = '',
+} = Astro.props as Props;
+
+const base =
+  'inline-flex items-center gap-2 rounded-sm border px-3 py-2 text-sm font-medium transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-0';
+
+const variants = {
+  primary:
+    'border-[var(--color-accent)] bg-[var(--color-accent)] text-white hover:border-[var(--color-accent-hover)] hover:bg-[var(--color-accent-hover)]',
+  secondary:
+    'border-[var(--color-border)] bg-[var(--color-elevated)] text-white hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)]',
+  ghost:
+    'border-transparent bg-transparent text-[var(--color-text-muted)] hover:border-[var(--color-border)] hover:bg-[var(--color-elevated)] hover:text-white',
+};
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noreferrer noopener' : undefined}
+  class:list={[base, variants[variant], className]}
+>
+  <slot />
+  {external ? <ArrowUpRight class="h-4 w-4" aria-hidden="true" /> : <ChevronRight class="h-4 w-4" aria-hidden="true" />}
+</a>

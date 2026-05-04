@@ -1,15 +1,26 @@
 ---
 import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
   title = 'Daniyar Kurmanbayev',
   description = 'Portfolio foundation for Daniyar Kurmanbayev.',
+  canonicalPath,
+  ogImage,
+  ogImageAlt = title,
+  ogType = 'website',
 } = Astro.props as Props;
+
+const canonicalHref = canonicalPath ? canonicalPath : undefined;
 ---
 
 <!doctype html>
@@ -19,8 +30,24 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    {canonicalHref && <link rel="canonical" href={canonicalHref} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    {canonicalHref && <meta property="og:url" content={canonicalHref} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="theme-color" content="#1E2A38" />
   </head>
   <body>
+    <a
+      href="#content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:border focus:border-[var(--color-border-strong)] focus:bg-[var(--color-elevated)] focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+    >
+      Skip to content
+    </a>
+    <SiteHeader />
     <slot />
   </body>
 </html>

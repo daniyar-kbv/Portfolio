@@ -1,0 +1,47 @@
+---
+import ButtonLink from './ButtonLink.astro';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  navItems?: NavItem[];
+}
+
+const defaultNavItems: NavItem[] = [
+  { label: 'Flagship', href: '#flagship' },
+  { label: 'Production', href: '#production' },
+  { label: 'Backend', href: '#backend' },
+  { label: 'AI', href: '#ai' },
+  { label: 'Legacy', href: '#legacy' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const { navItems = defaultNavItems } = Astro.props as Props;
+---
+
+<header class="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-background)_90%,transparent)] backdrop-blur">
+  <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 sm:px-8 lg:px-10">
+    <a href="/" class="flex flex-col gap-0.5">
+      <span class="text-sm font-semibold tracking-wide text-white">Daniyar Kurmanbayev</span>
+      <span class="text-xs text-[var(--color-text-soft)]">Portfolio</span>
+    </a>
+
+    <nav aria-label="Primary" class="flex flex-wrap items-center justify-end gap-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="rounded-sm px-3 py-2 text-sm text-[var(--color-text-muted)] transition hover:bg-[var(--color-elevated)] hover:text-white"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden sm:block">
+      <ButtonLink href="#contact" variant="primary">Contact</ButtonLink>
+    </div>
+  </div>
+</header>

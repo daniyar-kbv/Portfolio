@@ -1,0 +1,41 @@
+:root {
+  --bg: #1e2a38;
+  --elevated: #29394c;
+  --accent: #ff6600;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.72);
+  --border: rgba(255, 255, 255, 0.1);
+  color-scheme: dark;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}

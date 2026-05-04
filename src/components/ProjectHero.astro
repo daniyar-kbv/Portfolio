@@ -53,11 +53,13 @@ const {
       {description}
     </p>
 
-    <div class="mt-5 flex flex-wrap gap-3 text-xs text-[var(--color-text-soft)]">
-      {role && <span>{role}</span>}
-      {year && <span>{year}</span>}
-      {status && <span>{status}</span>}
-    </div>
+    {(role || typeof year === 'number' || status) && (
+      <div class="mt-5 flex flex-wrap gap-3 text-xs text-[var(--color-text-soft)]">
+        {role && <span>{role}</span>}
+        {typeof year === 'number' && <span>{year}</span>}
+        {status && <span>{status}</span>}
+      </div>
+    )}
 
     <TagList tags={typeTags} class="mt-6" />
     <TagList tags={techTags} class="mt-3" />

@@ -360,7 +360,6 @@ async function main() {
         featured: category.toLowerCase() === 'flagship',
         priority: index + 1,
         role: quickFacts.Role || undefined,
-        year: new Date(projectRow['Created Date']).getFullYear(),
         stack: techTags,
         links: projectLinks,
         thumbnail,

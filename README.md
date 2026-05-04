@@ -15,7 +15,7 @@ Static Astro rebuild of Daniyar Kurmanbayev’s Wix portfolio. The site is conte
 
 - Imported case-study content: `src/content/projects/*.mdx`
 - Local asset manifest: `src/data/local-assets.json`
-- Local asset copies: `public/assets/wix/`
+- Local asset copies: `public/assets/`
 - Contact data: `src/data/contact.ts`
 
 Source content used for imports:
@@ -71,7 +71,7 @@ npm run preview
 
 The Wix CSV exports are parsed into `src/content/projects/*.mdx`. Those files are generated and can be overwritten by `npm run import:wix`.
 
-Local assets are preferred over Wix media refs. The asset mapper copies matched files into `public/assets/wix/` and writes `src/data/local-assets.json`, which the importer uses when generating frontmatter.
+Local assets are preferred over Wix media refs. The asset mapper copies matched files into `public/assets/` and writes `src/data/local-assets.json`, which the importer uses when generating frontmatter.
 
 ## Cloudflare Pages Deployment
 

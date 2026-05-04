@@ -193,6 +193,10 @@ function parseJsonOrFallback(value, fallback) {
   }
 }
 
+function isMediaFilename(value) {
+  return /\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim());
+}
+
 function mapSectionBlocks(textRows, typeNameById, projectId) {
   const grouped = new Map();
 
@@ -303,10 +307,11 @@ async function main() {
         Array.isArray(localProjectAssets.screenshots) && localProjectAssets.screenshots.length
           ? localProjectAssets.screenshots
           : undefined;
-      const coverAlt =
+      const rawCoverAlt =
         bannerData[0]?.alt?.trim() ||
         bannerData[0]?.title?.trim() ||
         `${name} cover`;
+      const coverAlt = isMediaFilename(rawCoverAlt) ? `${name} banner` : rawCoverAlt;
       const categories = parseJsonOrFallback(projectRow.Type, []);
       const category = Array.isArray(categories) && categories.length
         ? String(categories[0]).trim()

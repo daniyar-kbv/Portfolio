@@ -11,12 +11,12 @@ interface Props {
 }
 
 const defaultNavItems: NavItem[] = [
-  { label: 'Flagship', href: '#flagship' },
-  { label: 'Production', href: '#production' },
-  { label: 'Backend', href: '#backend' },
-  { label: 'AI', href: '#ai' },
-  { label: 'Legacy', href: '#legacy' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Flagship', href: '/#flagship' },
+  { label: 'Production', href: '/#production' },
+  { label: 'Backend', href: '/#backend' },
+  { label: 'AI', href: '/#ai' },
+  { label: 'Legacy', href: '/#legacy' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 const { navItems = defaultNavItems } = Astro.props as Props;
@@ -41,7 +41,7 @@ const { navItems = defaultNavItems } = Astro.props as Props;
     </nav>
 
     <div class="hidden sm:block">
-      <ButtonLink href="#contact" variant="primary">Contact</ButtonLink>
+      <ButtonLink href="/#contact" variant="primary">Contact</ButtonLink>
     </div>
   </div>
 </header>

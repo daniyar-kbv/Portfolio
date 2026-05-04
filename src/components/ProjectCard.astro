@@ -9,34 +9,38 @@ interface LinkItem {
 }
 
 interface Props {
+  slug: string;
   title: string;
   subtitle: string;
   description: string;
-  tags: string[];
+  typeTags: string[];
+  techTags: string[];
   image?: string | null;
   alt?: string;
   links?: LinkItem[];
   status?: string;
   year?: number;
-  index?: number;
 }
 
 const {
+  slug,
   title,
   subtitle,
   description,
-  tags,
+  typeTags,
+  techTags,
   image,
   alt = title,
   links = [],
   status,
   year,
-  index,
 } = Astro.props as Props;
+
+const internalHref = `/projects/${slug}`;
 ---
 
 <article class="group overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] transition duration-150 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)]">
-  <div class="border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-elevated)_86%,transparent)]">
+  <a href={internalHref} class="block border-b border-[var(--color-border)]">
     {image ? (
       <img src={image} alt={alt} loading="lazy" class="aspect-[16/10] w-full object-cover" />
     ) : (
@@ -49,34 +53,38 @@ const {
             {title}
           </span>
         </div>
-        {typeof index === 'number' && (
-          <span class="text-sm text-[var(--color-text-soft)]">0{index}</span>
+        {typeof year === 'number' && (
+          <span class="text-sm text-[var(--color-text-soft)]">{year}</span>
         )}
       </div>
     )}
-  </div>
+  </a>
 
   <div class="p-5 sm:p-6">
     <div class="flex items-start justify-between gap-4">
       <div>
         <p class="text-xs uppercase tracking-[0.24em] text-[var(--color-text-soft)]">{subtitle}</p>
-        <h3 class="mt-2 text-xl font-semibold text-white">{title}</h3>
+        <h3 class="mt-2 text-xl font-semibold text-white">
+          <a href={internalHref} class="transition hover:text-[var(--color-accent-hover)]">
+            {title}
+          </a>
+        </h3>
       </div>
       {year && <span class="text-xs text-[var(--color-text-soft)]">{year}</span>}
     </div>
 
     <p class="mt-4 text-sm leading-6 text-[var(--color-text-muted)]">{description}</p>
 
-    <TagList tags={tags} class="mt-5" />
+    <TagList tags={typeTags} class="mt-5" />
+    <TagList tags={techTags} class="mt-3" />
 
-    {links.length > 0 && (
-      <div class="mt-5 flex flex-wrap gap-2">
-        {links.slice(0, 3).map((link) => (
-          <ButtonLink href={link.url} external variant="ghost">
-            {link.label}
-          </ButtonLink>
-        ))}
-      </div>
-    )}
+    <div class="mt-5 flex flex-wrap gap-2">
+      <ButtonLink href={internalHref} variant="primary">View project</ButtonLink>
+      {links.slice(0, 2).map((link) => (
+        <ButtonLink href={link.url} external variant="ghost">
+          {link.label}
+        </ButtonLink>
+      ))}
+    </div>
   </div>
 </article>

@@ -1,0 +1,69 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import SectionShell from './SectionShell.astro';
+
+interface ProjectEntry {
+  slug: string;
+  data: {
+    title: string;
+    subtitle: string;
+    description: string;
+    typeTags: string[];
+    techTags: string[];
+    links: Array<{ type: string; label: string; url: string }>;
+    status?: string;
+    year?: number;
+    category: string;
+    featured: boolean;
+    priority: number;
+    coverAlt?: string;
+    thumbnail?: string;
+    image?: string;
+    screenshots?: string[];
+    media?: string[];
+  };
+}
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  projects: ProjectEntry[];
+}
+
+const { id, title, description, projects } = Astro.props as Props;
+---
+
+<SectionShell
+  id={id}
+  eyebrow={title}
+  title={`${title} projects`}
+  description={description}
+  count={`${projects.length} projects`}
+>
+  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    {projects.map((project) => {
+      const image =
+        project.data.thumbnail ||
+        project.data.image ||
+        project.data.screenshots?.[0] ||
+        null;
+
+      return (
+        <ProjectCard
+          slug={project.slug}
+          title={project.data.title}
+          subtitle={project.data.subtitle}
+          description={project.data.description}
+          typeTags={project.data.typeTags}
+          techTags={project.data.techTags}
+          image={image}
+          alt={project.data.coverAlt || project.data.title}
+          links={project.data.links}
+          status={project.data.status}
+          year={project.data.year}
+        />
+      );
+    })}
+  </div>
+</SectionShell>

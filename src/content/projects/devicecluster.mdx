@@ -1,0 +1,133 @@
+---
+{
+  "title": "DeviceCluster",
+  "slug": "devicecluster",
+  "subtitle": "iOS + Rust · Proximity / P2P",
+  "description": "Privacy-centric proximity discovery and peer clustering PoC using Nearby Interaction and Rust.",
+  "category": "Flagship",
+  "typeTags": [
+    "iOS + Rust",
+    "Proximity / P2P"
+  ],
+  "techTags": [
+    "SwiftUI",
+    "Nearby Interaction",
+    "MPC",
+    "Rust",
+    "H3"
+  ],
+  "status": "PoC delivered; further work paused by client",
+  "featured": true,
+  "priority": 3,
+  "role": "Lead iOS engineer (PoC delivery + architecture)",
+  "year": 2026,
+  "stack": [
+    "SwiftUI",
+    "Nearby Interaction",
+    "MPC",
+    "Rust",
+    "H3"
+  ],
+  "links": [],
+  "thumbnail": "wix:image://v1/261160_e4199e384c194c0fb57b5ea7123a582b~mv2.png/DeviceCluster%202.png#originWidth=453&originHeight=912",
+  "image": "wix:image://v1/261160_10ffa60001ba401182db0f12738222c0~mv2.png/DeviceCluster%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "DeviceCluster Banner.png",
+  "highlights": [
+    "NI token exchange + direction UI validated on supported devices/regions",
+    "Modular P2P layer with testable payload transfer (including audio)",
+    "Rust core via UniFFI for H3-gated peer graphs and snapshot syncing"
+  ],
+  "wix": {
+    "id": "633f1111-74f8-447f-97d2-ad5b359263e5",
+    "path": "/projects/devicecluster",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_e4199e384c194c0fb57b5ea7123a582b~mv2.png/DeviceCluster%202.png#originWidth=453&originHeight=912",
+      "fileName": "DeviceCluster Thumbnail",
+      "title": "DeviceCluster Thumbnail",
+      "alt": "DeviceCluster thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "DeviceCluster Banner.png",
+        "slug": "261160_10ffa60001ba401182db0f12738222c0~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_10ffa60001ba401182db0f12738222c0~mv2.png/DeviceCluster%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "DeviceCluster Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "o",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T12:59:51Z",
+    "updatedAt": "2026-01-15T06:10:36Z"
+  }
+}
+---
+
+## Summary
+
+DeviceCluster is a privacy-centric PoC for spontaneous, close-proximity connections between nearby users. It combines Multipeer Connectivity for discovery and transport, Nearby Interaction for direction/distance when available, and a modular foundation to swap transports and add backend orchestration later. The work expanded into clustering logic, QR-based pairing, AR direction cues, and a Rust core for portable graph modeling.
+Key highlights:
+- NI token exchange + direction UI validated on supported devices/regions
+- Modular P2P layer with testable payload transfer (including audio)
+- Rust core via UniFFI for H3-gated peer graphs and snapshot syncing
+
+## Quick facts
+
+- Role: Lead iOS engineer (PoC delivery + architecture)
+- Timeframe: Multi-milestone engagement
+- Platform: iOS (SwiftUI), iPhone 15+ for NI/UWB testing
+- Status: PoC delivered; further work paused by client
+- Team: 1 (with client stakeholders)
+
+## Problem
+
+- Accurate “mutual direction” between two moving phones is hard and easy to fake with sample code.
+- UWB/Nearby Interaction behavior is environment-dependent (region/device/entitlements) and fails silently.
+- Always-on proximity scanning is constrained by iOS background limits, and NFC “tap-to-pair” isn’t available for true iPhone-to-iPhone exchange.
+
+## Solution
+
+I built a PoC that discovers nearby devices, connects peer-to-peer, exchanges NI discovery tokens, and renders live direction/distance when supported. When platform constraints blocked seamless discovery, I added fallback and orchestration primitives: QR pairing, websocket readiness, and a tiered clustering approach that can escalate from coarse location to close-range precision.
+
+## Architecture
+
+- SwiftUI app with a dedicated connectivity layer (Multipeer Connectivity) and clear feature boundaries
+- NI manager: token exchange → NISession start → publish distance/direction → UI arrow binding
+- Fallback pairing: QR generator + scanner (AVFoundation) to bootstrap peer connection
+- AR overlay: simple camera-space arrow view tied to peer direction updates
+- Websocket client layer behind reusable networking components for backend coordination
+- Rust core via UniFFI: H3-based location gating + petgraph undirected cluster graph
+- Snapshot broadcast over P2P with debounced sending and minimal “apply then suppress re-broadcast” logic
+
+## Tech stack
+
+- iOS: Swift, SwiftUI, NearbyInteraction, MultipeerConnectivity, ARKit, AVFoundation
+- Architecture: Clean modular services/repos + use cases, payload framing, snapshot-based sync
+- Backend/Infra: WebSockets (echo endpoint for validation), location-based gating with H3
+- Tooling: Rust, UniFFI, XCFramework/Swift Package packaging, Xcode, os.Logger
+
+## Hard problems solved
+
+- Diagnosed NI “session suspends immediately” behavior and isolated the root constraint to regional UWB availability, then validated on the client’s supported devices
+- Built a peer-to-peer NI token exchange path that recovers from suspension/invalidation by re-sending tokens and re-running sessions
+- Evaluated Wi-Fi Aware and rejected it due to non-automatable pairing UX (system code sheet, no programmatic access)
+- Implemented reliable, higher-payload peer messaging (audio transfer) to validate transport beyond tiny control messages
+- Designed a tiered discovery strategy to work with iOS backgrounding limits (coarse triggers → P2P channels → NI precision layer)
+- Integrated Rust via UniFFI + XCFramework build pipeline and exposed a safe Swift API for graph snapshots and H3 gating
+- Implemented basic snapshot syncing and documented remaining gaps (versioning/conflict resolution) instead of hiding them
+
+## Impact / Results
+
+- Delivered a working PoC proving peer discovery + direction cues are feasible on supported devices
+- Produced a modular foundation: connectivity, pairing, AR visualization, clustering core, and backend-readiness hooks
+- Helped the client make informed product decisions by surfacing platform constraints early (UWB region limits, NFC limits, Wi-Fi Aware UX)

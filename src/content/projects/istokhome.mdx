@@ -1,0 +1,144 @@
+---
+{
+  "title": "ISTOKHOME",
+  "slug": "istokhome",
+  "subtitle": "Backend · Marketplace",
+  "description": "Django backend for a two-sided marketplace for interior designers and home services.",
+  "category": "Backend",
+  "typeTags": [
+    "Backend",
+    "Marketplace"
+  ],
+  "techTags": [
+    "Django",
+    "DRF",
+    "Celery",
+    "CloudPayments"
+  ],
+  "status": "Closed (project discontinued)",
+  "featured": false,
+  "priority": 11,
+  "role": "Backend developer (built v1 backend + initial release)",
+  "year": 2026,
+  "stack": [
+    "Django",
+    "DRF",
+    "Celery",
+    "CloudPayments"
+  ],
+  "links": [
+    {
+      "type": "GitHub",
+      "label": "GitHub",
+      "url": "https://github.com/daniyar-kbv/ISTOKBackend"
+    },
+    {
+      "type": "Website",
+      "label": "Website",
+      "url": "https://istokhome.kz"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_969d7733a5a341c081c4141bf24dfa46~mv2.png/ISTOKHOME%20Mobile%201.png#originWidth=450&originHeight=920",
+  "image": "wix:image://v1/261160_78bb04b8426048cca6c3a71a59510d67~mv2.png/ISTOKHOME%2520Banner.png#originWidth=6592&originHeight=2460",
+  "coverAlt": "ISTOKHOME Banner.png",
+  "highlights": [
+    "Multi-app Django REST backend covering projects, specialists, requests, reviews, and blog",
+    "Robust media handling (uploads, limits, cleanup) and engagement tracking",
+    "Payments and promotions with CloudPayments + feature lifecycle automation"
+  ],
+  "wix": {
+    "id": "d34e3e63-65e7-4ac4-aca9-dcc4d7481c1f",
+    "path": "/projects/istokhome",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_969d7733a5a341c081c4141bf24dfa46~mv2.png/ISTOKHOME%20Mobile%201.png#originWidth=450&originHeight=920",
+      "fileName": "ISTOKHOME Thumbnail",
+      "title": "ISTOKHOME Thumbnail",
+      "alt": "ISTOKHOME thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "ISTOKHOME Banner.png",
+        "slug": "261160_78bb04b8426048cca6c3a71a59510d67~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_78bb04b8426048cca6c3a71a59510d67~mv2.png/ISTOKHOME%2520Banner.png#originWidth=6592&originHeight=2460",
+        "title": "ISTOKHOME Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 6592,
+          "height": 2460,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "u",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:07:13Z",
+    "updatedAt": "2026-01-15T06:11:49Z"
+  }
+}
+---
+
+## Summary
+
+ISTOK HOME was a marketplace for home services where users could browse projects, discover specialists, send requests, and leave verified reviews after completion. I built the backend for the first version and supported the initial release, including search, media-heavy project flows, role-based accounts, and paid promotions for specialists/projects.
+Key highlights:
+- Multi-app Django REST backend covering projects, specialists, requests, reviews, and blog
+- Robust media handling (uploads, limits, cleanup) and engagement tracking
+- Payments and promotions with CloudPayments + feature lifecycle automation
+
+## Quick facts
+
+- Role: Backend developer (built v1 backend + initial release)
+- Timeframe: V1 build through initial launch
+- Platform: Web platform backend (Django REST)
+- Status: Closed (project discontinued)
+- Team: Backend role within a product team
+
+## Problem
+
+- Marketplace flows require strict state and permissions: client vs specialist roles, request lifecycle, and verified reviews.
+- Projects are media-heavy and filter/search-heavy, so APIs must be fast and consistent.
+- Monetization needed paid visibility (Top/Detailed, PRO) with safe payment processing and expiry handling.
+
+## Solution
+
+I implemented a modular Django REST backend with clear domain separation (projects/search, profiles/applications, users/catalog, payments, blog). The system supports discovery via filters and search, request submission and completion, review publishing with confirmation, and paid promotion features with lifecycle tasks and notifications.
+- Built an admin-friendly backend with rich Django Admin tools for moderation and content ops
+
+## Architecture
+
+- Django project split into domain apps: main, users, profiles, payments, blog
+- REST API via DRF ViewSets/serializers with list/search/detail endpoints
+- Role-based user model and profiles (client vs merchant) with JWT auth
+- Media pipeline for project documents and attachments (multipart parsing, validation, cleanup)
+- Engagement tracking models (views, favorites, to_profile_count) exposed through serializers
+- Payments module integrating CloudPayments + 3DS flows via templates and callbacks
+- Celery tasks + signals for feature lifecycle (expiry, deactivation, notifications) and media processing
+- Deployed behind NGINX + Gunicorn on Linux
+
+## Tech stack
+
+- iOS: N/A
+- Architecture: Django REST Framework, multi-app domain split, JWT auth, Celery tasks + signals
+- Backend/Infra: PostgreSQL (implied), CloudPayments + 3DS, NGINX, Gunicorn, Linux
+- Tooling: Docker, Django Admin, DRF routers/serializers
+
+## Hard problems solved
+
+- Designed project create/update APIs that handle add/delete media in one request while enforcing strict limits (min 1, max 12)
+- Implemented promotion state as paid features with start/end dates and server-derived “is_top/is_detailed” flags via signals
+- Built statistics endpoints for paid features (7/30 days) aggregating daily views and applications
+- Implemented verified review flow tied to request completion and role-specific “finish” logic
+- Handled 3DS payment confirmation and transaction recording without trusting client-side state
+- Built idempotent favorites toggling and consistent “favorite status” computation across list/detail views
+- Automated operational hygiene: media cleanup on deletions, notification dispatch, and feature expiry reminders
+
+## Impact / Results
+
+- Delivered the backend for v1 and supported the platform’s initial release
+- Enabled core marketplace loops: discovery → request → completion → verified review
+- Shipped monetization primitives (PRO and project promotions) with payment verification and lifecycle automation

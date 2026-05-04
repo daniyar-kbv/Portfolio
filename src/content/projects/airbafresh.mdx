@@ -1,0 +1,143 @@
+---
+{
+  "title": "AirbaFresh",
+  "slug": "airbafresh",
+  "subtitle": "iOS App · Grocery Delivery",
+  "description": "Production grocery delivery app with full catalog, checkout, and order lifecycle.",
+  "category": "Flagship",
+  "typeTags": [
+    "iOS App",
+    "Grocery Delivery"
+  ],
+  "techTags": [
+    "UIKit",
+    "RxSwift",
+    "Moya",
+    "Firebase"
+  ],
+  "status": "Shipped",
+  "featured": true,
+  "priority": 4,
+  "role": "Lead iOS Developer (led v1 build)",
+  "year": 2026,
+  "stack": [
+    "UIKit",
+    "RxSwift",
+    "Moya",
+    "Firebase"
+  ],
+  "links": [
+    {
+      "type": "Website",
+      "label": "Website",
+      "url": "https://airbafresh.kz/"
+    },
+    {
+      "type": "App Store",
+      "label": "App Store",
+      "url": "https://apps.apple.com/ae/app/airba-fresh-%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2/id1619246461"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_925be1b9924441cca039648d7b9e3dfb~mv2.png/AirbaFresh%201.png#originWidth=465&originHeight=932",
+  "image": "wix:image://v1/261160_211bfcf3fcd14f05b4925f568c5f12d1~mv2.png/AirbaFresh%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "AirbaFresh Banner.png",
+  "highlights": [
+    "Built v1 end-to-end: auth, address, catalog, cart/workflow, and profile",
+    "Clean layered architecture with MVVM + RxSwift and Moya networking",
+    "Strong workflow/session handling across the app via shared headers and events"
+  ],
+  "wix": {
+    "id": "1daf9dd6-c459-4ef7-8ad7-5268e916a7bb",
+    "path": "/projects/airbafresh",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_925be1b9924441cca039648d7b9e3dfb~mv2.png/AirbaFresh%201.png#originWidth=465&originHeight=932",
+      "fileName": "AirbaFresh Thumbnail",
+      "title": "AirbaFresh Thumbnail",
+      "alt": "AirbaFresh thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "AirbaFresh Banner.png",
+        "slug": "261160_211bfcf3fcd14f05b4925f568c5f12d1~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_211bfcf3fcd14f05b4925f568c5f12d1~mv2.png/AirbaFresh%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "AirbaFresh Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "q",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:00:35Z",
+    "updatedAt": "2026-01-15T06:10:48Z"
+  }
+}
+---
+
+## Summary
+
+Airba Fresh is a grocery delivery app focused on fast browsing, search, and checkout driven by delivery address and the nearest warehouse. I led the iOS development of the first version, setting up the architecture, core flows, and delivery-ready feature set.
+Key highlights:
+- Built v1 end-to-end: auth, address, catalog, cart/workflow, and profile
+- Clean layered architecture with MVVM + RxSwift and Moya networking
+- Strong workflow/session handling across the app via shared headers and events
+
+## Quick facts
+
+- Role: Lead iOS Developer (led v1 build)
+- Timeframe: V1 delivery + early iterations
+- Platform: iOS
+- Status: Shipped
+- Team: iOS lead within a product team
+
+## Problem
+
+- Grocery UX is state-heavy: address, warehouse availability, promotions, cart, and delivery slots must stay consistent.
+- Catalog needed scalable filtering, search, product availability states, and fast product detail loading.
+- App had to support both guest browsing and gated actions (addresses, favorites, ordering) without confusing users.
+
+## Solution
+
+I implemented a tab-based shopping flow with address-first delivery context, a category catalog with search and filters, and a workflow-driven cart/session that stays consistent across screens. The app supports guest browsing, then escalates to auth only when needed.
+- Address selection drives assortment, delivery eligibility, and order readiness
+
+## Architecture
+
+- Layered structure: Data (DTO/API/Storage) → Domain (services/repos) → Presentation (MVVM) → Application (factories/coordinator)
+- Networking via Moya targets with a single base URL and unified target conventions
+- Workflow/session propagated to all requests through a custom Moya plugin header
+- Reactive state with RxSwift/RxCocoa (PublishRelay) across services and view models
+- App-wide events via EventManager (unauthorized, data refresh, limit events)
+- DTO → Entity → UI mapping for catalog, sections, and product details
+- Shared workflow repository emits cart count and session changes to update UI globally
+- Address CRUD + suggestions/geocoding integrated via a dedicated service layer
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift/RxCocoa
+- Architecture: MVVM, Coordinator, layered Data/Domain/Presentation, event bus
+- Backend/Infra: REST API (Moya targets), Yandex geocoding/suggest integration
+- Tooling: CocoaPods, SnapKit, Kingfisher, Husky (pre-commit), SwiftFormat, xUnique
+
+## Hard problems solved
+
+- Made workflow/cart a first-class shared state and ensured every request carried the right context without leaking it into feature code
+- Designed a reactive update model so catalog, product detail, and cart screens stay consistent after mutations (add/remove/qty)
+- Built clean boundaries between “nomenclature” (catalog) and workflow/cart to avoid circular dependencies
+- Handled auth/unauthorized events globally and safely reset session, repositories, and workflow without stale UI
+- Implemented address gating rules (guest vs authorized paths) while keeping navigation predictable
+- Ensured search/filter flows degrade cleanly (empty states, clear filter confirmation, out-of-stock states)
+
+## Impact / Results
+
+- Delivered the first production version of the iOS app as the iOS lead
+- Established a maintainable architecture that supported multiple feature areas and ongoing iteration
+- Shipped a stable shopping flow across address, catalog, cart, promotions, and profile

@@ -1,0 +1,185 @@
+---
+{
+  "title": "UniClub",
+  "slug": "uniclub",
+  "subtitle": "iOS App + Backend · Booking Platform",
+  "description": "Marketplace for booking children’s classes with iOS app and Django backend.",
+  "category": "Backend",
+  "typeTags": [
+    "iOS App + Backend",
+    "Booking Platform"
+  ],
+  "techTags": [
+    "UIKit",
+    "Alamofire",
+    "Django",
+    "Celery"
+  ],
+  "status": "Discontinued (app removed from the App Store)",
+  "featured": false,
+  "priority": 9,
+  "role": "iOS Developer + Backend Developer (mobile stack). Also supported the main website booking flow.",
+  "year": 2026,
+  "stack": [
+    "UIKit",
+    "Alamofire",
+    "Django",
+    "Celery"
+  ],
+  "links": [
+    {
+      "type": "GitHub",
+      "label": "Mobile Backend Repo",
+      "url": "https://github.com/daniyar-kbv/UniclubMobileBackend"
+    },
+    {
+      "type": "GitHub",
+      "label": "iOS Repo",
+      "url": "https://github.com/daniyar-kbv/UniclubiOS"
+    },
+    {
+      "type": "GitHub",
+      "label": "Web Backend Repo",
+      "url": "https://github.com/daniyar-kbv/UniclubWebBackend"
+    },
+    {
+      "type": "Instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/uniclub_kz/"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_d1903f36965f4b98bb4f5854811cfb9d~mv2.png/UniClub%201.png#originWidth=425&originHeight=856",
+  "image": "wix:image://v1/261160_6185de27dc214d168454e4ea2b6dbb70~mv2.png/UniClub%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "UniClub Banner.png",
+  "highlights": [
+    "iOS app: filter-first discovery, schedule picker, cart, and booking request forms",
+    "Mobile backend: DRF + Celery, plus Telegram bot for collecting course reviews",
+    "Web backend: phone auth, subscriptions, lesson generation, booking, and partner workflows"
+  ],
+  "wix": {
+    "id": "8902ba83-a4f2-4a2f-8148-fcd4fea118bf",
+    "path": "/projects/uniclub",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_d1903f36965f4b98bb4f5854811cfb9d~mv2.png/UniClub%201.png#originWidth=425&originHeight=856",
+      "fileName": "UniClub Thumbnail",
+      "title": "UniClub Thumbnail",
+      "alt": "UniClub thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "UniClub Banner.png",
+        "slug": "261160_6185de27dc214d168454e4ea2b6dbb70~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_6185de27dc214d168454e4ea2b6dbb70~mv2.png/UniClub%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "UniClub Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      {
+        "description": "",
+        "fileName": "UniClub Web Banner.png",
+        "slug": "261160_a54e99135b304c78b842ba19bb877391~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_a54e99135b304c78b842ba19bb877391~mv2.png/UniClub%2520Web%2520Banner.png#originWidth=6592&originHeight=2460",
+        "title": "UniClub Web Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 6592,
+          "height": 2460,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      {
+        "description": "",
+        "fileName": "UniClub Bot Banner.png",
+        "slug": "261160_efbef3d809de451abb8a02079177748c~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_efbef3d809de451abb8a02079177748c~mv2.png/UniClub%2520Bot%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "UniClub Bot Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "u4",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:08:59Z",
+    "updatedAt": "2026-01-15T06:12:06Z"
+  }
+}
+---
+
+## Summary
+
+Two-sided marketplace for kids’ study and sports activities in Nur-Sultan: discovery, filtering, class details, schedule selection, and request-based booking. I built the iOS app and mobile backend from scratch and supported the website booking experience. The product covered both parent-facing browsing/booking and partner onboarding and operations through admin tooling.
+Key highlights:
+- iOS app: filter-first discovery, schedule picker, cart, and booking request forms
+- Mobile backend: DRF + Celery, plus Telegram bot for collecting course reviews
+- Web backend: phone auth, subscriptions, lesson generation, booking, and partner workflows
+
+## Quick facts
+
+- Role: iOS Developer + Backend Developer (mobile stack). Also supported the main website booking flow.
+- Timeframe: Not specified
+- Platform: iOS + Web + Backend APIs
+- Status: Discontinued (app removed from the App Store)
+- Team: Solo for iOS + mobile backend (supported a separate web team/product)
+
+## Problem
+
+- Needed a complete marketplace flow: discovery → schedule → booking request, plus partner acquisition.
+- Required strong filter dimensions (age, activity type, location, time of day) with fast UX on mobile.
+- Had to support operational constraints: capacity, schedules, verified reviews, and async notifications.
+
+## Solution
+
+I delivered an end-to-end mobile stack: a UIKit iOS client with reactive bindings and a Django REST backend for filters, courses, and application submissions. The backend also integrated a Telegram bot for collecting reviews and shipped Swagger/Redoc docs for API consumers. The broader platform included a separate web backend with partner dashboards, scheduling, subscriptions, and attendance tracking, which I supported for booking-related needs.
+- Focused on a predictable booking pipeline and clean admin-driven content management
+
+## Architecture
+
+- iOS: UIKit + SnapKit UI, RxSwift bindings, shared cart/filters state propagated via subjects
+- iOS networking: router-based API layer with Codable decoding and paginated lists
+- Mobile backend: Django REST Framework apps (filters, courses, applications), Celery + RabbitMQ jobs
+- Telegram bot: webhook endpoint → TeleBot flow → persisted reviews in DB
+- Web backend: modular Django apps for clubs/courses/lessons/subscriptions/bookings with JWT auth
+- API docs: Swagger + Redoc for backend endpoints and partner/client workflows
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift, SnapKit
+- Architecture: MVVM-lite with shared state, Router-based networking, Codable models
+- Backend/Infra: Django, DRF, Celery, RabbitMQ, PostgreSQL
+- Tooling: Docker, Swagger/Redoc (drf-yasg), Firebase, Kingfisher, Lottie
+
+## Hard problems solved
+
+- Designed a filter model that supports many dimensions without breaking list pagination and UX
+- Built schedule selection that maps weekday/time picks into stable booking payloads
+- Implemented request-based checkout (not instant payment) with reliable success states and tracking IDs
+- Kept cross-screen state consistent (filters, cart, selected lesson times) via reactive streams
+- Shipped a Telegram bot review flow that enforces structure and persists results via webhook processing
+- Orchestrated async tasks (emails/notifications) safely with Celery and transaction boundaries
+
+## Impact / Results
+
+- Delivered iOS app + mobile backend from scratch with a complete discovery-to-request flow
+- Enabled lead capture and partner onboarding via dedicated forms and admin-managed content
+- Provided backend documentation and operational tooling to support iteration and support workflows

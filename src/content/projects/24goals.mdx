@@ -1,0 +1,146 @@
+---
+{
+  "title": "24Goals",
+  "slug": "24goals",
+  "subtitle": "iOS App · Productivity",
+  "description": "Goal-tracking app that reached Top-8 in Productivity and Top-100 overall on launch.",
+  "category": "Production",
+  "typeTags": [
+    "iOS App",
+    "Productivity"
+  ],
+  "techTags": [
+    "UIKit",
+    "RxSwift",
+    "StoreKit",
+    "Firebase"
+  ],
+  "status": "Discontinued (removed from the App Store)",
+  "featured": false,
+  "priority": 7,
+  "role": "Solo iOS developer (built and maintained end-to-end)",
+  "year": 2026,
+  "stack": [
+    "UIKit",
+    "RxSwift",
+    "StoreKit",
+    "Firebase"
+  ],
+  "links": [
+    {
+      "type": "Instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/24goalsapp/"
+    },
+    {
+      "type": "GitHub",
+      "label": "iOS Repo",
+      "url": "https://github.com/daniyar-kbv/GoalsterIOS"
+    },
+    {
+      "type": "GitHub",
+      "label": "Backend Repo",
+      "url": "https://github.com/daniyar-kbv/GoalsterBackend"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_efecf8207bf049b593f8eb4d6777ba88~mv2.png/24Goals%201.png#originWidth=425&originHeight=856",
+  "image": "wix:image://v1/261160_1c10735ba8dd498cb5aeb2a23063f375~mv2.png/24Goals%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "24Goals Banner.png",
+  "highlights": [
+    "Reached #8 in Productivity (Free) and Top 100 Free Apps in the first week",
+    "Built with programmatic UIKit + reactive MVVM and a typed networking layer",
+    "Replaced unstable deep-link auth with reliable email OTP verification"
+  ],
+  "wix": {
+    "id": "20473521-b9d2-42d3-8870-3c68d5b3a61d",
+    "path": "/projects/24goals",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_efecf8207bf049b593f8eb4d6777ba88~mv2.png/24Goals%201.png#originWidth=425&originHeight=856",
+      "fileName": "24Goals Thumbnail",
+      "title": "24Goals Thumbnail",
+      "alt": "24Goals thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "24Goals Banner.png",
+        "slug": "261160_1c10735ba8dd498cb5aeb2a23063f375~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_1c10735ba8dd498cb5aeb2a23063f375~mv2.png/24Goals%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "24Goals Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "t",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:05:39Z",
+    "updatedAt": "2026-01-15T06:11:23Z"
+  }
+}
+---
+
+## Summary
+
+24 Goals (GOALSTER) is a personal task and goal app built around repeating 30-day cycles. Users select three life spheres, plan goals, execute daily tasks in a calendar workflow, and review end-of-period results. The product included optional social and premium features, plus a content library for retention.
+Key highlights:
+- Reached #8 in Productivity (Free) and Top 100 Free Apps in the first week
+- Built with programmatic UIKit + reactive MVVM and a typed networking layer
+- Replaced unstable deep-link auth with reliable email OTP verification
+
+## Quick facts
+
+- Role: Solo iOS developer (built and maintained end-to-end)
+- Timeframe: Built from scratch; 3 major updates shipped
+- Platform: iOS 13+
+- Status: Discontinued (removed from the App Store)
+- Team: 1
+
+## Problem
+
+- Most goal apps stop at to-do lists and don’t create a repeatable 30-day loop with planning, execution, and reflection.
+- Deep-link based email confirmation was unreliable on iOS (links sometimes opened the App Store even when installed).
+- The app needed premium gating and social/accountability features without bloating the core daily workflow.
+
+## Solution
+
+24 Goals structured behavior change into a simple loop: pick three spheres for a 30-day period, plan measurable goals, execute daily tasks via calendar time blocks, and reflect at period end. Accountability was optional (public goals, mentors/observers, comments). Premium unlocked higher limits and reflection tools.
+
+## Architecture
+
+- Programmatic UIKit + SnapKit; no storyboards
+- Reactive MVVM with RxSwift/RxCocoa; ViewModels orchestrate API calls and UI state
+- Typed networking layer (endpoint enum + headers) to a Django REST backend with JWT auth
+- SceneDelegate routing for Firebase Dynamic Links (auth and premium flows)
+- Modular feature areas: Auth, Calendar/Goals, Emotions, Feed, Profile, Premium
+- Local persistence via UserDefaults wrapper; some domain objects persisted via NSCoding
+- Firebase used for analytics/messaging/crash reporting (and dynamic links)
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift/RxCocoa, StoreKit, Firebase (Analytics/Messaging/Dynamic Links/Crashlytics)
+- Architecture: MVVM, typed API client (endpoints + DTOs), modular feature structure
+- Backend/Infra: Django, Django REST Framework, JWT, Celery, Firebase Admin (push)
+- Tooling: CocoaPods, SnapKit, Kingfisher, JTAppleCalendar, Lottie
+
+## Hard problems solved
+
+- Replaced dynamic-link login after detecting an Apple deep-link edge case that redirected users to the App Store despite installation
+- Designed a typed API surface covering a large domain (auth, spheres, goals, observers, feed, premium) while keeping headers consistent (language/timezone/FCM)
+- Built a calendar UX that supports month/week modes and daily goal grouping (morning/day/evening) without UI stutter
+- Implemented premium gating end-to-end: client UI states + backend constraints (e.g., visualization limits and premium-only creation)
+- Implemented observer flows with confirmation states and goal-linked comments, keeping permissions scoped to the right users
+- Backend period lifecycle: scheduled sphere resets and results snapshots at period end, plus inactivity/rating prompts via Celery
+
+## Impact / Results
+
+- Hit #8 in Productivity (Free) and entered the top 100 overall during the first week
+- Delivered 3 major updates and maintained the product through multiple iterations
+- Improved login reliability by replacing the original dynamic-link authorization path

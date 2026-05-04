@@ -1,0 +1,149 @@
+---
+{
+  "title": "Driver Drowsiness Detection",
+  "slug": "driver-drowsiness-detection",
+  "subtitle": "AI/ML · Computer Vision",
+  "description": "YOLOv5-based detection of yawning and closed eyes with a deployed video-processing web demo.",
+  "category": "AI",
+  "typeTags": [
+    "AI/ML",
+    "Computer Vision"
+  ],
+  "techTags": [
+    "Python",
+    "PyTorch",
+    "YOLOv5",
+    "OpenCV",
+    "Flask",
+    "Docker"
+  ],
+  "status": "Completed (academic project + demo)",
+  "featured": false,
+  "priority": 12,
+  "role": "ML Engineer (Computer Vision) + Backend/Deployment (demo web app)",
+  "year": 2026,
+  "stack": [
+    "Python",
+    "PyTorch",
+    "YOLOv5",
+    "OpenCV",
+    "Flask",
+    "Docker"
+  ],
+  "links": [],
+  "image": "wix:video://v1/261160_f2da397204064800b75d21092c865558/Drowsiness%2520Detection%2520Banner%25201.mp4#posterUri=261160_f2da397204064800b75d21092c865558f000.jpg&posterWidth=1080&posterHeight=1920",
+  "coverAlt": "Drowsiness Detection Banner 1.mp4",
+  "highlights": [
+    "Re-annotated face images to make eye detection work in full-face frames",
+    "Chose YOLOv5 after recall/precision tradeoffs with Faster R-CNN",
+    "Deployed a Dockerized Flask app behind NGINX on GCP"
+  ],
+  "wix": {
+    "id": "83ad5603-a883-4510-8c25-7ce13886b17d",
+    "path": "/projects/driver-drowsiness-detection",
+    "banners": [
+      {
+        "description": "",
+        "fileName": "Drowsiness Detection Banner 1.mp4",
+        "slug": "https://video.wixstatic.com/video/261160_f2da397204064800b75d21092c865558/480p/mp4/file.mp4",
+        "alt": "",
+        "src": "wix:video://v1/261160_f2da397204064800b75d21092c865558/Drowsiness%2520Detection%2520Banner%25201.mp4#posterUri=261160_f2da397204064800b75d21092c865558f000.jpg&posterWidth=1080&posterHeight=1920",
+        "title": "Drowsiness Detection Banner 1.mp4",
+        "type": "video",
+        "settings": {
+          "duration": 0,
+          "height": 1920,
+          "focalPoint": [
+            0.5,
+            0.5
+          ],
+          "posters": [
+            {
+              "url": "261160_f2da397204064800b75d21092c865558f000.jpg"
+            }
+          ],
+          "width": 1080
+        }
+      },
+      {
+        "description": "",
+        "fileName": "Drowsiness Detection Banner 2.png",
+        "slug": "261160_b3642e129b8d4f50998e901f4b6b0592~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_b3642e129b8d4f50998e901f4b6b0592~mv2.png/Drowsiness%2520Detection%2520Banner%25202.png#originWidth=1674&originHeight=386",
+        "title": "Drowsiness Detection Banner 2.png",
+        "type": "image",
+        "settings": {
+          "width": 1674,
+          "height": 386,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "uo",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:56:20Z",
+    "updatedAt": "2026-01-14T16:37:45Z"
+  }
+}
+---
+
+## Summary
+
+Built a driver drowsiness detection demo that localizes eyes and mouth cues on video, then triggers a warning after yawning and an alert after ~1 second of closed eyes. We iterated on dataset quality (re-annotation + augmentation), compared Faster R-CNN (Detectron2) vs YOLOv5, and shipped the best-performing pipeline behind a simple web UI.
+Key highlights:
+- Re-annotated face images to make eye detection work in full-face frames
+- Chose YOLOv5 after recall/precision tradeoffs with Faster R-CNN
+- Deployed a Dockerized Flask app behind NGINX on GCP
+
+## Quick facts
+
+- Role: ML Engineer (Computer Vision) + Backend/Deployment (demo web app)
+- Timeframe: Not specified
+- Platform: Web demo (video upload → processed output) + CV model inference
+- Status: Completed (academic project + demo)
+- Team: Team project
+
+## Problem
+
+- Original Kaggle data was not annotated for detection and didn’t transfer well from “eyes-only” images to full-face frames.
+- The system needed high recall to avoid missing drowsiness events, while keeping false alerts manageable.
+- The demo had to process full videos, overlay detections, and return a clear output artifact.
+
+## Solution
+
+We rebuilt the dataset around full-face frames and annotated eyes + yawning states, then used augmentation to simulate real driving conditions (brightness, blur, noise). After benchmarking Detectron2 Faster R-CNN and tuning thresholds, we moved to YOLOv5 for better practical accuracy. The final demo is a Flask web app that accepts a video upload, runs PyTorch inference frame-by-frame, overlays detections, and returns a processed video with warning/alert events.
+- Implemented event logic: “yawn warning” and “eyes closed > 1s” alert
+
+## Architecture
+
+- Data: Kaggle base dataset → CVAT re-annotation (full-face) → Roboflow split + augmentation
+- Model training: transfer learning with Detectron2 (Faster R-CNN) and YOLOv5
+- Inference: PyTorch YOLOv5 on video frames → bounding boxes + class labels + confidence
+- Event engine: timers/thresholds to trigger yawning warnings and closed-eye alerts
+- Demo app: Flask (templates + Jinja2) for upload/result flow
+- Deployment: Docker Compose on GCP VM + NGINX reverse proxy
+
+## Tech stack
+
+- Architecture: Object detection + temporal event rules (yawn / eyes-closed)
+- Backend/Infra: Flask, Docker Compose, NGINX, Google Cloud VM
+- Tooling: PyTorch, YOLOv5, Detectron2, Roboflow, CVAT
+
+## Hard problems solved
+
+- Fixed a core dataset mismatch: “eyes-only” training data failed on full-face inference, so we re-annotated for the real input distribution
+- Designed augmentations to reflect driving noise (lighting shifts, blur, in-cabin noise) without breaking labels
+- Tuned for safety-oriented recall: explored confidence thresholds and accepted precision tradeoffs to reduce missed detections
+- Switched model families when Faster R-CNN thresholding still missed classes at higher confidence cutoffs
+- Implemented temporal logic (closed-eyes duration) instead of relying on single-frame predictions
+- Built a robust video pipeline: decode → infer → annotate → re-encode → return output reliably in a web workflow
+
+## Impact / Results
+
+- Delivered a working demo that flags yawns and sustained eye-closure events on uploaded driving videos
+- Produced a repeatable dataset + training pipeline with clear learnings on model selection and threshold tradeoffs
+- Deployed an end-to-end system (model + web app + infra) suitable for showcasing to non-technical stakeholders

@@ -1,0 +1,137 @@
+---
+{
+  "title": "Magazinchik",
+  "slug": "magazinchik",
+  "subtitle": "iOS App · Grocery Delivery",
+  "description": "15-minute delivery app concept with full shopping and checkout flow.",
+  "category": "Legacy",
+  "typeTags": [
+    "iOS App",
+    "Grocery Delivery"
+  ],
+  "techTags": [
+    "UIKit",
+    "RxSwift",
+    "Alamofire",
+    "Yandex Maps"
+  ],
+  "status": "Discontinued (pre-production)",
+  "featured": false,
+  "priority": 16,
+  "role": "iOS Developer (end-to-end delivery app build)",
+  "year": 2026,
+  "stack": [
+    "UIKit",
+    "RxSwift",
+    "Alamofire",
+    "Yandex Maps"
+  ],
+  "links": [
+    {
+      "type": "GitHub",
+      "label": "GitHub",
+      "url": "https://github.com/daniyar-kbv/MagazinchikiOS"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_fdc36177199b45e295e3080968192881~mv2.png/Magazinchik%201.png#originWidth=425&originHeight=856",
+  "image": "wix:image://v1/261160_a4501f973157464ea3e9e8debca24883~mv2.png/Magazinchik%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "Magazinchik Banner.png",
+  "highlights": [
+    "Address-first flow tied to delivery availability and district detection",
+    "Full shopping loop: browse → cart → checkout → orders → receipts",
+    "Reactive UI updates across app state (cart, address, auth)"
+  ],
+  "wix": {
+    "id": "2484fc28-0425-4e0e-ad2c-75b0fac9c757",
+    "path": "/projects/magazinchik",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_fdc36177199b45e295e3080968192881~mv2.png/Magazinchik%201.png#originWidth=425&originHeight=856",
+      "fileName": "Magazinchik Thumbnail",
+      "title": "Magazinchik Thumbnail",
+      "alt": "Magazinchik thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "Magazinchik Banner.png",
+        "slug": "261160_a4501f973157464ea3e9e8debca24883~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_a4501f973157464ea3e9e8debca24883~mv2.png/Magazinchik%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "Magazinchik Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "ug",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:12:33Z",
+    "updatedAt": "2026-01-15T06:12:35Z"
+  }
+}
+---
+
+## Summary
+
+Express grocery delivery app concept for Kazakhstan with a “~15 minutes” promise. I built the iOS client end to end: address-first onboarding, catalog + search, cart/checkout, payments (including Kaspi transfer), and order lifecycle screens. The project was stopped in pre-production, before App Store release.
+Key highlights:
+- Address-first flow tied to delivery availability and district detection
+- Full shopping loop: browse → cart → checkout → orders → receipts
+- Reactive UI updates across app state (cart, address, auth)
+
+## Quick facts
+
+- Role: iOS Developer (end-to-end delivery app build)
+- Timeframe: Pre-production build delivered; project stopped before launch
+- Platform: iOS (iPhone)
+- Status: Discontinued (pre-production)
+- Team: Small team with backend + design
+
+## Problem
+
+- Needed a fast, local-first UX: ₸ pricing, +7 phone auth, Kaspi payments, RU/KZ audience.
+- Had to make “15 minutes to this address” a core product constraint across screens.
+- Required resilience for real-world edge cases: out-of-stock, store hours, offline, 3DS, cancellations.
+
+## Solution
+
+I implemented the full iOS app in UIKit with programmatic layout. The UX starts with address selection (with delivery zone checks), then supports quick cart building from lists and product details. Checkout includes multiple payment methods and a 3DS step. The order flow covers confirmation, in-progress states, cancellation, history, order details, and a receipt view. Profile includes addresses, cards, FAQ, and support.
+- Built as a production-ready client, but never shipped due to project closure
+
+## Architecture
+
+- UIKit + SnapKit UI, pragmatic MVC with lightweight ViewModels
+- RxSwift/RxCocoa bindings for cart, address, auth, and network results
+- Alamofire Router-based networking + typed Codable models
+- Shared app state (cart, address, cached catalog) published via reactive subjects
+- Yandex MapKit district selection + “find district” backend integration
+- Lottie-based order-forming and empty/error states
+- Reachability-driven offline handling and retry UI
+
+## Tech stack
+
+- iOS: Swift, UIKit, SnapKit, RxSwift/RxCocoa, Kingfisher, Lottie
+- Architecture: MVC + ViewModels (reactive bindings)
+- Backend/Infra: Alamofire, Yandex MapKit, Firebase Analytics, ReachabilitySwift
+- Tooling: CocoaPods, GitHub
+
+## Hard problems solved
+
+- Designed an address-first lifecycle with delivery availability gating and district resolution
+- Kept cart state consistent across lists, product screens, checkout, and bottom banners using reactive streams
+- Modeled inventory instability: out-of-stock labeling + cart warnings + safe checkout behavior
+- Implemented a time-based order forming flow with countdown + success/failure outcomes without blocking the UI
+- Built a multi-payment checkout (cash, Kaspi transfer, card + 3DS screen) with clear validation and recovery
+- Shipped a robust set of operational states (offline, store closed, generic retry) to avoid dead ends
+
+## Impact / Results
+
+- Delivered a complete pre-production iOS app covering the full delivery funnel and edge cases
+- Validated feasibility of a Kazakhstan-localized “fast delivery” experience (address-first, Kaspi, RU strings)
+- Produced a codebase ready for backend hardening and production rollout, but project was stopped before release

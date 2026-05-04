@@ -1,0 +1,132 @@
+---
+{
+  "title": "Revenue Sharing iOS SDK",
+  "slug": "apprevshare-ios-sdk",
+  "subtitle": "iOS SDK · StoreKit 2",
+  "description": "Passive StoreKit 2 monitoring SDK for reliable revenue attribution and fraud prevention.",
+  "category": "Flagship",
+  "typeTags": [
+    "iOS SDK",
+    "StoreKit 2"
+  ],
+  "techTags": [
+    "Swift",
+    "StoreKit 2",
+    "Swift Package",
+    "Networking"
+  ],
+  "status": "Paused (client postponed further SDK work)",
+  "featured": true,
+  "priority": 2,
+  "role": "iOS SDK engineer (hired to harden StoreKit monitoring + reporting)",
+  "year": 2026,
+  "stack": [
+    "Swift",
+    "StoreKit 2",
+    "Swift Package",
+    "Networking"
+  ],
+  "links": [],
+  "thumbnail": "wix:image://v1/261160_28ceba581a354eaaaa50b332b46cc96c~mv2.png/AppRevShare%20Thumbnail.png#originWidth=453&originHeight=912",
+  "image": "wix:image://v1/261160_ce40e9f6a22240c3a1ad0fb9086842a5~mv2.png/AppRevShare%2520iOS%2520SDK%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "AppRevShare iOS SDK Banner.png",
+  "highlights": [
+    "Passive StoreKit 2 listener with automatic reporting (no “report purchase” calls from host app)",
+    "Stronger deduplication and bounded retries to prevent backend spam",
+    "Clear documentation of unavoidable platform limits (especially for consumables)"
+  ],
+  "wix": {
+    "id": "4ca380aa-556f-4a4a-9d01-15a861e0a5e5",
+    "path": "/projects/apprevshare-ios-sdk",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_28ceba581a354eaaaa50b332b46cc96c~mv2.png/AppRevShare%20Thumbnail.png#originWidth=453&originHeight=912",
+      "fileName": "Revenue Sharing iOS SDK Thumbnail",
+      "title": "Revenue Sharing iOS SDK Thumbnail",
+      "alt": "Revenue Sharing iOS SDK thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "AppRevShare iOS SDK Banner.png",
+        "slug": "261160_ce40e9f6a22240c3a1ad0fb9086842a5~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_ce40e9f6a22240c3a1ad0fb9086842a5~mv2.png/AppRevShare%2520iOS%2520SDK%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "AppRevShare iOS SDK Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "8",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T12:58:56Z",
+    "updatedAt": "2026-01-16T13:05:51Z"
+  }
+}
+---
+
+## Summary
+
+An iOS SDK for referral revenue attribution. Apps integrate it once, and it monitors StoreKit purchases to report transactions to a backend for verification and commission splitting. I joined to improve reliability, reduce duplicate reporting, and align expectations with real StoreKit behavior.
+Key highlights:
+- Passive StoreKit 2 listener with automatic reporting (no “report purchase” calls from host app)
+- Stronger deduplication and bounded retries to prevent backend spam
+- Clear documentation of unavoidable platform limits (especially for consumables)
+
+## Quick facts
+
+- Role: iOS SDK engineer (hired to harden StoreKit monitoring + reporting)
+- Timeframe: Short engagement + follow-up scope planned, then paused by client
+- Platform: iOS 15+ (Swift Package), plus a SwiftUI example app
+- Status: Paused (client postponed further SDK work)
+- Team: Small founder-led team (me + founder)
+
+## Problem
+
+- SDK had to detect purchases even if the host app “forgets” to report them. Anti-fraud requirement.
+- StoreKit 2 doesn’t provide a true always-on callback for same-device purchases independent of purchase handling.
+- Backend was getting spammed from replays and retry loops, especially on app launch.
+
+## Solution
+
+I implemented a two-path capture strategy: Transaction.updates for replay/out-of-app cases plus periodic Transaction.currentEntitlements polling for near-real-time detection of subscriptions and non-consumables. I also tightened reporting to be idempotent on-device and bounded on failures, and clarified what must be enforced server-side.
+- Added device-side dedupe + max retry attempts per transaction, and recommended backend idempotency
+
+## Architecture
+
+- Swift Package entry point (AppRevShareSDK) wrapping APIClient + StoreKitManager
+- StoreKitManager runs a single listener, consumes Transaction.updates and currentEntitlements polling
+- Verified transactions only (StoreKit VerificationResult gating)
+- Local persistence in UserDefaults for devKey, identifiers, processed transaction IDs, attempt counters
+- Thread-safe dedupe helpers (locks around processed IDs / attempt counts)
+- Network layer with typed request/response models for register, update identifier, report payment
+- Opt-in logger with header masking and structured request/response/error logs
+- SwiftUI example app to validate integration: init, register, update identifier, purchase trigger
+
+## Tech stack
+
+- iOS: Swift, StoreKit 2, SwiftUI (example app)
+- Architecture: Swift Package, passive listener, on-device idempotency + retry control
+- Backend/Infra: REST API contract (register/update/report), server-side App Store verification (client-owned)
+- Tooling: Xcode, XCTest, structured logging utilities
+
+## Hard problems solved
+
+- Identified and corrected a key assumption: Transaction.updates is not a universal “every purchase” stream for same-device purchases
+- Designed a practical capture strategy that improves reliability without heavy CPU/RAM cost (updates + entitlements polling)
+- Reduced backend spam by preventing duplicate re-reporting on replayed transactions and by adding bounded retries
+- Implemented safe on-device idempotency while documenting its limits (reinstall wipes storage; backend must be idempotent)
+- Worked within a backend constraint where registration could disable the SDK entirely (success=false) and ensured zero calls after disable
+- Validated flows despite referral-gated registration and server-side transaction verification rejecting mismatched sandbox data
+
+## Impact / Results
+
+- Improved purchase detection reliability for subscriptions and non-consumables while documenting consumable limitations
+- Prevented repeated reporting loops and reduced noisy traffic patterns during app boot/replay scenarios
+- Delivered changes via a feature branch and proof via recorded demos against a test app

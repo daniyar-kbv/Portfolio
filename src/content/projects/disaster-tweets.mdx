@@ -1,0 +1,142 @@
+---
+{
+  "title": "Disaster Tweets",
+  "slug": "disaster-tweets",
+  "subtitle": "AI/ML · NLP",
+  "description": "NLP classifier for identifying disaster-related tweets, with experiments across classical ML and neural models.",
+  "category": "AI",
+  "typeTags": [
+    "AI/ML",
+    "NLP"
+  ],
+  "techTags": [
+    "Python",
+    "NLP",
+    "TF-IDF",
+    "GRU",
+    "Django"
+  ],
+  "status": "Completed (academic project + demo)",
+  "featured": false,
+  "priority": 14,
+  "role": "ML Engineer (NLP) + Full-stack (demo web app)",
+  "year": 2026,
+  "stack": [
+    "Python",
+    "NLP",
+    "TF-IDF",
+    "GRU",
+    "Django"
+  ],
+  "links": [],
+  "image": "wix:image://v1/261160_d5ac706b60b04d989b88d034285ce9cc~mv2.png/Disaster%2520Tweets%2520Banner%25201.png#originWidth=854&originHeight=852",
+  "coverAlt": "Disaster Tweets Banner 1.png",
+  "highlights": [
+    "Benchmarked classical pipelines vs neural models on the Kaggle dataset",
+    "Used text cleaning + SMOTE to stabilize training on an imbalanced target",
+    "Reached ~82% accuracy with a tuned neural approach and validated tradeoffs"
+  ],
+  "wix": {
+    "id": "33c6a219-9082-4606-8b57-3b37434b57ba",
+    "path": "/projects/disaster-tweets",
+    "banners": [
+      {
+        "description": "",
+        "fileName": "Disaster Tweets Banner 1.png",
+        "slug": "261160_d5ac706b60b04d989b88d034285ce9cc~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_d5ac706b60b04d989b88d034285ce9cc~mv2.png/Disaster%2520Tweets%2520Banner%25201.png#originWidth=854&originHeight=852",
+        "title": "Disaster Tweets Banner 1.png",
+        "type": "image",
+        "settings": {
+          "width": 854,
+          "height": 852,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      {
+        "description": "",
+        "fileName": "Disaster Tweets Banner 2.png",
+        "slug": "261160_748f2d3ee15a4157867fa232b436df02~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_748f2d3ee15a4157867fa232b436df02~mv2.png/Disaster%2520Tweets%2520Banner%25202.png#originWidth=1318&originHeight=486",
+        "title": "Disaster Tweets Banner 2.png",
+        "type": "image",
+        "settings": {
+          "width": 1318,
+          "height": 486,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "us",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:57:06Z",
+    "updatedAt": "2026-01-14T16:37:57Z"
+  }
+}
+---
+
+## Summary
+
+Built an NLP classifier to detect whether a tweet describes a real disaster. Started with classical ML baselines, then iterated through feature engineering, balancing, embeddings, and sequence models. Shipped a Django web demo to run predictions end-to-end.
+Key highlights:
+- Benchmarked classical pipelines vs neural models on the Kaggle dataset
+- Used text cleaning + SMOTE to stabilize training on an imbalanced target
+- Reached ~82% accuracy with a tuned neural approach and validated tradeoffs
+
+## Quick facts
+
+- Role: ML Engineer (NLP) + Full-stack (demo web app)
+- Timeframe: Not specified
+- Platform: Web demo + model training notebooks
+- Status: Completed (academic project + demo)
+- Team: Team project
+
+## Problem
+
+- Disaster tweets are short, noisy, and full of slang, URLs, usernames, and emojis.
+- The dataset is imbalanced, so naive training skews toward “not disaster.”
+- For this use case, false positives are costly (bad alerts), so precision matters.
+
+## Solution
+
+Created a repeatable training pipeline: EDA → cleaning → balancing → baseline models → neural models. Tested CountVectorizer/TF-IDF pipelines with multiple classifiers, then moved to neural approaches with GloVe embeddings and sequence modeling (BiGRU). Tuned decision thresholds and probability aggregation to improve precision and overall accuracy. Packaged the best model flow into a Django web demo for interactive predictions.
+- Compared ANN (embeddings + dense) vs RNN (BiGRU) and selected based on metrics tradeoffs
+
+## Architecture
+
+- Data: Kaggle “NLP Getting Started” tweets dataset (train/test split provided)
+- Preprocess: lowercasing, URL/user removal, stopwords, punctuation rules, lemmatization
+- Balancing: SMOTE for minority class amplification during training
+- Baselines: CountVectorizer/TF-IDF → classifier (RF/LR/DT/NB) pipeline
+- Neural: TextVectorization → GloVe embedding → ANN and BiGRU variants
+- Inference: probability aggregation + tuned threshold → binary label
+- Demo: Django web app wrapper for prediction flow
+
+## Tech stack
+
+- Architecture: TF-IDF/CountVectorizer baselines + ANN (GloVe) + BiGRU RNN
+- Backend/Infra: Django
+- Tooling: Python, scikit-learn, TensorFlow/Keras, NLTK, Kaggle dataset
+
+## Hard problems solved
+
+- Controlled noise without over-cleaning: removed junk tokens while keeping signal like “!” that impacts meaning
+- Stabilized training under class imbalance: used SMOTE and verified it improved validation behavior
+- Avoided “accuracy-only” optimization: explicitly compared precision/recall tradeoffs for disaster detection
+- Explored feature/compute tradeoffs: cleaning barely moved accuracy but reduced training time by shrinking feature space
+- Systematically tuned thresholds and probability aggregation to shift precision/recall to the target operating point
+- Evaluated model families (bag-of-words vs embeddings vs sequence models) to find what actually generalized
+
+## Impact / Results
+
+- Achieved best reported result of ~82% accuracy on the project’s evaluation setup
+- Improved disaster-class precision by tuning decision logic, accepting recall tradeoffs where appropriate
+- Delivered a working web demo that runs the full pipeline from raw text to prediction output

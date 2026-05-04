@@ -1,0 +1,130 @@
+---
+{
+  "title": "HashtagGenerator",
+  "slug": "hashtaggenerator",
+  "subtitle": "iOS App · Creator Tools",
+  "description": "SwiftUI app that generates hashtags from text or images using a credit-based IAP model.",
+  "category": "Production",
+  "typeTags": [
+    "iOS App",
+    "Creator Tools"
+  ],
+  "techTags": [
+    "SwiftUI",
+    "StoreKit 2",
+    "SwiftData",
+    "Clean Architecture"
+  ],
+  "status": "Delivered (project handed off as Xcode zip; not published)",
+  "featured": false,
+  "priority": 6,
+  "role": "iOS developer (end-to-end delivery from Figma to buildable project)",
+  "year": 2026,
+  "stack": [
+    "SwiftUI",
+    "StoreKit 2",
+    "SwiftData",
+    "Clean Architecture"
+  ],
+  "links": [],
+  "thumbnail": "wix:image://v1/261160_2a269f25ad9f42fe8a0cb1d4620b6f47~mv2.png/HashtagGenerator%20Thumbnail.png#originWidth=453&originHeight=912",
+  "image": "wix:image://v1/261160_d5c637481b4542f1ae573ec2b93ad1c1~mv2.png/HashtagGenerator%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "HashtagGenerator Banner.png",
+  "highlights": [
+    "API-driven hashtag generation (no on-device ML) for text and images",
+    "Credit wallet persisted in Keychain; StoreKit 2 purchases add credit packs",
+    "SwiftUI app with clear layering, event-driven updates, and SwiftData history"
+  ],
+  "wix": {
+    "id": "724c97b9-0e47-43fa-ae05-ff7ee4615519",
+    "path": "/projects/hashtaggenerator",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_2a269f25ad9f42fe8a0cb1d4620b6f47~mv2.png/HashtagGenerator%20Thumbnail.png#originWidth=453&originHeight=912",
+      "fileName": "HashtagGenerator Thumbnail",
+      "title": "HashtagGenerator Thumbnail",
+      "alt": "HashtagGenerator thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "HashtagGenerator Banner.png",
+        "slug": "261160_d5c637481b4542f1ae573ec2b93ad1c1~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_d5c637481b4542f1ae573ec2b93ad1c1~mv2.png/HashtagGenerator%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "HashtagGenerator Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "s",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T12:55:36Z",
+    "updatedAt": "2026-01-15T06:11:01Z"
+  }
+}
+---
+
+## Summary
+
+HashtagGenerator is an iPhone app that generates hashtags via an existing backend API. The app focuses on fast input (keyword or image), clean results selection/copy, history, and a local credit wallet with in-app purchases. I delivered a buildable Xcode project and handled follow-up changes and bug fixes.
+Key highlights:
+- API-driven hashtag generation (no on-device ML) for text and images
+- Credit wallet persisted in Keychain; StoreKit 2 purchases add credit packs
+- SwiftUI app with clear layering, event-driven updates, and SwiftData history
+
+## Quick facts
+
+- Role: iOS developer (end-to-end delivery from Figma to buildable project)
+- Timeframe: Short client engagement + post-delivery fixes
+- Platform: iOS 17+, iPhone-only (SwiftUI)
+- Status: Delivered (project handed off as Xcode zip; not published)
+- Team: 1
+
+## Problem
+
+- Backend owned hashtag generation, so the client app needed to be reliable, lightweight, and UI-first.
+- Credits had to be stored locally (no backend ledger) and survive typical reinstalls.
+- IAP needed realistic pricing in production, but testable flows in the simulator.
+
+## Solution
+
+I implemented two generation flows hitting a single endpoint: text tags and image tags (base64). Results are shown in a selectable grid with copy actions, and each generation is saved to history. Credits gate generation and are refilled via IAP, with a starter credit grant on first launch.
+
+## Architecture
+
+- Layered SwiftUI codebase: Features (UI) / Domain (use cases) / Data (repos, StoreKit, HTTP) / Shared (design system)
+- AppContainer composition root wiring SwiftData, Keychain storage, HTTP client, and event bus
+- Router for navigation, sheets, and full-screen flows
+- Use cases: GenerateHashtags, FetchCredits, BuyCredits, History read/write
+- Networking with RequestBuilder + middleware chain (extra headers + structured network logger)
+- SwiftData History model with transactional saves via TransactionRunner + SaveNotifier
+- StoreKit 2 purchase flow + transaction updates listener to reconcile async purchases
+
+## Tech stack
+
+- iOS: Swift, SwiftUI, StoreKit 2, SwiftData, Keychain
+- Architecture: Layered Features/Domain/Data, use cases + repositories, Router navigation, event bus
+- Backend/Infra: REST API (image/text generation), base64 image upload
+- Tooling: Xcode, StoreKit Configuration (simulator), network middleware + structured logging
+
+## Hard problems solved
+
+- Implemented local-credit economics that persists via Keychain across restarts and typical reinstall scenarios (with clear limitations)
+- Built a testable IAP pipeline: live StoreKit product pricing on device, StoreKit config scaffolding for simulator testing
+- Kept the API contract strict: sanitized keyword inputs, compressed + base64 image payloads, and typed request bodies per req_type
+- Prevented UI drift from Figma by standardizing sheets/menus using native iOS components and a small design system
+- Ensured credit accounting stays consistent across explicit purchases and StoreKit transaction updates
+- Reproduced and fixed a camera/photo-picker regression (both actions opening the gallery) by replacing the photo input component
+
+## Impact / Results
+
+- Delivered the requested app as a buildable Xcode project aligned with provided Figma screens
+- Added post-delivery changes (starter credits, UX improvements) and provided targeted patch fixes quickly
+- Left a maintainable foundation for future auth or backend-led credit tracking if needed

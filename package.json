@@ -6,7 +6,8 @@
     "astro": "astro",
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "import:wix": "node scripts/import-wix-content.mjs"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.14",

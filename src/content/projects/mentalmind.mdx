@@ -1,0 +1,141 @@
+---
+{
+  "title": "MentalMind",
+  "slug": "mentalmind",
+  "subtitle": "iOS App · Meditation",
+  "description": "Meditation and self-development app rebuilt from scratch and shipped under tight deadlines.",
+  "category": "Production",
+  "typeTags": [
+    "iOS App",
+    "Meditation"
+  ],
+  "techTags": [
+    "UIKit",
+    "StoreKit",
+    "AVFoundation",
+    "RxSwift"
+  ],
+  "status": "Discontinued (was live on the App Store for years)",
+  "featured": false,
+  "priority": 8,
+  "role": "Sole iOS Developer (project takeover + rewrite)",
+  "year": 2026,
+  "stack": [
+    "UIKit",
+    "StoreKit",
+    "AVFoundation",
+    "RxSwift"
+  ],
+  "links": [
+    {
+      "type": "GitHub",
+      "label": "GitHub",
+      "url": "https://github.com/daniyar-kbv/MentalMindiOS"
+    },
+    {
+      "type": "Instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/mentalmind.kz/"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_621287b1868c4e448830512c66712ca3~mv2.png/MentalMind%201.png#originWidth=425&originHeight=856",
+  "image": "wix:image://v1/261160_fc60a67d34b84efb8261adf9b0e2ac5c~mv2.png/MentalMind%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "MentalMind Banner.png",
+  "highlights": [
+    "Full rewrite under a tight timeline to ship a production-ready v1",
+    "Audio player with voice + background sound selection",
+    "Subscription flow with server receipt validation and restore handling"
+  ],
+  "wix": {
+    "id": "032dcf8f-4925-49db-92bc-8efa3c9fb0c4",
+    "path": "/projects/mentalmind",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_621287b1868c4e448830512c66712ca3~mv2.png/MentalMind%201.png#originWidth=425&originHeight=856",
+      "fileName": "MentalMind Thumbnail",
+      "title": "MentalMind Thumbnail",
+      "alt": "MentalMind thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "MentalMind Banner.png",
+        "slug": "261160_fc60a67d34b84efb8261adf9b0e2ac5c~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_fc60a67d34b84efb8261adf9b0e2ac5c~mv2.png/MentalMind%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "MentalMind Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "tg",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:06:30Z",
+    "updatedAt": "2026-01-15T06:11:35Z"
+  }
+}
+---
+
+## Summary
+
+Meditation and self-development app with onboarding, content discovery, playback customization, habit reminders, progress tracking, and subscription paywalls. I joined late when the existing codebase was incomplete and low quality, rewrote the app from scratch to hit a fixed deadline, and handled App Store release.
+Key highlights:
+- Full rewrite under a tight timeline to ship a production-ready v1
+- Audio player with voice + background sound selection
+- Subscription flow with server receipt validation and restore handling
+
+## Quick facts
+
+- Role: Sole iOS Developer (project takeover + rewrite)
+- Timeframe: 1 month delivery window
+- Platform: iOS (iPhone)
+- Status: Discontinued (was live on the App Store for years)
+- Team: Solo (handoff from previous developer)
+
+## Problem
+
+- Project was ~30% done with low-quality code and a near-term launch deadline.
+- Needed a stable content app with many screens, offline/error states, and subscription access control.
+- Required multiple auth methods and localization (RU/KZ) without time for a heavy architecture refactor.
+
+## Solution
+
+I rebuilt the app from scratch with a pragmatic MVVM/MVC hybrid and RxSwift to keep feature delivery fast. The app shipped with a clean navigation structure (Home/Tools/Create/Profile), content catalogs and detail screens, a configurable meditation player, reminders, progress history, and StoreKit subscriptions with server-side receipt posting. I also drove App Store publishing and post-launch stability work.
+- Focused on reliability and scope control over long-term maintainability due to the deadline
+
+## Architecture
+
+- UIKit app with MVVM/MVC hybrid: ViewControllers own ViewModels and bind via RxSwift subjects
+- APIPoint + router-based networking on Alamofire with typed Codable responses
+- Localization stored in app settings and propagated via Accept-Language headers
+- Meditation playback uses AVPlayer for narration + AVAudioPlayer for looping background sounds
+- StoreKit subscriptions: product fetch, purchase flow, transaction queue handling, receipt upload to backend
+- Profile/history features use calendar-based UI and server-backed history models
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift, StoreKit, AVFoundation
+- Architecture: MVVM/MVC hybrid, Router-based networking, Codable models
+- Backend/Infra: REST APIs, server receipt validation for subscriptions
+- Tooling: CocoaPods, Alamofire, SnapKit, Kingfisher, Firebase (Analytics/Crashlytics/Messaging)
+
+## Hard problems solved
+
+- Decided to rewrite instead of refactor to de-risk delivery under a one-month deadline
+- Built a stable audio session: switching narrator voices, syncing durations, mixing background audio
+- Implemented subscription flow end-to-end: purchase, transaction handling, receipt posting, duplicate protection
+- Coordinated many dependent API calls with predictable UI state using Rx (loading/error/ready signals)
+- Kept localization consistent across UI and server behavior (language picker → headers → content)
+- Shipped resilience states (no internet, retry, generic errors) across the critical flows
+
+## Impact / Results
+
+- Delivered a complete v1 from an incomplete codebase within the remaining deadline window
+- Released to the App Store and kept the app running in production for multiple years
+- Established a working baseline for content catalogs, playback, and subscription access control

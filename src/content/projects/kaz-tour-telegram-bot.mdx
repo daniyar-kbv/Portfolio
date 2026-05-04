@@ -1,0 +1,143 @@
+---
+{
+  "title": "Kaz Tour Telegram Bot",
+  "slug": "kaz-tour-telegram-bot",
+  "subtitle": "Bot · Lead Generation",
+  "description": "Telegram bot that collects qualified travel leads and syncs them to Bitrix24 CRM.",
+  "category": "Backend",
+  "typeTags": [
+    "Bot",
+    "Lead Generation"
+  ],
+  "techTags": [
+    "Python",
+    "Django",
+    "Telegram API",
+    "SpeechKit"
+  ],
+  "status": "Released",
+  "featured": false,
+  "priority": 10,
+  "role": "Backend Developer",
+  "year": 2026,
+  "stack": [
+    "Python",
+    "Django",
+    "Telegram API",
+    "SpeechKit"
+  ],
+  "links": [
+    {
+      "type": "GitHub",
+      "label": "GitHub",
+      "url": "https://github.com/daniyar-kbv/KazTourTelegramBot"
+    },
+    {
+      "type": "Website",
+      "label": "Website",
+      "url": "https://kaztour.kz"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_6ceaeb23ca9f499f858564c39bc3a832~mv2.png/KAZTOUR%202.png#originWidth=425&originHeight=856",
+  "image": "wix:image://v1/261160_b4721b380ee949e192e35e68ad20937a~mv2.png/Kaz%2520Tour%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "Kaz Tour Banner.png",
+  "highlights": [
+    "Two intake modes: audio/text request or multi-step survey",
+    "Voice-to-text with confirmation loop to prevent bad leads",
+    "Admin-controlled questions, answers, texts, and contact methods"
+  ],
+  "wix": {
+    "id": "1886b561-6afa-4782-82a7-20b745b7e04e",
+    "path": "/projects/kaz-tour-telegram-bot",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_6ceaeb23ca9f499f858564c39bc3a832~mv2.png/KAZTOUR%202.png#originWidth=425&originHeight=856",
+      "fileName": "Kaz Tour Telegram Bot Thumbnail",
+      "title": "Kaz Tour Telegram Bot Thumbnail",
+      "alt": "Kaz Tour Telegram Bot thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "Kaz Tour Banner.png",
+        "slug": "261160_b4721b380ee949e192e35e68ad20937a~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_b4721b380ee949e192e35e68ad20937a~mv2.png/Kaz%2520Tour%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "Kaz Tour Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "u8",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:09:51Z",
+    "updatedAt": "2026-01-15T06:12:17Z"
+  }
+}
+---
+
+## Summary
+
+Telegram chatbot for a travel agency that captures trip preferences from either free-form text/voice or a structured survey, then submits a complete lead to Bitrix24. Voice messages are transcribed with Yandex SpeechKit and confirmed by the user before submission. Bot content and survey configuration are editable via Django admin.
+Key highlights:
+- Two intake modes: audio/text request or multi-step survey
+- Voice-to-text with confirmation loop to prevent bad leads
+- Admin-controlled questions, answers, texts, and contact methods
+
+## Quick facts
+
+- Role: Backend Developer
+- Timeframe: Delivered MVP + deployment + initial support
+- Platform: Telegram bot + Django admin + CRM integration
+- Status: Released
+- Team: Solo
+
+## Problem
+
+- Leads were collected manually and inconsistently. Missing details caused back-and-forth with customers.
+- Needed voice support, but STT errors can corrupt intent and waste agent time.
+- Survey content had to be editable without code changes and deployable on the client’s server.
+
+## Solution
+
+I built a state-driven Telegram bot that guides users through either free-form intent capture or a controlled survey, then collects contact method + phone number with validation. Once all required fields are present, the bot assembles a single payload and pushes it to Bitrix24 via API. Voice recognition runs asynchronously and is toggleable from Django admin.
+- End-to-end flow: intake → validation → CRM submission
+
+## Architecture
+
+- Django app with webhook endpoint for Telegram updates
+- Finite-state conversation engine (step / sub-step / micro-step stored per user)
+- Survey engine driven by DB models (questions, ordered answers, “own option” branches)
+- Voice pipeline: Telegram file download → STT (short vs long) → user confirmation
+- Celery + RabbitMQ for background tasks (STT, CRM posting)
+- Django admin as CMS for bot texts, keyboards, contact types, survey content
+- Dockerized deployment with Postgres, worker, and web service
+
+## Tech stack
+
+- iOS:
+- Architecture:
+- Backend/Infra: Python, Django, Celery, RabbitMQ, PostgreSQL, Bitrix24 API, Yandex SpeechKit, Yandex Object Storage (S3), Docker
+- Tooling: Django Admin, telebot, adminsortable2, gunicorn, nginx
+
+## Hard problems solved
+
+- Built a reliable state machine that survives restarts and handles re-tries without losing user context
+- Implemented voice STT with a confirmation loop to protect lead quality
+- Supported long-audio transcription via object storage + long-running STT polling
+- Prevented invalid CRM payloads by enforcing strict phone validation and required-field completion
+- Designed survey data model to support ordering, grid keyboards, and “custom answer” branches
+- Made bot behavior configurable via admin (voice mode toggle, editable texts and options) without redeploys
+- Structured async CRM delivery (sync in dev, background in prod) to keep chat UX responsive
+
+## Impact / Results
+
+- Standardized lead intake and ensured each lead reaches Bitrix24 with complete, structured data
+- Reduced ambiguity by confirming STT results and enforcing validation before submission
+- Enabled non-technical staff to update survey/questions/texts through admin

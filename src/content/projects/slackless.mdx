@@ -1,0 +1,144 @@
+---
+{
+  "title": "SlackLess",
+  "slug": "slackless",
+  "subtitle": "iOS App · Screen Time",
+  "description": "Productivity app that monitors and limits distracting apps using Apple Screen Time APIs.",
+  "category": "Flagship",
+  "typeTags": [
+    "iOS App",
+    "Screen Time"
+  ],
+  "techTags": [
+    "Swift",
+    "Screen Time API",
+    "RxSwift",
+    "Clean Architecture"
+  ],
+  "status": "Shipped (monetization concept removed after App Review rejection)",
+  "featured": true,
+  "priority": 1,
+  "role": "Solo iOS developer (product + design + engineering)",
+  "year": 2026,
+  "stack": [
+    "Swift",
+    "Screen Time API",
+    "RxSwift",
+    "Clean Architecture"
+  ],
+  "links": [
+    {
+      "type": "App Store",
+      "label": "App Store",
+      "url": "https://apps.apple.com/ca/app/slackless/id6450131188"
+    },
+    {
+      "type": "GitHub",
+      "label": "GitHub",
+      "url": "https://github.com/daniyar-kbv/SlackLessIOS"
+    }
+  ],
+  "thumbnail": "wix:image://v1/261160_1a75a1e8df8b4b87b27d3ed22db9d154~mv2.png/SlackLess%20Thumbnail.png#originWidth=425&originHeight=856",
+  "image": "wix:image://v1/261160_e0078c1c418e469d8707b2918ad73847~mv2.png/SlackLess%2520Banner.png#originWidth=2637&originHeight=984",
+  "coverAlt": "SlackLess Banner.png",
+  "highlights": [
+    "Built around Screen Time reporting + limit enforcement (DeviceActivity + ManagedSettings)",
+    "Modular MVVM with Coordinator navigation and shared app-group storage across extensions",
+    "Workarounds to stabilize unreliable Screen Time behavior (refresh cycles, state handling)"
+  ],
+  "wix": {
+    "id": "fed3b0bd-ef1d-4c2d-86c4-ec6d0966357e",
+    "path": "/projects/slackless",
+    "thumbnail": {
+      "src": "wix:image://v1/261160_1a75a1e8df8b4b87b27d3ed22db9d154~mv2.png/SlackLess%20Thumbnail.png#originWidth=425&originHeight=856",
+      "fileName": "SlackLess Thumbnail",
+      "title": "SlackLess Thumbnail",
+      "alt": "SlackLess thumbnail"
+    },
+    "banners": [
+      {
+        "description": "",
+        "fileName": "SlackLess Banner.png",
+        "slug": "261160_e0078c1c418e469d8707b2918ad73847~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_e0078c1c418e469d8707b2918ad73847~mv2.png/SlackLess%2520Banner.png#originWidth=2637&originHeight=984",
+        "title": "SlackLess Banner.png",
+        "type": "image",
+        "settings": {
+          "width": 2637,
+          "height": 984,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "7",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T12:41:00Z",
+    "updatedAt": "2026-01-15T06:10:07Z"
+  }
+}
+---
+
+## Summary
+
+SlackLess is an iOS app that helps users monitor and limit time spent in distracting apps using Apple’s Screen Time APIs. It guides users through onboarding, weekly setup, and daily/weekly reporting across Summary, Progress, and Customize tabs, with enforcement via shields and reminders.
+Key highlights:
+- Built around Screen Time reporting + limit enforcement (DeviceActivity + ManagedSettings)
+- Modular MVVM with Coordinator navigation and shared app-group storage across extensions
+- Workarounds to stabilize unreliable Screen Time behavior (refresh cycles, state handling)
+
+## Quick facts
+
+- Role: Solo iOS developer (product + design + engineering)
+- Timeframe: Ongoing / iterated over multiple releases
+- Platform: iOS 16+
+- Status: Shipped (monetization concept removed after App Review rejection)
+- Team: 1
+
+## Problem
+
+- Most screen time apps fail at the moment of distraction: the limit is reached, but the enforcement and feedback loop are weak.
+- Apple’s Screen Time APIs were immature and inconsistent in real-world use (lag, broken initial loads, timing issues).
+- The initial monetization concept was blocked by App Review, forcing a product reset without compromising the core behavior.
+
+## Solution
+
+SlackLess combines weekly commitment, daily limits for selected apps, and clear reporting to make behavior change measurable and enforceable. Users pick distracting apps, set limits, get interrupted at threshold moments, and review weekly trends to adjust next week’s plan.
+- Summary, Progress, and Customize tabs plus onboarding and weekly report flow
+
+## Architecture
+
+- Clean modular layering: Presentation (MVVM) → Domain → Data
+- Reactive MVVM using RxSwift/RxCocoa; feature modules built via factories
+- Coordinator pattern for navigation; conditional flows for onboarding and weekly report
+- Multiple targets: main app + DeviceActivity report extension + monitor + shield extensions
+- Shared app-group KeyValueStorage (UserDefaults) for cross-target state and configuration
+- Repository interface for day data + shield configuration (SLActivityMonitor module)
+- Firebase initialization in AppDelegate; services for settings, feedback, notifications, shielding
+- Strongly-typed localization via enums; tappable attributed Terms/Privacy links
+
+## Tech stack
+
+- iOS: Swift, UIKit, SwiftUI (DeviceActivity reports), RxSwift/RxCocoa, Screen Time APIs (DeviceActivity, FamilyControls, ManagedSettings)
+- Architecture: MVVM, Coordinator, modular feature factories, repository pattern
+- Backend/Infra: Firebase Firestore (feedback)
+- Tooling: CocoaPods, SnapKit, Moya/Alamofire (scaffolding), DeviceKit, IQKeyboardManager
+
+## Hard problems solved
+
+- Stabilized DeviceActivity report rendering with a custom state machine to handle “broken” first-load states and refresh timing in extensions
+- Designed shared-state plumbing across app + extensions using app-group storage without corrupting configuration or race conditions
+- Implemented shield actions via extension entry points and synchronized outcomes back to the main app through shared repositories
+- Built reliable “slacked vs other” aggregation from DeviceActivityResults into domain models (day/week/time) for multiple report scenes
+- Filtered FamilyControls selections while excluding system services using heuristics to avoid misleading totals
+- Enforced weekly constraints in configuration flows (limits locked until week end) while keeping UX recoverable
+- Removed the rejected monetization path cleanly without breaking existing user flows and app structure
+
+## Impact / Results
+
+- Shipped a working Screen Time companion app with dashboards, weekly trends, and limit enforcement
+- Delivered a stable experience on top of inconsistent system APIs through defensive state handling and refresh strategies
+- Maintained user trust with on-device privacy positioning and minimal data collection (feedback only)

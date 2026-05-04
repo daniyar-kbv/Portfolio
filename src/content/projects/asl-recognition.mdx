@@ -1,0 +1,175 @@
+---
+{
+  "title": "ASL Recognition",
+  "slug": "asl-recognition",
+  "subtitle": "AI/ML · Computer Vision",
+  "description": "Object detection pipeline for ASL hand sign localization and classification, benchmarked across SSD/YOLO/Faster R-CNN.",
+  "category": "AI",
+  "typeTags": [
+    "AI/ML",
+    "Computer Vision"
+  ],
+  "techTags": [
+    "Python",
+    "YOLOv5",
+    "Detectron2",
+    "TensorFlow OD",
+    "Roboflow"
+  ],
+  "status": "Completed (academic project)",
+  "featured": false,
+  "priority": 13,
+  "role": "ML Engineer (Computer Vision) + Backend Developer (demo API)",
+  "year": 2026,
+  "stack": [
+    "Python",
+    "YOLOv5",
+    "Detectron2",
+    "TensorFlow OD",
+    "Roboflow"
+  ],
+  "links": [],
+  "image": "wix:image://v1/261160_0afe74146f9849359a41ce515ec280a0~mv2.png/ASL%2520Recognition%2520Banner%25201.png#originWidth=1002&originHeight=1332",
+  "coverAlt": "ASL Recognition Banner 1.png",
+  "highlights": [
+    "Compared SSD-ResNet50, YOLOv5, and Faster R-CNN pipelines on the same labeled dataset",
+    "Used Roboflow augmentation to scale the dataset and standardize labels",
+    "Shipped a prediction endpoint returning letter, bounding box, and confidence"
+  ],
+  "wix": {
+    "id": "73a667be-c9bc-4a49-9ce2-487e1564044d",
+    "path": "/projects/asl-recognition",
+    "banners": [
+      {
+        "description": "",
+        "fileName": "ASL Recognition Banner 1.png",
+        "slug": "261160_0afe74146f9849359a41ce515ec280a0~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_0afe74146f9849359a41ce515ec280a0~mv2.png/ASL%2520Recognition%2520Banner%25201.png#originWidth=1002&originHeight=1332",
+        "title": "ASL Recognition Banner 1.png",
+        "type": "image",
+        "settings": {
+          "width": 1002,
+          "height": 1332,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      {
+        "description": "",
+        "fileName": "ASL Recognition Banner 2.png",
+        "slug": "261160_d7afe47f4a8e4e61860927abe15e133c~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_d7afe47f4a8e4e61860927abe15e133c~mv2.png/ASL%2520Recognition%2520Banner%25202.png#originWidth=754&originHeight=994",
+        "title": "ASL Recognition Banner 2.png",
+        "type": "image",
+        "settings": {
+          "width": 754,
+          "height": 994,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      {
+        "description": "",
+        "fileName": "ASL Recognition Banner 3.avif",
+        "slug": "261160_a3bdaf7f25704f078b192911bdd58127~mv2.avif",
+        "alt": "",
+        "src": "wix:image://v1/261160_a3bdaf7f25704f078b192911bdd58127~mv2.avif/ASL%2520Recognition%2520Banner%25203.avif#originWidth=1162&originHeight=784",
+        "title": "ASL Recognition Banner 3.avif",
+        "type": "image",
+        "settings": {
+          "width": 1162,
+          "height": 784,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      {
+        "description": "",
+        "fileName": "ASL Recognition Banner 4.png",
+        "slug": "261160_5f370e0124d14367b3ee7d36c170b77a~mv2.png",
+        "alt": "",
+        "src": "wix:image://v1/261160_5f370e0124d14367b3ee7d36c170b77a~mv2.png/ASL%2520Recognition%2520Banner%25204.png#originWidth=2422&originHeight=894",
+        "title": "ASL Recognition Banner 4.png",
+        "type": "image",
+        "settings": {
+          "width": 2422,
+          "height": 894,
+          "focalPoint": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    ],
+    "manualSort": "v0",
+    "status": "PUBLISHED",
+    "createdAt": "2026-01-12T13:57:33Z",
+    "updatedAt": "2026-01-14T16:38:12Z"
+  }
+}
+---
+
+## Summary
+
+American Sign Language alphabet recognition from images. The goal was to localize the hand and classify the sign into one of 26 letters. We evaluated multiple object-detection approaches (SSD, YOLOv5, Faster R-CNN), used transfer learning, and built a simple Django API for inference demos.
+Key highlights:
+- Compared SSD-ResNet50, YOLOv5, and Faster R-CNN pipelines on the same labeled dataset
+- Used Roboflow augmentation to scale the dataset and standardize labels
+- Shipped a prediction endpoint returning letter, bounding box, and confidence
+
+## Quick facts
+
+- Role: ML Engineer (Computer Vision) + Backend Developer (demo API)
+- Timeframe: Not specified
+- Platform: Model training + REST API demo
+- Status: Completed (academic project)
+- Team: Team project
+
+## Problem
+
+- Needed both localization (bounding box) and classification (26 classes) with limited labeled data.
+- Training compute was constrained early (no GPU), forcing careful iteration choices.
+- Offline validation metrics did not translate to real-world video performance.
+
+## Solution
+
+We framed the task as object detection and used transfer learning to accelerate progress. Data was augmented via Roboflow (rotations and flips) to increase per-class coverage. We then benchmarked SSD-ResNet50 vs YOLOv5 vs Faster R-CNN, focusing on the gap between validation metrics and live inference. For the demo, we wrapped inference behind a Django REST endpoint that accepts an image and returns the predicted letter, bounding box, and score.
+- Prioritized a reproducible pipeline over a single “best” model
+
+## Architecture
+
+- Dataset: Kaggle ASL alphabet images (26 classes) with existing annotations
+- Preprocessing: Roboflow augmentation + train/val/test split + COCO/YOLO export formats
+- Models: transfer learning on SSD-ResNet50 (TF Object Detection Zoo), YOLOv5, Faster R-CNN (Detectron2)
+- Training: GPU-enabled runs for longer training schedules; tracked loss and detection metrics
+- Evaluation: compared validation metrics vs real-world tests (video inference)
+- Demo: Django API endpoint → model inference → JSON response (class, box, score)
+
+## Tech stack
+
+- Architecture: Transfer learning, object detection (SSD / YOLOv5 / Faster R-CNN)
+- Backend/Infra: Django, REST API, Detectron2, TensorFlow Object Detection Zoo
+- Tooling: PyTorch, Roboflow, Kaggle dataset, Google Colab/local GPU training
+
+## Hard problems solved
+
+- Managed compute constraints: early SSD training was too slow without GPU, forcing a model strategy change
+- Diagnosed metric vs reality mismatch: high validation scores but poor live video accuracy
+- Built a consistent labeling pipeline across frameworks (TF OD API, YOLO format, COCO JSON)
+- Tuned augmentation to increase data volume while monitoring degradation in generalization
+- Investigated failure modes separately for box regression vs class prediction (correct box, wrong class)
+- Packaged inference into an API that returns structured outputs suitable for a front-end demo
+
+## Impact / Results
+
+- Produced an end-to-end ASL alphabet detection pipeline with multiple model baselines
+- Demonstrated that offline metrics can be misleading without real inference testing
+- Delivered a working inference API for demo usage (image in → prediction out)

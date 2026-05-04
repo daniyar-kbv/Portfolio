@@ -17,7 +17,9 @@ const { title, description } = Astro.props as Props;
         </p>
       )}
     </div>
-    <div class="prose prose-invert mt-6 max-w-none prose-headings:font-semibold prose-headings:text-white prose-p:text-[var(--color-text-muted)] prose-li:text-[var(--color-text-muted)] prose-a:text-[var(--color-accent)] prose-strong:text-white prose-hr:border-[var(--color-border)]">
+    <div
+      class="prose prose-invert mt-6 max-w-none max-w-[68ch] prose-headings:font-semibold prose-headings:tracking-tight prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h2:text-white prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-h3:text-white prose-p:my-4 prose-p:text-[var(--color-text-muted)] prose-li:text-[var(--color-text-muted)] prose-li:marker:text-[var(--color-accent)] prose-ul:my-4 prose-ol:my-4 prose-ul:pl-6 prose-ol:pl-6 prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:text-[var(--color-accent-hover)] prose-strong:text-white prose-hr:border-[var(--color-border)] prose-hr:my-8 prose-pre:bg-[var(--color-elevated)] prose-pre:text-[var(--color-text)] prose-code:text-[var(--color-text)]"
+    >
       <slot />
     </div>
   </div>

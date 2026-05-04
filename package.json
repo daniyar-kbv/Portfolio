@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "import:wix": "node scripts/import-wix-content.mjs"
+    "assets:local": "node scripts/map-local-assets.mjs",
+    "import:wix": "node scripts/import-wix-content.mjs",
+    "content:refresh": "npm run assets:local && npm run import:wix"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.14",

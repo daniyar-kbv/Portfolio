@@ -34,6 +34,8 @@ const projects = defineCollection({
     ),
     thumbnail: z.string().optional(),
     image: z.string().optional(),
+    media: z.array(z.string()).optional(),
+    screenshots: z.array(z.string()).optional(),
     coverAlt: z.string().optional(),
     highlights: z.array(z.string()).optional(),
     wix: z.object({

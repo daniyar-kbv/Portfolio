@@ -15,6 +15,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const wixDir = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
 const outDir = path.join(repoRoot, 'src/content/projects');
 const contactOutFile = path.join(repoRoot, 'src/data/contact.ts');
+const localAssetsManifestFile = path.join(repoRoot, 'src/data/local-assets.json');
 
 const expectedCounts = {
   projects: 17,
@@ -146,6 +147,14 @@ function readCsvFile(filename) {
   return readFile(path.join(wixDir, filename), 'utf8').then(parseCsv);
 }
 
+async function readJsonFileIfExists(filename) {
+  try {
+    return JSON.parse(await readFile(filename, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
 function splitList(value) {
   return String(value)
     .split('·')
@@ -231,6 +240,7 @@ function formatMdxFile(frontmatter, sections) {
 }
 
 async function main() {
+  const localAssetsManifest = await readJsonFileIfExists(localAssetsManifestFile);
   const [projectsCsv, textsCsv, textTypesCsv, projectLinksCsv, linkTypesCsv, contactLinksCsv] =
     await Promise.all([
       readCsvFile('Projects.csv'),
@@ -280,9 +290,21 @@ async function main() {
       });
 
       const bannerData = parseJsonOrFallback(projectRow.Banners, []);
-      const thumbnail = projectRow.Thumbnail.trim() || undefined;
-      const image = bannerData[0]?.src || thumbnail;
-      const coverAlt = bannerData[0]?.alt?.trim() || bannerData[0]?.title?.trim() || name;
+      const localProjectAssets = localAssetsManifest?.projects?.[slug] ?? {};
+      const thumbnail =
+        localProjectAssets.thumbnail || projectRow.Thumbnail.trim() || undefined;
+      const image = localProjectAssets.image || bannerData[0]?.src || thumbnail;
+      const media = Array.isArray(localProjectAssets.media) && localProjectAssets.media.length
+        ? localProjectAssets.media
+        : undefined;
+      const screenshots =
+        Array.isArray(localProjectAssets.screenshots) && localProjectAssets.screenshots.length
+          ? localProjectAssets.screenshots
+          : undefined;
+      const coverAlt =
+        bannerData[0]?.alt?.trim() ||
+        bannerData[0]?.title?.trim() ||
+        `${name} cover`;
       const categories = parseJsonOrFallback(projectRow.Type, []);
       const category = Array.isArray(categories) && categories.length
         ? String(categories[0]).trim()
@@ -305,6 +327,8 @@ async function main() {
         links: projectLinks,
         thumbnail,
         image,
+        media,
+        screenshots,
         coverAlt,
         highlights: highlights.length ? highlights : undefined,
         wix: {

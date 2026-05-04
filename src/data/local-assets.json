@@ -1,0 +1,240 @@
+{
+  "generatedAt": "2026-05-04T09:10:27.589Z",
+  "projects": {
+    "slackless": {
+      "thumbnail": "/assets/projects/slackless/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [],
+      "missing": [
+        "image"
+      ]
+    },
+    "apprevshare-ios-sdk": {
+      "thumbnail": "/assets/projects/apprevshare-ios-sdk/thumbnail.png",
+      "image": "/assets/projects/apprevshare-ios-sdk/banner.png",
+      "media": [],
+      "screenshots": [
+        "/assets/projects/apprevshare-ios-sdk/screenshots/screenshot-1.png",
+        "/assets/projects/apprevshare-ios-sdk/screenshots/screenshot-2.png"
+      ],
+      "missing": []
+    },
+    "devicecluster": {
+      "thumbnail": "/assets/projects/devicecluster/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [
+        "/assets/projects/devicecluster/screenshots/screenshot-1.png",
+        "/assets/projects/devicecluster/screenshots/screenshot-2.png",
+        "/assets/projects/devicecluster/screenshots/screenshot-3.png",
+        "/assets/projects/devicecluster/screenshots/screenshot-4.png",
+        "/assets/projects/devicecluster/screenshots/screenshot-5.png"
+      ],
+      "missing": [
+        "image"
+      ]
+    },
+    "airbafresh": {
+      "thumbnail": "/assets/projects/airbafresh/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [],
+      "missing": [
+        "image"
+      ]
+    },
+    "kex": {
+      "thumbnail": "/assets/projects/kex/thumbnail.png",
+      "image": "/assets/projects/kex/banner.png",
+      "media": [],
+      "screenshots": [],
+      "missing": []
+    },
+    "hashtaggenerator": {
+      "thumbnail": "/assets/projects/hashtaggenerator/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [
+        "/assets/projects/hashtaggenerator/screenshots/screenshot-1.png",
+        "/assets/projects/hashtaggenerator/screenshots/screenshot-2.png",
+        "/assets/projects/hashtaggenerator/screenshots/screenshot-3.png",
+        "/assets/projects/hashtaggenerator/screenshots/screenshot-4.png",
+        "/assets/projects/hashtaggenerator/screenshots/screenshot-5.png"
+      ],
+      "missing": [
+        "image"
+      ]
+    },
+    "24goals": {
+      "thumbnail": "/assets/projects/24goals/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [],
+      "missing": [
+        "image"
+      ]
+    },
+    "mentalmind": {
+      "thumbnail": "/assets/projects/mentalmind/thumbnail.png",
+      "image": "/assets/projects/mentalmind/banner.png",
+      "media": [],
+      "screenshots": [],
+      "missing": []
+    },
+    "uniclub": {
+      "thumbnail": "/assets/projects/uniclub/thumbnail.png",
+      "image": "/assets/projects/uniclub/banner.png",
+      "media": [],
+      "screenshots": [
+        "/assets/projects/uniclub/screenshots/screenshot-1.png",
+        "/assets/projects/uniclub/screenshots/screenshot-2.png"
+      ],
+      "missing": []
+    },
+    "kaz-tour-telegram-bot": {
+      "thumbnail": "/assets/projects/kaz-tour-telegram-bot/thumbnail.png",
+      "image": "/assets/projects/kaz-tour-telegram-bot/banner.png",
+      "media": [],
+      "screenshots": [],
+      "missing": []
+    },
+    "istokhome": {
+      "thumbnail": "/assets/projects/istokhome/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [],
+      "missing": [
+        "image"
+      ]
+    },
+    "driver-drowsiness-detection": {
+      "thumbnail": null,
+      "image": "/assets/projects/driver-drowsiness-detection/banner.png",
+      "media": [
+        "/assets/projects/driver-drowsiness-detection/media-1.mp4"
+      ],
+      "screenshots": [],
+      "missing": [
+        "thumbnail"
+      ]
+    },
+    "asl-recognition": {
+      "thumbnail": null,
+      "image": "/assets/projects/asl-recognition/banner.png",
+      "media": [],
+      "screenshots": [
+        "/assets/projects/asl-recognition/screenshots/screenshot-1.png",
+        "/assets/projects/asl-recognition/screenshots/screenshot-2.avif",
+        "/assets/projects/asl-recognition/screenshots/screenshot-3.png"
+      ],
+      "missing": [
+        "thumbnail"
+      ]
+    },
+    "disaster-tweets": {
+      "thumbnail": null,
+      "image": "/assets/projects/disaster-tweets/banner.png",
+      "media": [],
+      "screenshots": [
+        "/assets/projects/disaster-tweets/screenshots/screenshot-1.png"
+      ],
+      "missing": [
+        "thumbnail"
+      ]
+    },
+    "mig": {
+      "thumbnail": "/assets/projects/mig/thumbnail.png",
+      "image": "/assets/projects/mig/banner.png",
+      "media": [],
+      "screenshots": [],
+      "missing": []
+    },
+    "magazinchik": {
+      "thumbnail": "/assets/projects/magazinchik/thumbnail.png",
+      "image": "/assets/projects/magazinchik/banner.png",
+      "media": [],
+      "screenshots": [],
+      "missing": []
+    },
+    "swiftnetworkrouting": {
+      "thumbnail": "/assets/projects/swiftnetworkrouting/thumbnail.png",
+      "image": null,
+      "media": [],
+      "screenshots": [],
+      "missing": [
+        "image"
+      ]
+    }
+  },
+  "shared": {
+    "hero": [
+      "/assets/hero/banner-apps.jpg"
+    ],
+    "icons": [
+      "/assets/icons/ai-icon/assets/ai-label.png",
+      "/assets/icons/ai-icon.png",
+      "/assets/icons/ai-label.png",
+      "/assets/icons/app-store-icon-hover/assets/app-store-label.png",
+      "/assets/icons/app-store-icon-hover.png",
+      "/assets/icons/app-store-icon/assets/app-store-label.png",
+      "/assets/icons/app-store-icon.png",
+      "/assets/icons/app-store-label.png",
+      "/assets/icons/backend-icon/assets/backend-label.png",
+      "/assets/icons/backend-icon.png",
+      "/assets/icons/backend-label.png",
+      "/assets/icons/contact-icon-hover/assets/contact-label.png",
+      "/assets/icons/contact-icon-hover.png",
+      "/assets/icons/contact-icon/assets/contact-label.png",
+      "/assets/icons/contact-icon.png",
+      "/assets/icons/contact-label.png",
+      "/assets/icons/demo-icon-hover/assets/demo-label.png",
+      "/assets/icons/demo-icon-hover.png",
+      "/assets/icons/demo-icon/assets/demo-label.png",
+      "/assets/icons/demo-icon.png",
+      "/assets/icons/demo-label.png",
+      "/assets/icons/flagship-icon/assets/flagship-label.png",
+      "/assets/icons/flagship-icon.png",
+      "/assets/icons/flagship-label.png",
+      "/assets/icons/github-icon-hover/assets/github-label.png",
+      "/assets/icons/github-icon-hover.png",
+      "/assets/icons/github-icon/assets/github-label.png",
+      "/assets/icons/github-icon.png",
+      "/assets/icons/github-label.png",
+      "/assets/icons/instagram-icon-hover/assets/instagram-label.png",
+      "/assets/icons/instagram-icon-hover.png",
+      "/assets/icons/instagram-icon/assets/instagram-label.png",
+      "/assets/icons/instagram-icon.png",
+      "/assets/icons/instagram-label.png",
+      "/assets/icons/legacy-icon/assets/legacy-label.png",
+      "/assets/icons/legacy-icon.png",
+      "/assets/icons/legacy-label.png",
+      "/assets/icons/linkedin-icon-hover/assets/linkedin-label.png",
+      "/assets/icons/linkedin-icon-hover.png",
+      "/assets/icons/linkedin-icon/assets/linkedin-label.png",
+      "/assets/icons/linkedin-icon.png",
+      "/assets/icons/linkedin-label.png",
+      "/assets/icons/production-icon/assets/production-label.png",
+      "/assets/icons/production-icon.png",
+      "/assets/icons/production-label.png",
+      "/assets/icons/website-icon-hover/assets/website-label.png",
+      "/assets/icons/website-icon-hover.png",
+      "/assets/icons/website-icon/assets/website-label.png",
+      "/assets/icons/website-icon.png",
+      "/assets/icons/website-label.png"
+    ],
+    "logo": [
+      "/assets/logo/logo-horizontal.png",
+      "/assets/logo/logo-icon/assets/logo-label.png",
+      "/assets/logo/logo-icon.png",
+      "/assets/logo/logo-label.png",
+      "/assets/logo/logo-label.svg",
+      "/assets/logo/upwork-portfolio-thumbnail.png"
+    ]
+  },
+  "counts": {
+    "copied": 43,
+    "skipped": 57,
+    "missing": 10
+  }
+}

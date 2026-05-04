@@ -197,6 +197,28 @@ function isMediaFilename(value) {
   return /\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim());
 }
 
+function isRenderableMediaRef(value) {
+  const trimmed = String(value ?? '').trim();
+  if (!trimmed || trimmed.startsWith('wix:')) return false;
+  if (trimmed.startsWith('/assets/')) return true;
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return true;
+  if (trimmed.startsWith('./') || trimmed.startsWith('../')) return true;
+  return /^[^:/?#][^?#]*$/.test(trimmed);
+}
+
+function wixImageToStaticUrl(value) {
+  const trimmed = String(value ?? '').trim();
+  const match = trimmed.match(/^wix:image:\/\/v1\/([^/]+)\//);
+  return match ? `https://static.wixstatic.com/media/${match[1]}` : undefined;
+}
+
+function toRenderableMediaRef(value) {
+  const trimmed = String(value ?? '').trim();
+  if (!trimmed) return undefined;
+  if (isRenderableMediaRef(trimmed)) return trimmed;
+  return wixImageToStaticUrl(trimmed);
+}
+
 function mapSectionBlocks(textRows, typeNameById, projectId) {
   const grouped = new Map();
 
@@ -297,16 +319,25 @@ async function main() {
 
       const bannerData = parseJsonOrFallback(projectRow.Banners, []);
       const localProjectAssets = localAssetsManifest?.projects?.[slug] ?? {};
-      const thumbnail =
-        localProjectAssets.thumbnail || projectRow.Thumbnail.trim() || undefined;
-      const image = localProjectAssets.image || bannerData[0]?.src || thumbnail;
-      const media = Array.isArray(localProjectAssets.media) && localProjectAssets.media.length
-        ? localProjectAssets.media
-        : undefined;
-      const screenshots =
-        Array.isArray(localProjectAssets.screenshots) && localProjectAssets.screenshots.length
-          ? localProjectAssets.screenshots
-          : undefined;
+      const localThumbnail = toRenderableMediaRef(localProjectAssets.thumbnail);
+      const localImage = toRenderableMediaRef(localProjectAssets.image);
+      const localMedia = Array.isArray(localProjectAssets.media)
+        ? localProjectAssets.media.map(toRenderableMediaRef).filter(Boolean)
+        : [];
+      const localScreenshots = Array.isArray(localProjectAssets.screenshots)
+        ? localProjectAssets.screenshots.map(toRenderableMediaRef).filter(Boolean)
+        : [];
+      const wixThumbnailSrc = projectRow.Thumbnail.trim() || undefined;
+      const wixBannerSrc = bannerData.find((banner) => banner?.type === 'image')?.src;
+      const thumbnail = localThumbnail || wixImageToStaticUrl(wixThumbnailSrc) || undefined;
+      const image =
+        localImage ||
+        wixImageToStaticUrl(wixBannerSrc) ||
+        localThumbnail ||
+        localScreenshots[0] ||
+        undefined;
+      const media = localMedia.length ? localMedia : undefined;
+      const screenshots = localScreenshots.length ? localScreenshots : undefined;
       const rawCoverAlt =
         bannerData[0]?.alt?.trim() ||
         bannerData[0]?.title?.trim() ||
@@ -341,9 +372,9 @@ async function main() {
         wix: {
           id: projectId,
           path: projectRow['Projects (Item)'],
-          thumbnail: thumbnail
+          thumbnail: wixThumbnailSrc
             ? {
-                src: thumbnail,
+                src: wixThumbnailSrc,
                 fileName: projectRow.Name ? `${projectRow.Name} Thumbnail` : undefined,
                 title: `${name} Thumbnail`,
                 alt: `${name} thumbnail`,

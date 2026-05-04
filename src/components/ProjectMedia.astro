@@ -7,24 +7,35 @@ interface Props {
   screenshots?: string[] | null;
 }
 
+function isRenderableMediaRef(value: string | null | undefined) {
+  const trimmed = String(value ?? '').trim();
+  if (!trimmed || trimmed.startsWith('wix:')) return false;
+  if (trimmed.startsWith('/assets/')) return true;
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return true;
+  if (trimmed.startsWith('./') || trimmed.startsWith('../')) return true;
+  return /^[^:/?#][^?#]*$/.test(trimmed);
+}
+
 const { title, alt = title, image, media = [], screenshots = [] } = Astro.props as Props;
-const heroMedia = media[0] || image || screenshots[0] || null;
-const additionalShots = screenshots.slice(0, 3);
+const renderableMedia = media.filter(isRenderableMediaRef);
+const renderableScreenshots = screenshots.filter(isRenderableMediaRef);
+const heroMedia = renderableMedia[0] || (isRenderableMediaRef(image) ? image : null) || renderableScreenshots[0] || null;
+const additionalShots = renderableScreenshots.slice(0, 3);
 ---
 
 {heroMedia && (
   <section class="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-10">
     <div class="overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)]">
-      {media.length > 0 ? (
+      {renderableMedia.length > 0 ? (
         <video
           class="aspect-[16/9] w-full bg-black object-cover"
           controls
           playsinline
           preload="metadata"
           aria-label={`${title} project video`}
-          poster={image || screenshots[0] || undefined}
+          poster={(isRenderableMediaRef(image) ? image : undefined) || renderableScreenshots[0] || undefined}
         >
-          <source src={media[0]} />
+          <source src={renderableMedia[0]} />
         </video>
       ) : (
         <img src={heroMedia} alt={alt} loading="eager" decoding="async" fetchpriority="high" class="aspect-[16/9] w-full object-cover" />

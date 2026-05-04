@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props as Props;
+---
+
+<section class="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10">
+  <div class="border-t border-[var(--color-border)] pt-8">
+    <div class="max-w-3xl">
+      <h2 class="text-2xl font-semibold text-white sm:text-3xl">{title}</h2>
+      {description && (
+        <p class="mt-3 text-sm leading-7 text-[var(--color-text-muted)] sm:text-base">
+          {description}
+        </p>
+      )}
+    </div>
+    <div class="prose prose-invert mt-6 max-w-none prose-headings:font-semibold prose-headings:text-white prose-p:text-[var(--color-text-muted)] prose-li:text-[var(--color-text-muted)] prose-a:text-[var(--color-accent)] prose-strong:text-white prose-hr:border-[var(--color-border)]">
+      <slot />
+    </div>
+  </div>
+</section>

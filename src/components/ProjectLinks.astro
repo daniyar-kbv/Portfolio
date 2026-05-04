@@ -1,0 +1,64 @@
+---
+import {
+  AppWindow,
+  ArrowUpRight,
+  FolderGit,
+  Globe,
+  Link2,
+  Mail,
+  Play,
+  Smartphone,
+} from '@lucide/astro';
+
+interface LinkItem {
+  type: string;
+  label: string;
+  url: string;
+}
+
+interface Props {
+  links: LinkItem[];
+}
+
+const { links } = Astro.props as Props;
+
+const iconByType = {
+  GitHub: FolderGit,
+  AppStore: Smartphone,
+  'App Store': Smartphone,
+  Website: Globe,
+  Instagram: Link2,
+  Demo: Play,
+  LinkedIn: Link2,
+  Email: Mail,
+};
+
+function getIcon(type: string) {
+  return iconByType[type as keyof typeof iconByType] || AppWindow;
+}
+
+function getLabel(type: string, label: string) {
+  if (label && label !== type) return label;
+  return type;
+}
+---
+
+{links.length > 0 && (
+  <div class="flex flex-wrap gap-2">
+    {links.map((link) => {
+      const Icon = getIcon(link.type);
+      return (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="inline-flex items-center gap-2 rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] px-3 py-2 text-sm text-white transition hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)] hover:text-[var(--color-accent-hover)]"
+        >
+          <Icon class="h-4 w-4" aria-hidden="true" />
+          <span>{getLabel(link.type, link.label)}</span>
+          <ArrowUpRight class="h-4 w-4" aria-hidden="true" />
+        </a>
+      );
+    })}
+  </div>
+)}

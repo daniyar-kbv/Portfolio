@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  alt?: string;
+  image?: string | null;
+  media?: string[] | null;
+  screenshots?: string[] | null;
+}
+
+const { title, alt = title, image, media = [], screenshots = [] } = Astro.props as Props;
+const heroMedia = media[0] || image || screenshots[0] || null;
+const additionalShots = screenshots.slice(0, 3);
+---
+
+{heroMedia && (
+  <section class="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-10">
+    <div class="overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)]">
+      {media.length > 0 ? (
+        <video
+          class="aspect-[16/9] w-full bg-black object-cover"
+          controls
+          playsinline
+          preload="metadata"
+          poster={image || screenshots[0] || undefined}
+        >
+          <source src={media[0]} />
+        </video>
+      ) : (
+        <img src={heroMedia} alt={alt} class="aspect-[16/9] w-full object-cover" />
+      )}
+    </div>
+
+    {additionalShots.length > 0 && (
+      <div class="mt-4 grid gap-3 md:grid-cols-3">
+        {additionalShots.map((shot) => (
+          <img
+            src={shot}
+            alt={`${title} screenshot`}
+            class="aspect-[4/3] w-full rounded-sm border border-[var(--color-border)] object-cover"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    )}
+  </section>
+)}

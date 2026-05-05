@@ -190,6 +190,27 @@ section[id] {
   color: var(--color-text-soft);
 }
 
+.wix-project-meta-line {
+  display: block;
+  margin: 0;
+  max-width: 100%;
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+
+.wix-project-meta-line--status {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .wix-section-icon {
   width: 54px;
   height: 54px;

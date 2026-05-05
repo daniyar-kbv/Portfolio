@@ -1,6 +1,4 @@
 ---
-import ButtonLink from './ButtonLink.astro';
-
 interface NavItem {
   label: string;
   href: string;
@@ -20,28 +18,35 @@ const defaultNavItems: NavItem[] = [
 ];
 
 const { navItems = defaultNavItems } = Astro.props as Props;
+const isHome = Astro.url.pathname === '/';
 ---
 
-<header class="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-background)_90%,transparent)] backdrop-blur">
-  <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 sm:px-8 lg:px-10">
-    <a href="/" class="flex flex-col gap-0.5">
-      <span class="text-sm font-semibold tracking-wide text-white">Daniyar Kurmanbayev</span>
-      <span class="text-xs text-[var(--color-text-soft)]">Portfolio</span>
+<header class="wix-header-shell">
+  <div class="wix-header-inner">
+    <a href="/" class="wix-logo-link" aria-label="Daniyar Kurmanbayev home">
+      <img
+        src="/assets/logo/logo-horizontal.png"
+        alt="Daniyar Kurmanbayev"
+        width="324"
+        height="128"
+        class="wix-logo-image"
+        loading="eager"
+        decoding="async"
+      />
     </a>
 
-    <nav aria-label="Primary" class="flex flex-wrap items-center justify-end gap-1">
+    <nav aria-label="Primary" class="wix-nav">
       {navItems.map((item) => (
         <a
           href={item.href}
-          class="rounded-sm px-3 py-2 text-sm tracking-[0.1em] text-[var(--color-nav-text)] transition hover:bg-[var(--color-elevated)] hover:text-white"
+          aria-current={isHome && item.href === '/#flagship' ? 'page' : undefined}
+          class="wix-nav-link"
         >
           {item.label}
         </a>
       ))}
     </nav>
 
-    <div class="hidden sm:block">
-      <ButtonLink href="/#contact" variant="primary">Contact</ButtonLink>
-    </div>
+    <a href="/#contact" class="wix-header-cta">Contact</a>
   </div>
 </header>

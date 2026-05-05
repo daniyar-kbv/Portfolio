@@ -1,6 +1,4 @@
 ---
-import ButtonLink from './ButtonLink.astro';
-
 interface Props {
   contactLinks: Array<{
     type: string;
@@ -10,29 +8,73 @@ interface Props {
 }
 
 const { contactLinks: links } = Astro.props as Props;
+const iconMap: Record<string, { icon: string; hoverIcon: string }> = {
+  email: {
+    icon: '/assets/icons/contact-icon.png',
+    hoverIcon: '/assets/icons/contact-icon-hover.png',
+  },
+  linkedin: {
+    icon: '/assets/icons/linkedin-icon.png',
+    hoverIcon: '/assets/icons/linkedin-icon-hover.png',
+  },
+};
 ---
 
-<footer class="mx-auto w-full max-w-7xl px-6 pb-10 pt-4 sm:px-8 lg:px-10">
-  <div class="border-t border-[var(--color-border)] pt-6">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div class="max-w-2xl">
-        <p class="text-xs uppercase tracking-[0.24em] text-[var(--color-text-soft)]">Contact</p>
-        <p class="mt-2 text-sm leading-6 text-[var(--color-text-muted)]">
-          Available for iOS, backend, and technical product work.
-        </p>
-      </div>
+<footer class="wix-footer-shell">
+  <div class="wix-footer-inner">
+    <div class="grid gap-6 lg:grid-cols-[auto_1fr] lg:items-center">
+      <a href="/" class="wix-logo-link" aria-label="Daniyar Kurmanbayev home">
+        <img
+          src="/assets/logo/logo-horizontal.png"
+          alt="Daniyar Kurmanbayev"
+          width="324"
+          height="128"
+          class="wix-logo-image"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
 
-      <div class="flex flex-wrap gap-3">
-        {links.map((link) => (
-          <ButtonLink href={link.url} external={link.url.startsWith('http')} variant="secondary">
-            {link.label}
-          </ButtonLink>
-        ))}
+      <div class="wix-contact-grid lg:justify-end">
+        {links.map((link) => {
+          const mapKey = link.type.toLowerCase();
+          const icon = iconMap[mapKey] ?? iconMap.email;
+          const isExternal = link.url.startsWith('http');
+
+          return (
+            <a
+              href={link.url}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noreferrer noopener' : undefined}
+              aria-label={`${link.type}: ${link.label}`}
+              class="wix-contact-tile group"
+            >
+              <span class="relative h-6 w-6 shrink-0">
+                <img
+                  src={icon.icon}
+                  alt=""
+                  aria-hidden="true"
+                  class="absolute inset-0 h-6 w-6 object-contain transition-opacity group-hover:opacity-0"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src={icon.hoverIcon}
+                  alt=""
+                  aria-hidden="true"
+                  class="absolute inset-0 h-6 w-6 object-contain opacity-0 transition-opacity group-hover:opacity-100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <span class="wix-contact-copy">
+                <span class="wix-contact-title">{link.type}</span>
+                <span class="wix-contact-value">{link.label}</span>
+              </span>
+            </a>
+          );
+        })}
       </div>
     </div>
-
-    <p class="mt-6 text-xs text-[var(--color-text-soft)]">
-      Built as a static Astro site for Cloudflare Pages.
-    </p>
   </div>
 </footer>

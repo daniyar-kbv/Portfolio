@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import WixPromoBar from '../components/WixPromoBar.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 
 interface Props {
@@ -61,6 +62,7 @@ const ogImageHref = ogImage && Astro.site ? new URL(ogImage, Astro.site).toStrin
     >
       Skip to content
     </a>
+    <WixPromoBar />
     <SiteHeader />
     <slot />
   </body>

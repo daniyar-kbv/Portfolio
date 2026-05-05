@@ -86,14 +86,6 @@
 }
 ---
 
-## Summary
-
-KEX is a multi-brand food delivery app where brand availability and menu assortment depend on the selected delivery address. I joined mid-project to take over from a single developer producing low-quality code. My team and I rewrote large parts of the app to raise reliability and maintainability, which delayed delivery but made the codebase sustainable.
-Key highlights:
-- Major iOS refactor: storyboard-heavy UI → programmatic UIKit + SnapKit
-- Networking refactor: ad-hoc Alamofire layer → Moya-based services with plugins
-- Consistent MVVM + Repository + Coordinator architecture across features
-
 ## Quick facts
 
 - Role: Lead iOS Developer
@@ -101,6 +93,14 @@ Key highlights:
 - Platform: iOS app + Django backend
 - Status: Released, then discontinued (business moved to 3rd-party delivery apps)
 - Team: 3 iOS devs (after takeover)
+
+## Summary
+
+KEX is a multi-brand food delivery app where brand availability and menu assortment depend on the selected delivery address. I joined mid-project to take over from a single developer producing low-quality code. My team and I rewrote large parts of the app to raise reliability and maintainability, which delayed delivery but made the codebase sustainable.
+Key highlights:
+- Major iOS refactor: storyboard-heavy UI → programmatic UIKit + SnapKit
+- Networking refactor: ad-hoc Alamofire layer → Moya-based services with plugins
+- Consistent MVVM + Repository + Coordinator architecture across features
 
 ## Problem
 
@@ -123,13 +123,6 @@ We rebuilt the iOS client around a modular, reactive architecture with clear bou
 - Local storage split by responsibility: tokens, flags, cached domain objects, payment state
 - Backend “pipeline” layer with audited service calls and scheduled sync tasks (iiko, CloudPayments, FCM)
 
-## Tech stack
-
-- iOS: Swift, UIKit, SnapKit, RxSwift/RxCocoa, Moya, StoreKit/Apple Pay, Lottie, Yandex MapKit
-- Architecture: MVVM, Repository, Coordinator, DI, plugin-based networking
-- Backend/Infra: Django, PostgreSQL, Redis, RabbitMQ/Celery, Firebase Cloud Messaging, IIKO, CloudPayments (3DS), NGINX
-- Tooling: CocoaPods, swiftformat, xunique, Swagger (drf-yasg), Docker
-
 ## Hard problems solved
 
 - Executed a mid-flight takeover: stabilized delivery by refactoring most of the codebase without breaking critical flows
@@ -145,3 +138,10 @@ We rebuilt the iOS client around a modular, reactive architecture with clear bou
 - Shipped a maintainable v1 after a major refactor and architecture reset
 - Improved stability and developer velocity by removing storyboard sprawl and inconsistent networking
 - Project was later discontinued for business reasons, not technical blockers
+
+## Tech stack
+
+- iOS: Swift, UIKit, SnapKit, RxSwift/RxCocoa, Moya, StoreKit/Apple Pay, Lottie, Yandex MapKit
+- Architecture: MVVM, Repository, Coordinator, DI, plugin-based networking
+- Backend/Infra: Django, PostgreSQL, Redis, RabbitMQ/Celery, Firebase Cloud Messaging, IIKO, CloudPayments (3DS), NGINX
+- Tooling: CocoaPods, swiftformat, xunique, Swagger (drf-yasg), Docker

@@ -81,14 +81,6 @@
 }
 ---
 
-## Summary
-
-Airba Fresh is a grocery delivery app focused on fast browsing, search, and checkout driven by delivery address and the nearest warehouse. I led the iOS development of the first version, setting up the architecture, core flows, and delivery-ready feature set.
-Key highlights:
-- Built v1 end-to-end: auth, address, catalog, cart/workflow, and profile
-- Clean layered architecture with MVVM + RxSwift and Moya networking
-- Strong workflow/session handling across the app via shared headers and events
-
 ## Quick facts
 
 - Role: Lead iOS Developer (led v1 build)
@@ -96,6 +88,14 @@ Key highlights:
 - Platform: iOS
 - Status: Shipped
 - Team: iOS lead within a product team
+
+## Summary
+
+Airba Fresh is a grocery delivery app focused on fast browsing, search, and checkout driven by delivery address and the nearest warehouse. I led the iOS development of the first version, setting up the architecture, core flows, and delivery-ready feature set.
+Key highlights:
+- Built v1 end-to-end: auth, address, catalog, cart/workflow, and profile
+- Clean layered architecture with MVVM + RxSwift and Moya networking
+- Strong workflow/session handling across the app via shared headers and events
 
 ## Problem
 
@@ -119,13 +119,6 @@ I implemented a tab-based shopping flow with address-first delivery context, a c
 - Shared workflow repository emits cart count and session changes to update UI globally
 - Address CRUD + suggestions/geocoding integrated via a dedicated service layer
 
-## Tech stack
-
-- iOS: Swift, UIKit, RxSwift/RxCocoa
-- Architecture: MVVM, Coordinator, layered Data/Domain/Presentation, event bus
-- Backend/Infra: REST API (Moya targets), Yandex geocoding/suggest integration
-- Tooling: CocoaPods, SnapKit, Kingfisher, Husky (pre-commit), SwiftFormat, xUnique
-
 ## Hard problems solved
 
 - Made workflow/cart a first-class shared state and ensured every request carried the right context without leaking it into feature code
@@ -140,3 +133,10 @@ I implemented a tab-based shopping flow with address-first delivery context, a c
 - Delivered the first production version of the iOS app as the iOS lead
 - Established a maintainable architecture that supported multiple feature areas and ongoing iteration
 - Shipped a stable shopping flow across address, catalog, cart, promotions, and profile
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift/RxCocoa
+- Architecture: MVVM, Coordinator, layered Data/Domain/Presentation, event bus
+- Backend/Infra: REST API (Moya targets), Yandex geocoding/suggest integration
+- Tooling: CocoaPods, SnapKit, Kingfisher, Husky (pre-commit), SwiftFormat, xUnique

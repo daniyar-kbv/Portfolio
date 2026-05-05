@@ -81,14 +81,6 @@
 }
 ---
 
-## Summary
-
-Meditation and self-development app with onboarding, content discovery, playback customization, habit reminders, progress tracking, and subscription paywalls. I joined late when the existing codebase was incomplete and low quality, rewrote the app from scratch to hit a fixed deadline, and handled App Store release.
-Key highlights:
-- Full rewrite under a tight timeline to ship a production-ready v1
-- Audio player with voice + background sound selection
-- Subscription flow with server receipt validation and restore handling
-
 ## Quick facts
 
 - Role: Sole iOS Developer (project takeover + rewrite)
@@ -96,6 +88,14 @@ Key highlights:
 - Platform: iOS (iPhone)
 - Status: Discontinued (was live on the App Store for years)
 - Team: Solo (handoff from previous developer)
+
+## Summary
+
+Meditation and self-development app with onboarding, content discovery, playback customization, habit reminders, progress tracking, and subscription paywalls. I joined late when the existing codebase was incomplete and low quality, rewrote the app from scratch to hit a fixed deadline, and handled App Store release.
+Key highlights:
+- Full rewrite under a tight timeline to ship a production-ready v1
+- Audio player with voice + background sound selection
+- Subscription flow with server receipt validation and restore handling
 
 ## Problem
 
@@ -117,13 +117,6 @@ I rebuilt the app from scratch with a pragmatic MVVM/MVC hybrid and RxSwift to k
 - StoreKit subscriptions: product fetch, purchase flow, transaction queue handling, receipt upload to backend
 - Profile/history features use calendar-based UI and server-backed history models
 
-## Tech stack
-
-- iOS: Swift, UIKit, RxSwift, StoreKit, AVFoundation
-- Architecture: MVVM/MVC hybrid, Router-based networking, Codable models
-- Backend/Infra: REST APIs, server receipt validation for subscriptions
-- Tooling: CocoaPods, Alamofire, SnapKit, Kingfisher, Firebase (Analytics/Crashlytics/Messaging)
-
 ## Hard problems solved
 
 - Decided to rewrite instead of refactor to de-risk delivery under a one-month deadline
@@ -138,3 +131,10 @@ I rebuilt the app from scratch with a pragmatic MVVM/MVC hybrid and RxSwift to k
 - Delivered a complete v1 from an incomplete codebase within the remaining deadline window
 - Released to the App Store and kept the app running in production for multiple years
 - Established a working baseline for content catalogs, playback, and subscription access control
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift, StoreKit, AVFoundation
+- Architecture: MVVM/MVC hybrid, Router-based networking, Codable models
+- Backend/Infra: REST APIs, server receipt validation for subscriptions
+- Tooling: CocoaPods, Alamofire, SnapKit, Kingfisher, Firebase (Analytics/Crashlytics/Messaging)

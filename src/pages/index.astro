@@ -12,18 +12,41 @@ const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.priority - b.data.priority,
 );
 
-const sectionOrder = ['Flagship', 'Production', 'Backend', 'AI', 'Legacy'];
+const sections = [
+  {
+    id: 'flagship',
+    category: 'Flagship',
+    title: 'Flagship / System-level work',
+  },
+  {
+    id: 'production',
+    category: 'Production',
+    title: 'Production client apps',
+  },
+  {
+    id: 'backend',
+    category: 'Backend',
+    title: 'Platforms & backend',
+  },
+  {
+    id: 'legacy',
+    category: 'Legacy',
+    title: 'Early / Discontinued / Legacy',
+  },
+  {
+    id: 'ai',
+    category: 'AI',
+    title: 'AI & ML',
+  },
+];
 
 const projectsByCategory = Object.fromEntries(
-  sectionOrder.map((category) => [
-    category,
-    projects.filter((project) => project.data.category === category),
+  sections.map((section) => [
+    section.category,
+    projects.filter((project) => project.data.category === section.category),
   ]),
 );
 
-const featuredProjects = projects.filter((project) => project.data.featured).slice(0, 3);
-const totalProjects = projects.length;
-const totalLinks = projects.reduce((count, project) => count + project.data.links.length, 0);
 const heroImage = localAssets.shared.hero[0];
 const seoImage = localAssets.shared.seo[0] ?? heroImage;
 ---
@@ -39,28 +62,18 @@ const seoImage = localAssets.shared.seo[0] ?? heroImage;
 >
   <main id="content">
     <HeroIntro
-      title="Daniyar Kurmanbayev"
-      description="iOS, backend, and product engineering portfolio with senior freelance credibility built from shipped work."
-      image={heroImage}
-      stats={[
-        { label: 'Projects', value: String(totalProjects) },
-        { label: 'Links', value: String(totalLinks) },
-        { label: 'Featured', value: String(featuredProjects.length) },
-      ]}
-      featured={featuredProjects.map((project) => ({
-        title: project.data.title,
-        subtitle: project.data.subtitle,
-        image: project.data.thumbnail || project.data.image || project.data.screenshots?.[0] || null,
-        href: `/projects/${project.slug}`,
-      }))}
+      name="Daniyar Kurmanbayev (Dan Kurman)"
+      role="Senior iOS Developer / Technical PM"
+      label="Portfolio"
+      bannerImage={heroImage}
     />
 
-    {sectionOrder.map((category) => (
+    {sections.map((section) => (
       <ProjectSection
-        id={category.toLowerCase()}
-        title={category}
-        description={`Projects grouped under ${category.toLowerCase()} work, ordered by portfolio priority.`}
-        projects={projectsByCategory[category] ?? []}
+        id={section.id}
+        category={section.category}
+        title={section.title}
+        projects={projectsByCategory[section.category] ?? []}
       />
     ))}
 

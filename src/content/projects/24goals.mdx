@@ -86,14 +86,6 @@
 }
 ---
 
-## Summary
-
-24 Goals (GOALSTER) is a personal task and goal app built around repeating 30-day cycles. Users select three life spheres, plan goals, execute daily tasks in a calendar workflow, and review end-of-period results. The product included optional social and premium features, plus a content library for retention.
-Key highlights:
-- Reached #8 in Productivity (Free) and Top 100 Free Apps in the first week
-- Built with programmatic UIKit + reactive MVVM and a typed networking layer
-- Replaced unstable deep-link auth with reliable email OTP verification
-
 ## Quick facts
 
 - Role: Solo iOS developer (built and maintained end-to-end)
@@ -101,6 +93,14 @@ Key highlights:
 - Platform: iOS 13+
 - Status: Discontinued (removed from the App Store)
 - Team: 1
+
+## Summary
+
+24 Goals (GOALSTER) is a personal task and goal app built around repeating 30-day cycles. Users select three life spheres, plan goals, execute daily tasks in a calendar workflow, and review end-of-period results. The product included optional social and premium features, plus a content library for retention.
+Key highlights:
+- Reached #8 in Productivity (Free) and Top 100 Free Apps in the first week
+- Built with programmatic UIKit + reactive MVVM and a typed networking layer
+- Replaced unstable deep-link auth with reliable email OTP verification
 
 ## Problem
 
@@ -122,13 +122,6 @@ Key highlights:
 - Local persistence via UserDefaults wrapper; some domain objects persisted via NSCoding
 - Firebase used for analytics/messaging/crash reporting (and dynamic links)
 
-## Tech stack
-
-- iOS: Swift, UIKit, RxSwift/RxCocoa, StoreKit, Firebase (Analytics/Messaging/Dynamic Links/Crashlytics)
-- Architecture: MVVM, typed API client (endpoints + DTOs), modular feature structure
-- Backend/Infra: Django, Django REST Framework, JWT, Celery, Firebase Admin (push)
-- Tooling: CocoaPods, SnapKit, Kingfisher, JTAppleCalendar, Lottie
-
 ## Hard problems solved
 
 - Replaced dynamic-link login after detecting an Apple deep-link edge case that redirected users to the App Store despite installation
@@ -143,3 +136,10 @@ Key highlights:
 - Hit #8 in Productivity (Free) and entered the top 100 overall during the first week
 - Delivered 3 major updates and maintained the product through multiple iterations
 - Improved login reliability by replacing the original dynamic-link authorization path
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift/RxCocoa, StoreKit, Firebase (Analytics/Messaging/Dynamic Links/Crashlytics)
+- Architecture: MVVM, typed API client (endpoints + DTOs), modular feature structure
+- Backend/Infra: Django, Django REST Framework, JWT, Celery, Firebase Admin (push)
+- Tooling: CocoaPods, SnapKit, Kingfisher, JTAppleCalendar, Lottie

@@ -1,107 +1,35 @@
 ---
-import ButtonLink from './ButtonLink.astro';
-import TagList from './TagList.astro';
-
 interface Props {
-  title: string;
-  description: string;
-  stats: Array<{ label: string; value: string }>;
-  image: string;
-  featured: Array<{
-    title: string;
-    subtitle: string;
-    image?: string | null;
-    href: string;
-  }>;
+  name: string;
+  role: string;
+  label: string;
+  bannerImage: string;
 }
 
-const { title, description, stats, image, featured } = Astro.props as Props;
-const featuredItems = featured.slice(0, 2);
+const { name, role, label, bannerImage } = Astro.props as Props;
 ---
 
 <section class="wix-section-shell pt-8 sm:pt-10">
   <div class="wix-section-inner">
     <div class="wix-divider-thick"></div>
     <div class="wix-divider-thin"></div>
-
-    <div class="wix-section-frame mt-4 px-4 py-4 sm:px-6 sm:py-6">
-      <div class="grid gap-6 lg:grid-cols-[minmax(0,506px)_minmax(0,384px)] lg:justify-between">
-        <div class="min-w-0">
-          <p class="wix-section-kicker">Portfolio</p>
-          <h1 class="mt-3 max-w-[506px] text-[40px] font-semibold leading-[1.4] text-white">
-            {title}
-          </h1>
-          <p class="mt-4 max-w-[747px] text-[16px] leading-[1.6] text-[var(--color-text-muted)]">
-            {description}
-          </p>
-
-          <TagList
-            tags={['iOS', 'Backend', 'Product Engineering', 'Astro', 'TypeScript']}
-            class="mt-6"
-          />
-
-          <div class="mt-5 flex flex-wrap items-center gap-2 text-[12px] uppercase tracking-[0.2em] text-[var(--color-text-soft)]">
-            {stats.map((stat, index) => (
-              <span>
-                {index > 0 && <span class="mx-1 text-[var(--color-border-strong)]">·</span>}
-                {stat.label}: <span class="text-white">{stat.value}</span>
-              </span>
-            ))}
-          </div>
-
-          <div class="mt-7 flex flex-wrap gap-3">
-            <ButtonLink href="/#flagship" variant="primary">Flagship work</ButtonLink>
-            <ButtonLink href="/#contact" variant="secondary">Contact</ButtonLink>
-          </div>
-        </div>
-
-        <div class="grid gap-4">
-          <div class="wix-project-card">
-            <div class="wix-project-media">
-              <img
-                src={image}
-                alt="Portfolio banner"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-                class="aspect-[16/10] w-full object-cover"
-              />
-            </div>
-          </div>
-
-          <div class="wix-project-card p-4 sm:p-5">
-            <p class="wix-section-kicker">Selected work</p>
-            <div class="mt-4 grid gap-4">
-              {featuredItems.map((project) => (
-                <a
-                  href={project.href}
-                  class="grid grid-cols-[120px_minmax(0,1fr)] gap-4 rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)] p-3 transition hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)]"
-                >
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      decoding="async"
-                      class="h-[120px] w-[120px] rounded-[10px] object-cover"
-                    />
-                  ) : (
-                    <div class="flex h-[120px] w-[120px] items-end rounded-[10px] bg-[var(--color-elevated-2)] p-3">
-                      <span class="wix-section-kicker">{project.title}</span>
-                    </div>
-                  )}
-                  <div class="min-w-0">
-                    <p class="wix-section-kicker">Featured</p>
-                    <p class="mt-2 text-[18px] font-semibold leading-6 text-white">
-                      {project.title}
-                    </p>
-                    <p class="mt-2 text-[14px] leading-6 text-[var(--color-text-muted)]">
-                      {project.subtitle}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+    <div class="wix-section-frame mt-4 overflow-hidden">
+      <div class="relative">
+        <img
+          src={bannerImage}
+          alt="Portfolio banner"
+          width="980"
+          height="366"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="wix-home-banner"
+        />
+        <div class="wix-home-banner-overlay">
+          <div class="wix-home-banner-copy">
+            <p class="wix-home-banner-name">{name}</p>
+            <p class="wix-home-banner-role">{role}</p>
+            <p class="wix-home-banner-label">{label}</p>
           </div>
         </div>
       </div>

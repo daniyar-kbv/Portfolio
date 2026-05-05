@@ -122,14 +122,6 @@
 }
 ---
 
-## Summary
-
-American Sign Language alphabet recognition from images. The goal was to localize the hand and classify the sign into one of 26 letters. We evaluated multiple object-detection approaches (SSD, YOLOv5, Faster R-CNN), used transfer learning, and built a simple Django API for inference demos.
-Key highlights:
-- Compared SSD-ResNet50, YOLOv5, and Faster R-CNN pipelines on the same labeled dataset
-- Used Roboflow augmentation to scale the dataset and standardize labels
-- Shipped a prediction endpoint returning letter, bounding box, and confidence
-
 ## Quick facts
 
 - Role: ML Engineer (Computer Vision) + Backend Developer (demo API)
@@ -137,6 +129,14 @@ Key highlights:
 - Platform: Model training + REST API demo
 - Status: Completed (academic project)
 - Team: Team project
+
+## Summary
+
+American Sign Language alphabet recognition from images. The goal was to localize the hand and classify the sign into one of 26 letters. We evaluated multiple object-detection approaches (SSD, YOLOv5, Faster R-CNN), used transfer learning, and built a simple Django API for inference demos.
+Key highlights:
+- Compared SSD-ResNet50, YOLOv5, and Faster R-CNN pipelines on the same labeled dataset
+- Used Roboflow augmentation to scale the dataset and standardize labels
+- Shipped a prediction endpoint returning letter, bounding box, and confidence
 
 ## Problem
 
@@ -158,12 +158,6 @@ We framed the task as object detection and used transfer learning to accelerate 
 - Evaluation: compared validation metrics vs real-world tests (video inference)
 - Demo: Django API endpoint → model inference → JSON response (class, box, score)
 
-## Tech stack
-
-- Architecture: Transfer learning, object detection (SSD / YOLOv5 / Faster R-CNN)
-- Backend/Infra: Django, REST API, Detectron2, TensorFlow Object Detection Zoo
-- Tooling: PyTorch, Roboflow, Kaggle dataset, Google Colab/local GPU training
-
 ## Hard problems solved
 
 - Managed compute constraints: early SSD training was too slow without GPU, forcing a model strategy change
@@ -178,3 +172,9 @@ We framed the task as object detection and used transfer learning to accelerate 
 - Produced an end-to-end ASL alphabet detection pipeline with multiple model baselines
 - Demonstrated that offline metrics can be misleading without real inference testing
 - Delivered a working inference API for demo usage (image in → prediction out)
+
+## Tech stack
+
+- Architecture: Transfer learning, object detection (SSD / YOLOv5 / Faster R-CNN)
+- Backend/Infra: Django, REST API, Detectron2, TensorFlow Object Detection Zoo
+- Tooling: PyTorch, Roboflow, Kaggle dataset, Google Colab/local GPU training

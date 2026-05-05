@@ -81,14 +81,6 @@
 }
 ---
 
-## Summary
-
-SlackLess is an iOS app that helps users monitor and limit time spent in distracting apps using Apple’s Screen Time APIs. It guides users through onboarding, weekly setup, and daily/weekly reporting across Summary, Progress, and Customize tabs, with enforcement via shields and reminders.
-Key highlights:
-- Built around Screen Time reporting + limit enforcement (DeviceActivity + ManagedSettings)
-- Modular MVVM with Coordinator navigation and shared app-group storage across extensions
-- Workarounds to stabilize unreliable Screen Time behavior (refresh cycles, state handling)
-
 ## Quick facts
 
 - Role: Solo iOS developer (product + design + engineering)
@@ -96,6 +88,14 @@ Key highlights:
 - Platform: iOS 16+
 - Status: Shipped (monetization concept removed after App Review rejection)
 - Team: 1
+
+## Summary
+
+SlackLess is an iOS app that helps users monitor and limit time spent in distracting apps using Apple’s Screen Time APIs. It guides users through onboarding, weekly setup, and daily/weekly reporting across Summary, Progress, and Customize tabs, with enforcement via shields and reminders.
+Key highlights:
+- Built around Screen Time reporting + limit enforcement (DeviceActivity + ManagedSettings)
+- Modular MVVM with Coordinator navigation and shared app-group storage across extensions
+- Workarounds to stabilize unreliable Screen Time behavior (refresh cycles, state handling)
 
 ## Problem
 
@@ -119,13 +119,6 @@ SlackLess combines weekly commitment, daily limits for selected apps, and clear 
 - Firebase initialization in AppDelegate; services for settings, feedback, notifications, shielding
 - Strongly-typed localization via enums; tappable attributed Terms/Privacy links
 
-## Tech stack
-
-- iOS: Swift, UIKit, SwiftUI (DeviceActivity reports), RxSwift/RxCocoa, Screen Time APIs (DeviceActivity, FamilyControls, ManagedSettings)
-- Architecture: MVVM, Coordinator, modular feature factories, repository pattern
-- Backend/Infra: Firebase Firestore (feedback)
-- Tooling: CocoaPods, SnapKit, Moya/Alamofire (scaffolding), DeviceKit, IQKeyboardManager
-
 ## Hard problems solved
 
 - Stabilized DeviceActivity report rendering with a custom state machine to handle “broken” first-load states and refresh timing in extensions
@@ -141,3 +134,10 @@ SlackLess combines weekly commitment, daily limits for selected apps, and clear 
 - Shipped a working Screen Time companion app with dashboards, weekly trends, and limit enforcement
 - Delivered a stable experience on top of inconsistent system APIs through defensive state handling and refresh strategies
 - Maintained user trust with on-device privacy positioning and minimal data collection (feedback only)
+
+## Tech stack
+
+- iOS: Swift, UIKit, SwiftUI (DeviceActivity reports), RxSwift/RxCocoa, Screen Time APIs (DeviceActivity, FamilyControls, ManagedSettings)
+- Architecture: MVVM, Coordinator, modular feature factories, repository pattern
+- Backend/Infra: Firebase Firestore (feedback)
+- Tooling: CocoaPods, SnapKit, Moya/Alamofire (scaffolding), DeviceKit, IQKeyboardManager

@@ -26,33 +26,26 @@ const links = [
 <section id="contact" class="wix-strip">
   <div class="wix-divider-accent"></div>
   <div class="wix-divider-thin"></div>
-  <div class="wix-footer-inner py-6">
-    <div class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-      <div class="max-w-2xl">
-        <p class="wix-text-9 uppercase tracking-[0.24em] text-[var(--color-text-soft)]">Contact</p>
-        <h2 class="mt-2 text-[var(--wix-font-5)] font-semibold leading-[1.4] text-white">
-          Available for iOS, backend, and product engineering work.
-        </h2>
-        <p class="mt-3 max-w-xl text-[var(--wix-font-8)] leading-6 text-[var(--color-text-muted)]">
-          Direct contact is preferred for project work, technical audits, and freelance engagements.
-        </p>
-      </div>
-
-      <div class="wix-contact-grid">
+  <div class="wix-footer-inner py-8 sm:py-10">
+    <div class="mx-auto max-w-[650px] text-center">
+      <p class="wix-section-kicker">Get in touch</p>
+      <h2 class="mt-3 wix-project-title">Daniyar Kurmanbayev</h2>
+      <p class="mt-2 wix-project-subtitle">Kazakhstan</p>
+      <div class="mt-6 wix-project-links-grid wix-project-links-grid--compact">
         {links.map((link) => (
           <a
             href={link.href}
             target={link.href.startsWith('http') ? '_blank' : undefined}
             rel={link.href.startsWith('http') ? 'noreferrer noopener' : undefined}
             aria-label={`${link.title}: ${link.value}`}
-            class="wix-contact-tile group"
+            class="wix-project-link-tile group"
           >
-            <span class="relative h-6 w-6 shrink-0">
+            <span class="relative h-12 w-12 shrink-0">
               <img
                 src={link.icon}
                 alt=""
                 aria-hidden="true"
-                class="absolute inset-0 h-6 w-6 object-contain transition-opacity group-hover:opacity-0"
+                class="absolute inset-0 h-12 w-12 object-contain transition-opacity group-hover:opacity-0"
                 loading="lazy"
                 decoding="async"
               />
@@ -60,15 +53,12 @@ const links = [
                 src={link.hoverIcon}
                 alt=""
                 aria-hidden="true"
-                class="absolute inset-0 h-6 w-6 object-contain opacity-0 transition-opacity group-hover:opacity-100"
+                class="absolute inset-0 h-12 w-12 object-contain opacity-0 transition-opacity group-hover:opacity-100"
                 loading="lazy"
                 decoding="async"
               />
             </span>
-            <span class="wix-contact-copy">
-              <span class="wix-contact-title">{link.title}</span>
-              <span class="wix-contact-value">{link.value}</span>
-            </span>
+            <span class="wix-project-link-tile-label">{link.title}</span>
           </a>
         ))}
       </div>

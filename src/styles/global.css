@@ -121,6 +121,57 @@ section[id] {
   border: 1px solid var(--color-border-strong);
 }
 
+.wix-promo-bar {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.wix-promo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: var(--site-width);
+  min-height: 24px;
+  margin-inline: auto;
+  padding: 4px 16px;
+}
+
+.wix-promo-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.wix-promo-wix {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.wix-promo-copy {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #1d1d1f;
+}
+
+.wix-promo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 0 12px;
+  border-radius: 2px;
+  background: #1d1d1f;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+}
+
 .wix-canvas {
   width: 100%;
   max-width: var(--site-width);
@@ -162,10 +213,28 @@ section[id] {
 
 .wix-section-header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+
+.wix-section-header--center {
+  align-items: flex-start;
+}
+
+.wix-section-heading {
+  width: 100%;
+  max-width: 747px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.wix-section-heading--links {
+  max-width: 650px;
+}
+
+.wix-section-count {
+  flex: none;
+  margin-top: 4px;
 }
 
 .wix-section-title {
@@ -224,6 +293,51 @@ section[id] {
   gap: 14px;
 }
 
+.wix-home-banner {
+  width: 100%;
+  aspect-ratio: 980 / 366;
+  object-fit: cover;
+}
+
+.wix-home-banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background:
+    linear-gradient(180deg, rgba(30, 42, 56, 0.2), rgba(30, 42, 56, 0.45)),
+    linear-gradient(90deg, rgba(30, 42, 56, 0.2), rgba(30, 42, 56, 0.2));
+}
+
+.wix-home-banner-copy {
+  max-width: 650px;
+  text-align: center;
+}
+
+.wix-home-banner-name {
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wix-home-banner-role,
+.wix-home-banner-label {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wix-home-banner-label {
+  font-size: 22px;
+}
+
 .wix-repeater-grid {
   display: grid;
   gap: 16px;
@@ -243,6 +357,126 @@ section[id] {
   background: color-mix(in srgb, var(--color-elevated-alt-2) 88%, transparent);
 }
 
+.wix-project-card-link {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 14px;
+  padding: 12px;
+}
+
+@media (max-width: 639px) {
+  .wix-project-card-link {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+    padding: 10px;
+  }
+}
+
+.wix-project-card-media {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--color-elevated);
+}
+
+.wix-project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wix-project-card-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 120px;
+  padding: 12px;
+  background: var(--color-elevated-2);
+}
+
+.wix-project-card-placeholder-kicker,
+.wix-project-card-kicker {
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.wix-project-card-placeholder-title,
+.wix-project-card-title {
+  display: block;
+  margin-top: 4px;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.wix-project-card-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-right: 2px;
+}
+
+.wix-project-card-status {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wix-project-card-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.wix-project-card-tech {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wix-project-card-button {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  margin-top: 12px;
+  padding: 0 14px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wix-project-card:hover,
+.wix-project-card:focus-within {
+  border-color: var(--color-border-strong);
+}
+
 .wix-project-shell {
   width: 100%;
   background: var(--color-background);
@@ -257,6 +491,8 @@ section[id] {
 
 .wix-project-title {
   max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
   font-size: 40px;
   line-height: 1.4;
   font-weight: 700;
@@ -266,6 +502,8 @@ section[id] {
 .wix-project-subtitle,
 .wix-project-description {
   max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-text-muted);
@@ -286,16 +524,92 @@ section[id] {
   aspect-ratio: 980 / 366;
 }
 
+.wix-project-banner {
+  width: 100%;
+  aspect-ratio: 980 / 366;
+  object-fit: cover;
+}
+
+.wix-project-header {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 22px 0 0;
+}
+
 .wix-project-links-wrap {
   width: 100%;
   margin-inline: auto;
 }
 
-.wix-project-links-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.wix-project-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  width: 100%;
+  max-width: 650px;
+  margin-inline: auto;
+  justify-content: center;
+}
+
+.wix-project-links-grid--compact {
+  grid-template-columns: repeat(2, minmax(0, 140px));
+}
+
+.wix-project-link-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-elevated);
+  text-align: center;
+}
+
+.wix-project-link-tile:hover,
+.wix-project-link-tile:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-elevated-2);
+}
+
+.wix-project-link-tile-label {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.wix-media-strip {
+  display: grid;
+  gap: 12px;
+}
+
+.wix-media-strip-image {
+  width: 100%;
+  min-height: 160px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+}
+
+.wix-media-strip-image--primary {
+  aspect-ratio: 980 / 366;
+}
+
+@media (min-width: 700px) {
+  .wix-media-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .wix-media-strip-image--primary {
+    grid-column: 1 / -1;
+  }
 }
 
 .wix-case-study {
@@ -469,7 +783,7 @@ section[id] {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   width: 100%;
   max-width: var(--site-width);
   height: 100%;
@@ -494,7 +808,7 @@ section[id] {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 22px;
+  gap: 14px;
   min-width: 0;
 }
 
@@ -509,6 +823,7 @@ section[id] {
   letter-spacing: 0.1em;
   color: var(--color-nav-text);
   transition: color 150ms ease;
+  white-space: nowrap;
 }
 
 .wix-nav-link::after {
@@ -574,6 +889,7 @@ section[id] {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
 }
 
 .wix-contact-tile {

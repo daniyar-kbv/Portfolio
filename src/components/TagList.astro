@@ -12,7 +12,7 @@ const { tags, class: className = '' } = Astro.props as Props;
     <li
       class="max-w-full rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)] px-2.5 py-1 text-[12px] font-medium tracking-wide text-[var(--color-text-muted)]"
     >
-      <span class="block max-w-full break-words">{tag}</span>
+      <span class="block max-w-full truncate whitespace-nowrap">{tag}</span>
     </li>
   ))}
 </ul>

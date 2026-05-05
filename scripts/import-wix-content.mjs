@@ -48,14 +48,14 @@ const projectOrder = [
 ];
 
 const sectionOrder = [
-  'Summary',
   'Quick facts',
+  'Summary',
   'Problem',
   'Solution',
   'Architecture',
-  'Tech stack',
   'Hard problems solved',
   'Impact / Results',
+  'Tech stack',
 ];
 
 function resolveSectionOrder(textTypesCsv) {

@@ -94,14 +94,6 @@
 }
 ---
 
-## Summary
-
-Built a driver drowsiness detection demo that localizes eyes and mouth cues on video, then triggers a warning after yawning and an alert after ~1 second of closed eyes. We iterated on dataset quality (re-annotation + augmentation), compared Faster R-CNN (Detectron2) vs YOLOv5, and shipped the best-performing pipeline behind a simple web UI.
-Key highlights:
-- Re-annotated face images to make eye detection work in full-face frames
-- Chose YOLOv5 after recall/precision tradeoffs with Faster R-CNN
-- Deployed a Dockerized Flask app behind NGINX on GCP
-
 ## Quick facts
 
 - Role: ML Engineer (Computer Vision) + Backend/Deployment (demo web app)
@@ -109,6 +101,14 @@ Key highlights:
 - Platform: Web demo (video upload → processed output) + CV model inference
 - Status: Completed (academic project + demo)
 - Team: Team project
+
+## Summary
+
+Built a driver drowsiness detection demo that localizes eyes and mouth cues on video, then triggers a warning after yawning and an alert after ~1 second of closed eyes. We iterated on dataset quality (re-annotation + augmentation), compared Faster R-CNN (Detectron2) vs YOLOv5, and shipped the best-performing pipeline behind a simple web UI.
+Key highlights:
+- Re-annotated face images to make eye detection work in full-face frames
+- Chose YOLOv5 after recall/precision tradeoffs with Faster R-CNN
+- Deployed a Dockerized Flask app behind NGINX on GCP
 
 ## Problem
 
@@ -130,12 +130,6 @@ We rebuilt the dataset around full-face frames and annotated eyes + yawning stat
 - Demo app: Flask (templates + Jinja2) for upload/result flow
 - Deployment: Docker Compose on GCP VM + NGINX reverse proxy
 
-## Tech stack
-
-- Architecture: Object detection + temporal event rules (yawn / eyes-closed)
-- Backend/Infra: Flask, Docker Compose, NGINX, Google Cloud VM
-- Tooling: PyTorch, YOLOv5, Detectron2, Roboflow, CVAT
-
 ## Hard problems solved
 
 - Fixed a core dataset mismatch: “eyes-only” training data failed on full-face inference, so we re-annotated for the real input distribution
@@ -150,3 +144,9 @@ We rebuilt the dataset around full-face frames and annotated eyes + yawning stat
 - Delivered a working demo that flags yawns and sustained eye-closure events on uploaded driving videos
 - Produced a repeatable dataset + training pipeline with clear learnings on model selection and threshold tradeoffs
 - Deployed an end-to-end system (model + web app + infra) suitable for showcasing to non-technical stakeholders
+
+## Tech stack
+
+- Architecture: Object detection + temporal event rules (yawn / eyes-closed)
+- Backend/Infra: Flask, Docker Compose, NGINX, Google Cloud VM
+- Tooling: PyTorch, YOLOv5, Detectron2, Roboflow, CVAT

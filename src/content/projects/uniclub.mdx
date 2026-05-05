@@ -129,14 +129,6 @@
 }
 ---
 
-## Summary
-
-Two-sided marketplace for kids’ study and sports activities in Nur-Sultan: discovery, filtering, class details, schedule selection, and request-based booking. I built the iOS app and mobile backend from scratch and supported the website booking experience. The product covered both parent-facing browsing/booking and partner onboarding and operations through admin tooling.
-Key highlights:
-- iOS app: filter-first discovery, schedule picker, cart, and booking request forms
-- Mobile backend: DRF + Celery, plus Telegram bot for collecting course reviews
-- Web backend: phone auth, subscriptions, lesson generation, booking, and partner workflows
-
 ## Quick facts
 
 - Role: iOS Developer + Backend Developer (mobile stack). Also supported the main website booking flow.
@@ -144,6 +136,14 @@ Key highlights:
 - Platform: iOS + Web + Backend APIs
 - Status: Discontinued (app removed from the App Store)
 - Team: Solo for iOS + mobile backend (supported a separate web team/product)
+
+## Summary
+
+Two-sided marketplace for kids’ study and sports activities in Nur-Sultan: discovery, filtering, class details, schedule selection, and request-based booking. I built the iOS app and mobile backend from scratch and supported the website booking experience. The product covered both parent-facing browsing/booking and partner onboarding and operations through admin tooling.
+Key highlights:
+- iOS app: filter-first discovery, schedule picker, cart, and booking request forms
+- Mobile backend: DRF + Celery, plus Telegram bot for collecting course reviews
+- Web backend: phone auth, subscriptions, lesson generation, booking, and partner workflows
 
 ## Problem
 
@@ -165,13 +165,6 @@ I delivered an end-to-end mobile stack: a UIKit iOS client with reactive binding
 - Web backend: modular Django apps for clubs/courses/lessons/subscriptions/bookings with JWT auth
 - API docs: Swagger + Redoc for backend endpoints and partner/client workflows
 
-## Tech stack
-
-- iOS: Swift, UIKit, RxSwift, SnapKit
-- Architecture: MVVM-lite with shared state, Router-based networking, Codable models
-- Backend/Infra: Django, DRF, Celery, RabbitMQ, PostgreSQL
-- Tooling: Docker, Swagger/Redoc (drf-yasg), Firebase, Kingfisher, Lottie
-
 ## Hard problems solved
 
 - Designed a filter model that supports many dimensions without breaking list pagination and UX
@@ -186,3 +179,10 @@ I delivered an end-to-end mobile stack: a UIKit iOS client with reactive binding
 - Delivered iOS app + mobile backend from scratch with a complete discovery-to-request flow
 - Enabled lead capture and partner onboarding via dedicated forms and admin-managed content
 - Provided backend documentation and operational tooling to support iteration and support workflows
+
+## Tech stack
+
+- iOS: Swift, UIKit, RxSwift, SnapKit
+- Architecture: MVVM-lite with shared state, Router-based networking, Codable models
+- Backend/Infra: Django, DRF, Celery, RabbitMQ, PostgreSQL
+- Tooling: Docker, Swagger/Redoc (drf-yasg), Firebase, Kingfisher, Lottie

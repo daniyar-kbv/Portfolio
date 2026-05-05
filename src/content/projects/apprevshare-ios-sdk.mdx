@@ -70,14 +70,6 @@
 }
 ---
 
-## Summary
-
-An iOS SDK for referral revenue attribution. Apps integrate it once, and it monitors StoreKit purchases to report transactions to a backend for verification and commission splitting. I joined to improve reliability, reduce duplicate reporting, and align expectations with real StoreKit behavior.
-Key highlights:
-- Passive StoreKit 2 listener with automatic reporting (no “report purchase” calls from host app)
-- Stronger deduplication and bounded retries to prevent backend spam
-- Clear documentation of unavoidable platform limits (especially for consumables)
-
 ## Quick facts
 
 - Role: iOS SDK engineer (hired to harden StoreKit monitoring + reporting)
@@ -85,6 +77,14 @@ Key highlights:
 - Platform: iOS 15+ (Swift Package), plus a SwiftUI example app
 - Status: Paused (client postponed further SDK work)
 - Team: Small founder-led team (me + founder)
+
+## Summary
+
+An iOS SDK for referral revenue attribution. Apps integrate it once, and it monitors StoreKit purchases to report transactions to a backend for verification and commission splitting. I joined to improve reliability, reduce duplicate reporting, and align expectations with real StoreKit behavior.
+Key highlights:
+- Passive StoreKit 2 listener with automatic reporting (no “report purchase” calls from host app)
+- Stronger deduplication and bounded retries to prevent backend spam
+- Clear documentation of unavoidable platform limits (especially for consumables)
 
 ## Problem
 
@@ -108,13 +108,6 @@ I implemented a two-path capture strategy: Transaction.updates for replay/out-of
 - Opt-in logger with header masking and structured request/response/error logs
 - SwiftUI example app to validate integration: init, register, update identifier, purchase trigger
 
-## Tech stack
-
-- iOS: Swift, StoreKit 2, SwiftUI (example app)
-- Architecture: Swift Package, passive listener, on-device idempotency + retry control
-- Backend/Infra: REST API contract (register/update/report), server-side App Store verification (client-owned)
-- Tooling: Xcode, XCTest, structured logging utilities
-
 ## Hard problems solved
 
 - Identified and corrected a key assumption: Transaction.updates is not a universal “every purchase” stream for same-device purchases
@@ -129,3 +122,10 @@ I implemented a two-path capture strategy: Transaction.updates for replay/out-of
 - Improved purchase detection reliability for subscriptions and non-consumables while documenting consumable limitations
 - Prevented repeated reporting loops and reduced noisy traffic patterns during app boot/replay scenarios
 - Delivered changes via a feature branch and proof via recorded demos against a test app
+
+## Tech stack
+
+- iOS: Swift, StoreKit 2, SwiftUI (example app)
+- Architecture: Swift Package, passive listener, on-device idempotency + retry control
+- Backend/Infra: REST API contract (register/update/report), server-side App Store verification (client-owned)
+- Tooling: Xcode, XCTest, structured logging utilities

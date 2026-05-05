@@ -1,11 +1,7 @@
 ---
 interface Props {
   title: string;
-  alt?: string;
-  image?: string | null;
-  media?: string[] | null;
-  screenshots?: string[] | null;
-  banners?: unknown[] | null;
+  items?: string[];
 }
 
 function isRenderableMediaRef(value: string | null | undefined) {
@@ -17,64 +13,24 @@ function isRenderableMediaRef(value: string | null | undefined) {
   return /^[^:/?#][^?#]*$/.test(trimmed);
 }
 
-function isVideoRef(value: string | null | undefined) {
-  return /\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim());
-}
-
-const { title, alt = title, image, media = [], screenshots = [], banners = [] } = Astro.props as Props;
-const renderableMedia = media.filter(isRenderableMediaRef);
-const renderableScreenshots = screenshots.filter(isRenderableMediaRef);
-const heroMedia =
-  renderableMedia.find((value) => !isVideoRef(value)) ||
-  (isRenderableMediaRef(image) ? image : null) ||
-  renderableScreenshots[0] ||
-  renderableMedia[0] ||
-  null;
-const additionalShots = renderableScreenshots.slice(0, 3);
-const poster = (isRenderableMediaRef(image) ? image : null) || renderableScreenshots[0] || undefined;
-const hasBanners = Array.isArray(banners) && banners.length > 0;
+const { title, items = [] } = Astro.props as Props;
+const renderableItems = items.filter(isRenderableMediaRef);
 ---
 
-{hasBanners && heroMedia && (
+{renderableItems.length > 0 && (
   <section class="wix-section-shell py-6 sm:py-8">
     <div class="wix-section-inner">
-      <div class="wix-media-stage overflow-hidden rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)]">
-        {renderableMedia.some(isVideoRef) ? (
-          <video
-            class="aspect-[980/366] w-full bg-black object-cover"
-            controls
-            playsinline
-            preload="metadata"
-            aria-label={`${title} project video`}
-            poster={poster}
-          >
-            <source src={renderableMedia.find(isVideoRef) ?? renderableMedia[0]} />
-          </video>
-        ) : (
+      <div class="wix-media-strip">
+        {renderableItems.map((item, index) => (
           <img
-            src={heroMedia}
-            alt={alt}
-            loading="eager"
+            src={item}
+            alt={`${title} screenshot ${index + 1}`}
+            loading="lazy"
             decoding="async"
-            fetchpriority="high"
-            class="aspect-[980/366] w-full object-cover"
+            class:list={['wix-media-strip-image', index === 0 ? 'wix-media-strip-image--primary' : '']}
           />
-        )}
+        ))}
       </div>
-
-      {additionalShots.length > 0 && (
-        <div class="mt-4 grid gap-3 md:grid-cols-3">
-          {additionalShots.map((shot, index) => (
-            <img
-              src={shot}
-              alt={`${title} screenshot ${index + 1}`}
-              class="aspect-[4/3] w-full rounded-[10px] border border-[var(--color-border)] object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-          ))}
-        </div>
-      )}
     </div>
   </section>
 )}

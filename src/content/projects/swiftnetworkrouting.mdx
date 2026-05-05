@@ -56,14 +56,6 @@
 }
 ---
 
-## Summary
-
-A small Swift networking layer on top of Alamofire. It standardizes how endpoints are described, how requests are built (JSON + multipart), how responses are logged, and how errors are mapped into consistent messages. Designed to reduce repeated “glue code” across apps while keeping customization points explicit.
-Key highlights:
-- Single EndPoint contract for URL, params, headers, and content type
-- Router that supports JSON requests and multipart uploads
-- Pluggable logging and error handling without app-level coupling
-
 ## Quick facts
 
 - Role: Author / iOS Developer
@@ -71,6 +63,14 @@ Key highlights:
 - Platform: iOS (Swift)
 - Status: Active (open-source)
 - Team: Solo
+
+## Summary
+
+A small Swift networking layer on top of Alamofire. It standardizes how endpoints are described, how requests are built (JSON + multipart), how responses are logged, and how errors are mapped into consistent messages. Designed to reduce repeated “glue code” across apps while keeping customization points explicit.
+Key highlights:
+- Single EndPoint contract for URL, params, headers, and content type
+- Router that supports JSON requests and multipart uploads
+- Pluggable logging and error handling without app-level coupling
 
 ## Problem
 
@@ -92,13 +92,6 @@ I built a lightweight library that enforces an explicit endpoint definition (End
 - ErrorHandler protocol + DefaultErrorHandler to map status codes into consistent results/messages
 - Generic response decoding into Codable models with consistent error messages for missing/invalid payloads
 
-## Tech stack
-
-- iOS: Swift, Alamofire
-- Architecture: Protocol-driven design, Generic Router, Codable decoding
-- Backend/Infra: REST/JSON, Multipart form-data uploads
-- Tooling: CocoaPods, GitHub
-
 ## Hard problems solved
 
 - Unified JSON and multipart flows under one API without leaking Alamofire details into feature code
@@ -113,3 +106,10 @@ I built a lightweight library that enforces an explicit endpoint definition (End
 - Reduced networking boilerplate across projects by standardizing endpoint + router patterns
 - Improved debugging speed with consistent request/response logs and stable error messaging
 - Made multipart uploads safer to implement and easier to review
+
+## Tech stack
+
+- iOS: Swift, Alamofire
+- Architecture: Protocol-driven design, Generic Router, Codable decoding
+- Backend/Infra: REST/JSON, Multipart form-data uploads
+- Tooling: CocoaPods, GitHub

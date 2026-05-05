@@ -81,14 +81,6 @@
 }
 ---
 
-## Summary
-
-Telegram chatbot for a travel agency that captures trip preferences from either free-form text/voice or a structured survey, then submits a complete lead to Bitrix24. Voice messages are transcribed with Yandex SpeechKit and confirmed by the user before submission. Bot content and survey configuration are editable via Django admin.
-Key highlights:
-- Two intake modes: audio/text request or multi-step survey
-- Voice-to-text with confirmation loop to prevent bad leads
-- Admin-controlled questions, answers, texts, and contact methods
-
 ## Quick facts
 
 - Role: Backend Developer
@@ -96,6 +88,14 @@ Key highlights:
 - Platform: Telegram bot + Django admin + CRM integration
 - Status: Released
 - Team: Solo
+
+## Summary
+
+Telegram chatbot for a travel agency that captures trip preferences from either free-form text/voice or a structured survey, then submits a complete lead to Bitrix24. Voice messages are transcribed with Yandex SpeechKit and confirmed by the user before submission. Bot content and survey configuration are editable via Django admin.
+Key highlights:
+- Two intake modes: audio/text request or multi-step survey
+- Voice-to-text with confirmation loop to prevent bad leads
+- Admin-controlled questions, answers, texts, and contact methods
 
 ## Problem
 
@@ -118,13 +118,6 @@ I built a state-driven Telegram bot that guides users through either free-form i
 - Django admin as CMS for bot texts, keyboards, contact types, survey content
 - Dockerized deployment with Postgres, worker, and web service
 
-## Tech stack
-
-- iOS:
-- Architecture:
-- Backend/Infra: Python, Django, Celery, RabbitMQ, PostgreSQL, Bitrix24 API, Yandex SpeechKit, Yandex Object Storage (S3), Docker
-- Tooling: Django Admin, telebot, adminsortable2, gunicorn, nginx
-
 ## Hard problems solved
 
 - Built a reliable state machine that survives restarts and handles re-tries without losing user context
@@ -140,3 +133,10 @@ I built a state-driven Telegram bot that guides users through either free-form i
 - Standardized lead intake and ensured each lead reaches Bitrix24 with complete, structured data
 - Reduced ambiguity by confirming STT results and enforcing validation before submission
 - Enabled non-technical staff to update survey/questions/texts through admin
+
+## Tech stack
+
+- iOS:
+- Architecture:
+- Backend/Infra: Python, Django, Celery, RabbitMQ, PostgreSQL, Bitrix24 API, Yandex SpeechKit, Yandex Object Storage (S3), Docker
+- Tooling: Django Admin, telebot, adminsortable2, gunicorn, nginx

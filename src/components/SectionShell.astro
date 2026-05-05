@@ -19,8 +19,9 @@ const { id, eyebrow, title, description, count, icon, iconAlt = '', class: class
     <div class="wix-divider-thick"></div>
     <div class="wix-divider-thin"></div>
     <div class="wix-section-frame mt-4 px-4 py-4 sm:px-6 sm:py-6">
-      <div class="wix-section-header">
-        <div class:list={['max-w-3xl', icon ? 'wix-section-icon-label' : '']}>
+      <div class="wix-section-header wix-section-header--center">
+        {count && <p class="wix-section-kicker wix-section-count">{count}</p>}
+        <div class="wix-section-heading">
           {icon && <img src={icon} alt={iconAlt} class="wix-section-icon" loading="lazy" decoding="async" />}
           <div>
             {eyebrow && <p class="wix-section-kicker">{eyebrow}</p>}
@@ -28,7 +29,6 @@ const { id, eyebrow, title, description, count, icon, iconAlt = '', class: class
             {description && <p class="mt-3 wix-section-description">{description}</p>}
           </div>
         </div>
-        {count && <p class="wix-section-kicker">{count}</p>}
       </div>
       <div class="mt-6">
         <slot />

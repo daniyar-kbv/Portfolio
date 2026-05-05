@@ -86,14 +86,6 @@
 }
 ---
 
-## Summary
-
-Built an NLP classifier to detect whether a tweet describes a real disaster. Started with classical ML baselines, then iterated through feature engineering, balancing, embeddings, and sequence models. Shipped a Django web demo to run predictions end-to-end.
-Key highlights:
-- Benchmarked classical pipelines vs neural models on the Kaggle dataset
-- Used text cleaning + SMOTE to stabilize training on an imbalanced target
-- Reached ~82% accuracy with a tuned neural approach and validated tradeoffs
-
 ## Quick facts
 
 - Role: ML Engineer (NLP) + Full-stack (demo web app)
@@ -101,6 +93,14 @@ Key highlights:
 - Platform: Web demo + model training notebooks
 - Status: Completed (academic project + demo)
 - Team: Team project
+
+## Summary
+
+Built an NLP classifier to detect whether a tweet describes a real disaster. Started with classical ML baselines, then iterated through feature engineering, balancing, embeddings, and sequence models. Shipped a Django web demo to run predictions end-to-end.
+Key highlights:
+- Benchmarked classical pipelines vs neural models on the Kaggle dataset
+- Used text cleaning + SMOTE to stabilize training on an imbalanced target
+- Reached ~82% accuracy with a tuned neural approach and validated tradeoffs
 
 ## Problem
 
@@ -123,12 +123,6 @@ Created a repeatable training pipeline: EDA → cleaning → balancing → basel
 - Inference: probability aggregation + tuned threshold → binary label
 - Demo: Django web app wrapper for prediction flow
 
-## Tech stack
-
-- Architecture: TF-IDF/CountVectorizer baselines + ANN (GloVe) + BiGRU RNN
-- Backend/Infra: Django
-- Tooling: Python, scikit-learn, TensorFlow/Keras, NLTK, Kaggle dataset
-
 ## Hard problems solved
 
 - Controlled noise without over-cleaning: removed junk tokens while keeping signal like “!” that impacts meaning
@@ -143,3 +137,9 @@ Created a repeatable training pipeline: EDA → cleaning → balancing → basel
 - Achieved best reported result of ~82% accuracy on the project’s evaluation setup
 - Improved disaster-class precision by tuning decision logic, accepting recall tradeoffs where appropriate
 - Delivered a working web demo that runs the full pipeline from raw text to prediction output
+
+## Tech stack
+
+- Architecture: TF-IDF/CountVectorizer baselines + ANN (GloVe) + BiGRU RNN
+- Backend/Infra: Django
+- Tooling: Python, scikit-learn, TensorFlow/Keras, NLTK, Kaggle dataset

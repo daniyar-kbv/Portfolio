@@ -70,14 +70,6 @@
 }
 ---
 
-## Summary
-
-HashtagGenerator is an iPhone app that generates hashtags via an existing backend API. The app focuses on fast input (keyword or image), clean results selection/copy, history, and a local credit wallet with in-app purchases. I delivered a buildable Xcode project and handled follow-up changes and bug fixes.
-Key highlights:
-- API-driven hashtag generation (no on-device ML) for text and images
-- Credit wallet persisted in Keychain; StoreKit 2 purchases add credit packs
-- SwiftUI app with clear layering, event-driven updates, and SwiftData history
-
 ## Quick facts
 
 - Role: iOS developer (end-to-end delivery from Figma to buildable project)
@@ -85,6 +77,14 @@ Key highlights:
 - Platform: iOS 17+, iPhone-only (SwiftUI)
 - Status: Delivered (project handed off as Xcode zip; not published)
 - Team: 1
+
+## Summary
+
+HashtagGenerator is an iPhone app that generates hashtags via an existing backend API. The app focuses on fast input (keyword or image), clean results selection/copy, history, and a local credit wallet with in-app purchases. I delivered a buildable Xcode project and handled follow-up changes and bug fixes.
+Key highlights:
+- API-driven hashtag generation (no on-device ML) for text and images
+- Credit wallet persisted in Keychain; StoreKit 2 purchases add credit packs
+- SwiftUI app with clear layering, event-driven updates, and SwiftData history
 
 ## Problem
 
@@ -106,13 +106,6 @@ I implemented two generation flows hitting a single endpoint: text tags and imag
 - SwiftData History model with transactional saves via TransactionRunner + SaveNotifier
 - StoreKit 2 purchase flow + transaction updates listener to reconcile async purchases
 
-## Tech stack
-
-- iOS: Swift, SwiftUI, StoreKit 2, SwiftData, Keychain
-- Architecture: Layered Features/Domain/Data, use cases + repositories, Router navigation, event bus
-- Backend/Infra: REST API (image/text generation), base64 image upload
-- Tooling: Xcode, StoreKit Configuration (simulator), network middleware + structured logging
-
 ## Hard problems solved
 
 - Implemented local-credit economics that persists via Keychain across restarts and typical reinstall scenarios (with clear limitations)
@@ -127,3 +120,10 @@ I implemented two generation flows hitting a single endpoint: text tags and imag
 - Delivered the requested app as a buildable Xcode project aligned with provided Figma screens
 - Added post-delivery changes (starter credits, UX improvements) and provided targeted patch fixes quickly
 - Left a maintainable foundation for future auth or backend-led credit tracking if needed
+
+## Tech stack
+
+- iOS: Swift, SwiftUI, StoreKit 2, SwiftData, Keychain
+- Architecture: Layered Features/Domain/Data, use cases + repositories, Router navigation, event bus
+- Backend/Infra: REST API (image/text generation), base64 image upload
+- Tooling: Xcode, StoreKit Configuration (simulator), network middleware + structured logging

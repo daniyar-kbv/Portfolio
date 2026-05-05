@@ -52,41 +52,55 @@ function getLabel(type: string, label: string) {
 ---
 
 {links.length > 0 && (
-  <div class="mx-auto flex w-full max-w-[650px] flex-wrap justify-center gap-3">
-    {links.map((link) => {
-      const icon = resolveIcon(link.type);
-      const label = getLabel(link.type, link.label);
-      const isExternal = link.url.startsWith('http');
-      return (
-        <a
-          href={link.url}
-          target={isExternal ? '_blank' : undefined}
-          rel={isExternal ? 'noreferrer noopener' : undefined}
-          aria-label={`Open ${label}`}
-          title={label}
-          class="wix-project-link-chip group"
-        >
-          <span class="relative h-4 w-4 shrink-0">
-            <img
-              src={icon.icon}
-              alt=""
-              aria-hidden="true"
-              class="absolute inset-0 h-4 w-4 object-contain transition-opacity group-hover:opacity-0"
-              loading="lazy"
-              decoding="async"
-            />
-            <img
-              src={icon.hoverIcon}
-              alt=""
-              aria-hidden="true"
-              class="absolute inset-0 h-4 w-4 object-contain opacity-0 transition-opacity group-hover:opacity-100"
-              loading="lazy"
-              decoding="async"
-            />
-          </span>
-          <span class="wix-project-link-text">{label}</span>
-        </a>
-      );
-    })}
-  </div>
+  <section class="wix-section-shell py-6 sm:py-8">
+    <div class="wix-section-inner">
+      <div class="wix-divider-thick"></div>
+      <div class="wix-divider-thin"></div>
+      <div class="wix-section-frame mt-4 px-4 py-4 sm:px-6 sm:py-6">
+        <div class="wix-section-header wix-section-header--center">
+          <div class="wix-section-heading wix-section-heading--links">
+            <h2 class="wix-section-title">Links</h2>
+          </div>
+        </div>
+
+        <div class="mt-6 wix-project-links-grid">
+          {links.map((link) => {
+            const icon = resolveIcon(link.type);
+            const label = getLabel(link.type, link.label);
+            const isExternal = link.url.startsWith('http');
+            return (
+              <a
+                href={link.url}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noreferrer noopener' : undefined}
+                aria-label={`Open ${label}`}
+                title={label}
+                class="wix-project-link-tile group"
+              >
+                <span class="relative h-12 w-12 shrink-0">
+                  <img
+                    src={icon.icon}
+                    alt=""
+                    aria-hidden="true"
+                    class="absolute inset-0 h-12 w-12 object-contain transition-opacity group-hover:opacity-0"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src={icon.hoverIcon}
+                    alt=""
+                    aria-hidden="true"
+                    class="absolute inset-0 h-12 w-12 object-contain opacity-0 transition-opacity group-hover:opacity-100"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span class="wix-project-link-tile-label">{label}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
 )}

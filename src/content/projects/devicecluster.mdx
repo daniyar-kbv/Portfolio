@@ -72,14 +72,6 @@
 }
 ---
 
-## Summary
-
-DeviceCluster is a privacy-centric PoC for spontaneous, close-proximity connections between nearby users. It combines Multipeer Connectivity for discovery and transport, Nearby Interaction for direction/distance when available, and a modular foundation to swap transports and add backend orchestration later. The work expanded into clustering logic, QR-based pairing, AR direction cues, and a Rust core for portable graph modeling.
-Key highlights:
-- NI token exchange + direction UI validated on supported devices/regions
-- Modular P2P layer with testable payload transfer (including audio)
-- Rust core via UniFFI for H3-gated peer graphs and snapshot syncing
-
 ## Quick facts
 
 - Role: Lead iOS engineer (PoC delivery + architecture)
@@ -87,6 +79,14 @@ Key highlights:
 - Platform: iOS (SwiftUI), iPhone 15+ for NI/UWB testing
 - Status: PoC delivered; further work paused by client
 - Team: 1 (with client stakeholders)
+
+## Summary
+
+DeviceCluster is a privacy-centric PoC for spontaneous, close-proximity connections between nearby users. It combines Multipeer Connectivity for discovery and transport, Nearby Interaction for direction/distance when available, and a modular foundation to swap transports and add backend orchestration later. The work expanded into clustering logic, QR-based pairing, AR direction cues, and a Rust core for portable graph modeling.
+Key highlights:
+- NI token exchange + direction UI validated on supported devices/regions
+- Modular P2P layer with testable payload transfer (including audio)
+- Rust core via UniFFI for H3-gated peer graphs and snapshot syncing
 
 ## Problem
 
@@ -108,13 +108,6 @@ I built a PoC that discovers nearby devices, connects peer-to-peer, exchanges NI
 - Rust core via UniFFI: H3-based location gating + petgraph undirected cluster graph
 - Snapshot broadcast over P2P with debounced sending and minimal “apply then suppress re-broadcast” logic
 
-## Tech stack
-
-- iOS: Swift, SwiftUI, NearbyInteraction, MultipeerConnectivity, ARKit, AVFoundation
-- Architecture: Clean modular services/repos + use cases, payload framing, snapshot-based sync
-- Backend/Infra: WebSockets (echo endpoint for validation), location-based gating with H3
-- Tooling: Rust, UniFFI, XCFramework/Swift Package packaging, Xcode, os.Logger
-
 ## Hard problems solved
 
 - Diagnosed NI “session suspends immediately” behavior and isolated the root constraint to regional UWB availability, then validated on the client’s supported devices
@@ -130,3 +123,10 @@ I built a PoC that discovers nearby devices, connects peer-to-peer, exchanges NI
 - Delivered a working PoC proving peer discovery + direction cues are feasible on supported devices
 - Produced a modular foundation: connectivity, pairing, AR visualization, clustering core, and backend-readiness hooks
 - Helped the client make informed product decisions by surfacing platform constraints early (UWB region limits, NFC limits, Wi-Fi Aware UX)
+
+## Tech stack
+
+- iOS: Swift, SwiftUI, NearbyInteraction, MultipeerConnectivity, ARKit, AVFoundation
+- Architecture: Clean modular services/repos + use cases, payload framing, snapshot-based sync
+- Backend/Infra: WebSockets (echo endpoint for validation), location-based gating with H3
+- Tooling: Rust, UniFFI, XCFramework/Swift Package packaging, Xcode, os.Logger

@@ -79,14 +79,6 @@
 }
 ---
 
-## Summary
-
-iOS app for MIG, one of the largest currency exchange networks in Kazakhstan. I worked on the redesign and added new product features, including a reservation flow for locking a rate or reserving an amount at a selected branch. The app combines live rates, calculators, branch discovery, and content pages opened via webviews.
-Key highlights:
-- End-to-end reservation lifecycle with status tracking and timers
-- Rates + conversion calculator tied to nearest branches (list + map)
-- Hybrid UI codebase modernized during feature delivery
-
 ## Quick facts
 
 - Role: iOS Developer (redesign + feature delivery)
@@ -94,6 +86,14 @@ Key highlights:
 - Platform: iOS
 - Status: Released
 - Team: In-house team
+
+## Summary
+
+iOS app for MIG, one of the largest currency exchange networks in Kazakhstan. I worked on the redesign and added new product features, including a reservation flow for locking a rate or reserving an amount at a selected branch. The app combines live rates, calculators, branch discovery, and content pages opened via webviews.
+Key highlights:
+- End-to-end reservation lifecycle with status tracking and timers
+- Rates + conversion calculator tied to nearest branches (list + map)
+- Hybrid UI codebase modernized during feature delivery
 
 ## Problem
 
@@ -116,13 +116,6 @@ I implemented redesigned screens and shipped the reservation subsystem: phone-ba
 - Local persistence for lightweight state (UserDefaults)
 - Hybrid UI: Storyboards + UIKit/SnapKit screens as needed
 
-## Tech stack
-
-- iOS: Swift, UIKit, SnapKit, Storyboards, Kingfisher
-- Architecture: MVC
-- Backend/Infra: Alamofire, ReachabilitySwift, Firebase Messaging/Analytics/Crashlytics
-- Tooling: CocoaPods, GitLab
-
 ## Hard problems solved
 
 - Modeled reservation as a state machine with explicit statuses and user recovery paths (e.g., declined → reselect branch)
@@ -137,3 +130,10 @@ I implemented redesigned screens and shipped the reservation subsystem: phone-ba
 - Shipped redesign improvements and new reservation functionality without disrupting core rates usage
 - Enabled users to plan visits by reserving rate/amount at a specific branch and tracking request status
 - Improved the end-to-end journey: check rate → calculate → pick branch → reserve → confirm → give feedback
+
+## Tech stack
+
+- iOS: Swift, UIKit, SnapKit, Storyboards, Kingfisher
+- Architecture: MVC
+- Backend/Infra: Alamofire, ReachabilitySwift, Firebase Messaging/Analytics/Crashlytics
+- Tooling: CocoaPods, GitLab

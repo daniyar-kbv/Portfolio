@@ -1,74 +1,39 @@
 ---
-import ButtonLink from './ButtonLink.astro';
-import TagList from './TagList.astro';
-import ProjectLinks from './ProjectLinks.astro';
-
-interface LinkItem {
-  type: string;
-  label: string;
-  url: string;
-}
-
 interface Props {
   title: string;
   subtitle: string;
   description: string;
-  category: string;
-  typeTags: string[];
-  techTags: string[];
-  links: LinkItem[];
-  role?: string;
-  status?: string;
+  banner?: string | null;
+  bannerAlt?: string;
 }
 
-const {
-  title,
-  subtitle,
-  description,
-  category,
-  typeTags,
-  techTags,
-  links,
-  role,
-  status,
-} = Astro.props as Props;
+const { title, subtitle, description, banner, bannerAlt = `${title} banner` } = Astro.props as Props;
 ---
 
 <section class="wix-section-shell pt-8 sm:pt-10">
   <div class="wix-section-inner">
     <div class="wix-divider-thick"></div>
     <div class="wix-divider-thin"></div>
-    <div class="wix-section-frame mt-4 px-4 py-4 sm:px-6 sm:py-6">
-      <div class="flex flex-wrap items-start justify-between gap-4">
-        <ButtonLink href="/" variant="secondary">Back to projects</ButtonLink>
-        <p class="wix-section-kicker">{category}</p>
+
+    {banner && (
+      <div class="wix-section-frame mt-4 overflow-hidden">
+        <img
+          src={banner}
+          alt={bannerAlt}
+          width="980"
+          height="366"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="wix-project-banner"
+        />
       </div>
+    )}
 
-      <h1 class="mt-5 max-w-[980px] text-[40px] font-semibold leading-[1.4] text-white">
-        {title}
-      </h1>
-      <p class="mt-3 max-w-[980px] text-[16px] leading-[1.6] text-[var(--color-text-muted)]">
-        {subtitle}
-      </p>
-      <p class="mt-4 max-w-[980px] text-[16px] leading-[1.6] text-[var(--color-text-muted)]">
-        {description}
-      </p>
-
-      {(role || status) && (
-        <div class="mt-5 flex flex-wrap gap-3 text-[12px] uppercase tracking-[0.2em] text-[var(--color-text-soft)]">
-          {role && <span>{role}</span>}
-          {status && <span>{status}</span>}
-        </div>
-      )}
-
-      <TagList tags={typeTags} class="mt-6" />
-      <TagList tags={techTags} class="mt-3" />
-
-      {links.length > 0 && (
-        <div class="mt-7">
-          <ProjectLinks links={links} />
-        </div>
-      )}
+    <div class="wix-project-header">
+      <h1 class="wix-project-title">{title}</h1>
+      <p class="wix-project-subtitle">{subtitle}</p>
+      <p class="wix-project-description">{description}</p>
     </div>
   </div>
 </section>

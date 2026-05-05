@@ -76,14 +76,6 @@
 }
 ---
 
-## Summary
-
-Express grocery delivery app concept for Kazakhstan with a “~15 minutes” promise. I built the iOS client end to end: address-first onboarding, catalog + search, cart/checkout, payments (including Kaspi transfer), and order lifecycle screens. The project was stopped in pre-production, before App Store release.
-Key highlights:
-- Address-first flow tied to delivery availability and district detection
-- Full shopping loop: browse → cart → checkout → orders → receipts
-- Reactive UI updates across app state (cart, address, auth)
-
 ## Quick facts
 
 - Role: iOS Developer (end-to-end delivery app build)
@@ -91,6 +83,14 @@ Key highlights:
 - Platform: iOS (iPhone)
 - Status: Discontinued (pre-production)
 - Team: Small team with backend + design
+
+## Summary
+
+Express grocery delivery app concept for Kazakhstan with a “~15 minutes” promise. I built the iOS client end to end: address-first onboarding, catalog + search, cart/checkout, payments (including Kaspi transfer), and order lifecycle screens. The project was stopped in pre-production, before App Store release.
+Key highlights:
+- Address-first flow tied to delivery availability and district detection
+- Full shopping loop: browse → cart → checkout → orders → receipts
+- Reactive UI updates across app state (cart, address, auth)
 
 ## Problem
 
@@ -113,13 +113,6 @@ I implemented the full iOS app in UIKit with programmatic layout. The UX starts 
 - Lottie-based order-forming and empty/error states
 - Reachability-driven offline handling and retry UI
 
-## Tech stack
-
-- iOS: Swift, UIKit, SnapKit, RxSwift/RxCocoa, Kingfisher, Lottie
-- Architecture: MVC + ViewModels (reactive bindings)
-- Backend/Infra: Alamofire, Yandex MapKit, Firebase Analytics, ReachabilitySwift
-- Tooling: CocoaPods, GitHub
-
 ## Hard problems solved
 
 - Designed an address-first lifecycle with delivery availability gating and district resolution
@@ -134,3 +127,10 @@ I implemented the full iOS app in UIKit with programmatic layout. The UX starts 
 - Delivered a complete pre-production iOS app covering the full delivery funnel and edge cases
 - Validated feasibility of a Kazakhstan-localized “fast delivery” experience (address-first, Kaspi, RU strings)
 - Produced a codebase ready for backend hardening and production rollout, but project was stopped before release
+
+## Tech stack
+
+- iOS: Swift, UIKit, SnapKit, RxSwift/RxCocoa, Kingfisher, Lottie
+- Architecture: MVC + ViewModels (reactive bindings)
+- Backend/Infra: Alamofire, Yandex MapKit, Firebase Analytics, ReachabilitySwift
+- Tooling: CocoaPods, GitHub

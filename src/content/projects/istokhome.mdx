@@ -81,14 +81,6 @@
 }
 ---
 
-## Summary
-
-ISTOK HOME was a marketplace for home services where users could browse projects, discover specialists, send requests, and leave verified reviews after completion. I built the backend for the first version and supported the initial release, including search, media-heavy project flows, role-based accounts, and paid promotions for specialists/projects.
-Key highlights:
-- Multi-app Django REST backend covering projects, specialists, requests, reviews, and blog
-- Robust media handling (uploads, limits, cleanup) and engagement tracking
-- Payments and promotions with CloudPayments + feature lifecycle automation
-
 ## Quick facts
 
 - Role: Backend developer (built v1 backend + initial release)
@@ -96,6 +88,14 @@ Key highlights:
 - Platform: Web platform backend (Django REST)
 - Status: Closed (project discontinued)
 - Team: Backend role within a product team
+
+## Summary
+
+ISTOK HOME was a marketplace for home services where users could browse projects, discover specialists, send requests, and leave verified reviews after completion. I built the backend for the first version and supported the initial release, including search, media-heavy project flows, role-based accounts, and paid promotions for specialists/projects.
+Key highlights:
+- Multi-app Django REST backend covering projects, specialists, requests, reviews, and blog
+- Robust media handling (uploads, limits, cleanup) and engagement tracking
+- Payments and promotions with CloudPayments + feature lifecycle automation
 
 ## Problem
 
@@ -119,13 +119,6 @@ I implemented a modular Django REST backend with clear domain separation (projec
 - Celery tasks + signals for feature lifecycle (expiry, deactivation, notifications) and media processing
 - Deployed behind NGINX + Gunicorn on Linux
 
-## Tech stack
-
-- iOS: N/A
-- Architecture: Django REST Framework, multi-app domain split, JWT auth, Celery tasks + signals
-- Backend/Infra: PostgreSQL (implied), CloudPayments + 3DS, NGINX, Gunicorn, Linux
-- Tooling: Docker, Django Admin, DRF routers/serializers
-
 ## Hard problems solved
 
 - Designed project create/update APIs that handle add/delete media in one request while enforcing strict limits (min 1, max 12)
@@ -141,3 +134,10 @@ I implemented a modular Django REST backend with clear domain separation (projec
 - Delivered the backend for v1 and supported the platform’s initial release
 - Enabled core marketplace loops: discovery → request → completion → verified review
 - Shipped monetization primitives (PRO and project promotions) with payment verification and lifecycle automation
+
+## Tech stack
+
+- iOS: N/A
+- Architecture: Django REST Framework, multi-app domain split, JWT auth, Celery tasks + signals
+- Backend/Infra: PostgreSQL (implied), CloudPayments + 3DS, NGINX, Gunicorn, Linux
+- Tooling: Docker, Django Admin, DRF routers/serializers

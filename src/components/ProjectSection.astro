@@ -25,12 +25,13 @@ interface ProjectEntry {
 
 interface Props {
   id: string;
+  category: string;
   title: string;
-  description: string;
+  description?: string;
   projects: ProjectEntry[];
 }
 
-const { id, title, description, projects } = Astro.props as Props;
+const { id, category, title, description, projects } = Astro.props as Props;
 
 const sectionIcons: Record<string, string> = {
   Flagship: '/assets/icons/flagship-icon.png',
@@ -43,12 +44,10 @@ const sectionIcons: Record<string, string> = {
 
 <SectionShell
   id={id}
-  eyebrow={title}
-  title={`${title} projects`}
+  title={title}
   description={description}
-  count={`${projects.length} projects`}
-  icon={sectionIcons[title]}
-  iconAlt={`${title} icon`}
+  icon={sectionIcons[category]}
+  iconAlt={`${category} icon`}
 >
   <div class="wix-repeater-grid wix-repeater-grid--two">
     {projects.map((project) => {

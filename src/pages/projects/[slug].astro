@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectHero from '../../components/ProjectHero.astro';
 import ProjectMedia from '../../components/ProjectMedia.astro';
+import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -21,6 +22,11 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 const bodyDescription = project.data.subtitle || project.data.description;
 const projectBanners = Array.isArray(project.data.wix?.banners) ? project.data.wix.banners : [];
+const galleryItems = project.data.screenshots?.length
+  ? project.data.screenshots
+  : project.data.thumbnail
+    ? [project.data.thumbnail]
+    : [];
 const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
 ---
 
@@ -39,24 +45,13 @@ const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
       title={project.data.title}
       subtitle={bodyDescription}
       description={project.data.description}
-      category={project.data.category}
-      typeTags={project.data.typeTags}
-      techTags={project.data.techTags}
-      links={project.data.links}
-      role={project.data.role}
-      status={project.data.status}
+      banner={projectBanners.length > 0 ? project.data.image || project.data.thumbnail || null : null}
+      bannerAlt={project.data.coverAlt || `${project.data.title} banner`}
     />
 
-    {projectBanners.length > 0 && (
-      <ProjectMedia
-        title={project.data.title}
-        alt={project.data.coverAlt || `${project.data.title} banner`}
-        image={project.data.image || project.data.thumbnail}
-        media={project.data.media}
-        screenshots={project.data.screenshots}
-        banners={projectBanners}
-      />
-    )}
+    {projectBanners.length > 0 && <ProjectMedia title={project.data.title} items={galleryItems} />}
+
+    {project.data.links.length > 0 && <ProjectLinks links={project.data.links} />}
 
     <CaseStudySection>
       <Content />

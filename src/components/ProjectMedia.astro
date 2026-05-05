@@ -16,44 +16,63 @@ function isRenderableMediaRef(value: string | null | undefined) {
   return /^[^:/?#][^?#]*$/.test(trimmed);
 }
 
+function isVideoRef(value: string | null | undefined) {
+  return /\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim());
+}
+
 const { title, alt = title, image, media = [], screenshots = [] } = Astro.props as Props;
 const renderableMedia = media.filter(isRenderableMediaRef);
 const renderableScreenshots = screenshots.filter(isRenderableMediaRef);
-const heroMedia = renderableMedia[0] || (isRenderableMediaRef(image) ? image : null) || renderableScreenshots[0] || null;
+const heroMedia =
+  renderableMedia.find((value) => !isVideoRef(value)) ||
+  (isRenderableMediaRef(image) ? image : null) ||
+  renderableScreenshots[0] ||
+  renderableMedia[0] ||
+  null;
 const additionalShots = renderableScreenshots.slice(0, 3);
+const poster = (isRenderableMediaRef(image) ? image : null) || renderableScreenshots[0] || undefined;
 ---
 
 {heroMedia && (
-  <section class="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-10">
-    <div class="overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)]">
-      {renderableMedia.length > 0 ? (
-        <video
-          class="aspect-[16/9] w-full bg-black object-cover"
-          controls
-          playsinline
-          preload="metadata"
-          aria-label={`${title} project video`}
-          poster={(isRenderableMediaRef(image) ? image : undefined) || renderableScreenshots[0] || undefined}
-        >
-          <source src={renderableMedia[0]} />
-        </video>
-      ) : (
-        <img src={heroMedia} alt={alt} loading="eager" decoding="async" fetchpriority="high" class="aspect-[16/9] w-full object-cover" />
+  <section class="wix-section-shell py-6 sm:py-8">
+    <div class="wix-section-inner">
+      <div class="wix-media-stage overflow-hidden rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)]">
+        {renderableMedia.some(isVideoRef) ? (
+          <video
+            class="aspect-[980/366] w-full bg-black object-cover"
+            controls
+            playsinline
+            preload="metadata"
+            aria-label={`${title} project video`}
+            poster={poster}
+          >
+            <source src={renderableMedia.find(isVideoRef) ?? renderableMedia[0]} />
+          </video>
+        ) : (
+          <img
+            src={heroMedia}
+            alt={alt}
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            class="aspect-[980/366] w-full object-cover"
+          />
+        )}
+      </div>
+
+      {additionalShots.length > 0 && (
+        <div class="mt-4 grid gap-3 md:grid-cols-3">
+          {additionalShots.map((shot, index) => (
+            <img
+              src={shot}
+              alt={`${title} screenshot ${index + 1}`}
+              class="aspect-[4/3] w-full rounded-[10px] border border-[var(--color-border)] object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
+        </div>
       )}
     </div>
-
-    {additionalShots.length > 0 && (
-      <div class="mt-4 grid gap-3 md:grid-cols-3">
-        {additionalShots.map((shot, index) => (
-          <img
-            src={shot}
-            alt={`${title} screenshot ${index + 1}`}
-            class="aspect-[4/3] w-full rounded-sm border border-[var(--color-border)] object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        ))}
-      </div>
-    )}
   </section>
 )}

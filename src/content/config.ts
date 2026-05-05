@@ -23,7 +23,6 @@ const projects = defineCollection({
     featured: z.boolean(),
     priority: z.number().int(),
     role: z.string().optional(),
-    year: z.number().int().optional(),
     stack: z.array(z.string()),
     links: z.array(
       z.object({

@@ -39,7 +39,6 @@ const bodyDescription = project.data.subtitle || project.data.description;
       techTags={project.data.techTags}
       links={project.data.links}
       role={project.data.role}
-      year={project.data.year}
       status={project.data.status}
     />
 
@@ -51,10 +50,7 @@ const bodyDescription = project.data.subtitle || project.data.description;
       screenshots={project.data.screenshots}
     />
 
-    <CaseStudySection
-      title="Case study"
-      description="The imported MDX content is rendered below in the same section order as the Wix export."
-    >
+    <CaseStudySection>
       <Content />
     </CaseStudySection>
 

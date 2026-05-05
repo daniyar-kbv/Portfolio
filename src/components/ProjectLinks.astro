@@ -1,15 +1,4 @@
 ---
-import {
-  AppWindow,
-  ArrowUpRight,
-  FolderGit,
-  Globe,
-  Link2,
-  Mail,
-  Play,
-  Smartphone,
-} from '@lucide/astro';
-
 interface LinkItem {
   type: string;
   label: string;
@@ -22,36 +11,50 @@ interface Props {
 
 const { links } = Astro.props as Props;
 
-const iconByType = {
-  GitHub: FolderGit,
-  AppStore: Smartphone,
-  'App Store': Smartphone,
-  Website: Globe,
-  Instagram: Link2,
-  Demo: Play,
-  LinkedIn: Link2,
-  Email: Mail,
+const iconByType: Record<string, { icon: string; hoverIcon: string }> = {
+  github: {
+    icon: '/assets/icons/github-icon.png',
+    hoverIcon: '/assets/icons/github-icon-hover.png',
+  },
+  'app store': {
+    icon: '/assets/icons/app-store-icon.png',
+    hoverIcon: '/assets/icons/app-store-icon-hover.png',
+  },
+  website: {
+    icon: '/assets/icons/website-icon.png',
+    hoverIcon: '/assets/icons/website-icon-hover.png',
+  },
+  instagram: {
+    icon: '/assets/icons/instagram-icon.png',
+    hoverIcon: '/assets/icons/instagram-icon-hover.png',
+  },
+  demo: {
+    icon: '/assets/icons/demo-icon.png',
+    hoverIcon: '/assets/icons/demo-icon-hover.png',
+  },
+  linkedin: {
+    icon: '/assets/icons/linkedin-icon.png',
+    hoverIcon: '/assets/icons/linkedin-icon-hover.png',
+  },
+  email: {
+    icon: '/assets/icons/contact-icon.png',
+    hoverIcon: '/assets/icons/contact-icon-hover.png',
+  },
 };
 
-function getIcon(type: string) {
-  return iconByType[type as keyof typeof iconByType] || AppWindow;
+function resolveIcon(type: string) {
+  return iconByType[type.trim().toLowerCase()] || iconByType.website;
 }
 
 function getLabel(type: string, label: string) {
-  if (label && label !== type) return label;
-  return type;
-}
-
-function getAriaLabel(type: string, label: string, url: string) {
-  const resolvedLabel = getLabel(type, label);
-  return `Open ${resolvedLabel}`;
+  return label?.trim() || type;
 }
 ---
 
 {links.length > 0 && (
-  <div class="flex flex-wrap gap-2">
+  <div class="mx-auto flex w-full max-w-[650px] flex-wrap justify-center gap-3">
     {links.map((link) => {
-      const Icon = getIcon(link.type);
+      const icon = resolveIcon(link.type);
       const label = getLabel(link.type, link.label);
       const isExternal = link.url.startsWith('http');
       return (
@@ -59,13 +62,29 @@ function getAriaLabel(type: string, label: string, url: string) {
           href={link.url}
           target={isExternal ? '_blank' : undefined}
           rel={isExternal ? 'noreferrer noopener' : undefined}
-          aria-label={getAriaLabel(link.type, link.label, link.url)}
+          aria-label={`Open ${label}`}
           title={label}
-          class="inline-flex items-center gap-2 rounded-sm border border-[var(--color-border)] bg-[var(--color-elevated)] px-3 py-2 text-sm text-white transition hover:border-[var(--color-border-strong)] hover:bg-[var(--color-elevated-2)] hover:text-[var(--color-accent-hover)]"
+          class="wix-project-link-chip group"
         >
-          <Icon class="h-4 w-4" aria-hidden="true" />
-          <span class="min-w-0 whitespace-normal break-words">{label}</span>
-          <ArrowUpRight class="h-4 w-4" aria-hidden="true" />
+          <span class="relative h-4 w-4 shrink-0">
+            <img
+              src={icon.icon}
+              alt=""
+              aria-hidden="true"
+              class="absolute inset-0 h-4 w-4 object-contain transition-opacity group-hover:opacity-0"
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              src={icon.hoverIcon}
+              alt=""
+              aria-hidden="true"
+              class="absolute inset-0 h-4 w-4 object-contain opacity-0 transition-opacity group-hover:opacity-100"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <span class="wix-project-link-text">{label}</span>
         </a>
       );
     })}

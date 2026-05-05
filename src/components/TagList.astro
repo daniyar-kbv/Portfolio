@@ -7,10 +7,10 @@ interface Props {
 const { tags, class: className = '' } = Astro.props as Props;
 ---
 
-<ul class:list={['flex flex-wrap gap-2', className]}>
+<ul class:list={['flex flex-wrap gap-1.5', className]}>
   {tags.map((tag) => (
     <li
-      class="max-w-full rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)] px-3 py-1 text-[12px] font-medium tracking-wide text-[var(--color-text-muted)]"
+      class="max-w-full rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)] px-2.5 py-1 text-[12px] font-medium tracking-wide text-[var(--color-text-muted)]"
     >
       <span class="block max-w-full break-words">{tag}</span>
     </li>

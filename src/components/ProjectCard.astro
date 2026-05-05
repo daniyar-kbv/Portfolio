@@ -87,7 +87,7 @@ const linkIcons: Record<string, { icon: string; hoverIcon: string }> = {
     <div class="flex items-start justify-between gap-4">
       <div class="min-w-0">
         <p class="wix-section-kicker break-words">{subtitle}</p>
-        <h3 class="mt-2 text-[18px] font-semibold leading-6 text-white">
+        <h3 class="mt-2 text-[17px] font-semibold leading-6 text-white">
           <a href={internalHref} class="transition hover:text-[var(--color-accent-hover)]">
             {title}
           </a>
@@ -96,14 +96,14 @@ const linkIcons: Record<string, { icon: string; hoverIcon: string }> = {
       {status && <span class="wix-section-kicker shrink-0 text-right">{status}</span>}
     </div>
 
-    <p class="mt-3 break-words text-[14px] leading-6 text-[var(--color-text-muted)]">
+    <p class="wix-project-excerpt mt-3 break-words text-[14px] leading-6 text-[var(--color-text-muted)]">
       {description}
     </p>
 
-    <TagList tags={typeTags} class="mt-4" />
-    <TagList tags={techTags} class="mt-3" />
+    <TagList tags={typeTags} class="mt-3" />
+    <TagList tags={techTags} class="mt-2" />
 
-    <div class="mt-4 flex flex-wrap gap-2">
+    <div class="mt-3 flex flex-wrap gap-2">
       <a href={internalHref} class="wix-project-link-chip" aria-label={`Open project page for ${title}`}>
         <span class="wix-project-link-text text-[var(--color-accent)]">View project</span>
       </a>

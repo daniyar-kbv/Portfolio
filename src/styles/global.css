@@ -384,7 +384,7 @@ section[id] {
 }
 
 .wix-project-body {
-  padding: 18px 18px 20px;
+  padding: 14px 16px 16px;
 }
 
 .wix-project-link-row {
@@ -397,8 +397,8 @@ section[id] {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 34px;
-  padding: 6px 10px;
+  min-height: 32px;
+  padding: 5px 10px;
   border: 1px solid var(--color-border);
   border-radius: 10px;
   background: var(--color-elevated);
@@ -428,6 +428,13 @@ section[id] {
   line-height: 1.2;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.wix-project-excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .wix-header-shell {

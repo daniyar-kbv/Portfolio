@@ -12,7 +12,6 @@ interface ProjectEntry {
     techTags: string[];
     links: Array<{ type: string; label: string; url: string }>;
     status?: string;
-    year?: number;
     category: string;
     featured: boolean;
     priority: number;
@@ -32,6 +31,14 @@ interface Props {
 }
 
 const { id, title, description, projects } = Astro.props as Props;
+
+const sectionIcons: Record<string, string> = {
+  Flagship: '/assets/icons/flagship-icon.png',
+  Production: '/assets/icons/production-icon.png',
+  Backend: '/assets/icons/backend-icon.png',
+  AI: '/assets/icons/ai-icon.png',
+  Legacy: '/assets/icons/legacy-icon.png',
+};
 ---
 
 <SectionShell
@@ -40,8 +47,10 @@ const { id, title, description, projects } = Astro.props as Props;
   title={`${title} projects`}
   description={description}
   count={`${projects.length} projects`}
+  icon={sectionIcons[title]}
+  iconAlt={`${title} icon`}
 >
-  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+  <div class="wix-repeater-grid wix-repeater-grid--two">
     {projects.map((project) => {
       const image =
         project.data.thumbnail ||
@@ -61,7 +70,6 @@ const { id, title, description, projects } = Astro.props as Props;
           alt={project.data.coverAlt || `${project.data.title} preview`}
           links={project.data.links}
           status={project.data.status}
-          year={project.data.year}
         />
       );
     })}

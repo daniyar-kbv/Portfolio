@@ -132,6 +132,149 @@ section[id] {
   background: var(--color-background);
 }
 
+.wix-section-shell {
+  width: 100%;
+  background: var(--color-background);
+}
+
+.wix-section-inner {
+  width: 100%;
+  max-width: var(--site-width);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.wix-divider-thick {
+  height: 7px;
+  background: var(--color-accent);
+}
+
+.wix-divider-thin {
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.wix-section-frame {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-elevated-alt) 92%, transparent);
+}
+
+.wix-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wix-section-title {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.wix-section-description {
+  max-width: 747px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.wix-section-kicker {
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.wix-section-icon {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  flex: none;
+}
+
+.wix-section-icon-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wix-repeater-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .wix-repeater-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 384px));
+    justify-content: space-between;
+  }
+}
+
+.wix-project-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-elevated-alt-2) 88%, transparent);
+}
+
+.wix-project-media {
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-elevated);
+}
+
+.wix-project-body {
+  padding: 18px 18px 20px;
+}
+
+.wix-project-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wix-project-link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-elevated);
+  color: var(--color-text);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.wix-project-link-chip:hover,
+.wix-project-link-chip:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-elevated-2);
+  color: var(--color-accent-hover);
+}
+
+.wix-project-link-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex: none;
+}
+
+.wix-project-link-text {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .wix-header-shell {
   width: 100%;
   height: var(--header-height);
@@ -257,7 +400,7 @@ section[id] {
   min-height: 44px;
   padding: 8px 12px;
   border: 1px solid transparent;
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   transition:
     background-color 150ms ease,
     border-color 150ms ease;

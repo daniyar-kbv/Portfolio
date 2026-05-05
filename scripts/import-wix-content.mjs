@@ -219,6 +219,15 @@ function toRenderableMediaRef(value) {
   return wixImageToStaticUrl(trimmed);
 }
 
+function normalizeUrl(value) {
+  const trimmed = String(value ?? '').trim();
+  if (!trimmed) return undefined;
+  if (trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('mailto:')) {
+    return trimmed.split(/\s+/)[0];
+  }
+  return trimmed;
+}
+
 function mapSectionBlocks(textRows, typeNameById, projectId) {
   const grouped = new Map();
 
@@ -313,7 +322,7 @@ async function main() {
         return {
           type: typeName ?? row.Type,
           label: row['Custom Label']?.trim() || typeName || 'Link',
-          url: row.URL,
+          url: normalizeUrl(row.URL),
         };
       });
 
@@ -448,7 +457,7 @@ async function main() {
     return {
       type: typeName,
       label: row.Label,
-      url: row.URL,
+      url: normalizeUrl(row.URL),
     };
   });
 

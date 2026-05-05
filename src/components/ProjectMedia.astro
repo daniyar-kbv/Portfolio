@@ -5,6 +5,7 @@ interface Props {
   image?: string | null;
   media?: string[] | null;
   screenshots?: string[] | null;
+  banners?: unknown[] | null;
 }
 
 function isRenderableMediaRef(value: string | null | undefined) {
@@ -20,7 +21,7 @@ function isVideoRef(value: string | null | undefined) {
   return /\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim());
 }
 
-const { title, alt = title, image, media = [], screenshots = [] } = Astro.props as Props;
+const { title, alt = title, image, media = [], screenshots = [], banners = [] } = Astro.props as Props;
 const renderableMedia = media.filter(isRenderableMediaRef);
 const renderableScreenshots = screenshots.filter(isRenderableMediaRef);
 const heroMedia =
@@ -31,9 +32,10 @@ const heroMedia =
   null;
 const additionalShots = renderableScreenshots.slice(0, 3);
 const poster = (isRenderableMediaRef(image) ? image : null) || renderableScreenshots[0] || undefined;
+const hasBanners = Array.isArray(banners) && banners.length > 0;
 ---
 
-{heroMedia && (
+{hasBanners && heroMedia && (
   <section class="wix-section-shell py-6 sm:py-8">
     <div class="wix-section-inner">
       <div class="wix-media-stage overflow-hidden rounded-[10px] border border-[var(--color-border)] bg-[var(--color-elevated)]">

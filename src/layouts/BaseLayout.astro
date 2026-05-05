@@ -8,6 +8,8 @@ interface Props {
   canonicalPath?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
 }
@@ -18,6 +20,8 @@ const {
   canonicalPath,
   ogImage = '/assets/seo/seo-image.png',
   ogImageAlt = title,
+  ogTitle = title,
+  ogDescription = description,
   ogType = 'website',
   noindex = false,
 } = Astro.props as Props;
@@ -36,15 +40,15 @@ const ogImageHref = ogImage && Astro.site ? new URL(ogImage, Astro.site).toStrin
     <title>{title}</title>
     <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
     {canonicalHref && <link rel="canonical" href={canonicalHref} />}
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Daniyar Kurmanbayev" />
     {canonicalHref && <meta property="og:url" content={canonicalHref} />}
     {ogImageHref && <meta property="og:image" content={ogImageHref} />}
     {ogImageHref && <meta property="og:image:alt" content={ogImageAlt} />}
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:card" content={ogImageHref ? 'summary_large_image' : 'summary'} />
     {ogImageHref && <meta name="twitter:image" content={ogImageHref} />}
     {ogImageHref && <meta name="twitter:image:alt" content={ogImageAlt} />}

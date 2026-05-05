@@ -64,9 +64,11 @@ const {
       <TagList tags={typeTags} class="mt-6" />
       <TagList tags={techTags} class="mt-3" />
 
-      <div class="mt-7">
-        <ProjectLinks links={links} />
-      </div>
+      {links.length > 0 && (
+        <div class="mt-7">
+          <ProjectLinks links={links} />
+        </div>
+      )}
     </div>
   </div>
 </section>

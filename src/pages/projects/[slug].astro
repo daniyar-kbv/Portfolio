@@ -20,39 +20,18 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await project.render();
 const bodyDescription = project.data.subtitle || project.data.description;
-
-function isRenderableMediaRef(value: string | null | undefined) {
-  const trimmed = String(value ?? '').trim();
-  if (!trimmed || trimmed.startsWith('wix:')) return false;
-  if (trimmed.startsWith('/assets/')) return true;
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return true;
-  if (trimmed.startsWith('./') || trimmed.startsWith('../')) return true;
-  return /^[^:/?#][^?#]*$/.test(trimmed);
-}
-
-function resolveOgImage(data: typeof project.data) {
-  const candidates = [
-    data.image,
-    data.thumbnail,
-    ...(data.screenshots ?? []),
-  ];
-
-  return (
-    candidates.find(
-      (value) => isRenderableMediaRef(value) && !/\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim()),
-    ) ?? localAssets.shared.seo?.[0]
-  );
-}
-
-const ogImage = resolveOgImage(project.data);
+const projectBanners = Array.isArray(project.data.wix?.banners) ? project.data.wix.banners : [];
+const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
 ---
 
 <BaseLayout
-  title={`${project.data.title} | Daniyar Kurmanbayev`}
+  title={project.data.title}
   description={project.data.description}
   canonicalPath={`/projects/${project.slug}`}
-  ogImage={ogImage}
-  ogImageAlt={project.data.coverAlt || project.data.title}
+  ogImage={project.data.thumbnail || ogImage}
+  ogImageAlt={`${project.data.title} thumbnail`}
+  ogTitle={`${project.data.title} | Daniyar Kurmanbayev (Dan Kurman)`}
+  ogDescription={project.data.description}
   ogType="article"
 >
   <main id="content">
@@ -68,13 +47,16 @@ const ogImage = resolveOgImage(project.data);
       status={project.data.status}
     />
 
-    <ProjectMedia
-      title={project.data.title}
-      alt={project.data.coverAlt || `${project.data.title} banner`}
-      image={project.data.image || project.data.thumbnail}
-      media={project.data.media}
-      screenshots={project.data.screenshots}
-    />
+    {projectBanners.length > 0 && (
+      <ProjectMedia
+        title={project.data.title}
+        alt={project.data.coverAlt || `${project.data.title} banner`}
+        image={project.data.image || project.data.thumbnail}
+        media={project.data.media}
+        screenshots={project.data.screenshots}
+        banners={projectBanners}
+      />
+    )}
 
     <CaseStudySection>
       <Content />

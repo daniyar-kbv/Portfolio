@@ -1,48 +1,33 @@
 {
-  "generatedAt": "2026-05-04T09:10:27.589Z",
+  "generatedAt": "2026-05-05T13:10:38.358Z",
   "projects": {
     "slackless": {
       "thumbnail": "/assets/projects/slackless/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/slackless/banner.png",
       "media": [],
       "screenshots": [],
-      "missing": [
-        "image"
-      ]
+      "missing": []
     },
     "apprevshare-ios-sdk": {
       "thumbnail": "/assets/projects/apprevshare-ios-sdk/thumbnail.png",
       "image": "/assets/projects/apprevshare-ios-sdk/banner.png",
       "media": [],
-      "screenshots": [
-        "/assets/projects/apprevshare-ios-sdk/screenshots/screenshot-1.png",
-        "/assets/projects/apprevshare-ios-sdk/screenshots/screenshot-2.png"
-      ],
+      "screenshots": [],
       "missing": []
     },
     "devicecluster": {
       "thumbnail": "/assets/projects/devicecluster/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/devicecluster/banner.png",
       "media": [],
-      "screenshots": [
-        "/assets/projects/devicecluster/screenshots/screenshot-1.png",
-        "/assets/projects/devicecluster/screenshots/screenshot-2.png",
-        "/assets/projects/devicecluster/screenshots/screenshot-3.png",
-        "/assets/projects/devicecluster/screenshots/screenshot-4.png",
-        "/assets/projects/devicecluster/screenshots/screenshot-5.png"
-      ],
-      "missing": [
-        "image"
-      ]
+      "screenshots": [],
+      "missing": []
     },
     "airbafresh": {
       "thumbnail": "/assets/projects/airbafresh/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/airbafresh/banner.png",
       "media": [],
       "screenshots": [],
-      "missing": [
-        "image"
-      ]
+      "missing": []
     },
     "kex": {
       "thumbnail": "/assets/projects/kex/thumbnail.png",
@@ -53,27 +38,17 @@
     },
     "hashtaggenerator": {
       "thumbnail": "/assets/projects/hashtaggenerator/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/hashtaggenerator/banner.png",
       "media": [],
-      "screenshots": [
-        "/assets/projects/hashtaggenerator/screenshots/screenshot-1.png",
-        "/assets/projects/hashtaggenerator/screenshots/screenshot-2.png",
-        "/assets/projects/hashtaggenerator/screenshots/screenshot-3.png",
-        "/assets/projects/hashtaggenerator/screenshots/screenshot-4.png",
-        "/assets/projects/hashtaggenerator/screenshots/screenshot-5.png"
-      ],
-      "missing": [
-        "image"
-      ]
+      "screenshots": [],
+      "missing": []
     },
     "24goals": {
       "thumbnail": "/assets/projects/24goals/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/24goals/banner.png",
       "media": [],
       "screenshots": [],
-      "missing": [
-        "image"
-      ]
+      "missing": []
     },
     "mentalmind": {
       "thumbnail": "/assets/projects/mentalmind/thumbnail.png",
@@ -101,26 +76,22 @@
     },
     "istokhome": {
       "thumbnail": "/assets/projects/istokhome/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/istokhome/banner.png",
       "media": [],
       "screenshots": [],
-      "missing": [
-        "image"
-      ]
+      "missing": []
     },
     "driver-drowsiness-detection": {
-      "thumbnail": null,
+      "thumbnail": "/assets/projects/driver-drowsiness-detection/thumbnail.png",
       "image": "/assets/projects/driver-drowsiness-detection/banner.png",
       "media": [
-        "/assets/projects/driver-drowsiness-detection/media-1.mp4"
+        "/assets/projects/driver-drowsiness-detection/media-1.mov"
       ],
       "screenshots": [],
-      "missing": [
-        "thumbnail"
-      ]
+      "missing": []
     },
     "asl-recognition": {
-      "thumbnail": null,
+      "thumbnail": "/assets/projects/asl-recognition/thumbnail.png",
       "image": "/assets/projects/asl-recognition/banner.png",
       "media": [],
       "screenshots": [
@@ -128,20 +99,16 @@
         "/assets/projects/asl-recognition/screenshots/screenshot-2.avif",
         "/assets/projects/asl-recognition/screenshots/screenshot-3.png"
       ],
-      "missing": [
-        "thumbnail"
-      ]
+      "missing": []
     },
     "disaster-tweets": {
-      "thumbnail": null,
+      "thumbnail": "/assets/projects/disaster-tweets/thumbnail.png",
       "image": "/assets/projects/disaster-tweets/banner.png",
       "media": [],
       "screenshots": [
         "/assets/projects/disaster-tweets/screenshots/screenshot-1.png"
       ],
-      "missing": [
-        "thumbnail"
-      ]
+      "missing": []
     },
     "mig": {
       "thumbnail": "/assets/projects/mig/thumbnail.png",
@@ -159,82 +126,40 @@
     },
     "swiftnetworkrouting": {
       "thumbnail": "/assets/projects/swiftnetworkrouting/thumbnail.png",
-      "image": null,
+      "image": "/assets/projects/swiftnetworkrouting/banner.png",
       "media": [],
       "screenshots": [],
-      "missing": [
-        "image"
-      ]
+      "missing": []
     }
   },
   "shared": {
     "hero": [
       "/assets/hero/banner-apps.jpg"
     ],
+    "seo": [
+      "/assets/seo/seo-image.png"
+    ],
     "icons": [
-      "/assets/icons/ai-icon/assets/ai-label.png",
       "/assets/icons/ai-icon.png",
-      "/assets/icons/ai-label.png",
-      "/assets/icons/app-store-icon-hover/assets/app-store-label.png",
-      "/assets/icons/app-store-icon-hover.png",
-      "/assets/icons/app-store-icon/assets/app-store-label.png",
       "/assets/icons/app-store-icon.png",
-      "/assets/icons/app-store-label.png",
-      "/assets/icons/backend-icon/assets/backend-label.png",
       "/assets/icons/backend-icon.png",
-      "/assets/icons/backend-label.png",
-      "/assets/icons/contact-icon-hover/assets/contact-label.png",
-      "/assets/icons/contact-icon-hover.png",
-      "/assets/icons/contact-icon/assets/contact-label.png",
       "/assets/icons/contact-icon.png",
-      "/assets/icons/contact-label.png",
-      "/assets/icons/demo-icon-hover/assets/demo-label.png",
-      "/assets/icons/demo-icon-hover.png",
-      "/assets/icons/demo-icon/assets/demo-label.png",
       "/assets/icons/demo-icon.png",
-      "/assets/icons/demo-label.png",
-      "/assets/icons/flagship-icon/assets/flagship-label.png",
       "/assets/icons/flagship-icon.png",
-      "/assets/icons/flagship-label.png",
-      "/assets/icons/github-icon-hover/assets/github-label.png",
-      "/assets/icons/github-icon-hover.png",
-      "/assets/icons/github-icon/assets/github-label.png",
       "/assets/icons/github-icon.png",
-      "/assets/icons/github-label.png",
-      "/assets/icons/instagram-icon-hover/assets/instagram-label.png",
-      "/assets/icons/instagram-icon-hover.png",
-      "/assets/icons/instagram-icon/assets/instagram-label.png",
       "/assets/icons/instagram-icon.png",
-      "/assets/icons/instagram-label.png",
-      "/assets/icons/legacy-icon/assets/legacy-label.png",
       "/assets/icons/legacy-icon.png",
-      "/assets/icons/legacy-label.png",
-      "/assets/icons/linkedin-icon-hover/assets/linkedin-label.png",
-      "/assets/icons/linkedin-icon-hover.png",
-      "/assets/icons/linkedin-icon/assets/linkedin-label.png",
       "/assets/icons/linkedin-icon.png",
-      "/assets/icons/linkedin-label.png",
-      "/assets/icons/production-icon/assets/production-label.png",
       "/assets/icons/production-icon.png",
-      "/assets/icons/production-label.png",
-      "/assets/icons/website-icon-hover/assets/website-label.png",
-      "/assets/icons/website-icon-hover.png",
-      "/assets/icons/website-icon/assets/website-label.png",
-      "/assets/icons/website-icon.png",
-      "/assets/icons/website-label.png"
+      "/assets/icons/website-icon.png"
     ],
     "logo": [
-      "/assets/logo/logo-horizontal.png",
-      "/assets/logo/logo-icon/assets/logo-label.png",
-      "/assets/logo/logo-icon.png",
-      "/assets/logo/logo-label.png",
-      "/assets/logo/logo-label.svg",
-      "/assets/logo/upwork-portfolio-thumbnail.png"
+      "/assets/logo/logo-horizontal.png"
     ]
   },
   "counts": {
-    "copied": 43,
-    "skipped": 57,
-    "missing": 10
+    "copied": 1,
+    "skipped": 55,
+    "missing": 0
   }
 }

@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
-const wixDir = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
+const wixContentRoot = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
+const wixDataDir = path.join(wixContentRoot, 'Data');
 const outDir = path.join(repoRoot, 'src/content/projects');
 const contactOutFile = path.join(repoRoot, 'src/data/contact.ts');
 const localAssetsManifestFile = path.join(repoRoot, 'src/data/local-assets.json');
@@ -56,6 +57,32 @@ const sectionOrder = [
   'Hard problems solved',
   'Impact / Results',
 ];
+
+function resolveSectionOrder(textTypesCsv) {
+  const orderColumns = ['Manual sort', 'Sort', 'Order', 'Position'];
+
+  for (const column of orderColumns) {
+    const hasExplicitOrder = textTypesCsv.some((row) => String(row[column] ?? '').trim() !== '');
+    if (!hasExplicitOrder) continue;
+
+    return [...textTypesCsv]
+      .map((row, index) => ({
+        row,
+        index,
+        value: Number(String(row[column] ?? '').trim()),
+      }))
+      .sort((a, b) => {
+        const aScore = Number.isFinite(a.value) ? a.value : Number.POSITIVE_INFINITY;
+        const bScore = Number.isFinite(b.value) ? b.value : Number.POSITIVE_INFINITY;
+        if (aScore !== bScore) return aScore - bScore;
+        return a.index - b.index;
+      })
+      .map(({ row }) => row.Name)
+      .filter(Boolean);
+  }
+
+  return sectionOrder;
+}
 
 const projectSlugsByName = new Map([
   ['SlackLess', 'slackless'],
@@ -144,7 +171,7 @@ function parseCsv(input) {
 }
 
 function readCsvFile(filename) {
-  return readFile(path.join(wixDir, filename), 'utf8').then(parseCsv);
+  return readFile(path.join(wixDataDir, filename), 'utf8').then(parseCsv);
 }
 
 async function readJsonFileIfExists(filename) {
@@ -291,10 +318,10 @@ function extractHighlights(summaryText) {
     .map((line) => line.replace(/^[-•]\s*/, '').trim());
 }
 
-function formatMdxFile(frontmatter, sections) {
+function formatMdxFile(frontmatter, sections, sectionNames = sectionOrder) {
   const body = [];
 
-  for (const sectionName of sectionOrder) {
+  for (const sectionName of sectionNames) {
     const blocks = sections.get(sectionName);
     if (!blocks?.length) continue;
     body.push(`## ${sectionName}`);
@@ -317,6 +344,8 @@ async function main() {
       readCsvFile('Link+Types.csv'),
       readCsvFile('Contact+Links.csv'),
     ]);
+
+  const orderedSectionNames = resolveSectionOrder(textTypesCsv);
 
   const typeNameById = new Map(textTypesCsv.map((row) => [row.ID, row.Name]));
   const linkTypeNameById = new Map(linkTypesCsv.map((row) => [row.ID, row.Name]));
@@ -471,14 +500,14 @@ async function main() {
   const writtenFiles = [];
   for (const project of normalizedProjects) {
     const sections = new Map();
-    for (const sectionName of sectionOrder) {
+    for (const sectionName of orderedSectionNames) {
       const blocks = project.sections.get(sectionName);
       if (blocks?.length) {
         sections.set(sectionName, blocks);
       }
     }
 
-    const mdx = formatMdxFile(project.frontmatter, sections);
+    const mdx = formatMdxFile(project.frontmatter, sections, orderedSectionNames);
     const filePath = path.join(outDir, `${project.slug}.mdx`);
     await writeFile(filePath, mdx, 'utf8');
     writtenFiles.push(filePath);

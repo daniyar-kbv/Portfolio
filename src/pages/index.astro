@@ -25,14 +25,15 @@ const featuredProjects = projects.filter((project) => project.data.featured).sli
 const totalProjects = projects.length;
 const totalLinks = projects.reduce((count, project) => count + project.data.links.length, 0);
 const heroImage = localAssets.shared.hero[0];
+const seoImage = localAssets.shared.seo[0] ?? heroImage;
 ---
 
 <BaseLayout
   title="Daniyar Kurmanbayev | iOS, Backend, Product Engineering Portfolio"
   description="Daniyar Kurmanbayev portfolio of shipped iOS, backend, AI, and product engineering work."
   canonicalPath="/"
-  ogImage={heroImage}
-  ogImageAlt="Portfolio hero banner"
+  ogImage={seoImage}
+  ogImageAlt="Portfolio SEO image"
 >
   <main id="content">
     <HeroIntro

@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
-const portfolioRoot = '/Users/daniyar.kbv/Documents/Work/Portfolio';
+const wixContentRoot = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
+const wixAssetsRoot = path.join(wixContentRoot, 'Assets');
 const publicAssetsRoot = path.join(repoRoot, 'public/assets');
 const manifestPath = path.join(repoRoot, 'src/data/local-assets.json');
 
@@ -17,90 +18,84 @@ const projectSpecs = [
   {
     name: 'SlackLess',
     slug: 'slackless',
-    sourceDirs: ['Projects/SlackLess'],
-    thumbnailCandidates: ['Projects/SlackLess/SlackLess Thumbnail.png'],
+    thumbnailCandidates: ['Thumbnails/SlackLess Thumbnail.png'],
+    imageCandidates: ['Banners/SlackLess Banner.png'],
   },
   {
     name: 'Revenue Sharing iOS SDK',
     slug: 'apprevshare-ios-sdk',
-    sourceDirs: ['Projects/AppRevShare SDK'],
-    thumbnailCandidates: ['Projects/AppRevShare SDK/AppRevShare Thumbnail.png'],
+    thumbnailCandidates: ['Thumbnails/AppRevShare Thumbnail.png'],
     imageCandidates: ['Banners/AppRevShare iOS SDK Banner.png'],
-    screenshotDirs: ['Projects/AppRevShare SDK/Screenshots'],
   },
   {
     name: 'DeviceCluster',
     slug: 'devicecluster',
-    sourceDirs: ['Projects/Device Cluster'],
-    thumbnailCandidates: ['Projects/Device Cluster/DeviceCluster Thumbnail.png'],
-    screenshotDirs: ['Projects/Device Cluster/Screenshots'],
+    thumbnailCandidates: ['Thumbnails/DeviceCluster Thumbnail.png'],
+    imageCandidates: ['Banners/DeviceCluster Banner.png'],
   },
   {
     name: 'AirbaFresh',
     slug: 'airbafresh',
-    sourceDirs: ['Projects/AirbaFresh'],
-    thumbnailCandidates: ['Projects/AirbaFresh/AirbaFresh Thumbnail.png'],
+    thumbnailCandidates: ['Thumbnails/AirbaFresh Thumbnail.png'],
+    imageCandidates: ['Banners/AirbaFresh Banner.png'],
   },
   {
     name: 'KEX',
     slug: 'kex',
-    sourceDirs: ['Projects/KEX'],
-    thumbnailCandidates: ['Projects/KEX/KEX Thumbnail.png'],
-    imageCandidates: ['Projects/KEX/KEX Banner.png'],
+    thumbnailCandidates: ['Thumbnails/KEX Thumbnail.png'],
+    imageCandidates: ['Banners/KEX Banner.png'],
   },
   {
     name: 'HashtagGenerator',
     slug: 'hashtaggenerator',
-    sourceDirs: ['Projects/HashtagGenerator'],
-    thumbnailCandidates: ['Projects/HashtagGenerator/HashtagGenerator Thumbnail.png'],
-    screenshotDirs: ['Projects/HashtagGenerator/Screenshots'],
+    thumbnailCandidates: ['Thumbnails/HashtagGenerator Thumbnail.png'],
+    imageCandidates: ['Banners/HashtagGenerator Banner.png'],
   },
   {
     name: '24Goals',
     slug: '24goals',
-    sourceDirs: ['Projects/24Goals'],
-    thumbnailCandidates: ['Projects/24Goals/24Goals Thumbnail.png'],
+    thumbnailCandidates: ['Thumbnails/24Goals Thumbnail.png'],
+    imageCandidates: ['Banners/24Goals Banner.png'],
   },
   {
     name: 'MentalMind',
     slug: 'mentalmind',
-    sourceDirs: ['Projects/MentalMind'],
-    thumbnailCandidates: ['Projects/MentalMind/MentalMind Thumbnail.png'],
-    imageCandidates: ['Projects/MentalMind/MentalMind Banner.png'],
+    thumbnailCandidates: ['Thumbnails/MentalMind Thumbnail.png'],
+    imageCandidates: ['Banners/MentalMind Banner.png'],
   },
   {
     name: 'UniClub',
     slug: 'uniclub',
-    sourceDirs: ['Projects/UniClub'],
-    thumbnailCandidates: ['Projects/UniClub/UniClub Thumbnail.png'],
-    imageCandidates: ['Projects/UniClub/UniClub Banner.png'],
+    thumbnailCandidates: ['Thumbnails/UniClub Thumbnail.png'],
+    imageCandidates: ['Banners/UniClub Banner.png'],
     screenshotCandidates: [
-      'Projects/UniClub/UniClub Web Banner.png',
-      'Projects/UniClub/UniClub Bot Banner.png',
+      'Banners/UniClub Web Banner.png',
+      'Banners/UniClub Bot Banner.png',
     ],
   },
   {
     name: 'Kaz Tour Telegram Bot',
     slug: 'kaz-tour-telegram-bot',
-    sourceDirs: ['Projects/Kaz Tour'],
-    thumbnailCandidates: ['Projects/Kaz Tour/KAZTOUR Thumbnail.png'],
-    imageCandidates: ['Projects/Kaz Tour/Kaz Tour Banner.png'],
+    thumbnailCandidates: ['Thumbnails/KAZTOUR Thumbnail.png'],
+    imageCandidates: ['Banners/Kaz Tour Banner.png'],
   },
   {
     name: 'ISTOKHOME',
     slug: 'istokhome',
-    sourceDirs: ['Projects/ISTOKHOME'],
-    thumbnailCandidates: ['Projects/ISTOKHOME/ISTOKHOME Thumbnail.png'],
+    thumbnailCandidates: ['Thumbnails/ISTOKHOME Thumbnail.png'],
+    imageCandidates: ['Banners/ISTOKHOME Banner.png'],
   },
   {
     name: 'Driver Drowsiness Detection',
     slug: 'driver-drowsiness-detection',
-    mediaCandidates: ['Banners/Drowsiness Detection Banner 1.mp4'],
+    thumbnailCandidates: ['Banners/Drowsiness Detection Banner 2.png'],
     imageCandidates: ['Banners/Drowsiness Detection Banner 2.png'],
+    mediaCandidates: ['Banners/16 - Drowsiness Detection Banner 1.mov'],
   },
   {
     name: 'ASL Recognition',
     slug: 'asl-recognition',
+    thumbnailCandidates: ['Banners/ASL Recognition Banner 1.png'],
     imageCandidates: ['Banners/ASL Recognition Banner 1.png'],
     screenshotCandidates: [
       'Banners/ASL Recognition Banner 2.png',
@@ -111,35 +106,33 @@ const projectSpecs = [
   {
     name: 'Disaster Tweets',
     slug: 'disaster-tweets',
+    thumbnailCandidates: ['Banners/Disaster Tweets Banner 1.png'],
     imageCandidates: ['Banners/Disaster Tweets Banner 1.png'],
     screenshotCandidates: ['Banners/Disaster Tweets Banner 2.png'],
   },
   {
     name: 'MIG',
     slug: 'mig',
-    sourceDirs: ['Projects/MIG'],
-    thumbnailCandidates: ['Projects/MIG/MIG Thumbnail.png'],
-    imageCandidates: ['Projects/MIG/MIG Banner.png'],
+    thumbnailCandidates: ['Thumbnails/MIG Thumbnail.png'],
+    imageCandidates: ['Banners/MIG Banner.png'],
   },
   {
     name: 'Magazinchik',
     slug: 'magazinchik',
-    sourceDirs: ['Projects/Magazinchik'],
-    thumbnailCandidates: ['Projects/Magazinchik/Magazinchik Thumbnail.png'],
-    imageCandidates: ['Projects/Magazinchik/Magazinchik Banner.png'],
+    thumbnailCandidates: ['Thumbnails/Magazinchik Thumbnail.png'],
+    imageCandidates: ['Banners/Magazinchik Banner.png'],
   },
   {
     name: 'SwiftNetworkRouting',
     slug: 'swiftnetworkrouting',
-    sourceDirs: ['Projects/SwiftNetworkRouting'],
-    thumbnailCandidates: ['Projects/SwiftNetworkRouting/SwiftNetworkRouting Thumbnail.png'],
+    thumbnailCandidates: ['Thumbnails/Placeholder App Thumbnail.png'],
   },
 ];
 
 function slugifySegment(segment) {
-  return segment
+  return String(segment)
     .replace(/\.icon$/i, '')
-    .replace(/\.[^.]+$/, (match) => match)
+    .replace(/\.[^.]+$/, '')
     .replace(/[^a-zA-Z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .toLowerCase();
@@ -172,32 +165,22 @@ async function walkFiles(rootDir) {
 }
 
 async function buildSourceIndex() {
-  const roots = [
-    ['Projects', path.join(portfolioRoot, 'Projects')],
-    ['Banners', path.join(portfolioRoot, 'Banners')],
-    ['Hero', path.join(portfolioRoot, 'Hero')],
-    ['Icons', path.join(portfolioRoot, 'Icons')],
-    ['Logo', path.join(portfolioRoot, 'Logo')],
-  ];
-
   const byRelative = new Map();
   const byBaseName = new Map();
   const allFiles = [];
 
-  for (const [label, root] of roots) {
-    const files = await walkFiles(root);
-    for (const absolute of files) {
-      const relative = toPosixPath(path.relative(portfolioRoot, absolute));
-      const normalized = relative.toLowerCase();
-      const baseName = path.basename(absolute).toLowerCase();
-      const ext = path.extname(absolute).toLowerCase();
-      const record = { label, absolute, relative, normalized, baseName, ext };
-      allFiles.push(record);
-      byRelative.set(normalized, record);
-      const baseList = byBaseName.get(baseName) ?? [];
-      baseList.push(record);
-      byBaseName.set(baseName, baseList);
-    }
+  const files = await walkFiles(wixAssetsRoot);
+  for (const absolute of files) {
+    const relative = toPosixPath(path.relative(wixAssetsRoot, absolute));
+    const normalized = relative.toLowerCase();
+    const baseName = path.basename(absolute).toLowerCase();
+    const ext = path.extname(absolute).toLowerCase();
+    const record = { absolute, relative, normalized, baseName, ext };
+    allFiles.push(record);
+    byRelative.set(normalized, record);
+    const baseList = byBaseName.get(baseName) ?? [];
+    baseList.push(record);
+    byBaseName.set(baseName, baseList);
   }
 
   return { byRelative, byBaseName, allFiles };
@@ -237,13 +220,23 @@ function projectOutputPath(slug, kind, index, ext) {
   }
 }
 
-function sharedOutputPath(rootLabel, relativePath) {
-  const rest = toPosixPath(relativePath).split('/').slice(1);
-  const fileName = rest.pop();
-  const outputDir = [rootLabel, ...rest.map(slugifySegment)].join('/');
+function sharedAssetOutputPath(kind, fileName) {
   const parsed = path.parse(fileName);
-  const outputFile = `${slugifySegment(parsed.name)}${parsed.ext.toLowerCase()}`;
-  return `/assets/${outputDir}/${outputFile}`;
+  const baseName = slugifySegment(parsed.name);
+  const ext = parsed.ext.toLowerCase();
+
+  switch (kind) {
+    case 'hero':
+      return `/assets/hero/banner-apps${ext}`;
+    case 'seo':
+      return `/assets/seo/seo-image${ext}`;
+    case 'logo':
+      return `/assets/logo/logo-horizontal${ext}`;
+    case 'icon':
+      return `/assets/icons/${baseName}${ext}`;
+    default:
+      return `/assets/shared/${baseName}${ext}`;
+  }
 }
 
 async function copyIfChanged(sourceAbsolute, destinationAbsolute) {
@@ -299,6 +292,7 @@ async function main() {
     projects: {},
     shared: {
       hero: [],
+      seo: [],
       icons: [],
       logo: [],
     },
@@ -311,22 +305,31 @@ async function main() {
 
   const keepSet = new Set();
 
-  for (const spec of projectSpecs) {
-    const collected = [];
-    for (const sourceDir of spec.sourceDirs ?? []) {
-      const absDir = path.join(portfolioRoot, sourceDir);
-      const files = await walkFiles(absDir).catch(() => []);
-      for (const absolute of files) {
-        collected.push({
-          absolute,
-          relative: toPosixPath(path.relative(portfolioRoot, absolute)),
-          ext: path.extname(absolute).toLowerCase(),
-          baseName: path.basename(absolute).toLowerCase(),
-        });
-      }
+  function selectSource(candidates = []) {
+    for (const candidate of candidates) {
+      const resolved = resolveSource(index, candidate);
+      if (resolved) return resolved;
     }
+    return null;
+  }
 
-    const used = new Set();
+  async function copyResolvedAsset(source, outputPath) {
+    const destination = path.join(publicAssetsRoot, outputPath.replace('/assets/', ''));
+    const result = await copyIfChanged(source.absolute, destination);
+    manifest.counts[result] += 1;
+    keepSet.add(outputPath);
+    return outputPath;
+  }
+
+  async function copySharedAsset(kind, sourceFileName) {
+    const source = resolveSource(index, sourceFileName);
+    if (!source) return null;
+    const output = sharedAssetOutputPath(kind, sourceFileName);
+    await copyResolvedAsset(source, output);
+    return output;
+  }
+
+  for (const spec of projectSpecs) {
     const missing = [];
     const outputs = {
       thumbnail: null,
@@ -335,92 +338,54 @@ async function main() {
       screenshots: [],
     };
 
-    function takeCandidate(candidates) {
-      for (const candidate of candidates ?? []) {
-        const resolved = resolveSource(index, candidate);
-        if (resolved && !used.has(resolved.absolute)) {
-          used.add(resolved.absolute);
-          return resolved;
-        }
-      }
-      return null;
-    }
-
-    const thumbnailSource = takeCandidate(spec.thumbnailCandidates);
+    const thumbnailSource =
+      selectSource(spec.thumbnailCandidates) ||
+      selectSource(spec.imageCandidates) ||
+      selectSource(spec.screenshotCandidates) ||
+      selectSource(spec.mediaCandidates);
     if (thumbnailSource) {
-      const destination = path.join(publicAssetsRoot, projectOutputPath(spec.slug, 'thumbnail', 1, thumbnailSource.ext).replace('/assets/', ''));
-      const result = await copyIfChanged(thumbnailSource.absolute, destination);
-      manifest.counts[result] += 1;
-      const output = projectOutputPath(spec.slug, 'thumbnail', 1, thumbnailSource.ext);
-      outputs.thumbnail = output;
-      keepSet.add(output);
+      outputs.thumbnail = await copyResolvedAsset(
+        thumbnailSource,
+        projectOutputPath(spec.slug, 'thumbnail', 1, thumbnailSource.ext),
+      );
     } else {
       missing.push('thumbnail');
     }
 
-    const imageSource = takeCandidate(spec.imageCandidates);
+    const imageSource =
+      selectSource(spec.imageCandidates) ||
+      thumbnailSource ||
+      selectSource(spec.screenshotCandidates) ||
+      selectSource(spec.mediaCandidates);
     if (imageSource) {
-      const destination = path.join(publicAssetsRoot, projectOutputPath(spec.slug, 'image', 1, imageSource.ext).replace('/assets/', ''));
-      const result = await copyIfChanged(imageSource.absolute, destination);
-      manifest.counts[result] += 1;
-      const output = projectOutputPath(spec.slug, 'image', 1, imageSource.ext);
-      outputs.image = output;
-      keepSet.add(output);
+      outputs.image = await copyResolvedAsset(
+        imageSource,
+        projectOutputPath(spec.slug, 'image', 1, imageSource.ext),
+      );
     }
 
-    const mediaCandidates = spec.mediaCandidates ?? [];
-    for (let i = 0; i < mediaCandidates.length; i += 1) {
-      const candidate = mediaCandidates[i];
+    for (let i = 0; i < (spec.mediaCandidates ?? []).length; i += 1) {
+      const candidate = spec.mediaCandidates[i];
       const resolved = resolveSource(index, candidate);
       if (!resolved) {
         missing.push(`media-${i + 1}`);
         continue;
       }
-      if (used.has(resolved.absolute)) continue;
-      used.add(resolved.absolute);
       const output = projectOutputPath(spec.slug, 'media', i + 1, resolved.ext);
-      const destination = path.join(publicAssetsRoot, output.replace('/assets/', ''));
-      const result = await copyIfChanged(resolved.absolute, destination);
-      manifest.counts[result] += 1;
+      await copyResolvedAsset(resolved, output);
       outputs.media.push(output);
-      keepSet.add(output);
     }
 
-    const screenshotCandidates = [...(spec.screenshotCandidates ?? [])];
-    const screenshotDirs = spec.screenshotDirs ?? [];
-    for (const screenshotDir of screenshotDirs) {
-      const absDir = path.join(portfolioRoot, screenshotDir);
-      const files = await walkFiles(absDir).catch(() => []);
-      for (const absolute of files) {
-        screenshotCandidates.push(toPosixPath(path.relative(portfolioRoot, absolute)));
-      }
-    }
-
-    for (const candidate of screenshotCandidates) {
+    for (const candidate of spec.screenshotCandidates ?? []) {
       const resolved = resolveSource(index, candidate);
-      if (!resolved || used.has(resolved.absolute)) continue;
-      used.add(resolved.absolute);
+      if (!resolved) continue;
       const output = projectOutputPath(spec.slug, 'screenshot', outputs.screenshots.length + 1, resolved.ext);
-      const destination = path.join(publicAssetsRoot, output.replace('/assets/', ''));
-      const result = await copyIfChanged(resolved.absolute, destination);
-      manifest.counts[result] += 1;
+      await copyResolvedAsset(resolved, output);
       outputs.screenshots.push(output);
-      keepSet.add(output);
     }
 
-    for (const file of collected) {
-      if (used.has(file.absolute)) continue;
-      if (file.ext === '.pdf') continue;
-      if (file.ext === '.json') continue;
-      if (file.ext === '.ds_store') continue;
-      if (!isAcceptedAsset(file.absolute)) continue;
-      used.add(file.absolute);
-      const output = projectOutputPath(spec.slug, 'screenshot', outputs.screenshots.length + 1, file.ext);
-      const destination = path.join(publicAssetsRoot, output.replace('/assets/', ''));
-      const result = await copyIfChanged(file.absolute, destination);
-      manifest.counts[result] += 1;
-      outputs.screenshots.push(output);
-      keepSet.add(output);
+    if (!outputs.thumbnail && outputs.image) {
+      outputs.thumbnail = outputs.image;
     }
 
     if (!outputs.image) {
@@ -438,24 +403,34 @@ async function main() {
   }
 
   const sharedRoots = [
-    { label: 'hero', root: path.join(portfolioRoot, 'Hero') },
-    { label: 'icons', root: path.join(portfolioRoot, 'Icons') },
-    { label: 'logo', root: path.join(portfolioRoot, 'Logo') },
+    { label: 'hero', source: 'Banner Apps.jpg' },
+    { label: 'seo', source: 'SEO Image.png' },
+    { label: 'logo', source: 'Logo Horizontal.png' },
   ];
 
   for (const shared of sharedRoots) {
-    const files = await walkFiles(shared.root).catch(() => []);
-    for (const absolute of files) {
-      const relative = toPosixPath(path.relative(portfolioRoot, absolute));
-      const output = sharedOutputPath(shared.label, relative);
-      const destination = path.join(publicAssetsRoot, output.replace('/assets/', ''));
-      const result = await copyIfChanged(absolute, destination);
-      manifest.counts[result] += 1;
-      keepSet.add(output);
-      if (!manifest.shared[shared.label].includes(output)) {
-        manifest.shared[shared.label].push(output);
-      }
+    const output = await copySharedAsset(shared.label, shared.source);
+    if (output && !manifest.shared[shared.label].includes(output)) {
+      manifest.shared[shared.label].push(output);
     }
+  }
+
+  const iconFiles = await walkFiles(path.join(wixAssetsRoot, 'Icons')).catch(() => []);
+  for (const absolute of iconFiles) {
+    const source = {
+      absolute,
+      ext: path.extname(absolute).toLowerCase(),
+      relative: toPosixPath(path.relative(wixAssetsRoot, absolute)),
+    };
+    const output = sharedAssetOutputPath('icon', path.basename(source.absolute));
+    await copyResolvedAsset(source, output);
+    if (!manifest.shared.icons.includes(output)) {
+      manifest.shared.icons.push(output);
+    }
+  }
+
+  for (const key of Object.keys(manifest.shared)) {
+    manifest.shared[key].sort();
   }
 
   await mkdir(path.dirname(manifestPath), { recursive: true });

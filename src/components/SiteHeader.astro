@@ -33,7 +33,7 @@ const { navItems = defaultNavItems } = Astro.props as Props;
       {navItems.map((item) => (
         <a
           href={item.href}
-          class="rounded-sm px-3 py-2 text-sm text-[var(--color-text-muted)] transition hover:bg-[var(--color-elevated)] hover:text-white"
+          class="rounded-sm px-3 py-2 text-sm tracking-[0.1em] text-[var(--color-nav-text)] transition hover:bg-[var(--color-elevated)] hover:text-white"
         >
           {item.label}
         </a>

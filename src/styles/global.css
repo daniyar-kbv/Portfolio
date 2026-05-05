@@ -1,15 +1,61 @@
 :root {
+  --site-width: 980px;
+  --header-height: 63px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --divider-thin: 1px;
+  --divider-accent: 3px;
   --color-background: #1e2a38;
   --color-elevated: #29394c;
+  --color-elevated-alt: #243242;
+  --color-elevated-alt-2: #212e3d;
   --color-elevated-2: #344a63;
   --color-accent: #ff6600;
   --color-accent-hover: #ff7a1a;
+  --color-nav-active: #0d63d1;
+  --color-nav-text: #c5c5c7;
   --color-text: #ffffff;
   --color-text-muted: rgba(255, 255, 255, 0.72);
   --color-text-soft: rgba(255, 255, 255, 0.56);
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-strong: rgba(255, 255, 255, 0.18);
+  --font-sf-pro-display:
+    'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+    Arial, sans-serif;
+  --wix-font-0: 100px;
+  --wix-font-2: 80px;
+  --wix-font-3: 60px;
+  --wix-font-4: 40px;
+  --wix-font-5: 24px;
+  --wix-font-6: 18px;
+  --wix-font-7: 16px;
+  --wix-font-8: 14px;
+  --wix-font-9: 12px;
   color-scheme: dark;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @tailwind base;
@@ -20,6 +66,8 @@ html {
   background: var(--color-background);
   color: var(--color-text);
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  letter-spacing: 0;
 }
 
 body {
@@ -27,11 +75,10 @@ body {
   min-height: 100vh;
   background: var(--color-background);
   color: var(--color-text);
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+  font-family: var(--font-sf-pro-display);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
 }
 
 a {
@@ -61,7 +108,7 @@ svg {
 }
 
 section[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: calc(var(--header-height) + 16px);
 }
 
 .surface {
@@ -72,4 +119,101 @@ section[id] {
 .surface-strong {
   background: var(--color-elevated-2);
   border: 1px solid var(--color-border-strong);
+}
+
+.wix-canvas {
+  width: 100%;
+  max-width: var(--site-width);
+  margin-inline: auto;
+}
+
+.wix-strip {
+  width: 100%;
+  background: var(--color-background);
+}
+
+.wix-divider {
+  height: var(--divider-thin);
+  background: var(--color-border);
+}
+
+.wix-divider-accent {
+  height: var(--divider-accent);
+  background: var(--color-accent);
+}
+
+.wix-text-0 {
+  font-size: var(--wix-font-0);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-2 {
+  font-size: var(--wix-font-2);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-3 {
+  font-size: var(--wix-font-3);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-4 {
+  font-size: var(--wix-font-4);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-5 {
+  font-size: var(--wix-font-5);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-6 {
+  font-size: var(--wix-font-6);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-7 {
+  font-size: var(--wix-font-7);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.wix-text-8 {
+  font-size: var(--wix-font-8);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.wix-text-9 {
+  font-size: var(--wix-font-9);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.wix-link {
+  color: var(--color-accent);
+  transition: color 150ms ease;
+}
+
+.wix-link:hover {
+  color: var(--color-accent-hover);
+}
+
+.wix-button {
+  border-radius: var(--radius-sm);
 }

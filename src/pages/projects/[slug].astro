@@ -19,13 +19,34 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await project.render();
 const bodyDescription = project.data.subtitle || project.data.description;
+
+function isRenderableMediaRef(value: string | null | undefined) {
+  const trimmed = String(value ?? '').trim();
+  if (!trimmed || trimmed.startsWith('wix:')) return false;
+  if (trimmed.startsWith('/assets/')) return true;
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return true;
+  if (trimmed.startsWith('./') || trimmed.startsWith('../')) return true;
+  return /^[^:/?#][^?#]*$/.test(trimmed);
+}
+
+function resolveOgImage(data: typeof project.data) {
+  const candidates = [
+    data.image,
+    data.thumbnail,
+    ...(data.screenshots ?? []),
+  ];
+
+  return candidates.find((value) => isRenderableMediaRef(value) && !/\.(mp4|mov|webm|m4v)$/i.test(String(value ?? '').trim()));
+}
+
+const ogImage = resolveOgImage(project.data);
 ---
 
 <BaseLayout
   title={`${project.data.title} | Daniyar Kurmanbayev`}
   description={project.data.description}
   canonicalPath={`/projects/${project.slug}`}
-  ogImage={project.data.image || project.data.thumbnail}
+  ogImage={ogImage}
   ogImageAlt={project.data.coverAlt || project.data.title}
   ogType="article"
 >

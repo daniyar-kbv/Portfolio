@@ -228,6 +228,36 @@ function normalizeUrl(value) {
   return trimmed;
 }
 
+function hasRawWixRef(value) {
+  if (typeof value !== 'string') return false;
+  return /^wix:(image|video):\/\//.test(value.trim());
+}
+
+function assertRenderableMediaFields(slug, frontmatter) {
+  const fields = [
+    ['thumbnail', frontmatter.thumbnail],
+    ['image', frontmatter.image],
+  ];
+
+  if (Array.isArray(frontmatter.media)) {
+    frontmatter.media.forEach((value, index) => {
+      fields.push([`media[${index}]`, value]);
+    });
+  }
+
+  if (Array.isArray(frontmatter.screenshots)) {
+    frontmatter.screenshots.forEach((value, index) => {
+      fields.push([`screenshots[${index}]`, value]);
+    });
+  }
+
+  for (const [field, value] of fields) {
+    if (hasRawWixRef(value)) {
+      throw new Error(`Renderable field ${slug}.${field} contains raw Wix media ref: ${value}`);
+    }
+  }
+}
+
 function mapSectionBlocks(textRows, typeNameById, projectId) {
   const grouped = new Map();
 
@@ -395,6 +425,8 @@ async function main() {
           updatedAt: projectRow['Updated Date'] || undefined,
         },
       };
+
+      assertRenderableMediaFields(slug, frontmatter);
 
       return {
         name,

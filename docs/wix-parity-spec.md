@@ -22,6 +22,18 @@ Reference captures created for this spec:
 - `docs/local-slackless-desktop.png`
 - `docs/local-slackless-mobile.png`
 
+Fresh comparison captures from the latest parity pass:
+- `/tmp/portfolio-parity-20260506/live-home-1512.png` (`1512 x 5373`)
+- `/tmp/portfolio-parity-20260506/live-slackless-1512.png` (`1512 x 2966`)
+- `/tmp/portfolio-parity-20260506/local-home-1512.png` (`1512 x 4331`)
+- `/tmp/portfolio-parity-20260506/local-slackless-1512.png` (`1512 x 3613`)
+
+Current measured page-height delta:
+- Live homepage: `5373px`
+- Local homepage: `4331px`
+- Live SlackLess: `2966px`
+- Local SlackLess: `3613px`
+
 ## 1. Visual System
 
 The live site is a dark navy Wix portfolio with a very specific hierarchy:
@@ -91,30 +103,30 @@ Section order and card order:
 
 Flagship / System-level work
 - SlackLess
-- DeviceCluster
 - Revenue Sharing iOS SDK
+- DeviceCluster
 - AirbaFresh
 
 Production client apps
 - HashtagGenerator
-- 24Goals
 - KEX
+- 24Goals
 - MentalMind
 
 Platforms & Backend
 - ISTOKHOME
-- Kaz Tour Telegram Bot
 - UniClub
+- Kaz Tour Telegram Bot
 
 Early / Discontinued / Legacy
 - MIG
-- SwiftNetworkRouting
 - Magazinchik
+- SwiftNetworkRouting
 
 AI & ML
 - Driver Drowsiness Detection
-- ASL Recognition
 - Disaster Tweets
+- ASL Recognition
 
 Card content order inside each repeater item:
 1. Thumbnail image
@@ -245,45 +257,178 @@ Important asset mappings:
 Render-facing fields must remain free of raw `wix:image://` and `wix:video://` refs.
 Raw Wix media refs may remain only in `wix.*` metadata for traceability.
 
-## 5. Current Astro Divergences To Remove Or Rework
+## 5. Current Local State After Latest Implementation Passes
 
-These are the current UI pieces that do not match the live Wix structure closely enough:
+The following pieces are now aligned enough and should not be reworked unless a later screenshot proves a regression:
+- Wix promo bar text, button, and placement are present.
+- Header uses the correct live labels:
+  - `Flagship`
+  - `Production client apps`
+  - `Platforms & backend`
+  - `Legacy`
+  - `AI & ML`
+  - `Contact`
+- Header logo, 63px dark strip, root-relative anchors, and fixed 980px canvas behavior are in place.
+- Homepage content order and project order match the live screenshots.
+- Homepage cards no longer show tag chips, status rows, or external-link chips.
+- AI & ML homepage cards are text-only.
+- Contact copy uses `Get in touch`, `Daniyar Kurmanbayev`, and `Toronto, Canada`.
+- Render-facing media fields no longer leak raw `wix:image://` or `wix:video://` refs.
 
-- `src/components/HeroIntro.astro`
-  - Current Astro homepage hero includes a selected-work rail and stat chips.
-  - Live Wix homepage has a banner-first hero and no featured-project sidebar.
+The remaining parity work is visual, not data-model work.
 
-- `src/components/ProjectSection.astro`
-  - Current Astro section headers are still more like a modern content panel.
-  - Live Wix uses centered icon + label section headers.
+## 6. Remaining Concrete Parity Targets
 
-- `src/components/ProjectCard.astro`
-  - Current Astro cards still feel too modern and structured.
-  - Live Wix cards are simpler repeaters with denser spacing and less nested chrome.
+### 6.1 Homepage full-width hero
 
-- `src/components/ProjectHero.astro`
-  - Current project pages are still too card-like and left-aligned.
-  - Live project pages use a simpler centered title + subtitle structure under the banner.
+Live Wix:
+- The homepage hero image spans the full browser width directly under the header.
+- The title stack is overlaid inside the image area.
+- There is no 980px image crop with side gutters.
+- There is no extra orange frame around the hero beyond the live divider treatment.
 
-- `src/components/ProjectMedia.astro`
-  - Current implementation needs to follow the exact Wix banner / gallery collapse rules.
-  - Banner and media sections should collapse fully when the source export has no items.
+Current local:
+- The hero image is constrained to the 980px canvas.
+- The hero has extra orange framing that makes it read as a contained banner module.
 
-- `src/components/ProjectLinks.astro`
-  - Must remain icon-driven and centered.
-  - Empty link sections should not render.
+Implementation target:
+- Make the homepage hero image full viewport width while keeping the overlaid text centered to the Wix canvas.
+- Preserve the exact live text order:
+  - `Daniyar Kurmanbayev (Dan Kurman)`
+  - `Senior iOS Developer / Technical PM`
+  - `Portfolio`
 
-- `src/components/ContactSection.astro`
-  - Current contact block is close, but the live version is more centered and more sparse.
+### 6.2 Homepage vertical spacing and total height
 
-- `src/components/SiteFooter.astro`
-  - The bottom footer row should feel like the live Wix footer: compact, dark, and simple.
+Measured heights:
+- Live homepage: `5373px`
+- Local homepage: `4331px`
 
-- `src/layouts/BaseLayout.astro`
-  - The live Wix site includes the top promo bar above the header.
-  - This is still absent from the Astro shell.
+Current local is about `1042px` shorter than live. The gap comes from compressed section spacing, smaller card rhythm, and tighter contact/footer spacing.
 
-## 6. Implementation Constraints For The Next UI Pass
+Implementation target:
+- Increase vertical rhythm between sections to match the live capture.
+- Keep the two-column fixed canvas behavior.
+- Do not add new content or marketing sections to compensate for height.
+
+### 6.3 Section dividers
+
+Live Wix:
+- Section dividers are centered within the 980px canvas.
+- They read as thinner, contained orange separators between groups.
+- They do not run across the full browser width.
+
+Current local:
+- Several orange separators run viewport-wide and visually overpower the page.
+
+Implementation target:
+- Use centered dividers with live-like thickness and width.
+- Preserve the orange color but reduce the full-width strip feel.
+
+### 6.4 Homepage card size and density
+
+Live Wix:
+- Cards are larger and taller than the current local repeater tiles.
+- Image cards have a strong 120px-ish visual area on the left.
+- Text blocks have more breathing room while remaining compact.
+- Buttons are orange, centered within the card text area, and visually consistent.
+
+Current local:
+- Cards are too compressed, especially vertically.
+- Card text is truncated earlier than live in several places.
+- The homepage height confirms the repeater system is denser than live.
+
+Implementation target:
+- Increase card height and internal spacing to live proportions.
+- Keep the fixed two-column layout.
+- Preserve the content order: title, category/subtitle, description, tech line, `Learn More`.
+
+### 6.5 Project page full-width hero with overlay title
+
+Live SlackLess:
+- The project page starts with the same full-width banner image behavior.
+- Project title and short description are overlaid on the banner.
+- The banner reaches the full browser width under the header.
+
+Current local:
+- The project hero image is constrained to 980px.
+- The project title and subtitle sit below the banner instead of overlaid inside the hero image.
+
+Implementation target:
+- Make project heroes full-width and overlay the project title/subtitle inside the banner.
+- Do not use the project thumbnail as a top hero.
+- Keep project-specific gallery/media below the hero.
+
+### 6.6 Project media ordering
+
+Live SlackLess:
+- After the full-width hero, the page shows the screenshot gallery strip.
+- There is no duplicated contained banner block before the gallery.
+
+Current local:
+- The constrained banner block appears before the title/gallery structure.
+
+Implementation target:
+- Use the shared hero banner only for the top hero.
+- Render project screenshots/banners below the hero only as the Wix gallery/media strip.
+- Collapse the media strip when no usable media exists.
+
+### 6.7 Project links icon treatment
+
+Live SlackLess:
+- `Links` heading is centered.
+- App Store and GitHub icons are large orange rounded-square icons.
+- Labels sit below the icons.
+- There is no dark card frame around each icon tile.
+
+Current local:
+- Link icons are centered, but the icon tiles still have a darker framed-card feel and are smaller than live.
+
+Implementation target:
+- Enlarge link icons to live proportions.
+- Remove extra dark tile chrome around the orange icons.
+- Keep custom-label fallback behavior.
+
+### 6.8 Individual case-study cards
+
+Live SlackLess:
+- Each text section is its own rounded dark card.
+- Orange heading appears at the top of each card.
+- There is visible vertical space between cards.
+
+Current local:
+- The case-study content appears inside one large combined elevated panel.
+
+Implementation target:
+- Render each MDX `h2` section as an individual elevated card.
+- Preserve exact section order:
+  - `Quick facts`
+  - `Summary`
+  - `Problem`
+  - `Solution`
+  - `Architecture`
+  - `Hard problems solved`
+  - `Impact / Results`
+  - `Tech stack`
+
+### 6.9 Contact icon sizing and spacing
+
+Live Wix:
+- Contact icons are large orange icons with labels underneath.
+- The block has more vertical breathing room than the current local capture.
+- Contact remains centered and simple.
+
+Current local:
+- Contact icons and footer contact details are smaller and tighter.
+
+Implementation target:
+- Increase homepage and project contact icon size and spacing.
+- Preserve:
+  - `Get in touch`
+  - `Daniyar Kurmanbayev`
+  - `Toronto, Canada`
+
+## 7. Implementation Constraints For The Next UI Pass
 
 - Do not redesign the site.
 - Keep the dark navy / orange visual language.
@@ -293,7 +438,7 @@ These are the current UI pieces that do not match the live Wix structure closely
 - Prefer static / server-rendered Astro output.
 - Preserve the imported content model and project order.
 
-## 7. Acceptance Standard
+## 8. Acceptance Standard
 
 A future implementation pass is considered parity-aligned when:
 - The homepage layout matches the live Wix hierarchy and density.
@@ -301,3 +446,4 @@ A future implementation pass is considered parity-aligned when:
 - The top promo bar, header, section repeaters, gallery handling, and contact/footer all match the live structure.
 - Project pages collapse banner and link sections when empty.
 - Mobile keeps the Wix-style dense repeater behavior instead of drifting into a generic responsive card stack.
+- Fresh screenshot heights move closer to the live measurements without adding non-Wix sections.

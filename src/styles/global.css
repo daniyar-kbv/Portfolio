@@ -201,6 +201,10 @@ section[id] {
   padding-inline: 16px;
 }
 
+.wix-section-inner--homepage {
+  padding-block: 74px 84px;
+}
+
 .wix-divider-thick {
   height: 7px;
   background: var(--color-accent);
@@ -208,6 +212,13 @@ section[id] {
 
 .wix-divider-thin {
   height: 2px;
+  background: var(--color-accent);
+}
+
+.wix-section-divider {
+  width: calc(var(--site-width) - 32px);
+  height: 2px;
+  margin-inline: auto;
   background: var(--color-accent);
 }
 
@@ -238,11 +249,15 @@ section[id] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .wix-section-heading--links {
   max-width: 650px;
+}
+
+.wix-section-body {
+  margin-top: 44px;
 }
 
 .wix-section-count {
@@ -251,7 +266,7 @@ section[id] {
 }
 
 .wix-section-title {
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.4;
   font-weight: 700;
   color: var(--color-text);
@@ -294,8 +309,8 @@ section[id] {
 }
 
 .wix-section-icon {
-  width: 54px;
-  height: 54px;
+  width: 92px;
+  height: 92px;
   object-fit: contain;
   flex: none;
 }
@@ -306,9 +321,18 @@ section[id] {
   gap: 14px;
 }
 
+.wix-home-hero {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  background: var(--color-background);
+  border-top: 3px solid var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
 .wix-home-banner {
   width: 100%;
-  aspect-ratio: 980 / 366;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -353,12 +377,15 @@ section[id] {
 
 .wix-repeater-grid {
   display: grid;
-  gap: 16px;
+  row-gap: 38px;
+  column-gap: 24px;
 }
 
 .wix-repeater-grid--two {
-  grid-template-columns: repeat(2, minmax(0, 384px));
+  grid-template-columns: repeat(2, minmax(0, 450px));
   justify-content: space-between;
+  max-width: 948px;
+  margin-inline: auto;
 }
 
 .wix-project-card {
@@ -370,14 +397,16 @@ section[id] {
 
 .wix-project-card-link {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 14px;
-  padding: 12px;
+  grid-template-columns: 154px minmax(0, 1fr);
+  gap: 18px;
+  min-height: 254px;
+  padding: 20px;
 }
 
 .wix-project-card-link--text-only {
   display: block;
-  padding: 14px 16px 16px;
+  min-height: 220px;
+  padding: 24px 24px 26px;
 }
 
 .wix-project-card-media {
@@ -397,7 +426,7 @@ section[id] {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 120px;
+  min-height: 154px;
   padding: 12px;
   background: var(--color-elevated-2);
 }
@@ -444,10 +473,10 @@ section[id] {
   overflow: hidden;
   margin-top: 8px;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--color-text-muted);
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
 }
 
 .wix-project-card-tech {
@@ -465,12 +494,13 @@ section[id] {
 
 .wix-project-card-button {
   display: inline-flex;
-  align-self: flex-start;
+  align-self: center;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
-  margin-top: 12px;
-  padding: 0 22px;
+  min-width: 150px;
+  min-height: 32px;
+  margin-top: auto;
+  padding: 0 24px;
   border-radius: 999px;
   background: var(--color-accent);
   color: #fff;
@@ -613,15 +643,15 @@ section[id] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 32px;
 }
 
 .wix-contact-hero-link {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  min-width: 140px;
+  gap: 12px;
+  min-width: 120px;
   padding: 0 12px;
 }
 
@@ -916,6 +946,10 @@ section[id] {
   max-width: var(--site-width);
   margin-inline: auto;
   padding: 18px 16px 24px;
+}
+
+.wix-footer-inner.wix-contact-home-inner {
+  padding-block: 76px 124px;
 }
 
 .wix-contact-grid {

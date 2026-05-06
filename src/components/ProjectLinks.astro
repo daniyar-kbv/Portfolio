@@ -11,34 +11,27 @@ interface Props {
 
 const { links } = Astro.props as Props;
 
-const iconByType: Record<string, { icon: string; hoverIcon: string }> = {
+const iconByType: Record<string, { icon: string }> = {
   github: {
     icon: '/assets/icons/github-icon.png',
-    hoverIcon: '/assets/icons/github-icon-hover.png',
   },
   'app store': {
     icon: '/assets/icons/app-store-icon.png',
-    hoverIcon: '/assets/icons/app-store-icon-hover.png',
   },
   website: {
     icon: '/assets/icons/website-icon.png',
-    hoverIcon: '/assets/icons/website-icon-hover.png',
   },
   instagram: {
     icon: '/assets/icons/instagram-icon.png',
-    hoverIcon: '/assets/icons/instagram-icon-hover.png',
   },
   demo: {
     icon: '/assets/icons/demo-icon.png',
-    hoverIcon: '/assets/icons/demo-icon-hover.png',
   },
   linkedin: {
     icon: '/assets/icons/linkedin-icon.png',
-    hoverIcon: '/assets/icons/linkedin-icon-hover.png',
   },
   email: {
     icon: '/assets/icons/contact-icon.png',
-    hoverIcon: '/assets/icons/contact-icon-hover.png',
   },
 };
 
@@ -75,15 +68,7 @@ function getLabel(type: string, label: string) {
                     src={icon.icon}
                     alt=""
                     aria-hidden="true"
-                    class="absolute inset-0 h-16 w-16 object-contain transition-opacity group-hover:opacity-0"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    src={icon.hoverIcon}
-                    alt=""
-                    aria-hidden="true"
-                    class="absolute inset-0 h-16 w-16 object-contain opacity-0 transition-opacity group-hover:opacity-100"
+                    class="absolute inset-0 h-16 w-16 object-contain transition-transform group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                   />

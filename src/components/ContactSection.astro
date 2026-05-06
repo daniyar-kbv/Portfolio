@@ -11,21 +11,19 @@ const links = [
     value: email,
     href: `mailto:${email}`,
     icon: '/assets/icons/contact-icon.png',
-    hoverIcon: '/assets/icons/contact-icon-hover.png',
   },
   {
     title: 'LinkedIn',
     value: 'daniyar-kbv',
     href: linkedinUrl,
     icon: '/assets/icons/linkedin-icon.png',
-    hoverIcon: '/assets/icons/linkedin-icon-hover.png',
   },
 ];
 ---
 
 <section id="contact" class="wix-strip">
-  <div class="wix-divider-accent"></div>
-  <div class="wix-footer-inner py-8 sm:py-10">
+  <div class="wix-section-divider"></div>
+  <div class="wix-footer-inner wix-contact-home-inner">
     <div class="mx-auto max-w-[650px] text-center">
       <p class="wix-section-kicker">Get in touch</p>
       <h2 class="mt-3 wix-project-title">Daniyar Kurmanbayev</h2>
@@ -39,21 +37,13 @@ const links = [
             aria-label={`${link.title}: ${link.value}`}
             class="wix-contact-hero-link group"
           >
-            <span class="relative h-16 w-16 shrink-0">
+            <span class="relative h-20 w-20 shrink-0">
               <img
                 src={link.icon}
                 alt=""
                 aria-hidden="true"
-                class="absolute inset-0 h-16 w-16 object-contain transition-opacity group-hover:opacity-0"
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                src={link.hoverIcon}
-                alt=""
-                aria-hidden="true"
-                class="absolute inset-0 h-16 w-16 object-contain opacity-0 transition-opacity group-hover:opacity-100"
-                loading="lazy"
+                class="absolute inset-0 h-20 w-20 object-contain transition-transform group-hover:scale-105"
+                loading="eager"
                 decoding="async"
               />
             </span>

@@ -9,26 +9,23 @@ interface Props {
 const { name, role, label, bannerImage } = Astro.props as Props;
 ---
 
-<section class="wix-strip">
-  <div class="wix-divider-thick"></div>
-  <div class="wix-canvas">
-    <div class="relative overflow-hidden">
-      <img
-        src={bannerImage}
-        alt="Portfolio banner"
-        width="980"
-        height="366"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-        class="wix-home-banner"
-      />
-      <div class="wix-home-banner-overlay">
-        <div class="wix-home-banner-copy">
-          <p class="wix-home-banner-name">{name}</p>
-          <p class="wix-home-banner-role">{role}</p>
-          <p class="wix-home-banner-label">{label}</p>
-        </div>
+<section class="wix-home-hero">
+  <div class="relative h-full overflow-hidden">
+    <img
+      src={bannerImage}
+      alt="Portfolio banner"
+      width="1512"
+      height="230"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="wix-home-banner"
+    />
+    <div class="wix-home-banner-overlay">
+      <div class="wix-home-banner-copy">
+        <p class="wix-home-banner-name">{name}</p>
+        <p class="wix-home-banner-role">{role}</p>
+        <p class="wix-home-banner-label">{label}</p>
       </div>
     </div>
   </div>

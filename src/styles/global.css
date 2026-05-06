@@ -234,6 +234,13 @@ section[id] {
   text-align: center;
 }
 
+.wix-section-heading--homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
 .wix-section-heading--links {
   max-width: 650px;
 }
@@ -349,11 +356,9 @@ section[id] {
   gap: 16px;
 }
 
-@media (min-width: 900px) {
-  .wix-repeater-grid--two {
-    grid-template-columns: repeat(2, minmax(0, 384px));
-    justify-content: space-between;
-  }
+.wix-repeater-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 384px));
+  justify-content: space-between;
 }
 
 .wix-project-card {
@@ -373,18 +378,6 @@ section[id] {
 .wix-project-card-link--text-only {
   display: block;
   padding: 14px 16px 16px;
-}
-
-@media (max-width: 639px) {
-  .wix-project-card-link {
-    grid-template-columns: 92px minmax(0, 1fr);
-    gap: 12px;
-    padding: 10px;
-  }
-
-  .wix-project-card-link--text-only {
-    padding: 12px 14px 14px;
-  }
 }
 
 .wix-project-card-media {
@@ -475,16 +468,16 @@ section[id] {
   align-self: flex-start;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
+  min-height: 40px;
   margin-top: 12px;
-  padding: 0 14px;
-  border-radius: 2px;
+  padding: 0 22px;
+  border-radius: 999px;
   background: var(--color-accent);
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .wix-project-card:hover,
@@ -602,6 +595,30 @@ section[id] {
   text-transform: uppercase;
   color: var(--color-text-muted);
   white-space: nowrap;
+}
+
+.wix-contact-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.wix-contact-hero-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+  padding: 0 12px;
+}
+
+.wix-contact-hero-label {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 .wix-media-strip {

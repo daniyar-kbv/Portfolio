@@ -10,10 +10,10 @@ interface Props {
 
 const defaultNavItems: NavItem[] = [
   { label: 'Flagship', href: '/#flagship' },
-  { label: 'Production', href: '/#production' },
-  { label: 'Backend', href: '/#backend' },
+  { label: 'Production client apps', href: '/#production' },
+  { label: 'Platforms & backend', href: '/#backend' },
   { label: 'Legacy', href: '/#legacy' },
-  { label: 'AI', href: '/#ai' },
+  { label: 'AI & ML', href: '/#ai' },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -47,6 +47,5 @@ const isHome = Astro.url.pathname === '/';
       ))}
     </nav>
 
-    <a href="/#contact" class="wix-header-cta">Contact</a>
   </div>
 </header>

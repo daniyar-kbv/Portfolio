@@ -68,11 +68,13 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
   letter-spacing: 0;
+  min-width: var(--site-width);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  min-width: var(--site-width);
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-sf-pro-display);
@@ -135,16 +137,20 @@ section[id] {
   gap: 16px;
   width: 100%;
   max-width: var(--site-width);
-  min-height: 24px;
+  min-height: 28px;
   margin-inline: auto;
   padding: 4px 16px;
 }
 
-.wix-promo-brand {
+.wix-promo-copy {
   display: flex;
   align-items: center;
   gap: 8px;
   min-width: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #1d1d1f;
 }
 
 .wix-promo-wix {
@@ -153,9 +159,9 @@ section[id] {
   letter-spacing: 0.08em;
 }
 
-.wix-promo-copy {
+.wix-promo-separator {
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1;
   color: #1d1d1f;
 }
 
@@ -164,7 +170,7 @@ section[id] {
   align-items: center;
   justify-content: center;
   min-height: 24px;
-  padding: 0 12px;
+  padding: 0 14px;
   border-radius: 2px;
   background: #1d1d1f;
   color: #fff;
@@ -863,27 +869,6 @@ section[id] {
 .wix-nav-link:focus-visible::after,
 .wix-nav-link[aria-current='page']::after {
   transform: scaleX(1);
-}
-
-.wix-header-cta {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0 0 7px;
-  font-size: 14px;
-  line-height: 1;
-  letter-spacing: 0.1em;
-  color: var(--color-accent);
-  transition: color 150ms ease;
-}
-
-.wix-header-cta:hover,
-.wix-header-cta:focus-visible {
-  color: var(--color-accent-hover);
-}
-
-.wix-header-cta:focus-visible {
-  outline-offset: 3px;
 }
 
 .wix-footer-shell {

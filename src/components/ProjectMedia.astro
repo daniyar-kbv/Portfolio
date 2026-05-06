@@ -20,17 +20,13 @@ const renderableItems = items.filter(isRenderableMediaRef);
 {renderableItems.length > 0 && (
   <section class="wix-section-shell py-6 sm:py-8">
     <div class="wix-section-inner">
-      <div class="wix-media-strip">
-        {renderableItems.map((item, index) => (
-          <img
-            src={item}
-            alt={`${title} screenshot ${index + 1}`}
-            loading="lazy"
-            decoding="async"
-            class:list={['wix-media-strip-image', index === 0 ? 'wix-media-strip-image--primary' : '']}
-          />
-        ))}
-      </div>
+      <img
+        src={renderableItems[0]}
+        alt={`${title} banner`}
+        loading="lazy"
+        decoding="async"
+        class="wix-project-banner"
+      />
     </div>
   </section>
 )}

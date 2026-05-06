@@ -22,11 +22,7 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 const bodyDescription = project.data.subtitle || project.data.description;
 const projectBanners = Array.isArray(project.data.wix?.banners) ? project.data.wix.banners : [];
-const galleryItems = project.data.screenshots?.length
-  ? project.data.screenshots
-  : project.data.thumbnail
-    ? [project.data.thumbnail]
-    : [];
+const mediaBanner = projectBanners.length > 0 ? project.data.image || project.data.thumbnail || null : null;
 const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
 ---
 
@@ -45,11 +41,11 @@ const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
       title={project.data.title}
       subtitle={bodyDescription}
       description={project.data.description}
-      banner={projectBanners.length > 0 ? project.data.image || project.data.thumbnail || null : null}
-      bannerAlt={project.data.coverAlt || `${project.data.title} banner`}
+      banner={projectBanners.length > 0 ? localAssets.shared.hero?.[0] : null}
+      bannerAlt="Portfolio banner"
     />
 
-    {projectBanners.length > 0 && <ProjectMedia title={project.data.title} items={galleryItems} />}
+    {mediaBanner && <ProjectMedia title={project.data.title} items={[mediaBanner]} />}
 
     {project.data.links.length > 0 && <ProjectLinks links={project.data.links} />}
 

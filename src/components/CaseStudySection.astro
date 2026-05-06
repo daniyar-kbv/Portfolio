@@ -8,9 +8,7 @@ const { class: className = '' } = Astro.props as Props;
 
 <section class:list={['wix-section-shell py-8 sm:py-10', className]}>
   <div class="wix-section-inner">
-    <div class="wix-divider-thick"></div>
-    <div class="wix-divider-thin"></div>
-    <div class="wix-case-study mt-5">
+    <div class="wix-case-study">
       <div class="wix-case-study-content">
         <slot />
       </div>

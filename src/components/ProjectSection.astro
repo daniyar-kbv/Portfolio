@@ -63,12 +63,11 @@ const sectionIcons: Record<string, string> = {
           title={project.data.title}
           subtitle={project.data.subtitle}
           description={project.data.description}
-          typeTags={project.data.typeTags}
           techTags={project.data.techTags}
           image={image}
           alt={project.data.coverAlt || `${project.data.title} preview`}
-          links={project.data.links}
           status={project.data.status}
+          showVisual={category !== 'AI'}
         />
       );
     })}

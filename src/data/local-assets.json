@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-05T13:10:38.358Z",
+  "generatedAt": "2026-05-06T11:50:30.207Z",
   "projects": {
     "slackless": {
       "thumbnail": "/assets/projects/slackless/thumbnail.png",
@@ -158,8 +158,8 @@
     ]
   },
   "counts": {
-    "copied": 1,
-    "skipped": 55,
+    "copied": 0,
+    "skipped": 56,
     "missing": 0
   }
 }

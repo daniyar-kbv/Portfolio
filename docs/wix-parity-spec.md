@@ -124,6 +124,8 @@ Card content order inside each repeater item:
 5. Tech tags line
 6. Orange `Learn More` button
 
+AI / ML homepage cards are the exception: they are text-only on the live Wix page and do not show thumbnails.
+
 The live cards feel like Wix repeater items, not modern editorial cards:
 - Dark rounded tile
 - No nested card inside card

@@ -364,11 +364,20 @@ section[id] {
   padding: 12px;
 }
 
+.wix-project-card-link--text-only {
+  display: block;
+  padding: 14px 16px 16px;
+}
+
 @media (max-width: 639px) {
   .wix-project-card-link {
     grid-template-columns: 92px minmax(0, 1fr);
     gap: 12px;
     padding: 10px;
+  }
+
+  .wix-project-card-link--text-only {
+    padding: 12px 14px 14px;
   }
 }
 
@@ -475,6 +484,11 @@ section[id] {
 .wix-project-card:hover,
 .wix-project-card:focus-within {
   border-color: var(--color-border-strong);
+}
+
+.wix-project-card-link--text-only:hover,
+.wix-project-card-link--text-only:focus-visible {
+  background: color-mix(in srgb, var(--color-elevated-alt-2) 94%, transparent);
 }
 
 .wix-project-shell {

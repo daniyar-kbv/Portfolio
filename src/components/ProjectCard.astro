@@ -8,33 +8,49 @@ interface Props {
   image?: string | null;
   alt?: string;
   status?: string;
+  showVisual?: boolean;
 }
 
-const { slug, title, subtitle, description, techTags, image, alt = `${title} preview`, status } =
-  Astro.props as Props;
+const {
+  slug,
+  title,
+  subtitle,
+  description,
+  techTags,
+  image,
+  alt = `${title} preview`,
+  status,
+  showVisual = true,
+} = Astro.props as Props;
 
 const internalHref = `/projects/${slug}`;
 const techLine = techTags.join(' · ');
 ---
 
 <article class="wix-project-card">
-  <a href={internalHref} class="wix-project-card-link" aria-label={`Open ${title} project`}>
-    <div class="wix-project-card-media">
-      {image ? (
-        <img
-          src={image}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          class="wix-project-card-image"
-        />
-      ) : (
-        <div class="wix-project-card-placeholder">
-          <span class="wix-project-card-placeholder-kicker">{subtitle}</span>
-          <span class="wix-project-card-placeholder-title">{title}</span>
-        </div>
-      )}
-    </div>
+  <a
+    href={internalHref}
+    class:list={['wix-project-card-link', !showVisual && 'wix-project-card-link--text-only']}
+    aria-label={`Open ${title} project`}
+  >
+    {showVisual && (
+      <div class="wix-project-card-media">
+        {image ? (
+          <img
+            src={image}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            class="wix-project-card-image"
+          />
+        ) : (
+          <div class="wix-project-card-placeholder">
+            <span class="wix-project-card-placeholder-kicker">{subtitle}</span>
+            <span class="wix-project-card-placeholder-title">{title}</span>
+          </div>
+        )}
+      </div>
+    )}
 
     <div class="wix-project-card-copy">
       <p class="wix-project-card-kicker">{subtitle}</p>

@@ -27,26 +27,6 @@ const expectedCounts = {
   contactLinks: 2,
 };
 
-const projectOrder = [
-  'SlackLess',
-  'Revenue Sharing iOS SDK',
-  'DeviceCluster',
-  'AirbaFresh',
-  'KEX',
-  'HashtagGenerator',
-  '24Goals',
-  'MentalMind',
-  'UniClub',
-  'Kaz Tour Telegram Bot',
-  'ISTOKHOME',
-  'Driver Drowsiness Detection',
-  'ASL Recognition',
-  'Disaster Tweets',
-  'MIG',
-  'Magazinchik',
-  'SwiftNetworkRouting',
-];
-
 const sectionOrder = [
   'Quick facts',
   'Summary',
@@ -356,115 +336,118 @@ async function main() {
     projectLinksByProjectId.set(row.Project, current);
   }
 
-  const normalizedProjects = projectOrder
-    .map((name, index) => {
-      const projectRow = projectsCsv.find((row) => row.Name === name);
-      if (!projectRow) {
-        throw new Error(`Missing project in Projects.csv: ${name}`);
-      }
+  const projectRows = [...projectsCsv]
+    .filter((row) => projectSlugsByName.has(row.Name))
+    .sort((a, b) => {
+      const aSort = String(a['Manual sort'] ?? '').trim();
+      const bSort = String(b['Manual sort'] ?? '').trim();
+      if (aSort !== bSort) return aSort.localeCompare(bSort);
+      return String(a.Name ?? '').localeCompare(String(b.Name ?? ''));
+    });
 
-      const projectId = projectRow.ID;
-      const slug = projectSlugsByName.get(name);
-      if (!slug) {
-        throw new Error(`Missing slug mapping for project: ${name}`);
-      }
+  const normalizedProjects = projectRows.map((projectRow, index) => {
+    const name = projectRow.Name;
+    const projectId = projectRow.ID;
+    const slug = projectSlugsByName.get(name);
+    if (!slug) {
+      throw new Error(`Missing slug mapping for project: ${name}`);
+    }
 
-      const textSections = mapSectionBlocks(textsCsv, typeNameById, projectId);
-      const summaryText = textSections.get('Summary')?.[0] ?? '';
-      const quickFactsText = textSections.get('Quick facts')?.[0] ?? '';
-      const quickFacts = extractQuickFacts(quickFactsText);
-      const highlights = extractHighlights(summaryText);
-      const typeTags = splitList(projectRow['Type tags']);
-      const techTags = splitList(projectRow['Tech tags']);
-      const projectLinks = (projectLinksByProjectId.get(projectId) ?? []).map((row) => {
-        const typeName = linkTypeNameById.get(row.Type);
-        return {
-          type: typeName ?? row.Type,
-          label: row['Custom Label']?.trim() || typeName || 'Link',
-          url: normalizeUrl(row.URL),
-        };
-      });
-
-      const bannerData = parseJsonOrFallback(projectRow.Banners, []);
-      const localProjectAssets = localAssetsManifest?.projects?.[slug] ?? {};
-      const localThumbnail = toRenderableMediaRef(localProjectAssets.thumbnail);
-      const localImage = toRenderableMediaRef(localProjectAssets.image);
-      const localMedia = Array.isArray(localProjectAssets.media)
-        ? localProjectAssets.media.map(toRenderableMediaRef).filter(Boolean)
-        : [];
-      const localScreenshots = Array.isArray(localProjectAssets.screenshots)
-        ? localProjectAssets.screenshots.map(toRenderableMediaRef).filter(Boolean)
-        : [];
-      const wixThumbnailSrc = projectRow.Thumbnail.trim() || undefined;
-      const wixBannerSrc = bannerData.find((banner) => banner?.type === 'image')?.src;
-      const thumbnail = localThumbnail || wixImageToStaticUrl(wixThumbnailSrc) || undefined;
-      const image =
-        localImage ||
-        wixImageToStaticUrl(wixBannerSrc) ||
-        localThumbnail ||
-        localScreenshots[0] ||
-        undefined;
-      const media = localMedia.length ? localMedia : undefined;
-      const screenshots = localScreenshots.length ? localScreenshots : undefined;
-      const rawCoverAlt =
-        bannerData[0]?.alt?.trim() ||
-        bannerData[0]?.title?.trim() ||
-        `${name} cover`;
-      const coverAlt = isMediaFilename(rawCoverAlt) ? `${name} banner` : rawCoverAlt;
-      const categories = parseJsonOrFallback(projectRow.Type, []);
-      const category = Array.isArray(categories) && categories.length
-        ? String(categories[0]).trim()
-        : String(projectRow.Type || '').trim() || 'Project';
-
-      const frontmatter = {
-        title: name,
-        slug,
-        subtitle: typeTags.join(' · ') || category,
-        description: projectRow['Short description'].trim(),
-        category,
-        typeTags,
-        techTags,
-        status: quickFacts.Status || undefined,
-        featured: category.toLowerCase() === 'flagship',
-        priority: index + 1,
-        role: quickFacts.Role || undefined,
-        stack: techTags,
-        links: projectLinks,
-        thumbnail,
-        image,
-        media,
-        screenshots,
-        coverAlt,
-        highlights: highlights.length ? highlights : undefined,
-        wix: {
-          id: projectId,
-          path: projectRow['Projects (Item)'],
-          thumbnail: wixThumbnailSrc
-            ? {
-                src: wixThumbnailSrc,
-                fileName: projectRow.Name ? `${projectRow.Name} Thumbnail` : undefined,
-                title: `${name} Thumbnail`,
-                alt: `${name} thumbnail`,
-              }
-            : undefined,
-          banners: bannerData,
-          manualSort: projectRow['Manual sort'] || undefined,
-          status: projectRow.Status || undefined,
-          createdAt: projectRow['Created Date'] || undefined,
-          updatedAt: projectRow['Updated Date'] || undefined,
-        },
-      };
-
-      assertRenderableMediaFields(slug, frontmatter);
-
+    const textSections = mapSectionBlocks(textsCsv, typeNameById, projectId);
+    const summaryText = textSections.get('Summary')?.[0] ?? '';
+    const quickFactsText = textSections.get('Quick facts')?.[0] ?? '';
+    const quickFacts = extractQuickFacts(quickFactsText);
+    const highlights = extractHighlights(summaryText);
+    const typeTags = splitList(projectRow['Type tags']);
+    const techTags = splitList(projectRow['Tech tags']);
+    const projectLinks = (projectLinksByProjectId.get(projectId) ?? []).map((row) => {
+      const typeName = linkTypeNameById.get(row.Type);
       return {
-        name,
-        slug,
-        frontmatter,
-        sections: textSections,
+        type: typeName ?? row.Type,
+        label: row['Custom Label']?.trim() || typeName || 'Link',
+        url: normalizeUrl(row.URL),
       };
-    })
-    .sort((a, b) => a.frontmatter.priority - b.frontmatter.priority);
+    });
+
+    const bannerData = parseJsonOrFallback(projectRow.Banners, []);
+    const localProjectAssets = localAssetsManifest?.projects?.[slug] ?? {};
+    const localThumbnail = toRenderableMediaRef(localProjectAssets.thumbnail);
+    const localImage = toRenderableMediaRef(localProjectAssets.image);
+    const localMedia = Array.isArray(localProjectAssets.media)
+      ? localProjectAssets.media.map(toRenderableMediaRef).filter(Boolean)
+      : [];
+    const localScreenshots = Array.isArray(localProjectAssets.screenshots)
+      ? localProjectAssets.screenshots.map(toRenderableMediaRef).filter(Boolean)
+      : [];
+    const wixThumbnailSrc = projectRow.Thumbnail.trim() || undefined;
+    const wixBannerSrc = bannerData.find((banner) => banner?.type === 'image')?.src;
+    const thumbnail = localThumbnail || wixImageToStaticUrl(wixThumbnailSrc) || undefined;
+    const image =
+      localImage ||
+      wixImageToStaticUrl(wixBannerSrc) ||
+      localThumbnail ||
+      localScreenshots[0] ||
+      undefined;
+    const media = localMedia.length ? localMedia : undefined;
+    const screenshots = localScreenshots.length ? localScreenshots : undefined;
+    const rawCoverAlt =
+      bannerData[0]?.alt?.trim() ||
+      bannerData[0]?.title?.trim() ||
+      `${name} cover`;
+    const coverAlt = isMediaFilename(rawCoverAlt) ? `${name} banner` : rawCoverAlt;
+    const categories = parseJsonOrFallback(projectRow.Type, []);
+    const category = Array.isArray(categories) && categories.length
+      ? String(categories[0]).trim()
+      : String(projectRow.Type || '').trim() || 'Project';
+
+    const frontmatter = {
+      title: name,
+      slug,
+      subtitle: typeTags.join(' · ') || category,
+      description: projectRow['Short description'].trim(),
+      category,
+      typeTags,
+      techTags,
+      status: quickFacts.Status || undefined,
+      featured: category.toLowerCase() === 'flagship',
+      priority: index + 1,
+      role: quickFacts.Role || undefined,
+      stack: techTags,
+      links: projectLinks,
+      thumbnail,
+      image,
+      media,
+      screenshots,
+      coverAlt,
+      highlights: highlights.length ? highlights : undefined,
+      wix: {
+        id: projectId,
+        path: projectRow['Projects (Item)'],
+        thumbnail: wixThumbnailSrc
+          ? {
+              src: wixThumbnailSrc,
+              fileName: projectRow.Name ? `${projectRow.Name} Thumbnail` : undefined,
+              title: `${name} Thumbnail`,
+              alt: `${name} thumbnail`,
+            }
+          : undefined,
+        banners: bannerData,
+        manualSort: projectRow['Manual sort'] || undefined,
+        status: projectRow.Status || undefined,
+        createdAt: projectRow['Created Date'] || undefined,
+        updatedAt: projectRow['Updated Date'] || undefined,
+      },
+    };
+
+    assertRenderableMediaFields(slug, frontmatter);
+
+    return {
+      name,
+      slug,
+      frontmatter,
+      sections: textSections,
+    };
+  });
 
   const projectCount = normalizedProjects.length;
   const textCount = textsCsv.length;

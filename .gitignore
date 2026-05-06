@@ -37,5 +37,5 @@ Thumbs.db
 .eslintcache
 .stylelintcache
 
-# QA
+# Debug 
 qa/

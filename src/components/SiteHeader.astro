@@ -18,7 +18,6 @@ const defaultNavItems: NavItem[] = [
 ];
 
 const { navItems = defaultNavItems } = Astro.props as Props;
-const isHome = Astro.url.pathname === '/';
 ---
 
 <header class="wix-header-shell">
@@ -39,7 +38,6 @@ const isHome = Astro.url.pathname === '/';
       {navItems.map((item) => (
         <a
           href={item.href}
-          aria-current={isHome && item.href === '/#flagship' ? 'page' : undefined}
           class="wix-nav-link"
         >
           {item.label}

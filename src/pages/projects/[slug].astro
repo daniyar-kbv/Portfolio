@@ -6,8 +6,6 @@ import ProjectMedia from '../../components/ProjectMedia.astro';
 import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
 import ContactSection from '../../components/ContactSection.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import { contactLinks } from '../../data/contact';
 import localAssets from '../../data/local-assets.json';
 
 export async function getStaticPaths() {
@@ -59,5 +57,4 @@ const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
       compact
     />
   </main>
-  <SiteFooter contactLinks={contactLinks} />
 </BaseLayout>

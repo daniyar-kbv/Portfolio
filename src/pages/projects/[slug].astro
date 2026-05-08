@@ -41,7 +41,7 @@ const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
       title={project.data.title}
       subtitle={bodyDescription}
       description={project.data.description}
-      banner={projectBanners.length > 0 ? localAssets.shared.hero?.[0] : null}
+      banner={localAssets.shared.hero?.[0]}
       bannerAlt="Portfolio banner"
     />
 
@@ -53,7 +53,11 @@ const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
       <Content />
     </CaseStudySection>
 
-    <ContactSection email="daniyar.kbv@gmail.com" linkedinUrl="https://www.linkedin.com/in/daniyar-kbv/" />
+    <ContactSection
+      email="daniyar.kbv@gmail.com"
+      linkedinUrl="https://www.linkedin.com/in/daniyar-kbv/"
+      compact
+    />
   </main>
   <SiteFooter contactLinks={contactLinks} />
 </BaseLayout>

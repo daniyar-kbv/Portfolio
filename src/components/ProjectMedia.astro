@@ -18,14 +18,14 @@ const renderableItems = items.filter(isRenderableMediaRef);
 ---
 
 {renderableItems.length > 0 && (
-  <section class="wix-section-shell py-6 sm:py-8">
+  <section class="wix-section-shell wix-project-media-section">
     <div class="wix-section-inner">
       <img
         src={renderableItems[0]}
         alt={`${title} banner`}
         loading="lazy"
         decoding="async"
-        class="wix-project-banner"
+        class="wix-project-gallery-image"
       />
     </div>
   </section>

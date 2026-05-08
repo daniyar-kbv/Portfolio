@@ -2,9 +2,10 @@
 interface Props {
   email: string;
   linkedinUrl: string;
+  compact?: boolean;
 }
 
-const { email, linkedinUrl } = Astro.props as Props;
+const { email, linkedinUrl, compact = false } = Astro.props as Props;
 const links = [
   {
     title: 'Email',
@@ -21,7 +22,7 @@ const links = [
 ];
 ---
 
-<section id="contact" class="wix-strip">
+<section id="contact" class:list={['wix-strip', compact && 'wix-contact-section--compact']}>
   <div class="wix-section-divider"></div>
   <div class="wix-footer-inner wix-contact-home-inner">
     <div class="mx-auto max-w-[650px] text-center">

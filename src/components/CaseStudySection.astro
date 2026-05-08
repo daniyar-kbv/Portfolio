@@ -6,7 +6,7 @@ interface Props {
 const { class: className = '' } = Astro.props as Props;
 ---
 
-<section class:list={['wix-section-shell py-8 sm:py-10', className]}>
+<section class:list={['wix-section-shell wix-case-study-section', className]}>
   <div class="wix-section-inner">
     <div class="wix-case-study">
       <div class="wix-case-study-content">
@@ -15,3 +15,43 @@ const { class: className = '' } = Astro.props as Props;
     </div>
   </div>
 </section>
+
+<script>
+  function splitCaseStudyCards() {
+    document.querySelectorAll('.wix-case-study-content').forEach((content) => {
+      if (content.querySelector('.wix-case-study-card')) return;
+
+      const nodes = Array.from(content.childNodes);
+      const fragment = document.createDocumentFragment();
+      let currentCard = null;
+
+      nodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE && node instanceof HTMLElement && node.tagName === 'H2') {
+          currentCard = document.createElement('article');
+          currentCard.className = 'wix-case-study-card';
+          fragment.appendChild(currentCard);
+        }
+
+        if (!currentCard) {
+          if (node.textContent?.trim()) {
+            currentCard = document.createElement('article');
+            currentCard.className = 'wix-case-study-card';
+            fragment.appendChild(currentCard);
+          } else {
+            return;
+          }
+        }
+
+        currentCard.appendChild(node);
+      });
+
+      content.appendChild(fragment);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', splitCaseStudyCards, { once: true });
+  } else {
+    splitCaseStudyCards();
+  }
+</script>

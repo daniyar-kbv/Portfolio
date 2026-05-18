@@ -67,13 +67,19 @@ Run keyboard, dialog, and reduced-motion checks:
 npm run test:interaction
 ```
 
+Run golden-source content integrity checks:
+
+```bash
+npm run test:content
+```
+
 Run the full Playwright suite:
 
 ```bash
 npm test
 ```
 
-This runs the screenshot suite first and then the interaction suite.
+This runs the content checks first, then the screenshot suite, then the interaction suite.
 
 Update committed visual baselines only when the current rendered site is intentionally becoming the new source of truth:
 
@@ -101,6 +107,7 @@ Safe to run routinely:
 
 - `npm run dev`
 - `npm run build`
+- `npm run test:content`
 - `npm run test:visual`
 - `npm run test:interaction`
 - `npm test`

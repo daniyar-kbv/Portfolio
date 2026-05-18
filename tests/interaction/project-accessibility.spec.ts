@@ -2,7 +2,8 @@ import { expect, test, type Page } from '@playwright/test';
 
 async function openSlackLessProject(page: Page) {
   await page.setViewportSize({ width: 1512, height: 900 });
-  await page.goto('/projects/slackless', { waitUntil: 'networkidle' });
+  await page.goto('/projects/slackless', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('button', { name: 'Open SlackLess banner fullscreen' })).toBeVisible();
 }
 
 async function focusBannerOpenButton(page: Page) {
@@ -72,9 +73,10 @@ test('project banner opens with Space and exposes zoom controls to keyboard user
 test('reduced motion keeps parallax images still', async ({ page }) => {
   await page.setViewportSize({ width: 1512, height: 900 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/projects/slackless', { waitUntil: 'networkidle' });
+  await page.goto('/projects/slackless', { waitUntil: 'domcontentloaded' });
   const parallaxImage = page.locator('[data-parallax-image]').first();
 
+  await expect(parallaxImage).toBeVisible();
   await expect(parallaxImage).toHaveCSS('transform', 'none');
   await page.evaluate(() => window.scrollTo(0, 500));
   await page.waitForTimeout(100);

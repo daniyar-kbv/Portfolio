@@ -78,6 +78,18 @@ Run visual regression checks against the production preview:
 npm run test:visual
 ```
 
+Run keyboard, dialog, and reduced-motion checks:
+
+```bash
+npm run test:interaction
+```
+
+Run the full Playwright suite:
+
+```bash
+npm test
+```
+
 Update committed visual baselines only when the current rendered site is intentionally becoming the new source of truth:
 
 ```bash
@@ -109,6 +121,8 @@ Safe to run routinely:
 - `npm run dev`
 - `npm run build`
 - `npm run test:visual`
+- `npm run test:interaction`
+- `npm test`
 - `npm run test:visual:update` when the current render is the intended new baseline
 - `npm run assets:local` when you are intentionally refreshing the local asset manifest
 

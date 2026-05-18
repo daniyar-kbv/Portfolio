@@ -4,13 +4,13 @@ const previewPort = 4321;
 const previewHost = `http://127.0.0.1:${previewPort}`;
 
 export default defineConfig({
-  testDir: './tests/visual',
+  testDir: './tests',
   timeout: 60_000,
   fullyParallel: false,
   workers: 1,
   reporter: 'list',
   outputDir: 'qa/playwright-results',
-  snapshotPathTemplate: '{testDir}/__screenshots__/{arg}{ext}',
+  snapshotPathTemplate: 'tests/visual/__screenshots__/{arg}{ext}',
   expect: {
     timeout: 10_000,
     toHaveScreenshot: {

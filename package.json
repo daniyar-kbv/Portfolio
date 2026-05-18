@@ -7,8 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual": "playwright test tests/visual/portfolio.visual.spec.ts",
+    "test:interaction": "playwright test tests/interaction/project-accessibility.spec.ts",
+    "test:visual:update": "playwright test tests/visual/portfolio.visual.spec.ts --update-snapshots",
+    "test": "playwright test tests/visual tests/interaction",
     "assets:local": "node scripts/map-local-assets.mjs",
     "import:wix": "node scripts/import-wix-content.mjs",
     "content:refresh": "npm run assets:local && npm run import:wix"

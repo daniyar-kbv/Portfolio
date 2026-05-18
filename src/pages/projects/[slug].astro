@@ -7,6 +7,11 @@ import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import { homepageHero, siteAssets, siteOwner } from '../../data/site';
+import {
+  selectProjectMediaBanner,
+  shouldRenderProjectLinks,
+  shouldRenderProjectMedia,
+} from '../../lib/projects';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -20,12 +25,9 @@ const { project } = Astro.props;
 const { data } = project;
 const { Content } = await project.render();
 
-const projectBanners = Array.isArray(data.wix?.banners) ? data.wix.banners : [];
-const mediaBanner = projectBanners.length > 0 ? data.image || data.thumbnail || null : null;
-const mediaItems = mediaBanner ? [mediaBanner] : [];
-const hasMediaSection = mediaItems.length > 0;
-const projectLinks = data.links;
-const hasLinksSection = projectLinks.length > 0;
+const mediaBanner = selectProjectMediaBanner(project);
+const hasMediaSection = shouldRenderProjectMedia(project);
+const hasLinksSection = shouldRenderProjectLinks(project);
 const seoImage = data.thumbnail || siteAssets.seoImage;
 ---
 
@@ -47,9 +49,9 @@ const seoImage = data.thumbnail || siteAssets.seoImage;
       bannerAlt={homepageHero.bannerAlt}
     />
 
-    {hasMediaSection && <ProjectMedia title={data.title} items={mediaItems} />}
+    {hasMediaSection && <ProjectMedia title={data.title} banner={mediaBanner} />}
 
-    {hasLinksSection && <ProjectLinks links={projectLinks} />}
+    {hasLinksSection && <ProjectLinks links={data.links} />}
 
     <CaseStudySection>
       <Content />

@@ -3,21 +3,10 @@ import { Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from '@lucide/astro';
 
 interface Props {
   title: string;
-  items?: string[];
+  banner?: string | null;
 }
 
-function isRenderableMediaRef(value: string | null | undefined) {
-  const trimmed = String(value ?? '').trim();
-  if (!trimmed || trimmed.startsWith('wix:')) return false;
-  if (trimmed.startsWith('/assets/')) return true;
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return true;
-  if (trimmed.startsWith('./') || trimmed.startsWith('../')) return true;
-  return /^[^:/?#][^?#]*$/.test(trimmed);
-}
-
-const { title, items = [] } = Astro.props as Props;
-const renderableItems = items.filter(isRenderableMediaRef);
-const banner = renderableItems[0];
+const { title, banner = null } = Astro.props as Props;
 ---
 
 {banner && (

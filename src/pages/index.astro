@@ -5,17 +5,10 @@ import HeroIntro from '../components/HeroIntro.astro';
 import ProjectSection from '../components/ProjectSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import { homepageHero, homepageMeta, homepageSections, siteAssets } from '../data/site';
+import { groupProjectsByHomepageSection, sortProjectsByPriority } from '../lib/projects';
 
-const projects = (await getCollection('projects')).sort(
-  (a, b) => a.data.priority - b.data.priority,
-);
-
-const projectsByCategory = Object.fromEntries(
-  homepageSections.map((section) => [
-    section.category,
-    projects.filter((project) => project.data.category === section.category),
-  ]),
-);
+const projects = sortProjectsByPriority(await getCollection('projects'));
+const projectsByCategory = groupProjectsByHomepageSection(projects, homepageSections);
 ---
 
 <BaseLayout

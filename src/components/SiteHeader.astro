@@ -1,4 +1,6 @@
 ---
+import { headerNavItems, siteAssets, siteOwner } from '../data/site';
+
 interface NavItem {
   label: string;
   href: string;
@@ -8,24 +10,15 @@ interface Props {
   navItems?: NavItem[];
 }
 
-const defaultNavItems: NavItem[] = [
-  { label: 'Flagship', href: '/#flagship' },
-  { label: 'Production client apps', href: '/#production' },
-  { label: 'Platforms & backend', href: '/#backend' },
-  { label: 'Legacy', href: '/#legacy' },
-  { label: 'AI & ML', href: '/#ai' },
-  { label: 'Contact', href: '/#contact' },
-];
-
-const { navItems = defaultNavItems } = Astro.props as Props;
+const { navItems = headerNavItems } = Astro.props as Props;
 ---
 
 <header class="wix-header-shell">
   <div class="wix-header-inner">
-    <a href="/" class="wix-logo-link" aria-label="Daniyar Kurmanbayev home">
+    <a href="/" class="wix-logo-link" aria-label={`${siteOwner.displayName} home`}>
       <img
-        src="/assets/logo/logo-horizontal.png"
-        alt="Daniyar Kurmanbayev"
+        src={siteAssets.logo}
+        alt={siteOwner.displayName}
         width="324"
         height="128"
         class="wix-logo-image"

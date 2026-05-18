@@ -4,16 +4,17 @@ interface Props {
   role: string;
   label: string;
   bannerImage: string;
+  bannerAlt?: string;
 }
 
-const { name, role, label, bannerImage } = Astro.props as Props;
+const { name, role, label, bannerImage, bannerAlt = 'Portfolio banner' } = Astro.props as Props;
 ---
 
 <section class="wix-home-hero" data-parallax-hero data-parallax-travel="44">
   <div class="wix-parallax-frame">
     <img
       src={bannerImage}
-      alt="Portfolio banner"
+      alt={bannerAlt}
       width="1512"
       height="222"
       loading="eager"

@@ -1,12 +1,14 @@
+import { siteContact } from './site';
+
 export const contactLinks = [
   {
-    "type": "Email",
-    "label": "daniyar.kbv@gmail.com",
-    "url": "mailto:daniyar.kbv@gmail.com"
+    type: 'Email',
+    label: siteContact.email,
+    url: `mailto:${siteContact.email}`,
   },
   {
-    "type": "LinkedIn",
-    "label": "daniyar-kbv",
-    "url": "https://www.linkedin.com/in/daniyar-kbv/"
-  }
+    type: 'LinkedIn',
+    label: siteContact.linkedin.label,
+    url: siteContact.linkedin.url,
+  },
 ];

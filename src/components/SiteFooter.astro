@@ -1,4 +1,6 @@
 ---
+import { siteAssets, siteOwner } from '../data/site';
+
 interface Props {
   contactLinks: Array<{
     type: string;
@@ -10,10 +12,10 @@ interface Props {
 const { contactLinks: links } = Astro.props as Props;
 const iconMap: Record<string, { icon: string }> = {
   email: {
-    icon: '/assets/icons/contact-icon.png',
+    icon: siteAssets.icons.contact,
   },
   linkedin: {
-    icon: '/assets/icons/linkedin-icon.png',
+    icon: siteAssets.icons.linkedin,
   },
 };
 ---
@@ -21,10 +23,10 @@ const iconMap: Record<string, { icon: string }> = {
 <footer class="wix-footer-shell">
   <div class="wix-footer-inner">
     <div class="grid gap-6 lg:grid-cols-[auto_1fr] lg:items-center">
-      <a href="/" class="wix-logo-link" aria-label="Daniyar Kurmanbayev home">
+      <a href="/" class="wix-logo-link" aria-label={`${siteOwner.displayName} home`}>
         <img
-          src="/assets/logo/logo-horizontal.png"
-          alt="Daniyar Kurmanbayev"
+          src={siteAssets.logo}
+          alt={siteOwner.displayName}
           width="324"
           height="128"
           class="wix-logo-image"

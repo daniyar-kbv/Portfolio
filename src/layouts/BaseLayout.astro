@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import WixPromoBar from '../components/WixPromoBar.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { siteAssets, siteMeta } from '../data/site';
 
 interface Props {
   title?: string;
@@ -16,10 +17,10 @@ interface Props {
 }
 
 const {
-  title = 'Daniyar Kurmanbayev | Portfolio',
-  description = 'Daniyar Kurmanbayev portfolio.',
+  title = siteMeta.defaultTitle,
+  description = siteMeta.defaultDescription,
   canonicalPath,
-  ogImage = '/assets/seo/seo-image.png',
+  ogImage = siteAssets.seoImage,
   ogImageAlt = title,
   ogTitle = title,
   ogDescription = description,
@@ -44,7 +45,7 @@ const ogImageHref = ogImage && Astro.site ? new URL(ogImage, Astro.site).toStrin
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="Daniyar Kurmanbayev" />
+    <meta property="og:site_name" content={siteMeta.siteName} />
     {canonicalHref && <meta property="og:url" content={canonicalHref} />}
     {ogImageHref && <meta property="og:image" content={ogImageHref} />}
     {ogImageHref && <meta property="og:image:alt" content={ogImageAlt} />}
@@ -53,7 +54,7 @@ const ogImageHref = ogImage && Astro.site ? new URL(ogImage, Astro.site).toStrin
     <meta name="twitter:card" content={ogImageHref ? 'summary_large_image' : 'summary'} />
     {ogImageHref && <meta name="twitter:image" content={ogImageHref} />}
     {ogImageHref && <meta name="twitter:image:alt" content={ogImageAlt} />}
-    <meta name="theme-color" content="#1E2A38" />
+    <meta name="theme-color" content={siteMeta.themeColor} />
   </head>
   <body>
     <a

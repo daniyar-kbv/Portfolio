@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { projectCategories } from '../data/site';
 
 const wixMediaSchema = z.object({
   src: z.string(),
@@ -16,7 +17,7 @@ const projects = defineCollection({
     title: z.string(),
     subtitle: z.string(),
     description: z.string(),
-    category: z.string(),
+    category: z.enum(projectCategories),
     typeTags: z.array(z.string()),
     techTags: z.array(z.string()),
     status: z.string().optional(),

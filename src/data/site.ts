@@ -1,0 +1,97 @@
+import localAssets from './local-assets.json';
+
+export const projectCategories = ['Flagship', 'Production', 'Backend', 'Legacy', 'AI'] as const;
+
+export type ProjectCategory = (typeof projectCategories)[number];
+
+export const siteOwner = {
+  displayName: 'Daniyar Kurmanbayev',
+  portfolioName: 'Daniyar Kurmanbayev (Dan Kurman)',
+  role: 'Senior iOS Developer / Technical PM',
+  location: 'Toronto, Canada',
+};
+
+export const siteContact = {
+  email: 'daniyar.kbv@gmail.com',
+  linkedin: {
+    label: 'daniyar-kbv',
+    url: 'https://www.linkedin.com/in/daniyar-kbv/',
+  },
+};
+
+export const siteAssets = {
+  heroImage: localAssets.shared.hero[0],
+  seoImage: localAssets.shared.seo[0] ?? localAssets.shared.hero[0],
+  logo: localAssets.shared.logo[0] ?? '/assets/logo/logo-horizontal.png',
+  icons: {
+    contact: '/assets/icons/contact-icon.png',
+    linkedin: '/assets/icons/linkedin-icon.png',
+  },
+};
+
+export const homepageMeta = {
+  title: 'Portfolio | Daniyar Kurmanbayev (Dan Kurman)',
+  description:
+    'Daniyar Kurmanbayev (Dan Kurman), Senior iOS Developer & Technical Product Manager. I build Swift/SwiftUI apps with clean architecture, strong UX, and reliable delivery. View projects and case studies.',
+  ogImageAlt: 'Portfolio SEO image',
+};
+
+export const homepageHero = {
+  name: siteOwner.portfolioName,
+  role: siteOwner.role,
+  label: 'Portfolio',
+  bannerAlt: 'Portfolio banner',
+};
+
+export const homepageSections: Array<{
+  id: string;
+  category: ProjectCategory;
+  title: string;
+  navLabel: string;
+}> = [
+  {
+    id: 'flagship',
+    category: 'Flagship',
+    title: 'Flagship / System-level work',
+    navLabel: 'Flagship',
+  },
+  {
+    id: 'production',
+    category: 'Production',
+    title: 'Production client apps',
+    navLabel: 'Production client apps',
+  },
+  {
+    id: 'backend',
+    category: 'Backend',
+    title: 'Platforms & Backend',
+    navLabel: 'Platforms & backend',
+  },
+  {
+    id: 'legacy',
+    category: 'Legacy',
+    title: 'Early / Discontinued / Legacy',
+    navLabel: 'Legacy',
+  },
+  {
+    id: 'ai',
+    category: 'AI',
+    title: 'AI & ML',
+    navLabel: 'AI & ML',
+  },
+];
+
+export const headerNavItems = [
+  ...homepageSections.map((section) => ({
+    label: section.navLabel,
+    href: `/#${section.id}`,
+  })),
+  { label: 'Contact', href: '/#contact' },
+];
+
+export const siteMeta = {
+  defaultTitle: 'Daniyar Kurmanbayev | Portfolio',
+  defaultDescription: 'Daniyar Kurmanbayev portfolio.',
+  siteName: siteOwner.displayName,
+  themeColor: '#1E2A38',
+};

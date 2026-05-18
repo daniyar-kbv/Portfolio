@@ -1,6 +1,7 @@
 ---
 import ProjectCard from './ProjectCard.astro';
 import SectionShell from './SectionShell.astro';
+import type { ProjectCategory } from '../data/site';
 
 interface ProjectEntry {
   slug: string;
@@ -12,7 +13,7 @@ interface ProjectEntry {
     techTags: string[];
     links: Array<{ type: string; label: string; url: string }>;
     status?: string;
-    category: string;
+    category: ProjectCategory;
     featured: boolean;
     priority: number;
     coverAlt?: string;
@@ -25,7 +26,7 @@ interface ProjectEntry {
 
 interface Props {
   id: string;
-  category: string;
+  category: ProjectCategory;
   title: string;
   description?: string;
   projects: ProjectEntry[];
@@ -33,7 +34,7 @@ interface Props {
 
 const { id, category, title, description, projects } = Astro.props as Props;
 
-const sectionIcons: Record<string, string> = {
+const sectionIcons: Record<ProjectCategory, string> = {
   Flagship: '/assets/icons/flagship-icon.png',
   Production: '/assets/icons/production-icon.png',
   Backend: '/assets/icons/backend-icon.png',

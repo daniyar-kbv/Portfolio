@@ -1,23 +1,29 @@
 ---
+import { siteAssets, siteContact, siteOwner } from '../data/site';
+
 interface Props {
-  email: string;
-  linkedinUrl: string;
+  email?: string;
+  linkedinUrl?: string;
   compact?: boolean;
 }
 
-const { email, linkedinUrl, compact = false } = Astro.props as Props;
+const {
+  email = siteContact.email,
+  linkedinUrl = siteContact.linkedin.url,
+  compact = false,
+} = Astro.props as Props;
 const links = [
   {
     title: 'Email',
     value: email,
     href: `mailto:${email}`,
-    icon: '/assets/icons/contact-icon.png',
+    icon: siteAssets.icons.contact,
   },
   {
     title: 'LinkedIn',
-    value: 'daniyar-kbv',
+    value: siteContact.linkedin.label,
     href: linkedinUrl,
-    icon: '/assets/icons/linkedin-icon.png',
+    icon: siteAssets.icons.linkedin,
   },
 ];
 ---
@@ -27,8 +33,8 @@ const links = [
   <div class="wix-footer-inner wix-contact-home-inner">
     <div class="wix-contact-main">
       <p class="wix-contact-heading">Get in touch</p>
-      <h2 class="wix-contact-name">Daniyar Kurmanbayev</h2>
-      <p class="wix-contact-location">Toronto, Canada</p>
+      <h2 class="wix-contact-name">{siteOwner.displayName}</h2>
+      <p class="wix-contact-location">{siteOwner.location}</p>
       <div class="wix-contact-hero-links">
         {links.map((link) => (
           <a

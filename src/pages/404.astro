@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ButtonLink from '../components/ButtonLink.astro';
+import { siteOwner } from '../data/site';
 
 ---
 
 <BaseLayout
-  title="Page not found | Daniyar Kurmanbayev"
+  title={`Page not found | ${siteOwner.displayName}`}
   description="The requested page could not be found."
   canonicalPath="/404"
   noindex

@@ -6,7 +6,7 @@ import ProjectMedia from '../../components/ProjectMedia.astro';
 import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
 import ContactSection from '../../components/ContactSection.astro';
-import localAssets from '../../data/local-assets.json';
+import { homepageHero, siteAssets, siteOwner } from '../../data/site';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -26,12 +26,7 @@ const mediaItems = mediaBanner ? [mediaBanner] : [];
 const hasMediaSection = mediaItems.length > 0;
 const projectLinks = data.links;
 const hasLinksSection = projectLinks.length > 0;
-const heroBanner = localAssets.shared.hero?.[0];
-const seoImage = data.thumbnail || localAssets.shared.seo?.[0];
-const contact = {
-  email: 'daniyar.kbv@gmail.com',
-  linkedinUrl: 'https://www.linkedin.com/in/daniyar-kbv/',
-};
+const seoImage = data.thumbnail || siteAssets.seoImage;
 ---
 
 <BaseLayout
@@ -40,7 +35,7 @@ const contact = {
   canonicalPath={`/projects/${project.slug}`}
   ogImage={seoImage}
   ogImageAlt={`${data.title} thumbnail`}
-  ogTitle={`${data.title} | Daniyar Kurmanbayev (Dan Kurman)`}
+  ogTitle={`${data.title} | ${siteOwner.portfolioName}`}
   ogDescription={data.description}
   ogType="article"
 >
@@ -48,8 +43,8 @@ const contact = {
     <ProjectHero
       title={data.title}
       description={data.description}
-      banner={heroBanner}
-      bannerAlt="Portfolio banner"
+      banner={siteAssets.heroImage}
+      bannerAlt={homepageHero.bannerAlt}
     />
 
     {hasMediaSection && <ProjectMedia title={data.title} items={mediaItems} />}
@@ -60,10 +55,6 @@ const contact = {
       <Content />
     </CaseStudySection>
 
-    <ContactSection
-      email={contact.email}
-      linkedinUrl={contact.linkedinUrl}
-      compact
-    />
+    <ContactSection compact />
   </main>
 </BaseLayout>

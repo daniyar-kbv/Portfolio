@@ -4,69 +4,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroIntro from '../components/HeroIntro.astro';
 import ProjectSection from '../components/ProjectSection.astro';
 import ContactSection from '../components/ContactSection.astro';
-import localAssets from '../data/local-assets.json';
+import { homepageHero, homepageMeta, homepageSections, siteAssets } from '../data/site';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.priority - b.data.priority,
 );
 
-const sections = [
-  {
-    id: 'flagship',
-    category: 'Flagship',
-    title: 'Flagship / System-level work',
-  },
-  {
-    id: 'production',
-    category: 'Production',
-    title: 'Production client apps',
-  },
-  {
-    id: 'backend',
-    category: 'Backend',
-    title: 'Platforms & Backend',
-  },
-  {
-    id: 'legacy',
-    category: 'Legacy',
-    title: 'Early / Discontinued / Legacy',
-  },
-  {
-    id: 'ai',
-    category: 'AI',
-    title: 'AI & ML',
-  },
-];
-
 const projectsByCategory = Object.fromEntries(
-  sections.map((section) => [
+  homepageSections.map((section) => [
     section.category,
     projects.filter((project) => project.data.category === section.category),
   ]),
 );
-
-const heroImage = localAssets.shared.hero[0];
-const seoImage = localAssets.shared.seo[0] ?? heroImage;
 ---
 
 <BaseLayout
-  title="Portfolio | Daniyar Kurmanbayev (Dan Kurman)"
-  description="Daniyar Kurmanbayev (Dan Kurman), Senior iOS Developer & Technical Product Manager. I build Swift/SwiftUI apps with clean architecture, strong UX, and reliable delivery. View projects and case studies."
+  title={homepageMeta.title}
+  description={homepageMeta.description}
   canonicalPath="/"
-  ogImage={seoImage}
-  ogImageAlt="Portfolio SEO image"
-  ogTitle="Portfolio | Daniyar Kurmanbayev (Dan Kurman)"
-  ogDescription="Daniyar Kurmanbayev (Dan Kurman), Senior iOS Developer & Technical Product Manager. I build Swift/SwiftUI apps with clean architecture, strong UX, and reliable delivery. View projects and case studies."
+  ogImage={siteAssets.seoImage}
+  ogImageAlt={homepageMeta.ogImageAlt}
+  ogTitle={homepageMeta.title}
+  ogDescription={homepageMeta.description}
 >
   <main id="content">
     <HeroIntro
-      name="Daniyar Kurmanbayev (Dan Kurman)"
-      role="Senior iOS Developer / Technical PM"
-      label="Portfolio"
-      bannerImage={heroImage}
+      name={homepageHero.name}
+      role={homepageHero.role}
+      label={homepageHero.label}
+      bannerImage={siteAssets.heroImage}
+      bannerAlt={homepageHero.bannerAlt}
     />
 
-    {sections.map((section) => (
+    {homepageSections.map((section) => (
       <ProjectSection
         id={section.id}
         category={section.category}
@@ -75,6 +45,6 @@ const seoImage = localAssets.shared.seo[0] ?? heroImage;
       />
     ))}
 
-    <ContactSection email="daniyar.kbv@gmail.com" linkedinUrl="https://www.linkedin.com/in/daniyar-kbv/" />
+    <ContactSection />
   </main>
 </BaseLayout>

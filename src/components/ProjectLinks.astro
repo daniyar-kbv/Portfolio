@@ -1,4 +1,6 @@
 ---
+import IconImage from './IconImage.astro';
+
 interface LinkItem {
   type: string;
   label: string;
@@ -64,13 +66,10 @@ function getLabel(type: string, label: string) {
                 class="wix-project-link-tile group"
               >
                 <span class="relative h-20 w-20 shrink-0">
-                  <img
+                  <IconImage
                     src={icon.icon}
-                    alt=""
-                    aria-hidden="true"
                     class="absolute inset-0 h-20 w-20 object-contain transition-transform group-hover:scale-105"
                     loading="lazy"
-                    decoding="async"
                   />
                 </span>
                 <span class="wix-project-link-tile-label">{label}</span>

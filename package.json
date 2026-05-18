@@ -10,7 +10,7 @@
     "test:visual": "playwright test tests/visual/portfolio.visual.spec.ts",
     "test:interaction": "playwright test tests/interaction/project-accessibility.spec.ts",
     "test:visual:update": "playwright test tests/visual/portfolio.visual.spec.ts --update-snapshots",
-    "test": "playwright test tests/visual tests/interaction",
+    "test": "npm run test:visual && npm run test:interaction",
     "assets:local": "node scripts/map-local-assets.mjs",
     "import:wix": "node scripts/import-wix-content.mjs",
     "content:refresh": "npm run assets:local && npm run import:wix"

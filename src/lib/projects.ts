@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import type { ProjectCategory } from '../data/site';
+import { isRenderableMediaRef } from './media';
 
 export type ProjectEntry = CollectionEntry<'projects'>;
 
@@ -25,7 +26,10 @@ export function groupProjectsByHomepageSection(
 }
 
 export function selectProjectCardImage(project: ProjectEntry): string | null {
-  return project.data.thumbnail || project.data.image || project.data.screenshots?.[0] || null;
+  const candidate =
+    project.data.thumbnail || project.data.image || project.data.screenshots?.[0] || null;
+
+  return isRenderableMediaRef(candidate) ? candidate : null;
 }
 
 export function selectProjectMediaBanner(project: ProjectEntry): string | null {
@@ -35,7 +39,8 @@ export function selectProjectMediaBanner(project: ProjectEntry): string | null {
     return null;
   }
 
-  return project.data.image || project.data.thumbnail || null;
+  const candidate = project.data.image || project.data.thumbnail || null;
+  return isRenderableMediaRef(candidate) ? candidate : null;
 }
 
 export function shouldRenderProjectMedia(project: ProjectEntry): boolean {

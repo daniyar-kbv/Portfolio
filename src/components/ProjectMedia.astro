@@ -1,5 +1,6 @@
 ---
 import { Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from '@lucide/astro';
+import { isRenderableMediaRef } from '../lib/media';
 
 interface Props {
   title: string;
@@ -7,9 +8,10 @@ interface Props {
 }
 
 const { title, banner = null } = Astro.props as Props;
+const renderBanner = banner && isRenderableMediaRef(banner) ? banner : null;
 ---
 
-{banner && (
+{renderBanner && (
   <section class="wix-section-shell wix-project-media-section">
     <div class="wix-section-inner" data-project-lightbox>
       <button
@@ -19,7 +21,7 @@ const { title, banner = null } = Astro.props as Props;
         data-lightbox-open
       >
         <img
-          src={banner}
+          src={renderBanner}
           alt={`${title} banner`}
           loading="lazy"
           decoding="async"
@@ -47,7 +49,7 @@ const { title, banner = null } = Astro.props as Props;
         </div>
         <div class="wix-project-lightbox-stage" data-lightbox-stage>
           <img
-            src={banner}
+            src={renderBanner}
             alt={`${title} banner`}
             decoding="async"
             class="wix-project-lightbox-image"

@@ -90,6 +90,8 @@ Run the full Playwright suite:
 npm test
 ```
 
+This runs the screenshot suite first and then the interaction suite.
+
 Update committed visual baselines only when the current rendered site is intentionally becoming the new source of truth:
 
 ```bash

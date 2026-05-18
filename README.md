@@ -7,7 +7,7 @@ Static Astro rebuild of Daniyar Kurmanbayev’s Wix portfolio. The site is conte
 The checked-in Astro project is now the source of truth for the live site.
 
 - Case-study content lives in `src/content/projects/*.mdx`
-- Shared contact data lives in `src/data/contact.ts`
+- Shared contact data lives in `src/data/site.ts`
 - The copied runtime assets live in `public/assets/`
 - The asset lookup manifest lives in `src/data/local-assets.json`
 
@@ -27,7 +27,7 @@ The Wix CSV and asset export workflow is retained only as legacy migration tooli
 - Case-study content: `src/content/projects/*.mdx`
 - Local asset manifest: `src/data/local-assets.json`
 - Local asset copies: `public/assets/`
-- Contact data: `src/data/contact.ts`
+- Site metadata and contact data: `src/data/site.ts`
 - Legacy Wix migration scripts: `scripts/legacy-wix/`
 
 Source content used for imports:
@@ -122,6 +122,8 @@ Legacy migration-only scripts:
 These scripts rebuild checked-in content and assets from the original Wix CSV and asset exports. They are useful for migration recovery work, but they should not be part of normal site editing. Review their diffs before keeping the result.
 
 Raw Wix metadata in each project MDX file is retained as archival frontmatter under the `wix` key. The rendered site should use the normalized Astro fields and checked-in local assets. Moving that archival metadata out of MDX can be considered later as a dedicated content migration, but it is intentionally not part of routine editing.
+
+Legacy Wix contact-link exports are archival only. If the importer is run, it writes them under `scripts/legacy-wix/archive/` instead of recreating runtime contact data.
 
 ## Cloudflare Pages Deployment
 

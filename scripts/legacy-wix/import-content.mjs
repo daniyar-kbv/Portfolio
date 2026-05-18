@@ -16,7 +16,7 @@ const repoRoot = path.resolve(__dirname, '../..');
 const wixContentRoot = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
 const wixDataDir = path.join(wixContentRoot, 'Data');
 const outDir = path.join(repoRoot, 'src/content/projects');
-const contactOutFile = path.join(repoRoot, 'src/data/contact.ts');
+const legacyContactOutFile = path.join(repoRoot, 'scripts/legacy-wix/archive/contact-links.json');
 const localAssetsManifestFile = path.join(repoRoot, 'src/data/local-assets.json');
 
 const expectedCounts = {
@@ -508,12 +508,8 @@ async function main() {
     };
   });
 
-  await mkdir(path.dirname(contactOutFile), { recursive: true });
-  await writeFile(
-    contactOutFile,
-    `export const contactLinks = ${jsonForFrontmatter(contactLinks)};\n`,
-    'utf8',
-  );
+  await mkdir(path.dirname(legacyContactOutFile), { recursive: true });
+  await writeFile(legacyContactOutFile, `${jsonForFrontmatter(contactLinks)}\n`, 'utf8');
 
   console.log(
     [
@@ -524,7 +520,7 @@ async function main() {
       `Link types: ${linkTypeCount}`,
       `Contact links: ${contactCount}`,
       `Generated MDX files: ${writtenFiles.length}`,
-      `Contact data: ${path.relative(repoRoot, contactOutFile)}`,
+      `Archived contact links: ${path.relative(repoRoot, legacyContactOutFile)}`,
     ].join('\n'),
   );
 }

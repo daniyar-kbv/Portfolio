@@ -17,43 +17,52 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const { data } = project;
 const { Content } = await project.render();
-const bodyDescription = project.data.subtitle || project.data.description;
-const projectBanners = Array.isArray(project.data.wix?.banners) ? project.data.wix.banners : [];
-const mediaBanner = projectBanners.length > 0 ? project.data.image || project.data.thumbnail || null : null;
-const ogImage = project.data.thumbnail || localAssets.shared.seo?.[0];
+
+const projectBanners = Array.isArray(data.wix?.banners) ? data.wix.banners : [];
+const mediaBanner = projectBanners.length > 0 ? data.image || data.thumbnail || null : null;
+const mediaItems = mediaBanner ? [mediaBanner] : [];
+const hasMediaSection = mediaItems.length > 0;
+const projectLinks = data.links;
+const hasLinksSection = projectLinks.length > 0;
+const heroBanner = localAssets.shared.hero?.[0];
+const seoImage = data.thumbnail || localAssets.shared.seo?.[0];
+const contact = {
+  email: 'daniyar.kbv@gmail.com',
+  linkedinUrl: 'https://www.linkedin.com/in/daniyar-kbv/',
+};
 ---
 
 <BaseLayout
-  title={project.data.title}
-  description={project.data.description}
+  title={data.title}
+  description={data.description}
   canonicalPath={`/projects/${project.slug}`}
-  ogImage={project.data.thumbnail || ogImage}
-  ogImageAlt={`${project.data.title} thumbnail`}
-  ogTitle={`${project.data.title} | Daniyar Kurmanbayev (Dan Kurman)`}
-  ogDescription={project.data.description}
+  ogImage={seoImage}
+  ogImageAlt={`${data.title} thumbnail`}
+  ogTitle={`${data.title} | Daniyar Kurmanbayev (Dan Kurman)`}
+  ogDescription={data.description}
   ogType="article"
 >
   <main id="content">
     <ProjectHero
-      title={project.data.title}
-      subtitle={bodyDescription}
-      description={project.data.description}
-      banner={localAssets.shared.hero?.[0]}
+      title={data.title}
+      description={data.description}
+      banner={heroBanner}
       bannerAlt="Portfolio banner"
     />
 
-    {mediaBanner && <ProjectMedia title={project.data.title} items={[mediaBanner]} />}
+    {hasMediaSection && <ProjectMedia title={data.title} items={mediaItems} />}
 
-    {project.data.links.length > 0 && <ProjectLinks links={project.data.links} />}
+    {hasLinksSection && <ProjectLinks links={projectLinks} />}
 
     <CaseStudySection>
       <Content />
     </CaseStudySection>
 
     <ContactSection
-      email="daniyar.kbv@gmail.com"
-      linkedinUrl="https://www.linkedin.com/in/daniyar-kbv/"
+      email={contact.email}
+      linkedinUrl={contact.linkedinUrl}
       compact
     />
   </main>

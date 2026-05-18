@@ -17,9 +17,10 @@ function isRenderableMediaRef(value: string | null | undefined) {
 
 const { title, items = [] } = Astro.props as Props;
 const renderableItems = items.filter(isRenderableMediaRef);
+const banner = renderableItems[0];
 ---
 
-{renderableItems.length > 0 && (
+{banner && (
   <section class="wix-section-shell wix-project-media-section">
     <div class="wix-section-inner" data-project-lightbox>
       <button
@@ -29,7 +30,7 @@ const renderableItems = items.filter(isRenderableMediaRef);
         data-lightbox-open
       >
         <img
-          src={renderableItems[0]}
+          src={banner}
           alt={`${title} banner`}
           loading="lazy"
           decoding="async"
@@ -57,7 +58,7 @@ const renderableItems = items.filter(isRenderableMediaRef);
         </div>
         <div class="wix-project-lightbox-stage" data-lightbox-stage>
           <img
-            src={renderableItems[0]}
+            src={banner}
             alt={`${title} banner`}
             decoding="async"
             class="wix-project-lightbox-image"

@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+/**
+ * Legacy migration script: map assets from the Wix export into public/assets.
+ *
+ * This can rewrite src/data/local-assets.json and tracked assets. Do not run for
+ * routine site edits; Astro MDX and checked-in assets are now the source of truth.
+ */
 
 import { copyFile, mkdir, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -6,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const repoRoot = path.resolve(__dirname, '..');
+const repoRoot = path.resolve(__dirname, '../..');
 const wixContentRoot = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
 const wixAssetsRoot = path.join(wixContentRoot, 'Assets');
 const publicAssetsRoot = path.join(repoRoot, 'public/assets');

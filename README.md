@@ -11,7 +11,7 @@ The checked-in Astro project is now the source of truth for the live site.
 - The copied runtime assets live in `public/assets/`
 - The asset lookup manifest lives in `src/data/local-assets.json`
 
-The Wix CSV and asset export workflow is retained only as migration tooling. Use it when you need to rebuild the checked-in content from the original Wix export, not for routine site edits.
+The Wix CSV and asset export workflow is retained only as legacy migration tooling. Use it only when you intentionally need to rebuild checked-in content from the original Wix export, not for routine site edits.
 
 ## Tech Stack
 
@@ -24,10 +24,11 @@ The Wix CSV and asset export workflow is retained only as migration tooling. Use
 
 ## Project Structure
 
-- Imported case-study content: `src/content/projects/*.mdx`
+- Case-study content: `src/content/projects/*.mdx`
 - Local asset manifest: `src/data/local-assets.json`
 - Local asset copies: `public/assets/`
 - Contact data: `src/data/contact.ts`
+- Legacy Wix migration scripts: `scripts/legacy-wix/`
 
 Source content used for imports:
 
@@ -40,24 +41,6 @@ Install dependencies:
 
 ```bash
 npm install
-```
-
-Run the local asset mapping step:
-
-```bash
-npm run assets:local
-```
-
-Import Wix content into MDX:
-
-```bash
-npm run import:wix
-```
-
-Refresh both local assets and Wix content:
-
-```bash
-npm run content:refresh
 ```
 
 Start the development server:
@@ -110,13 +93,7 @@ To add or edit a project, update the relevant file in `src/content/projects/*.md
 
 To update project images or other runtime assets, add or replace files under `public/assets/`. Use those paths from the MDX frontmatter or page components.
 
-If the asset manifest needs to be refreshed, run:
-
-```bash
-npm run assets:local
-```
-
-That command rebuilds `src/data/local-assets.json` from the Wix asset export and copies matched files into `public/assets/`. Review the diff before keeping the result, because it can change tracked assets and the manifest together.
+If the asset manifest needs to be adjusted for normal site work, update `src/data/local-assets.json` deliberately alongside the files in `public/assets/`. The manifest is checked in because the app reads it at runtime.
 
 Safe to run routinely:
 
@@ -126,14 +103,16 @@ Safe to run routinely:
 - `npm run test:interaction`
 - `npm test`
 - `npm run test:visual:update` when the current render is the intended new baseline
-- `npm run assets:local` when you are intentionally refreshing the local asset manifest
 
 Legacy migration-only scripts:
 
-- `npm run import:wix`
-- `npm run content:refresh`
+- `npm run legacy:wix:assets`
+- `npm run legacy:wix:import`
+- `npm run legacy:wix:refresh`
 
-These scripts rebuild checked-in content from the original Wix CSV exports. They are useful for migration work, but they should not be part of normal site editing.
+These scripts rebuild checked-in content and assets from the original Wix CSV and asset exports. They are useful for migration recovery work, but they should not be part of normal site editing. Review their diffs before keeping the result.
+
+Raw Wix metadata in each project MDX file is retained as archival frontmatter under the `wix` key. The rendered site should use the normalized Astro fields and checked-in local assets. Moving that archival metadata out of MDX can be considered later as a dedicated content migration, but it is intentionally not part of routine editing.
 
 ## Cloudflare Pages Deployment
 
@@ -146,6 +125,6 @@ These scripts rebuild checked-in content from the original Wix CSV exports. They
 
 - `src/pages/robots.txt.ts` serves the robots file dynamically.
 - `src/pages/404.astro` handles the not-found page.
-- Generated content and copied assets are intentionally checked in so the site builds without rerunning the import pipeline.
+- Generated migration output and copied assets are intentionally checked in so the site builds without rerunning the legacy Wix pipeline.
 - Visual snapshots are a QA guardrail for the Wix replacement. Review screenshot diffs before updating baselines, and update them only for intentional content or design changes.
-- The Wix importer and asset mapper can stay in `scripts/` for now as legacy tooling. Moving them to a dedicated `legacy/migration/` folder would be reasonable later, but it is not necessary for the current workflow.
+- The Wix importer and asset mapper live under `scripts/legacy-wix/` to make their migration-only role explicit.

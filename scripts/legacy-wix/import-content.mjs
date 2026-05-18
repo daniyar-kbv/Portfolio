@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * Generate project MDX and contact data from the Wix CSV export.
+ * Legacy migration script: generate project MDX and contact data from the Wix CSV export.
  *
- * Files under src/content/projects are generated and may be overwritten.
+ * Files under src/content/projects are generated and may be overwritten. Do not run for
+ * routine site edits; Astro MDX and checked-in assets are now the source of truth.
  */
 
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
@@ -11,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const repoRoot = path.resolve(__dirname, '..');
+const repoRoot = path.resolve(__dirname, '../..');
 const wixContentRoot = '/Users/daniyar.kbv/Documents/Work/Portfolio/Wix content';
 const wixDataDir = path.join(wixContentRoot, 'Data');
 const outDir = path.join(repoRoot, 'src/content/projects');

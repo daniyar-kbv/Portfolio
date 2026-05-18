@@ -389,6 +389,7 @@ async function main() {
       localThumbnail ||
       localScreenshots[0] ||
       undefined;
+    const showMediaBanner = bannerData.length > 0;
     const media = localMedia.length ? localMedia : undefined;
     const screenshots = localScreenshots.length ? localScreenshots : undefined;
     const rawCoverAlt =
@@ -417,6 +418,7 @@ async function main() {
       links: projectLinks,
       thumbnail,
       image,
+      showMediaBanner,
       media,
       screenshots,
       coverAlt,

@@ -34,6 +34,7 @@ const projects = defineCollection({
     ),
     thumbnail: z.string().optional(),
     image: z.string().optional(),
+    showMediaBanner: z.boolean(),
     media: z.array(z.string()).optional(),
     screenshots: z.array(z.string()).optional(),
     coverAlt: z.string().optional(),

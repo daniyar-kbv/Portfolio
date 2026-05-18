@@ -93,6 +93,8 @@ To add or edit a project, update the relevant file in `src/content/projects/*.md
 
 To update project images or other runtime assets, add or replace files under `public/assets/`. Use those paths from the MDX frontmatter or page components.
 
+Project pages render their fullscreen banner from the normalized `image` field when `showMediaBanner` is `true`. Keep archived Wix metadata under the `wix` key for reference only; runtime rendering should use the Astro frontmatter fields.
+
 If the asset manifest needs to be adjusted for normal site work, update `src/data/local-assets.json` deliberately alongside the files in `public/assets/`. The manifest is checked in because the app reads it at runtime.
 
 Safe to run routinely:

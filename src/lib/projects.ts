@@ -33,9 +33,7 @@ export function selectProjectCardImage(project: ProjectEntry): string | null {
 }
 
 export function selectProjectMediaBanner(project: ProjectEntry): string | null {
-  const banners = project.data.wix?.banners ?? [];
-
-  if (banners.length === 0) {
+  if (!project.data.showMediaBanner) {
     return null;
   }
 

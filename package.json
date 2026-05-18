@@ -7,6 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
     "assets:local": "node scripts/map-local-assets.mjs",
     "import:wix": "node scripts/import-wix-content.mjs",
     "content:refresh": "npm run assets:local && npm run import:wix"
@@ -14,6 +16,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^4.3.14",
     "@astrojs/tailwind": "^6.0.2",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^25.6.0",
     "astro": "^5.18.1",
     "autoprefixer": "^10.5.0",

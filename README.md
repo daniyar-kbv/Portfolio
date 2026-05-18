@@ -61,6 +61,18 @@ Build for production:
 npm run build
 ```
 
+Run visual regression checks against the production preview:
+
+```bash
+npm run test:visual
+```
+
+Update committed visual baselines only when the current rendered site is intentionally becoming the new source of truth:
+
+```bash
+npm run test:visual:update
+```
+
 Preview the production build locally:
 
 ```bash
@@ -85,3 +97,4 @@ Local assets are preferred over Wix media refs. The asset mapper copies matched 
 - `src/pages/robots.txt.ts` serves the robots file dynamically.
 - `src/pages/404.astro` handles the not-found page.
 - Generated content and copied assets are intentionally checked in so the site builds without rerunning the import pipeline.
+- Visual snapshots are a QA guardrail for the Wix replacement. Review screenshot diffs before updating baselines, and update them only for intentional content or design changes.

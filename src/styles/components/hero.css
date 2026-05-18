@@ -1,0 +1,53 @@
+.wix-home-hero {
+  position: relative;
+  width: 100%;
+  height: 222px;
+  background: var(--color-background);
+  border-top: 3px solid var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.wix-home-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wix-home-banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background:
+    linear-gradient(180deg, rgba(30, 42, 56, 0.2), rgba(30, 42, 56, 0.45)),
+    linear-gradient(90deg, rgba(30, 42, 56, 0.2), rgba(30, 42, 56, 0.2));
+}
+
+.wix-home-banner-copy {
+  max-width: 980px;
+  text-align: center;
+}
+
+.wix-home-banner-name {
+  font-size: 48px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wix-home-banner-role,
+.wix-home-banner-label {
+  margin-top: 8px;
+  font-size: 34px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wix-home-banner-label {
+  font-size: 28px;
+}

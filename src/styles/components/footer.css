@@ -1,0 +1,70 @@
+.wix-footer-shell {
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.wix-footer-inner {
+  width: 100%;
+  max-width: var(--site-width);
+  margin-inline: auto;
+  padding: 18px 0 24px;
+}
+
+.wix-footer-inner.wix-contact-home-inner {
+  padding-block: 76px 314px;
+}
+
+.wix-contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.wix-contact-tile {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.wix-contact-tile:hover,
+.wix-contact-tile:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-elevated);
+}
+
+.wix-contact-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex: none;
+}
+
+.wix-contact-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.wix-contact-title {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+}
+
+.wix-contact-value {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}

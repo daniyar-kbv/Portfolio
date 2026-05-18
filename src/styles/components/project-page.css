@@ -1,0 +1,320 @@
+.wix-project-shell {
+  width: 100%;
+  background: var(--color-background);
+}
+
+.wix-project-inner {
+  width: 100%;
+  max-width: var(--site-width);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.wix-project-hero {
+  position: relative;
+  width: 100%;
+  height: 156px;
+  background: var(--color-background);
+  border-top: 3px solid var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.wix-project-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wix-project-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(30, 42, 56, 0.22), rgba(30, 42, 56, 0.48)),
+    linear-gradient(90deg, rgba(30, 42, 56, 0.18), rgba(30, 42, 56, 0.18));
+}
+
+.wix-project-hero-copy {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.wix-project-title {
+  max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 40px;
+  line-height: 1.18;
+  font-weight: 700;
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wix-project-subtitle,
+.wix-project-description {
+  max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--color-text);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wix-project-subtitle {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.wix-project-description {
+  margin-top: 6px;
+  color: var(--color-text-muted);
+}
+
+.wix-project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.wix-project-media-stage {
+  aspect-ratio: 980 / 366;
+}
+
+.wix-project-banner {
+  width: 100%;
+  aspect-ratio: 980 / 366;
+  object-fit: cover;
+}
+
+.wix-project-media-section {
+  padding-block: 0 20px;
+}
+
+.wix-project-banner-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  text-align: inherit;
+  cursor: zoom-in;
+}
+
+.wix-project-banner-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.wix-project-banner-expand-icon {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(12, 18, 25, 0.72);
+  color: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  opacity: 0.88;
+  transition:
+    background-color 150ms ease,
+    opacity 150ms ease,
+    transform 150ms ease;
+}
+
+.wix-project-banner-button:hover .wix-project-banner-expand-icon,
+.wix-project-banner-button:focus-visible .wix-project-banner-expand-icon {
+  background: rgba(12, 18, 25, 0.88);
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.wix-project-gallery-image {
+  width: 100%;
+  aspect-ratio: 2637 / 984;
+  object-fit: contain;
+}
+
+.wix-project-header {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 14px 0 0;
+}
+
+.wix-project-links-wrap {
+  width: 100%;
+  max-width: 650px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.wix-project-links-section {
+  padding-block: 14px 22px;
+}
+
+.wix-project-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 650px;
+  margin-inline: auto;
+  justify-content: center;
+}
+
+.wix-project-links-grid--compact {
+  grid-template-columns: repeat(2, minmax(0, 140px));
+}
+
+.wix-project-links-grid--project {
+  grid-template-columns: repeat(2, minmax(0, 132px));
+}
+
+.wix-project-links-heading {
+  margin-bottom: 14px;
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.wix-project-link-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.wix-project-link-tile:hover,
+.wix-project-link-tile:focus-visible {
+  background: transparent;
+}
+
+.wix-project-link-tile-label {
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.wix-project-link-tile .relative {
+  width: 96px;
+  height: 96px;
+}
+
+.wix-project-link-tile img {
+  width: 96px;
+  height: 96px;
+}
+
+.wix-media-strip {
+  display: grid;
+  gap: 12px;
+}
+
+.wix-media-strip-image {
+  width: 100%;
+  min-height: 160px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+}
+
+.wix-media-strip-image--primary {
+  aspect-ratio: 980 / 366;
+}
+
+@media (min-width: 700px) {
+  .wix-media-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .wix-media-strip-image--primary {
+    grid-column: 1 / -1;
+  }
+}
+
+.wix-project-media {
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-elevated);
+}
+
+.wix-project-body {
+  padding: 14px 16px 16px;
+}
+
+.wix-project-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wix-project-link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-elevated);
+  color: var(--color-text);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.wix-project-link-chip:hover,
+.wix-project-link-chip:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-elevated-2);
+  color: var(--color-accent-hover);
+}
+
+.wix-project-link-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex: none;
+}
+
+.wix-project-link-text {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wix-project-excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}

@@ -1,0 +1,54 @@
+.wix-promo-bar {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.wix-promo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  min-height: var(--promo-height);
+  margin-inline: auto;
+  padding: 4px 16px;
+}
+
+.wix-promo-copy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1d1d1f;
+}
+
+.wix-promo-wix {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.wix-promo-separator {
+  font-size: 12px;
+  line-height: 1;
+  color: #1d1d1f;
+}
+
+.wix-promo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 0 18px;
+  border: 1px solid #116dff;
+  border-radius: 999px;
+  background: transparent;
+  color: #116dff;
+  font-size: 12px;
+  line-height: 1;
+}

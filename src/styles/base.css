@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: var(--color-background);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  letter-spacing: 0;
+  min-width: var(--site-width);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: var(--site-width);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sf-pro-display);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
+.surface {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+}
+
+.surface-strong {
+  background: var(--color-elevated-2);
+  border: 1px solid var(--color-border-strong);
+}
+
+.wix-divider {
+  height: var(--divider-thin);
+  background: var(--color-border);
+}
+
+.wix-divider-accent {
+  height: var(--divider-accent);
+  background: var(--color-accent);
+}
+
+.wix-text-0 {
+  font-size: var(--wix-font-0);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-2 {
+  font-size: var(--wix-font-2);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-3 {
+  font-size: var(--wix-font-3);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-4 {
+  font-size: var(--wix-font-4);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-5 {
+  font-size: var(--wix-font-5);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-6 {
+  font-size: var(--wix-font-6);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.wix-text-7 {
+  font-size: var(--wix-font-7);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.wix-text-8 {
+  font-size: var(--wix-font-8);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.wix-text-9 {
+  font-size: var(--wix-font-9);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.wix-link {
+  color: var(--color-accent);
+  transition: color 150ms ease;
+}
+
+.wix-link:hover {
+  color: var(--color-accent-hover);
+}
+
+.wix-button {
+  border-radius: var(--radius-sm);
+}

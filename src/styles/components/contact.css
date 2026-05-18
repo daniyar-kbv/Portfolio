@@ -1,0 +1,61 @@
+.wix-contact-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+
+.wix-contact-hero-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 132px;
+  padding: 0 12px;
+}
+
+.wix-contact-hero-label {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text);
+}
+
+.wix-contact-main {
+  max-width: 650px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.wix-contact-heading {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.wix-contact-name {
+  margin: 18px 0 0;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.wix-contact-location {
+  margin: 2px 0 0;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.wix-contact-section--compact .wix-footer-inner.wix-contact-home-inner {
+  padding-block: 28px 166px;
+}
+
+.wix-contact-section--compact .wix-contact-hero-links {
+  margin-top: 22px;
+}

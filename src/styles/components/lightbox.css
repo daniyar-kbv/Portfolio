@@ -1,0 +1,115 @@
+html.wix-lightbox-open,
+html.wix-lightbox-open body {
+  overflow: hidden;
+}
+
+.wix-project-lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(10, 16, 22, 0.96);
+  color: #fff;
+  overflow: hidden;
+}
+
+.wix-project-lightbox[open] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.wix-project-lightbox::backdrop {
+  background: rgba(5, 9, 14, 0.78);
+  backdrop-filter: blur(10px);
+}
+
+.wix-project-lightbox-toolbar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}
+
+.wix-project-lightbox-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(18, 27, 37, 0.82);
+  color: #fff;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.wix-project-lightbox-control:hover,
+.wix-project-lightbox-control:focus-visible {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(31, 44, 58, 0.94);
+  transform: translateY(-1px);
+}
+
+.wix-project-lightbox-control:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.wix-project-lightbox-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 72px 48px 48px;
+  overflow: hidden;
+  cursor: zoom-in;
+  touch-action: none;
+}
+
+.wix-project-lightbox-stage.is-zoomed {
+  cursor: grab;
+}
+
+.wix-project-lightbox-stage.is-dragging {
+  cursor: grabbing;
+}
+
+.wix-project-lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  transform: translate3d(0, 0, 0) scale(1);
+  transform-origin: center;
+  transition: transform 160ms ease;
+  will-change: transform;
+}
+
+.wix-project-lightbox-stage.is-dragging .wix-project-lightbox-image {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wix-parallax-image {
+    inset: 0;
+    height: 100%;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .wix-project-banner-expand-icon,
+  .wix-project-lightbox-control,
+  .wix-project-lightbox-image {
+    transition: none;
+  }
+}

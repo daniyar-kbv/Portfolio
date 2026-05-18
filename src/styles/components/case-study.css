@@ -1,0 +1,120 @@
+.wix-case-study {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wix-case-study-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.wix-case-study-card {
+  padding: 16px 18px 18px;
+  border-radius: 10px;
+  background: var(--color-elevated);
+}
+
+.wix-case-study h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.wix-case-study h3 {
+  margin: 10px 0 4px;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.wix-case-study p {
+  margin: 5px 0;
+  max-width: none;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.wix-case-study ul,
+.wix-case-study ol {
+  margin: 5px 0 5px 18px;
+  padding-left: 0;
+  max-width: none;
+  color: var(--color-text-muted);
+}
+
+.wix-case-study ul {
+  list-style: disc;
+}
+
+.wix-case-study ol {
+  list-style: decimal;
+}
+
+.wix-case-study li {
+  margin: 3px 0;
+  padding-left: 2px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.wix-case-study li::marker {
+  color: var(--color-accent);
+}
+
+.wix-case-study strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.wix-case-study a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.wix-case-study a:hover,
+.wix-case-study a:focus-visible {
+  color: var(--color-accent-hover);
+}
+
+.wix-case-study hr {
+  margin: 24px 0;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.wix-case-study blockquote {
+  margin: 16px 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-text-muted);
+}
+
+.wix-case-study pre {
+  overflow-x: auto;
+  margin: 16px 0;
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--color-elevated);
+  color: var(--color-text);
+}
+
+.wix-case-study code {
+  padding: 0.1em 0.25em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-elevated) 88%, transparent);
+  color: var(--color-text);
+}
+
+.wix-case-study pre code {
+  padding: 0;
+  background: transparent;
+}

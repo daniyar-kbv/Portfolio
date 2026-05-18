@@ -1,0 +1,60 @@
+:root {
+  --site-width: 980px;
+  --promo-height: 50px;
+  --header-height: 64px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --divider-thin: 1px;
+  --divider-accent: 3px;
+  --color-background: #1e2a38;
+  --color-elevated: #29394c;
+  --color-elevated-alt: #243242;
+  --color-elevated-alt-2: #212e3d;
+  --color-elevated-2: #344a63;
+  --color-accent: #ff6600;
+  --color-accent-hover: #ff7a1a;
+  --color-nav-active: #0d63d1;
+  --color-nav-text: #c5c5c7;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.72);
+  --color-text-soft: rgba(255, 255, 255, 0.56);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+  --font-sf-pro-display:
+    'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+    Arial, sans-serif;
+  --wix-font-0: 100px;
+  --wix-font-2: 80px;
+  --wix-font-3: 60px;
+  --wix-font-4: 40px;
+  --wix-font-5: 24px;
+  --wix-font-6: 18px;
+  --wix-font-7: 16px;
+  --wix-font-8: 14px;
+  --wix-font-9: 12px;
+  color-scheme: dark;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

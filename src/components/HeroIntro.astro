@@ -9,8 +9,8 @@ interface Props {
 const { name, role, label, bannerImage } = Astro.props as Props;
 ---
 
-<section class="wix-home-hero">
-  <div class="relative h-full overflow-hidden">
+<section class="wix-home-hero" data-parallax-hero data-parallax-travel="44">
+  <div class="wix-parallax-frame">
     <img
       src={bannerImage}
       alt="Portfolio banner"
@@ -19,7 +19,8 @@ const { name, role, label, bannerImage } = Astro.props as Props;
       loading="eager"
       decoding="async"
       fetchpriority="high"
-      class="wix-home-banner"
+      class="wix-home-banner wix-parallax-image"
+      data-parallax-image
     />
     <div class="wix-home-banner-overlay">
       <div class="wix-home-banner-copy">

@@ -9,7 +9,7 @@ The checked-in Astro project is now the source of truth for the live site.
 - Case-study content lives in `src/content/projects/*.mdx`
 - Shared contact data lives in `src/data/site.ts`
 - The copied runtime assets live in `public/assets/`
-- The asset lookup manifest lives in `src/data/local-assets.json`
+- The legacy asset lookup manifest lives in `src/data/local-assets.json`
 
 The Wix CSV and asset export workflow is retained only as legacy migration tooling. Use it only when you intentionally need to rebuild checked-in content from the original Wix export, not for routine site edits.
 
@@ -25,7 +25,7 @@ The Wix CSV and asset export workflow is retained only as legacy migration tooli
 ## Project Structure
 
 - Case-study content: `src/content/projects/*.mdx`
-- Local asset manifest: `src/data/local-assets.json`
+- Legacy local asset manifest: `src/data/local-assets.json`
 - Local asset copies: `public/assets/`
 - Site metadata and contact data: `src/data/site.ts`
 - Legacy Wix migration scripts: `scripts/legacy-wix/`
@@ -101,7 +101,7 @@ To update project images or other runtime assets, add or replace files under `pu
 
 Project pages render their fullscreen banner from the normalized `image` field when `showMediaBanner` is `true`. Keep archived Wix metadata under the `wix` key for reference only; runtime rendering should use the Astro frontmatter fields.
 
-If the asset manifest needs to be adjusted for normal site work, update `src/data/local-assets.json` deliberately alongside the files in `public/assets/`. The manifest is checked in because the app reads it at runtime.
+The live app reads explicit asset paths from Astro content and `src/data/site.ts`. `src/data/local-assets.json` is retained for the legacy Wix migration scripts only.
 
 Safe to run routinely:
 

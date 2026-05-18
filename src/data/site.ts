@@ -1,5 +1,3 @@
-import localAssets from './local-assets.json';
-
 export const projectCategories = ['Flagship', 'Production', 'Backend', 'Legacy', 'AI'] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
@@ -20,9 +18,9 @@ export const siteContact = {
 };
 
 export const siteAssets = {
-  heroImage: localAssets.shared.hero[0],
-  seoImage: localAssets.shared.seo[0] ?? localAssets.shared.hero[0],
-  logo: localAssets.shared.logo[0] ?? '/assets/logo/logo-horizontal.png',
+  heroImage: '/assets/hero/banner-apps.jpg',
+  seoImage: '/assets/seo/seo-image.png',
+  logo: '/assets/logo/logo-horizontal.png',
   icons: {
     contact: '/assets/icons/contact-icon.png',
     linkedin: '/assets/icons/linkedin-icon.png',

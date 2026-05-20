@@ -35,61 +35,148 @@ export const homepageMeta = {
 };
 
 export const homepageHero = {
-  name: siteOwner.portfolioName,
-  role: siteOwner.role,
-  label: 'Portfolio',
+  label: 'Dan Kurman · Senior iOS specialist',
+  headline: 'I help founders ship, stabilize, and modernize iOS apps.',
+  supporting:
+    'I turn inherited codebases, payment flows, release blockers, and product ideas into reliable App Store-ready software.',
+  secondaryIdentity: siteOwner.displayName,
   bannerAlt: 'Portfolio banner',
+  ctas: [
+    {
+      label: 'Contact me',
+      href: '#contact',
+      variant: 'primary' as const,
+    },
+    {
+      label: 'View selected work',
+      href: '#selected-work',
+      variant: 'secondary' as const,
+    },
+  ],
 };
 
-export const homepageSections: Array<{
+export const homepagePositioning = {
+  role: siteOwner.role,
+  summary:
+    'Senior iOS developer for product teams and founders who need production-quality app work, launch support, and calm technical judgment.',
+};
+
+export const homepageProofPoints = [
+  {
+    label: 'App Store launches',
+    description: 'From TestFlight cleanup to App Review-ready releases.',
+  },
+  {
+    label: 'StoreKit 2 & entitlements',
+    description: 'Purchases, restores, legacy unlocks, and monetization fixes.',
+  },
+  {
+    label: 'Stripe / Apple Pay checkout',
+    description: 'PaymentSheet, server-side intents, address flows, and order recovery.',
+  },
+  {
+    label: 'Legacy codebase stabilization',
+    description: 'Inherited apps, crash fixes, release blockers, and safer architecture.',
+  },
+];
+
+export const serviceAreas = [
+  {
+    title: 'Launch readiness & stabilization',
+    description:
+      'Audit the risky parts, fix blockers, add monitoring, and get the app ready for real users.',
+  },
+  {
+    title: 'iOS app builds from design to release',
+    description:
+      'Implement polished SwiftUI/UIKit experiences, wire APIs, handle QA, and support App Store submission.',
+  },
+  {
+    title: 'Payments, StoreKit & entitlements',
+    description:
+      'Build and debug IAP, subscriptions, legacy access, Stripe checkout, Apple Pay, and restore flows.',
+  },
+  {
+    title: 'Legacy app rescue & architecture cleanup',
+    description:
+      'Untangle older projects, reduce fragile logic, remove dead flows, and make future changes safer.',
+  },
+  {
+    title: 'Mobile + backend integration',
+    description:
+      'Connect apps to Firebase, PHP, Django, APIs, notifications, analytics, and release infrastructure.',
+  },
+];
+
+export const featuredProofSlugs = [
+  'blackville',
+  'mountainxperience-tracking',
+  'kalyan-studio-apps',
+] as const;
+
+export const compactProofSlugs = [
+  'end-of-day',
+  'stop-overthinking',
+  'snowdon-summit-weather',
+] as const;
+
+export const projectOutcomeCopy: Record<string, string> = {
+  blackville:
+    'Stabilized an inherited marketplace, rebuilt checkout around Stripe and Apple Pay, and helped get real orders flowing after App Store launch.',
+  'mountainxperience-tracking':
+    'Built iOS, Android, and Firebase safety tracking with background location, late-back alerts, OS map layers, and release support.',
+  'kalyan-studio-apps':
+    'Migrated a multi-target audio app suite to StoreKit 2 and restored lifetime access for legacy paid users after a freemium transition.',
+  'end-of-day':
+    'Built a focused SwiftUI journaling app from Figma to App Store with StoreKit 2 unlock and release support.',
+  'stop-overthinking':
+    'Implemented a private SwiftUI journaling app with SwiftData, CloudKit sync, StoreKit 2, and App Store-ready polish.',
+  'snowdon-summit-weather':
+    'Rebuilt a broken weather utility as native iOS and Android apps with cleaner release-ready user flows.',
+};
+
+export const archiveSections: Array<{
   id: string;
   category: ProjectCategory;
   title: string;
-  navLabel: string;
+  description: string;
 }> = [
-  {
-    id: 'recent',
-    category: 'Recent',
-    title: 'Recent Client Work',
-    navLabel: 'Recent Client Work',
-  },
   {
     id: 'flagship',
     category: 'Flagship',
     title: 'Flagship Engineering',
-    navLabel: 'Flagship Engineering',
+    description: 'Deeper iOS systems, SDK work, and product-engineering builds.',
   },
   {
     id: 'production',
     category: 'Production',
     title: 'iOS Apps & Product Builds',
-    navLabel: 'iOS Apps',
+    description: 'Production apps shipped across commerce, productivity, creator tools, and wellness.',
   },
   {
     id: 'backend',
     category: 'Backend',
     title: 'Platforms & Backend',
-    navLabel: 'Platforms & backend',
+    description: 'Mobile-connected backend systems, marketplaces, and automation tools.',
   },
   {
     id: 'legacy',
     category: 'Legacy',
     title: 'Legacy & Libraries',
-    navLabel: 'Legacy & Libraries',
+    description: 'Older app work and reusable libraries that show breadth over time.',
   },
   {
     id: 'ai',
     category: 'AI',
     title: 'AI & ML Experiments',
-    navLabel: 'AI & ML',
+    description: 'Computer vision and NLP experiments from applied ML coursework and prototypes.',
   },
 ];
 
 export const headerNavItems = [
-  ...homepageSections.map((section) => ({
-    label: section.navLabel,
-    href: `/#${section.id}`,
-  })),
+  { label: 'Services', href: '/#services' },
+  { label: 'Selected work', href: '/#selected-work' },
+  { label: 'Projects', href: '/#projects' },
   { label: 'Contact', href: '/#contact' },
 ];
 

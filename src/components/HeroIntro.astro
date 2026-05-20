@@ -1,17 +1,29 @@
 ---
+import ButtonLink from './ButtonLink.astro';
+
 interface Props {
-  name: string;
-  role: string;
   label: string;
+  headline: string;
+  supporting: string;
+  secondaryIdentity: string;
+  ctas: Array<{
+    label: string;
+    href: string;
+    variant: 'primary' | 'secondary' | 'ghost';
+  }>;
   bannerImage: string;
   bannerAlt?: string;
 }
 
-const { name, role, label, bannerImage, bannerAlt = 'Portfolio banner' } = Astro.props as Props;
-
-const parentheticalNameMatch = name.match(/^(.+?)\s+\((.+)\)$/);
-const primaryName = parentheticalNameMatch?.[2] ?? name;
-const secondaryName = parentheticalNameMatch?.[1] ?? null;
+const {
+  label,
+  headline,
+  supporting,
+  secondaryIdentity,
+  ctas,
+  bannerImage,
+  bannerAlt = 'Portfolio banner',
+} = Astro.props as Props;
 ---
 
 <section class="wix-home-hero" data-parallax-hero data-parallax-travel="72">
@@ -30,9 +42,16 @@ const secondaryName = parentheticalNameMatch?.[1] ?? null;
     <div class="wix-home-banner-overlay">
       <div class="wix-home-banner-copy">
         <p class="wix-home-banner-label">{label}</p>
-        <h1 class="wix-home-banner-name">{primaryName}</h1>
-        {secondaryName && <p class="wix-home-banner-secondary-name">{secondaryName}</p>}
-        <p class="wix-home-banner-role">{role}</p>
+        <h1 class="wix-home-banner-name">{headline}</h1>
+        <p class="wix-home-banner-secondary-name">{secondaryIdentity}</p>
+        <p class="wix-home-banner-role">{supporting}</p>
+        <div class="wix-home-hero-actions" aria-label="Primary actions">
+          {ctas.map((cta) => (
+            <ButtonLink href={cta.href} variant={cta.variant} class="wix-home-hero-action">
+              {cta.label}
+            </ButtonLink>
+          ))}
+        </div>
       </div>
     </div>
   </div>

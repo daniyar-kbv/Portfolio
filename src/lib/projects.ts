@@ -8,6 +8,19 @@ export interface ProjectSectionLike {
   category: ProjectCategory;
 }
 
+export function indexProjectsBySlug(projects: readonly ProjectEntry[]): Map<string, ProjectEntry> {
+  return new Map(projects.map((project) => [project.slug, project]));
+}
+
+export function selectProjectsBySlug(
+  projectsBySlug: ReadonlyMap<string, ProjectEntry>,
+  slugs: readonly string[],
+): ProjectEntry[] {
+  return slugs
+    .map((slug) => projectsBySlug.get(slug))
+    .filter((project): project is ProjectEntry => Boolean(project));
+}
+
 export function sortProjectsByPriority(projects: readonly ProjectEntry[]): ProjectEntry[] {
   return [...projects].sort((a, b) => a.data.priority - b.data.priority);
 }
@@ -20,6 +33,22 @@ export function groupProjectsByHomepageSection(
 
   for (const section of sections) {
     grouped[section.category] = projects.filter((project) => project.data.category === section.category);
+  }
+
+  return grouped as Record<ProjectCategory, ProjectEntry[]>;
+}
+
+export function groupProjectsByArchiveSection(
+  projects: readonly ProjectEntry[],
+  sections: readonly ProjectSectionLike[],
+  excludedSlugs: ReadonlySet<string>,
+): Record<ProjectCategory, ProjectEntry[]> {
+  const grouped = {} as Partial<Record<ProjectCategory, ProjectEntry[]>>;
+
+  for (const section of sections) {
+    grouped[section.category] = projects.filter(
+      (project) => project.data.category === section.category && !excludedSlugs.has(project.slug),
+    );
   }
 
   return grouped as Record<ProjectCategory, ProjectEntry[]>;

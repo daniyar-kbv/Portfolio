@@ -150,15 +150,15 @@ test('mobile navigation opens, closes with Escape, and closes after link selecti
     'true',
   );
   await expect(navigation).toHaveClass(/is-open/);
-  const flagshipLink = navigation.getByRole('link', { name: 'Flagship' });
-  await expect(flagshipLink).toBeVisible();
+  const servicesLink = navigation.getByRole('link', { name: 'Services' });
+  await expect(servicesLink).toBeVisible();
 
   const navBox = await navigation.boundingBox();
-  const flagshipBox = await flagshipLink.boundingBox();
-  if (!navBox || !flagshipBox) {
-    throw new Error('Expected mobile navigation and Flagship link to have visible bounds.');
+  const servicesBox = await servicesLink.boundingBox();
+  if (!navBox || !servicesBox) {
+    throw new Error('Expected mobile navigation and Services link to have visible bounds.');
   }
-  expect(flagshipBox.x - navBox.x).toBeLessThan(24);
+  expect(servicesBox.x - navBox.x).toBeLessThan(24);
 
   await page.keyboard.press('Escape');
   await expect(toggle).toHaveAttribute('aria-expanded', 'false');

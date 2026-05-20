@@ -1,0 +1,24 @@
+---
+interface ProofPoint {
+  label: string;
+  description: string;
+}
+
+interface Props {
+  proofPoints: ProofPoint[];
+}
+
+const { proofPoints } = Astro.props as Props;
+---
+
+<section class="wix-home-proof-strip" aria-label="Selected proof points">
+  <div class="wix-section-divider"></div>
+  <div class="wix-home-proof-inner">
+    {proofPoints.map((proofPoint) => (
+      <div class="wix-home-proof-item">
+        <p class="wix-home-proof-label">{proofPoint.label}</p>
+        <p class="wix-home-proof-description">{proofPoint.description}</p>
+      </div>
+    ))}
+  </div>
+</section>

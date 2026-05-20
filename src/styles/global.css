@@ -2,6 +2,7 @@
 @import './base.css';
 @import './layout.css';
 @import './components/hero.css';
+@import './components/homepage.css';
 @import './components/project-card.css';
 @import './components/project-page.css';
 @import './components/lightbox.css';

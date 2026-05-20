@@ -1,0 +1,30 @@
+---
+import SectionShell from './SectionShell.astro';
+
+interface ServiceArea {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  services: ServiceArea[];
+}
+
+const { services } = Astro.props as Props;
+---
+
+<SectionShell
+  id="services"
+  title="How I can help"
+  description="Focused support for founders and teams who need senior iOS execution without losing product judgment."
+  class="wix-home-services-section"
+>
+  <div class="wix-home-service-grid">
+    {services.map((service) => (
+      <article class="wix-home-service-card">
+        <h3>{service.title}</h3>
+        <p>{service.description}</p>
+      </article>
+    ))}
+  </div>
+</SectionShell>

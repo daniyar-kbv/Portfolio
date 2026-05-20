@@ -1,0 +1,65 @@
+---
+import SectionShell from './SectionShell.astro';
+import type { ProjectEntry } from '../lib/projects';
+import { selectProjectCardImage } from '../lib/projects';
+
+interface Props {
+  featuredProjects: ProjectEntry[];
+  compactProjects: ProjectEntry[];
+  outcomes: Record<string, string>;
+}
+
+const { featuredProjects, compactProjects, outcomes } = Astro.props as Props;
+
+function getOutcome(project: ProjectEntry) {
+  return outcomes[project.slug] ?? project.data.description;
+}
+---
+
+<SectionShell
+  id="selected-work"
+  title="Selected client outcomes"
+  description="Recent work chosen for the kinds of client problems it proves: launch risk, payments, entitlement logic, mobile/backend delivery, and App Store readiness."
+  class="wix-home-selected-work-section"
+>
+  <div class="wix-home-featured-proof-grid">
+    {featuredProjects.map((project) => {
+      const image = selectProjectCardImage(project);
+
+      return (
+        <article class="wix-home-featured-proof-card">
+          <a href={`/projects/${project.slug}`} class="wix-home-featured-proof-link" aria-label={`Open ${project.data.title} project`}>
+            {image && (
+              <div class="wix-home-featured-proof-media">
+                <img
+                  src={image}
+                  alt={project.data.coverAlt || `${project.data.title} preview`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            <div class="wix-home-featured-proof-copy">
+              <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
+              <h3>{project.data.title}</h3>
+              <p class="wix-home-featured-proof-outcome">{getOutcome(project)}</p>
+              {project.data.status && <p class="wix-home-featured-proof-status">{project.data.status}</p>}
+              <span class="wix-home-text-cta">View case study <span aria-hidden="true">›</span></span>
+            </div>
+          </a>
+        </article>
+      );
+    })}
+  </div>
+
+  <div class="wix-home-compact-proof-grid" aria-label="Additional recent proof">
+    {compactProjects.map((project) => (
+      <a href={`/projects/${project.slug}`} class="wix-home-compact-proof-card">
+        <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
+        <h3>{project.data.title}</h3>
+        <p>{getOutcome(project)}</p>
+        <span class="wix-home-text-cta">View project <span aria-hidden="true">›</span></span>
+      </a>
+    ))}
+  </div>
+</SectionShell>

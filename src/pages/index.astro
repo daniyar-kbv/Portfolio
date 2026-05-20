@@ -2,13 +2,35 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroIntro from '../components/HeroIntro.astro';
-import ProjectSection from '../components/ProjectSection.astro';
+import HomeProofStrip from '../components/HomeProofStrip.astro';
+import HomeServices from '../components/HomeServices.astro';
+import SelectedProofSection from '../components/SelectedProofSection.astro';
+import ProjectArchiveSection from '../components/ProjectArchiveSection.astro';
 import ContactSection from '../components/ContactSection.astro';
-import { homepageHero, homepageMeta, homepageSections, siteAssets } from '../data/site';
-import { groupProjectsByHomepageSection, sortProjectsByPriority } from '../lib/projects';
+import {
+  archiveSections,
+  compactProofSlugs,
+  featuredProofSlugs,
+  homepageHero,
+  homepageMeta,
+  homepageProofPoints,
+  projectOutcomeCopy,
+  serviceAreas,
+  siteAssets,
+} from '../data/site';
+import {
+  groupProjectsByArchiveSection,
+  indexProjectsBySlug,
+  selectProjectsBySlug,
+  sortProjectsByPriority,
+} from '../lib/projects';
 
 const projects = sortProjectsByPriority(await getCollection('projects'));
-const projectsByCategory = groupProjectsByHomepageSection(projects, homepageSections);
+const projectsBySlug = indexProjectsBySlug(projects);
+const featuredProofProjects = selectProjectsBySlug(projectsBySlug, featuredProofSlugs);
+const compactProofProjects = selectProjectsBySlug(projectsBySlug, compactProofSlugs);
+const selectedProofSlugs = new Set([...featuredProofSlugs, ...compactProofSlugs]);
+const archiveProjectsByCategory = groupProjectsByArchiveSection(projects, archiveSections, selectedProofSlugs);
 ---
 
 <BaseLayout
@@ -22,21 +44,23 @@ const projectsByCategory = groupProjectsByHomepageSection(projects, homepageSect
 >
   <main id="content">
     <HeroIntro
-      name={homepageHero.name}
-      role={homepageHero.role}
       label={homepageHero.label}
+      headline={homepageHero.headline}
+      supporting={homepageHero.supporting}
+      secondaryIdentity={homepageHero.secondaryIdentity}
+      ctas={homepageHero.ctas}
       bannerImage={siteAssets.heroImage}
       bannerAlt={homepageHero.bannerAlt}
     />
 
-    {homepageSections.map((section) => (
-      <ProjectSection
-        id={section.id}
-        category={section.category}
-        title={section.title}
-        projects={projectsByCategory[section.category] ?? []}
-      />
-    ))}
+    <HomeProofStrip proofPoints={homepageProofPoints} />
+    <HomeServices services={serviceAreas} />
+    <SelectedProofSection
+      featuredProjects={featuredProofProjects}
+      compactProjects={compactProofProjects}
+      outcomes={projectOutcomeCopy}
+    />
+    <ProjectArchiveSection sections={archiveSections} projectsByCategory={archiveProjectsByCategory} />
 
     <ContactSection />
   </main>

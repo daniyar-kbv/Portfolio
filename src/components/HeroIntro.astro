@@ -8,9 +8,13 @@ interface Props {
 }
 
 const { name, role, label, bannerImage, bannerAlt = 'Portfolio banner' } = Astro.props as Props;
+
+const parentheticalNameMatch = name.match(/^(.+?)\s+\((.+)\)$/);
+const primaryName = parentheticalNameMatch?.[2] ?? name;
+const secondaryName = parentheticalNameMatch?.[1] ?? null;
 ---
 
-<section class="wix-home-hero" data-parallax-hero data-parallax-travel="44">
+<section class="wix-home-hero" data-parallax-hero data-parallax-travel="72">
   <div class="wix-parallax-frame">
     <img
       src={bannerImage}
@@ -25,9 +29,10 @@ const { name, role, label, bannerImage, bannerAlt = 'Portfolio banner' } = Astro
     />
     <div class="wix-home-banner-overlay">
       <div class="wix-home-banner-copy">
-        <p class="wix-home-banner-name">{name}</p>
-        <p class="wix-home-banner-role">{role}</p>
         <p class="wix-home-banner-label">{label}</p>
+        <h1 class="wix-home-banner-name">{primaryName}</h1>
+        {secondaryName && <p class="wix-home-banner-secondary-name">{secondaryName}</p>}
+        <p class="wix-home-banner-role">{role}</p>
       </div>
     </div>
   </div>

@@ -1,31 +1,38 @@
 .wix-project-card {
   overflow: hidden;
-  border: 0;
-  border-radius: 24px;
-  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--color-elevated) 92%, transparent);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
 }
 
 .wix-project-card-link {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 18px;
-  min-height: 304px;
-  padding: 20px;
+  grid-template-columns: minmax(88px, 108px) minmax(0, 1fr);
+  gap: clamp(15px, 2.4vw, 20px);
+  min-height: 252px;
+  padding: clamp(16px, 2.6vw, 20px);
 }
 
 .wix-project-card-link--text-only {
   display: block;
-  min-height: 184px;
-  padding: 22px 24px 24px;
+  min-height: 158px;
+  padding: 20px 22px 22px;
 }
 
 .wix-project-card-media {
-  width: 120px;
-  height: 241px;
+  width: 100%;
+  max-width: 108px;
+  height: auto;
+  aspect-ratio: 120 / 241;
   align-self: center;
   overflow: hidden;
-  border-radius: 10px;
-  background: var(--color-elevated);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-background) 36%, transparent);
 }
 
 .wix-project-card-image {
@@ -59,10 +66,11 @@
 .wix-project-card-title {
   display: block;
   margin-top: 0;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.35;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-accent);
+  text-wrap: balance;
 }
 
 .wix-project-card-copy {
@@ -85,25 +93,26 @@
 .wix-project-card-description {
   display: -webkit-box;
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 9px;
   font-size: 14px;
   line-height: 1.55;
   color: var(--color-text-muted);
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
 }
 
 .wix-project-card-tech {
-  display: block;
-  margin-top: 10px;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 9px;
   font-size: 12px;
   line-height: 1.4;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--color-text-soft);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .wix-project-card-button {
@@ -111,29 +120,71 @@
   align-self: flex-start;
   align-items: center;
   justify-content: center;
-  min-width: 128px;
-  min-height: 40px;
-  margin-top: auto;
-  padding: 0 24px;
-  border-radius: 999px;
-  background: var(--color-accent);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
+  gap: 4px;
+  min-height: 34px;
+  margin-top: 12px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
 }
 
 .wix-project-card-link:not(.wix-project-card-link--text-only) .wix-project-card-button {
-  align-self: stretch;
+  align-self: flex-start;
 }
 
 .wix-project-card:hover,
 .wix-project-card:focus-within {
   border-color: var(--color-border-strong);
+  background: color-mix(in srgb, var(--color-elevated-2) 74%, var(--color-elevated));
+  transform: translateY(-2px);
 }
 
 .wix-project-card-link--text-only:hover,
 .wix-project-card-link--text-only:focus-visible {
   background: color-mix(in srgb, var(--color-elevated-alt-2) 94%, transparent);
+}
+
+@media (max-width: 520px) {
+  .wix-project-card-link {
+    grid-template-columns: 88px minmax(0, 1fr);
+    min-height: 216px;
+    gap: 14px;
+  }
+
+  .wix-project-card-media {
+    max-width: 88px;
+  }
+
+  .wix-project-card-title {
+    font-size: 18px;
+  }
+
+  .wix-project-card-kicker,
+  .wix-project-card-description {
+    font-size: 13px;
+  }
+
+  .wix-project-card-description {
+    -webkit-line-clamp: 3;
+  }
+
+  .wix-project-card-button {
+    min-height: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wix-project-card {
+    transition: none;
+  }
+
+  .wix-project-card:hover,
+  .wix-project-card:focus-within {
+    transform: none;
+  }
 }

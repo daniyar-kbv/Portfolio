@@ -19,6 +19,9 @@ This file captures project knowledge and decisions that should survive across ch
 - Role line: `Senior iOS Developer / Technical PM`.
 - Location/contact data live in `src/data/site.ts`.
 - Tone: senior iOS/product engineer with production delivery, architecture cleanup, launch readiness, and client communication strength.
+- The homepage is intentionally client-first for Upwork, LinkedIn, and resume traffic while staying platform-neutral. It should persuade founders/clients first, with recruiter usefulness as a secondary benefit.
+- Homepage positioning is: `I help founders ship, stabilize, and modernize iOS apps.`
+- Main conversion path is Contact. Do not add Upwork-specific language, rates, availability claims, testimonials, or unverified metrics unless the user explicitly approves them.
 
 ## Design Direction
 
@@ -27,7 +30,7 @@ This file captures project knowledge and decisions that should survive across ch
 - Navigation inspiration: Apple public/global nav patterns such as Apple Store, Apple Developer, and App Store Connect.
 - Section icons are intentional and should remain prominent. They are meant to look like iOS app icons and were made with Icon Composer.
 - The `Recent Client Work` section uses the briefcase-style Icon Composer asset at `public/assets/icons/recent-client-work-icon.png`.
-- Keep the site as the actual portfolio experience, not a marketing landing page.
+- Keep the site as a portfolio credibility page: homepage for positioning/services/proof, project pages for deeper evidence.
 - Avoid heavy ornamental design. Prefer compact, restrained hierarchy, fluid responsive layouts, subtle dividers, and Apple-like text CTAs.
 - Avoid visible Wix branding/promo UI on the live portfolio.
 - Keep the project content, routes, and schema stable unless the user explicitly asks for content/schema migration.
@@ -43,6 +46,24 @@ This file captures project knowledge and decisions that should survive across ch
   - Escape close,
   - close on link click,
   - left-aligned full-width menu rows.
+- Header nav is conversion-focused: `Services`, `Selected work`, `Projects`, `Contact`.
+- Homepage structure is:
+  - hero positioning,
+  - proof strip,
+  - `How I can help` services,
+  - selected client outcomes,
+  - `More selected work` archive,
+  - contact.
+- Service areas are problem-based, not technology-category based:
+  - launch readiness and stabilization,
+  - iOS app builds from design to release,
+  - payments, StoreKit, and entitlements,
+  - legacy app rescue and architecture cleanup,
+  - mobile and backend integration.
+- Selected homepage proof is intentionally curated:
+  - large cards: `blackville`, `mountainxperience-tracking`, `kalyan-studio-apps`;
+  - compact cards: `end-of-day`, `stop-overthinking`, `snowdon-summit-weather`.
+- The lower project archive should exclude those selected recent projects and group the remaining non-recent work by archive category.
 - The homepage hero keeps `/assets/hero/banner-apps.jpg`.
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.
@@ -60,9 +81,8 @@ This file captures project knowledge and decisions that should survive across ch
   - `Backend`
   - `Legacy`
   - `AI`
-- Homepage section nav labels and ordering also live in `src/data/site.ts`.
-- Current homepage taxonomy is:
-  - `Recent Client Work`
+- Homepage positioning, proof points, services, selected-proof slugs, project-outcome copy, and archive sections live in `src/data/site.ts`.
+- Current archive taxonomy is:
   - `Flagship Engineering`
   - `iOS Apps & Product Builds`
   - `Platforms & Backend`

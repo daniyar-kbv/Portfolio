@@ -223,6 +223,8 @@ Important checks already covered:
   - `feat: `
   - `refactor: `
   - `fix: `
+- Automatically update this file when new durable knowledge appears, including source-of-truth decisions, design/product decisions, asset/content conventions, project/client technical summaries, and testing/workflow expectations.
+- Do not wait for the user to explicitly ask for documentation updates when knowledge should carry into future chats.
 - If adding workflow rules or future-session guidance, update `AGENTS.md`.
 - Keep commits focused and split by intent.
 - Do not commit credentials, local signing files, private keys, or client passwords.

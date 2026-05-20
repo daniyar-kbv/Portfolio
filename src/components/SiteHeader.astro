@@ -27,7 +27,19 @@ const { navItems = headerNavItems } = Astro.props as Props;
       />
     </a>
 
-    <nav aria-label="Primary" class="wix-nav">
+    <button
+      type="button"
+      class="wix-nav-toggle"
+      aria-label="Open navigation menu"
+      aria-controls="site-primary-navigation"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      <span class="wix-nav-toggle-line"></span>
+      <span class="wix-nav-toggle-line"></span>
+    </button>
+
+    <nav id="site-primary-navigation" aria-label="Primary" class="wix-nav" data-nav-menu>
       {navItems.map((item) => (
         <a
           href={item.href}
@@ -40,3 +52,41 @@ const { navItems = headerNavItems } = Astro.props as Props;
 
   </div>
 </header>
+
+<script>
+  const navToggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const navMenu = document.querySelector<HTMLElement>('[data-nav-menu]');
+  const desktopQuery = window.matchMedia('(min-width: 901px)');
+
+  const setNavOpen = (isOpen: boolean) => {
+    if (!navToggle || !navMenu) return;
+
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    navMenu.classList.toggle('is-open', isOpen);
+    document.documentElement.classList.toggle('wix-nav-open', isOpen);
+  };
+
+  navToggle?.addEventListener('click', () => {
+    setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  navMenu?.addEventListener('click', (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      setNavOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navToggle?.getAttribute('aria-expanded') === 'true') {
+      setNavOpen(false);
+      navToggle.focus();
+    }
+  });
+
+  desktopQuery.addEventListener('change', (event) => {
+    if (event.matches) {
+      setNavOpen(false);
+    }
+  });
+</script>

@@ -1,0 +1,101 @@
+---
+{
+  "title": "Stop Overthinking",
+  "slug": "stop-overthinking",
+  "subtitle": "SwiftUI · SwiftData",
+  "description": "Guided journaling app with SwiftData, private CloudKit sync, StoreKit 2, and App Store release support.",
+  "category": "Recent",
+  "typeTags": [
+    "iOS App",
+    "Journaling"
+  ],
+  "techTags": [
+    "SwiftUI",
+    "SwiftData",
+    "CloudKit",
+    "StoreKit 2"
+  ],
+  "status": "Shipped to the App Store",
+  "featured": true,
+  "priority": 5,
+  "role": "Solo SwiftUI implementer, SwiftData/CloudKit owner, StoreKit and release support",
+  "stack": [
+    "Swift",
+    "SwiftUI",
+    "SwiftData",
+    "CloudKit",
+    "StoreKit 2",
+    "UserDefaults",
+    "AppStorage",
+    "NavigationStack",
+    "ModelContainer",
+    "TestFlight",
+    "CloudKit Console",
+    "App Store Connect"
+  ],
+  "links": [
+    {
+      "type": "App Store",
+      "label": "App Store",
+      "url": "https://apps.apple.com/ca/app/think-clearly-journal/id6759045766"
+    }
+  ],
+  "thumbnail": "/assets/projects/stop-overthinking/thumbnail.png",
+  "image": "/assets/projects/stop-overthinking/banner.png",
+  "showMediaBanner": true,
+  "screenshots": [
+    "/assets/projects/stop-overthinking/screenshots/screenshot-1.png",
+    "/assets/projects/stop-overthinking/screenshots/screenshot-2.png",
+    "/assets/projects/stop-overthinking/screenshots/screenshot-3.png",
+    "/assets/projects/stop-overthinking/screenshots/screenshot-4.png",
+    "/assets/projects/stop-overthinking/screenshots/screenshot-5.png"
+  ],
+  "coverAlt": "Stop Overthinking app screens",
+  "highlights": [
+    "Built a second SwiftUI journaling app from Figma through App Store release",
+    "Implemented SwiftData writing history with private CloudKit sync",
+    "Resolved iCloud entitlement and CloudKit production schema issues"
+  ]
+}
+---
+
+## Quick facts
+
+- Role: Solo SwiftUI implementer, SwiftData/CloudKit owner, StoreKit and release support
+- Timeframe: February-April 2026
+- Platform: iOS 17
+- Status: Public App Store app
+- Team: Solo implementation from client-provided Figma, QA notes, and release workflow
+
+## Context
+
+Stop Overthinking followed the same calm-app pattern as End of Day, but with a richer product model: multiple writing intentions, saved writings, private iCloud sync, a larger prompt library, and a revised free-to-premium path.
+
+The app needed to match the Figma spec closely while staying private, simple, and native.
+
+## What I built
+
+- Onboarding, Home, Writing, History, Settings, Storage, Paywall, About, and Legal flows.
+- Four intention-based writing modes plus premium-only Surprise Me.
+- Five fixed free prompts, then a paywall trigger and free prompt rotation.
+- Randomized premium prompts from a larger bundled prompt library.
+- SwiftData-backed saved writings with private CloudKit sync.
+- iCloud status handling for storage/settings UI.
+- StoreKit 2 one-time purchase and restore flow.
+- Rating prompt logic, dialogs, toasts, cross-promotion, TestFlight validation, and App Store release support.
+
+## Hard parts
+
+The largest risk was CloudKit production readiness. Development behavior and TestFlight behavior can diverge if the production CloudKit schema is not deployed correctly or if entitlements point at the wrong container.
+
+I diagnosed signing, entitlement, and CloudKit schema issues from Xcode/TestFlight behavior, guided production schema deployment, and verified writing restore behavior through TestFlight.
+
+## Outcome
+
+The full app shipped publicly on the App Store. The contract closed with a 5.0 review, and the client expressed interest in future iterations and related products.
+
+## Technical notes
+
+The app uses SwiftUI feature folders, shared services, models, a design system, a manual `AppComponents` composition root, a custom router, SwiftData for writings, private CloudKit sync, and StoreKit 2 for monetization.
+
+Unlike End of Day, this app keeps writing history. That made persistence, deletion, restore behavior, and iCloud availability first-class product flows rather than implementation details.

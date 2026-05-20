@@ -1,0 +1,94 @@
+---
+{
+  "title": "Snowdon Summit Weather",
+  "slug": "snowdon-summit-weather",
+  "subtitle": "SwiftUI + Android · Weather Utility",
+  "description": "Native iOS replacement and Android companion for a Snowdon weather and mountain-safety utility.",
+  "category": "Recent",
+  "typeTags": [
+    "iOS App",
+    "Android App"
+  ],
+  "techTags": [
+    "SwiftUI",
+    "WKWebView",
+    "Kotlin",
+    "Compose"
+  ],
+  "status": "iOS accepted and live; Android delivered",
+  "featured": true,
+  "priority": 6,
+  "role": "Solo iOS and Android implementer, App Store submission support, UI polish owner",
+  "stack": [
+    "Swift",
+    "SwiftUI",
+    "WKWebView",
+    "UIKit bridge",
+    "Kotlin",
+    "Jetpack Compose",
+    "Android WebView",
+    "Material 3",
+    "StateFlow",
+    "SharedFlow",
+    "App Store Connect",
+    "Android Studio"
+  ],
+  "links": [
+    {
+      "type": "App Store",
+      "label": "App Store",
+      "url": "https://apps.apple.com/ca/app/snowdon-summit-weather/id1571354480"
+    }
+  ],
+  "thumbnail": "/assets/projects/snowdon-summit-weather/thumbnail.png",
+  "image": "/assets/projects/snowdon-summit-weather/banner.png",
+  "showMediaBanner": true,
+  "screenshots": [
+    "/assets/projects/snowdon-summit-weather/screenshots/screenshot-1.png",
+    "/assets/projects/snowdon-summit-weather/screenshots/screenshot-2.png"
+  ],
+  "coverAlt": "Snowdon Summit Weather app screens",
+  "highlights": [
+    "Replaced a broken API-dependent iOS app with a native SwiftUI/WKWebView utility",
+    "Resolved App Store validation issues and supported a successful live update",
+    "Built a matching native Android version in Kotlin and Jetpack Compose"
+  ]
+}
+---
+
+## Quick facts
+
+- Role: Solo iOS and Android implementer, App Store submission support, UI polish owner
+- Timeframe: January-February 2026
+- Platform: iOS and Android
+- Status: iOS accepted and live; Android delivered for client-side testing/submission
+- Team: Solo mobile developer with client-provided artwork, links, and publishing support
+
+## Context
+
+The existing Snowdon Summit Weather app had stopped working because its original API was discontinued. The client needed a fast replacement that preserved the App Store presence and gave Snowdon/Yr Wyddfa visitors access to trusted weather, safety, webcam, rescue, and guided activity resources.
+
+The simplest technical path was not a new weather backend. It was a native app shell around curated, trusted resources, with enough native behavior to feel useful and pass App Store review.
+
+## What I built
+
+- Native SwiftUI app with a fixed branded header, slide-out menu, and full-width embedded browser.
+- WKWebView bridge with navigation delegates, new-window handling, browser controls, share support, and in-app/external link routing.
+- Supplied branding, icons, Poppins typography, bilingual title, and green visual system.
+- App Store validation fixes for orientation support and icon transparency.
+- Post-launch additions: Snowdon Webcam, rescue donation CTA, activity gallery, and menu refinements.
+- Separate native Android implementation using Kotlin, Jetpack Compose, Material 3, and Android WebView.
+
+## App Store nuance
+
+A pure link wrapper can be risky for App Store review, so I shaped the replacement as a branded mountain-information browser with native navigation, controls, share behavior, and curated Snowdon/Yr Wyddfa utility content.
+
+That kept the project fast and maintainable while giving the app enough native product surface to be more than a broken API replacement.
+
+## Outcome
+
+The iOS replacement was accepted by Apple and went live. The client later requested post-launch enhancements and a matching Android version, which I delivered as a separate native project.
+
+## Technical notes
+
+The Android version intentionally stayed native instead of using a cross-platform rewrite. It mirrors the iOS content and behavior with Compose UI, a browser view model, `StateFlow`, one-shot `SharedFlow` events, and custom WebView clients for navigation and target-window behavior.

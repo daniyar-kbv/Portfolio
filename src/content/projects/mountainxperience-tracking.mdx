@@ -1,0 +1,103 @@
+---
+{
+  "title": "MountainXperience Tracking",
+  "slug": "mountainxperience-tracking",
+  "subtitle": "iOS + Android · Safety Tracking",
+  "description": "Cross-platform mountain safety tracking with Firebase automation, background location, and OS maps.",
+  "category": "Recent",
+  "typeTags": [
+    "iOS App",
+    "Android App"
+  ],
+  "techTags": [
+    "SwiftUI",
+    "Kotlin",
+    "Firebase",
+    "Maps"
+  ],
+  "status": "V1 implemented across iOS, Android, and Firebase backend",
+  "featured": true,
+  "priority": 2,
+  "role": "Solo mobile/backend implementer for iOS, Android, Firebase, maps, and release support",
+  "stack": [
+    "SwiftUI",
+    "Kotlin",
+    "Jetpack Compose",
+    "Firebase Auth",
+    "Firestore",
+    "Cloud Functions",
+    "FCM",
+    "Crashlytics",
+    "Google Maps",
+    "Ordnance Survey tiles",
+    "Background location"
+  ],
+  "links": [
+    {
+      "type": "Website",
+      "label": "Google Play",
+      "url": "https://play.google.com/store/apps/details?id=uk.mountainxperience.tracking"
+    }
+  ],
+  "thumbnail": "/assets/projects/mountainxperience-tracking/thumbnail.png",
+  "image": "/assets/projects/mountainxperience-tracking/banner.png",
+  "showMediaBanner": true,
+  "screenshots": [
+    "/assets/projects/mountainxperience-tracking/screenshots/screenshot-1.png",
+    "/assets/projects/mountainxperience-tracking/screenshots/screenshot-2.png",
+    "/assets/projects/mountainxperience-tracking/screenshots/screenshot-3.png",
+    "/assets/projects/mountainxperience-tracking/screenshots/screenshot-4.png",
+    "/assets/projects/mountainxperience-tracking/screenshots/screenshot-5.png"
+  ],
+  "coverAlt": "MountainXperience Tracking app screens",
+  "highlights": [
+    "Built native iOS, Android, and Firebase backend tracking flows",
+    "Implemented late-back escalation with push notifications and urgent emails",
+    "Made Ordnance Survey Leisure mapping work inside Google Maps through tile reprojection and caching"
+  ]
+}
+---
+
+## Quick facts
+
+- Role: Solo iOS, Android, Firebase, maps, and release implementer
+- Timeframe: March-May 2026
+- Platform: iOS, Android, Firebase Cloud Functions
+- Status: V1 implemented; follow-on client mode intentionally paused
+- Team: Solo implementer working from client feedback
+
+## Context
+
+MountainXperience needed an operational safety app for mountain guides. Guides needed to start tracking sessions, share last known location, set late-back times, and alert the team if someone did not return on time.
+
+This was not just a location demo. It had to behave well with real mobile lifecycle limits, background permissions, outdoor map needs, and operational safeguards around accidental sessions and API cost.
+
+## What I built
+
+- Native SwiftUI iOS guide-tracking app.
+- Native Kotlin/Jetpack Compose Android app with foreground location service behavior.
+- Firebase Auth, Firestore session state, Cloud Functions automation, and FCM/APNs notifications.
+- Late-back scheduler that marks overdue sessions and sends push notifications plus urgent emails.
+- Session lifecycle for active, late, stopped, and recently stopped guide states.
+- Google Maps, Google Satellite, and Ordnance Survey Leisure map layers.
+- SOS/location screens with OS grid references.
+- UK geofencing, no-active-tracking map state, and cost-control behavior.
+- Crashlytics-assisted Android debugging and release support.
+
+## Hard technical part
+
+The Ordnance Survey Leisure layer could not be plugged into Google Maps as a normal overlay because OS Leisure tiles use British National Grid while Google Maps uses Web Mercator.
+
+I implemented a workaround that fetches OS ZXY tiles, caches them, reprojects British National Grid raster data into the Web Mercator map world, and falls back to stale or parent tiles when needed. Android also needed high-density tile rendering fixes so OS maps did not look blurry on modern screens.
+
+## Outcome
+
+V1 shipped across iOS, Android, and Firebase backend with background tracking, late-back escalation, operational map layers, grid references, and cost-control safeguards.
+
+Client testing feedback was positive, and the client approved using the apps in the portfolio. The follow-on public client mode was documented and then paused so the operational guide tool could stay focused and maintainable.
+
+## Technical notes
+
+The mobile apps own session start/stop, local validation, permission handling, and position uploads. Cloud Functions own late-back promotion, notification fan-out, stopped-session audit timestamps, and urgent email alerts.
+
+Position updates were throttled to a five-minute cadence, with platform-specific resilience for background behavior, relaunch, and permission warnings.

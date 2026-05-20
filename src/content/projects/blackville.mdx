@@ -1,0 +1,102 @@
+---
+{
+  "title": "Blackville",
+  "slug": "blackville",
+  "subtitle": "iOS Marketplace · Stripe",
+  "description": "Launch stabilization and checkout rebuild for a Black-owned brand marketplace.",
+  "category": "Recent",
+  "typeTags": [
+    "iOS App",
+    "Marketplace"
+  ],
+  "techTags": [
+    "Swift",
+    "UIKit",
+    "Stripe",
+    "PHP"
+  ],
+  "status": "Shipped to the App Store with real orders flowing",
+  "featured": true,
+  "priority": 1,
+  "role": "Launch-readiness reviewer, iOS/backend engineer, Stripe and Apple Pay implementer",
+  "stack": [
+    "Swift",
+    "UIKit",
+    "Alamofire",
+    "Stripe PaymentSheet",
+    "Apple Pay",
+    "Firebase Crashlytics",
+    "CodeIgniter",
+    "PHP",
+    "MySQL"
+  ],
+  "links": [
+    {
+      "type": "App Store",
+      "label": "App Store",
+      "url": "https://apps.apple.com/ca/app/blackville/id6742988875"
+    }
+  ],
+  "thumbnail": "/assets/projects/blackville/thumbnail.png",
+  "image": "/assets/projects/blackville/banner.png",
+  "showMediaBanner": true,
+  "screenshots": [
+    "/assets/projects/blackville/screenshots/screenshot-1.png",
+    "/assets/projects/blackville/screenshots/screenshot-2.png",
+    "/assets/projects/blackville/screenshots/screenshot-3.png",
+    "/assets/projects/blackville/screenshots/screenshot-4.png",
+    "/assets/projects/blackville/screenshots/screenshot-5.png",
+    "/assets/projects/blackville/screenshots/screenshot-6.png"
+  ],
+  "coverAlt": "Blackville marketplace app screens",
+  "highlights": [
+    "Fixed launch blockers across an inherited iOS app and PHP backend",
+    "Rebuilt checkout around server-side Stripe PaymentIntents, PaymentSheet, and Apple Pay",
+    "Added Crashlytics, order emails, address capture, and safer fulfillment flows"
+  ]
+}
+---
+
+## Quick facts
+
+- Role: Launch-readiness reviewer, iOS/backend engineer, Stripe and Apple Pay implementer
+- Timeframe: February-April 2026
+- Platform: Native iOS app plus PHP/CodeIgniter backend
+- Status: Public App Store launch completed
+- Team: Solo launch engineer working directly with the founder
+
+## Context
+
+Blackville is a marketplace for discovering and shopping from Black-owned brands. The product already had an iOS app and backend, but it was not quite ready for real users: category navigation could crash, empty states stayed stuck, unfinished features were still visible, product images were unreliable, and checkout needed a stronger foundation.
+
+I started with a launch-readiness review, then moved into implementation support so the app could go through TestFlight, App Store review, and early customer orders with less risk.
+
+## What I changed
+
+- Fixed category and state issues that were causing crashes and stale "Product not found" behavior.
+- Hid not-ready beta features so testers saw a focused shopping experience.
+- Integrated Firebase Crashlytics for post-launch crash visibility.
+- Improved product and store image handling, including products with variants but missing variant-level images.
+- Added Sign in with Apple in a tightly coupled legacy auth flow.
+- Rebuilt checkout around backend-created Stripe PaymentIntents, Stripe PaymentSheet, Apple Pay, and server-side payment verification.
+- Added delivery address selection, order confirmation, order emails, and fulfillment-ready shipping data.
+- Improved My Orders and order detail navigation.
+- Documented local schema and deployment workflows so backend changes became more reproducible.
+
+## Security response
+
+During active development, I discovered a malicious Xcode build phase that had been injected before I joined the project. I removed the injected build phase and settings, explained the risk to the client, recommended rotating project secrets, revoked older TestFlight builds as a precaution, and continued release work from a clean build process.
+
+Specific private indicators and payload details are intentionally excluded here.
+
+## Outcome
+
+Blackville reached public App Store release, real orders started coming through the platform, Apple Pay was confirmed working, and the order flow became much more reliable for both customers and fulfillment.
+
+The work turned a fragile inherited marketplace into a safer launchable product with monitoring, a stronger checkout architecture, cleaner order data, and a better path for future iteration.
+
+## Technical notes
+
+The iOS app mixed older storyboard MVC with newer programmatic UIKit and MVVM. The backend was a CodeIgniter/PHP application with buyer APIs, vendor/admin panels, MySQL data models, Stripe integration, and email delivery through PHPMailer.
+
+The most important architecture change was moving payment authority to the server. The backend now creates and verifies PaymentIntents instead of trusting client-submitted totals, which reduces payment/order mismatch risk and gives webhook recovery a path if the app fails after payment succeeds.

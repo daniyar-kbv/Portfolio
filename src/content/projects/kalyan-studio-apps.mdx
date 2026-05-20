@@ -1,0 +1,114 @@
+---
+{
+  "title": "Kalyan Studio Apps",
+  "slug": "kalyan-studio-apps",
+  "subtitle": "StoreKit 2 · Audio Apps",
+  "description": "StoreKit 2 modernization and legacy paid-user restoration for a multi-target iOS music app suite.",
+  "category": "Recent",
+  "typeTags": [
+    "iOS Apps",
+    "StoreKit 2"
+  ],
+  "techTags": [
+    "Objective-C",
+    "Swift",
+    "StoreKit 2",
+    "Audio"
+  ],
+  "status": "Production StoreKit 2 migration shipped",
+  "featured": true,
+  "priority": 3,
+  "role": "StoreKit 2 migration owner, Objective-C project cleanup, analytics implementer",
+  "stack": [
+    "Objective-C",
+    "Objective-C++",
+    "C++",
+    "Swift",
+    "UIKit",
+    "StoreKit 2",
+    "TheAmazingAudioEngine",
+    "Firebase Analytics",
+    "CocoaPods",
+    "Keychain",
+    "Property lists"
+  ],
+  "links": [
+    {
+      "type": "App Store",
+      "label": "Lehra Studio Ultimate",
+      "url": "https://apps.apple.com/ca/app/lehra-studio-ultimate/id1217673000"
+    },
+    {
+      "type": "App Store",
+      "label": "Lehra Studio Pro",
+      "url": "https://apps.apple.com/ca/app/lehra-studio-pro/id966821444"
+    },
+    {
+      "type": "App Store",
+      "label": "Lehra Studio Sarangi",
+      "url": "https://apps.apple.com/ca/app/lehra-studio-sarangi/id1399458303"
+    },
+    {
+      "type": "App Store",
+      "label": "Kathak Studio",
+      "url": "https://apps.apple.com/ca/app/kathak-studio/id1255034306"
+    }
+  ],
+  "thumbnail": "/assets/projects/kalyan-studio-apps/thumbnail.png",
+  "image": "/assets/projects/kalyan-studio-apps/banner.png",
+  "showMediaBanner": true,
+  "screenshots": [
+    "/assets/projects/kalyan-studio-apps/screenshots/screenshot-1.png",
+    "/assets/projects/kalyan-studio-apps/screenshots/screenshot-2.png",
+    "/assets/projects/kalyan-studio-apps/screenshots/screenshot-3.png"
+  ],
+  "coverAlt": "Kalyan Studio Apps screens",
+  "highlights": [
+    "Migrated a legacy multi-target app suite to StoreKit 2",
+    "Restored lifetime access for paid-app legacy users after a freemium migration",
+    "Added Firebase Analytics and plist-driven catalog color metadata"
+  ]
+}
+---
+
+## Quick facts
+
+- Role: StoreKit 2 migration owner, entitlement/debugging owner, project cleanup support
+- Timeframe: February-April 2026
+- Platform: Multi-target native iOS app suite
+- Status: Production StoreKit 2 migration shipped
+- Team: Solo modernization engineer working with client testing feedback
+
+## Context
+
+Kalyan Studio Apps is a native iOS music practice suite for Indian classical music and dance accompaniment. One shared Objective-C/Objective-C++ project powers multiple app variants, each with its own bundle ID, catalog, audio library, product ID, resources, and App Store identity.
+
+The main issue was a paid-app-to-freemium migration. Lehra Studio Pro had previously been a paid app, then moved to a free app with a lifetime non-consumable IAP. Around 2,500 legacy paid-app users still deserved lifetime access, but normal Restore Purchases could not restore an app purchase because it only restores IAP transactions.
+
+## What I changed
+
+- Added a Swift StoreKit 2 bridge and exposed it to the existing Objective-C IAP manager.
+- Centralized product loading, purchase, restore, entitlement checks, transaction updates, and error handling.
+- Implemented legacy paid-app ownership detection using StoreKit 2 app transaction data and original purchase dates.
+- Preserved normal non-consumable IAP behavior for new users.
+- Added entitlement caching, explicit states, duplicate-operation prevention, and safer alert timing.
+- Improved retry/error mapping for transient App Store, Apple Media Services, and network failures.
+- Reorganized a large Xcode project into clearer source, audio, target, config, third-party, and test areas.
+- Added Firebase Analytics for instrument, taal, raag, playback start/stop, BPM, duration, and stop reason.
+- Added plist-driven color metadata so catalog entries can be highlighted without hardcoded UI changes.
+
+## Audio and catalog work
+
+The apps generate lehra/accompaniment playback. The audio engine combines WAV playback, tanpura looping, tempo control, pitch shifting, BPM-specific slices, beat/cycle synchronization, metronome accents, and level analysis.
+
+The catalog is data-driven: instrument to taal to raag to file metadata. I helped make audio-library replacement and catalog expansion more repeatable by documenting how file names, Xcode references, and plist values need to stay aligned.
+
+## Outcome
+
+The StoreKit 2 migration shipped, legacy paid-user restoration worked for contacted production users, and the purchase/restore layer became more reliable and maintainable.
+
+The client also gained clearer project organization, safer audio update guidance, catalog color support, and analytics visibility into which musical content users actually practice with.
+
+## Technical notes
+
+The key product nuance was that legacy app ownership and IAP ownership are not the same entitlement source. The implementation keeps those paths separate: StoreKit 2 current entitlements cover the non-consumable IAP, while AppTransaction original purchase data covers users who bought the paid app before the freemium switch.

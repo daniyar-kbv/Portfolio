@@ -1,0 +1,97 @@
+---
+{
+  "title": "End of Day",
+  "slug": "end-of-day",
+  "subtitle": "SwiftUI · Journaling",
+  "description": "Minimal SwiftUI journaling app built from Figma to App Store with StoreKit 2 unlock.",
+  "category": "Recent",
+  "typeTags": [
+    "iOS App",
+    "Journaling"
+  ],
+  "techTags": [
+    "SwiftUI",
+    "StoreKit 2",
+    "Lottie",
+    "UserDefaults"
+  ],
+  "status": "Shipped to the App Store with production monetization fix delivered",
+  "featured": true,
+  "priority": 4,
+  "role": "Solo iOS developer, StoreKit/release support, QA and fix owner",
+  "stack": [
+    "Swift",
+    "SwiftUI",
+    "StoreKit 2",
+    "Swift Observation",
+    "Combine",
+    "NavigationStack",
+    "Lottie SPM",
+    "UserDefaults",
+    "AppStorage",
+    "TestFlight",
+    "App Store Connect"
+  ],
+  "links": [
+    {
+      "type": "App Store",
+      "label": "App Store",
+      "url": "https://apps.apple.com/ca/app/sleep-journal-clear-your-mind/id6757959755"
+    }
+  ],
+  "thumbnail": "/assets/projects/end-of-day/thumbnail.png",
+  "image": "/assets/projects/end-of-day/banner.png",
+  "showMediaBanner": true,
+  "screenshots": [
+    "/assets/projects/end-of-day/screenshots/screenshot-1.png",
+    "/assets/projects/end-of-day/screenshots/screenshot-2.png",
+    "/assets/projects/end-of-day/screenshots/screenshot-3.png",
+    "/assets/projects/end-of-day/screenshots/screenshot-4.png",
+    "/assets/projects/end-of-day/screenshots/screenshot-5.png"
+  ],
+  "coverAlt": "End of Day app screens",
+  "highlights": [
+    "Built a focused SwiftUI journaling app from Figma to App Store",
+    "Implemented StoreKit 2 one-time unlock and privacy-first local persistence",
+    "Fixed a production day-4 paywall issue after release"
+  ]
+}
+---
+
+## Quick facts
+
+- Role: Solo iOS developer, StoreKit/release support, QA and fix owner
+- Timeframe: January-February 2026
+- Platform: iOS 17+
+- Status: Public App Store app
+- Team: Solo implementation from client-provided Figma and QA notes
+
+## Context
+
+End of Day is a small journaling app built around a quiet nightly writing ritual. The client wanted the app implemented from Figma without scope creep: no accounts, no backend, no cloud sync, no long-term journal history, and no heavy dependencies.
+
+The goal was a calm, precise v1 with a local-only privacy model, a short free trial experience, and a one-time StoreKit 2 unlock.
+
+## What I built
+
+- Onboarding, daily writing flow, settings, legal/about links, feedback, and review actions.
+- Daily prompt-pair logic with a product-specific 4:00 AM day boundary.
+- First-three-days free behavior and premium prompt rotation.
+- StoreKit 2 non-consumable purchase and restore flow.
+- Local persistence for onboarding, prompt history, premium cache, current-day state, rating state, and app behavior.
+- Lottie onboarding animation integration through Swift Package Manager.
+- TestFlight-ready builds, App Store support, privacy manifest updates, and final handoff.
+
+## Architecture
+
+The app uses a compact SwiftUI architecture with a composition root, custom router, feature view models, reusable design components, StoreKit service, and local persistence. MVVM was chosen over heavier Clean Architecture because the product was intentionally small and closed in scope.
+
+## Outcome
+
+The full v1 scope shipped to the App Store across three approved milestones. After release, I diagnosed and fixed a production monetization issue where the day-4 paywall did not appear after a pre-launch optimization.
+
+The client approved portfolio use and proposed a second similar journaling app using End of Day as the base.
+
+## Technical notes
+
+The most product-specific detail was the custom day boundary. A journaling session after midnight should still feel like the user's previous evening, so prompt state is anchored around a 4:00 AM rollover instead of the calendar day.

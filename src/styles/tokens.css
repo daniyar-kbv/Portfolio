@@ -1,9 +1,10 @@
 :root {
   --site-width: 980px;
-  --promo-height: 50px;
-  --header-height: 64px;
+  --site-padding: clamp(20px, 5vw, 32px);
+  --header-height: 52px;
   --radius-sm: 2px;
   --radius-md: 4px;
+  --radius-card: 8px;
   --divider-thin: 1px;
   --divider-accent: 3px;
   --color-background: #1e2a38;
@@ -20,6 +21,8 @@
   --color-text-soft: rgba(255, 255, 255, 0.56);
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-strong: rgba(255, 255, 255, 0.18);
+  --shadow-card: 0 16px 48px rgba(0, 0, 0, 0.14);
+  --shadow-icon: 0 12px 30px rgba(0, 0, 0, 0.2);
   --font-sf-pro-display:
     'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
     Arial, sans-serif;

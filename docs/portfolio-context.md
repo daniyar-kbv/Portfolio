@@ -26,6 +26,7 @@ This file captures project knowledge and decisions that should survive across ch
 - Desired visual style: iOS-ish, Apple-ish, Human Interface Guidelines inspired.
 - Navigation inspiration: Apple public/global nav patterns such as Apple Store, Apple Developer, and App Store Connect.
 - Section icons are intentional and should remain prominent. They are meant to look like iOS app icons and were made with Icon Composer.
+- The `Recent Client Work` section uses the briefcase-style Icon Composer asset at `public/assets/icons/recent-client-work-icon.png`.
 - Keep the site as the actual portfolio experience, not a marketing landing page.
 - Avoid heavy ornamental design. Prefer compact, restrained hierarchy, fluid responsive layouts, subtle dividers, and Apple-like text CTAs.
 - Avoid visible Wix branding/promo UI on the live portfolio.

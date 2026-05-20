@@ -257,6 +257,10 @@
   user-select: none;
 }
 
+.wix-project-gallery-video {
+  max-height: min(68vh, 720px);
+}
+
 .wix-project-header {
   width: 100%;
   max-width: 980px;

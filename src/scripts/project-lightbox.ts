@@ -8,8 +8,10 @@ for (const lightbox of lightboxes) {
   const zoomInButton = lightbox.querySelector<HTMLButtonElement>('[data-lightbox-zoom-in]');
   const zoomOutButton = lightbox.querySelector<HTMLButtonElement>('[data-lightbox-zoom-out]');
   const resetButton = lightbox.querySelector<HTMLButtonElement>('[data-lightbox-reset]');
+  const imageControls = Array.from(lightbox.querySelectorAll<HTMLButtonElement>('[data-lightbox-image-control]'));
   const stage = lightbox.querySelector<HTMLElement>('[data-lightbox-stage]');
   const image = lightbox.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  const video = lightbox.querySelector<HTMLVideoElement>('[data-lightbox-video]');
   const carousel = lightbox.querySelector<HTMLElement>('[data-banner-carousel]');
   const viewport = lightbox.querySelector<HTMLElement>('[data-banner-viewport]');
   const track = lightbox.querySelector<HTMLElement>('[data-banner-track]');
@@ -25,19 +27,21 @@ for (const lightbox of lightboxes) {
     !zoomOutButton ||
     !resetButton ||
     !stage ||
-    !image
+    !image ||
+    !video
   ) {
     continue;
   }
 
   const slides = openButtons.map((button) => {
-    const slideImage = button.querySelector<HTMLImageElement>('[data-banner-image]');
+    const slideMedia = button.querySelector<HTMLImageElement | HTMLVideoElement>('[data-banner-media]');
 
     return {
       button,
-      image: slideImage,
-      src: slideImage?.getAttribute('src') ?? '',
-      alt: slideImage?.getAttribute('alt') ?? '',
+      media: slideMedia,
+      src: slideMedia?.getAttribute('src') ?? '',
+      alt: slideMedia instanceof HTMLImageElement ? (slideMedia.getAttribute('alt') ?? '') : button.getAttribute('aria-label') ?? '',
+      type: button.dataset.bannerType === 'video' ? 'video' : 'image',
     };
   });
 
@@ -63,8 +67,67 @@ for (const lightbox of lightboxes) {
 
   const hasMultipleSlides = slides.length > 1;
   const shouldAutoSwipe = hasMultipleSlides && carousel?.dataset.bannerAutoplay === 'true';
+  const shouldPlayMotion = () => !reducedMotionQuery.matches;
+
+  const playVideo = (target: HTMLVideoElement) => {
+    if (!shouldPlayMotion()) return;
+    target.play().catch(() => undefined);
+  };
+
+  const syncCarouselVideoPlayback = () => {
+    for (const [index, slide] of slides.entries()) {
+      if (!(slide.media instanceof HTMLVideoElement)) continue;
+
+      if (index === activeIndex) {
+        playVideo(slide.media);
+      } else {
+        slide.media.pause();
+      }
+    }
+  };
+
+  const syncLightboxMedia = () => {
+    const activeSlide = slides[activeIndex];
+    const isVideo = activeSlide?.type === 'video';
+
+    image.hidden = isVideo;
+    video.hidden = !isVideo;
+    stage.classList.toggle('is-video', isVideo);
+    imageControls.forEach((control) => {
+      control.hidden = isVideo;
+    });
+
+    if (isVideo) {
+      image.removeAttribute('src');
+      video.src = activeSlide.src;
+      video.setAttribute('aria-label', activeSlide.alt);
+      resetZoom();
+      if (dialog.open) {
+        playVideo(video);
+      } else {
+        video.pause();
+      }
+      return;
+    }
+
+    video.pause();
+    video.removeAttribute('src');
+
+    if (activeSlide?.src) {
+      image.src = activeSlide.src;
+    }
+
+    if (activeSlide?.alt) {
+      image.alt = activeSlide.alt;
+    }
+  };
 
   const updateTransform = () => {
+    if (image.hidden) {
+      stage.classList.remove('is-zoomed');
+      return;
+    }
+
     if (scale <= minScale) {
       offsetX = 0;
       offsetY = 0;
@@ -107,14 +170,8 @@ for (const lightbox of lightboxes) {
       dot.setAttribute('aria-current', String(index === activeIndex));
     });
 
-    const activeSlide = slides[activeIndex];
-    if (activeSlide?.src) {
-      image.src = activeSlide.src;
-    }
-
-    if (activeSlide?.alt) {
-      image.alt = activeSlide.alt;
-    }
+    syncLightboxMedia();
+    syncCarouselVideoPlayback();
   };
 
   const showPreviousBanner = () => {
@@ -156,6 +213,7 @@ for (const lightbox of lightboxes) {
   const openDialog = () => {
     resetZoom();
     stopAutoSwipe();
+    syncLightboxMedia();
     document.documentElement.classList.add('wix-lightbox-open');
 
     if (typeof dialog.showModal === 'function') {
@@ -257,18 +315,22 @@ for (const lightbox of lightboxes) {
 
   dialog.addEventListener('close', () => {
     document.documentElement.classList.remove('wix-lightbox-open');
+    video.pause();
     slides[activeIndex]?.button.focus();
     startAutoSwipe();
   });
 
   dialog.addEventListener('cancel', () => {
     document.documentElement.classList.remove('wix-lightbox-open');
+    video.pause();
     startAutoSwipe();
   });
 
   stage.addEventListener(
     'wheel',
     (event) => {
+      if (image.hidden) return;
+
       event.preventDefault();
       zoomBy(event.deltaY < 0 ? zoomStep : -zoomStep);
     },
@@ -276,6 +338,8 @@ for (const lightbox of lightboxes) {
   );
 
   stage.addEventListener('dblclick', () => {
+    if (image.hidden) return;
+
     if (scale > minScale) {
       resetZoom();
     } else {
@@ -285,6 +349,7 @@ for (const lightbox of lightboxes) {
   });
 
   stage.addEventListener('pointerdown', (event) => {
+    if (image.hidden) return;
     if (scale <= minScale) return;
 
     isDragging = true;
@@ -318,7 +383,23 @@ for (const lightbox of lightboxes) {
   stage.addEventListener('pointerup', stopDragging);
   stage.addEventListener('pointercancel', stopDragging);
 
-  reducedMotionQuery.addEventListener('change', restartAutoSwipe);
+  reducedMotionQuery.addEventListener('change', () => {
+    if (reducedMotionQuery.matches) {
+      video.pause();
+      for (const slide of slides) {
+        if (slide.media instanceof HTMLVideoElement) {
+          slide.media.pause();
+        }
+      }
+    } else {
+      syncCarouselVideoPlayback();
+      if (dialog.open && slides[activeIndex]?.type === 'video') {
+        playVideo(video);
+      }
+    }
+
+    restartAutoSwipe();
+  });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       stopAutoSwipe();

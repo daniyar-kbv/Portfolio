@@ -64,6 +64,10 @@ html.wix-lightbox-open body {
   outline-offset: 2px;
 }
 
+.wix-project-lightbox-control[hidden] {
+  display: none;
+}
+
 .wix-project-lightbox-stage {
   display: flex;
   align-items: center;
@@ -84,6 +88,11 @@ html.wix-lightbox-open body {
   cursor: grabbing;
 }
 
+.wix-project-lightbox-stage.is-video {
+  cursor: default;
+  touch-action: auto;
+}
+
 .wix-project-lightbox-image {
   max-width: 100%;
   max-height: 100%;
@@ -99,6 +108,12 @@ html.wix-lightbox-open body {
   transition: none;
 }
 
+.wix-project-lightbox-video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wix-parallax-image {
     inset: 0;
@@ -112,7 +127,8 @@ html.wix-lightbox-open body {
   .wix-project-banner-dot,
   .wix-project-banner-expand-icon,
   .wix-project-lightbox-control,
-  .wix-project-lightbox-image {
+  .wix-project-lightbox-image,
+  .wix-project-lightbox-video {
     transition: none;
   }
 }

@@ -12,16 +12,29 @@ const { title, banner = null, banners = [] } = Astro.props as Props;
 const bannerCandidates = banners.length > 0 ? banners : [banner];
 const renderBanners = bannerCandidates.filter((candidate): candidate is string => isRenderableMediaRef(candidate));
 const hasMultipleBanners = renderBanners.length > 1;
+const videoExtensions = ['.mp4', '.mov', '.webm', '.m4v'];
+
+function getMediaType(src: string) {
+  const cleanSrc = src.split(/[?#]/)[0].toLowerCase();
+
+  return videoExtensions.some((extension) => cleanSrc.endsWith(extension)) ? 'video' : 'image';
+}
 
 function getBannerLabel(src: string, index: number) {
   const lowerSrc = src.toLowerCase();
 
+  if (lowerSrc.includes('demo')) return 'demo video';
   if (lowerSrc.includes('mobile')) return 'mobile banner';
   if (lowerSrc.includes('web')) return 'web banner';
   if (lowerSrc.includes('telegram') || lowerSrc.includes('bot')) return 'Telegram bot banner';
 
   return `banner ${index + 1}`;
 }
+
+const firstBanner = renderBanners[0];
+const firstBannerType = firstBanner ? getMediaType(firstBanner) : 'image';
+const initialLightboxImage = renderBanners.find((renderBanner) => getMediaType(renderBanner) === 'image') ?? '';
+const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
 ---
 
 {renderBanners.length > 0 && (
@@ -37,6 +50,7 @@ function getBannerLabel(src: string, index: number) {
             {renderBanners.map((renderBanner, index) => {
               const bannerLabel = hasMultipleBanners ? getBannerLabel(renderBanner, index) : 'banner';
               const alt = `${title} ${bannerLabel}`;
+              const mediaType = getMediaType(renderBanner);
 
               return (
                 <button
@@ -48,15 +62,28 @@ function getBannerLabel(src: string, index: number) {
                   data-lightbox-open
                   data-banner-slide
                   data-banner-index={index}
+                  data-banner-type={mediaType}
                 >
-                  <img
-                    src={renderBanner}
-                    alt={alt}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                    class="wix-project-gallery-image"
-                    data-banner-image
-                  />
+                  {mediaType === 'video' ? (
+                    <video
+                      src={renderBanner}
+                      muted
+                      loop
+                      playsinline
+                      preload={index === 0 ? 'metadata' : 'none'}
+                      class="wix-project-gallery-image wix-project-gallery-video"
+                      data-banner-media
+                    />
+                  ) : (
+                    <img
+                      src={renderBanner}
+                      alt={alt}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      class="wix-project-gallery-image"
+                      data-banner-media
+                    />
+                  )}
                   <span class="wix-project-banner-expand-icon" aria-hidden="true">
                     <Maximize2 class="h-5 w-5" />
                   </span>
@@ -106,13 +133,31 @@ function getBannerLabel(src: string, index: number) {
 
       <dialog class="wix-project-lightbox" aria-label={`${title} banner fullscreen`} data-lightbox-dialog>
         <div class="wix-project-lightbox-toolbar" aria-label="Banner viewer controls">
-          <button type="button" class="wix-project-lightbox-control" aria-label="Zoom out" data-lightbox-zoom-out>
+          <button
+            type="button"
+            class="wix-project-lightbox-control"
+            aria-label="Zoom out"
+            data-lightbox-image-control
+            data-lightbox-zoom-out
+          >
             <ZoomOut class="h-5 w-5" aria-hidden="true" />
           </button>
-          <button type="button" class="wix-project-lightbox-control" aria-label="Zoom in" data-lightbox-zoom-in>
+          <button
+            type="button"
+            class="wix-project-lightbox-control"
+            aria-label="Zoom in"
+            data-lightbox-image-control
+            data-lightbox-zoom-in
+          >
             <ZoomIn class="h-5 w-5" aria-hidden="true" />
           </button>
-          <button type="button" class="wix-project-lightbox-control" aria-label="Reset zoom" data-lightbox-reset>
+          <button
+            type="button"
+            class="wix-project-lightbox-control"
+            aria-label="Reset zoom"
+            data-lightbox-image-control
+            data-lightbox-reset
+          >
             <RotateCcw class="h-5 w-5" aria-hidden="true" />
           </button>
           <button type="button" class="wix-project-lightbox-control" aria-label="Close fullscreen banner" data-lightbox-close>
@@ -121,12 +166,22 @@ function getBannerLabel(src: string, index: number) {
         </div>
         <div class="wix-project-lightbox-stage" data-lightbox-stage>
           <img
-            src={renderBanners[0]}
+            src={initialLightboxImage}
             alt={`${title} ${hasMultipleBanners ? getBannerLabel(renderBanners[0], 0) : 'banner'}`}
             decoding="async"
             class="wix-project-lightbox-image"
             draggable="false"
             data-lightbox-image
+            hidden={firstBannerType === 'video'}
+          />
+          <video
+            src={initialLightboxVideo}
+            class="wix-project-lightbox-video"
+            controls
+            playsinline
+            preload="metadata"
+            data-lightbox-video
+            hidden={firstBannerType !== 'video'}
           />
         </div>
       </dialog>

@@ -1,4 +1,4 @@
-export const projectCategories = ['Flagship', 'Production', 'Backend', 'Legacy', 'AI'] as const;
+export const projectCategories = ['Recent', 'Flagship', 'Production', 'Backend', 'Legacy', 'AI'] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
 
@@ -48,16 +48,22 @@ export const homepageSections: Array<{
   navLabel: string;
 }> = [
   {
+    id: 'recent',
+    category: 'Recent',
+    title: 'Recent Client Work',
+    navLabel: 'Recent Client Work',
+  },
+  {
     id: 'flagship',
     category: 'Flagship',
-    title: 'Flagship / System-level work',
-    navLabel: 'Flagship',
+    title: 'Flagship Engineering',
+    navLabel: 'Flagship Engineering',
   },
   {
     id: 'production',
     category: 'Production',
-    title: 'Production client apps',
-    navLabel: 'Production client apps',
+    title: 'iOS Apps & Product Builds',
+    navLabel: 'iOS Apps',
   },
   {
     id: 'backend',
@@ -68,13 +74,13 @@ export const homepageSections: Array<{
   {
     id: 'legacy',
     category: 'Legacy',
-    title: 'Early / Discontinued / Legacy',
-    navLabel: 'Legacy',
+    title: 'Legacy & Libraries',
+    navLabel: 'Legacy & Libraries',
   },
   {
     id: 'ai',
     category: 'AI',
-    title: 'AI & ML',
+    title: 'AI & ML Experiments',
     navLabel: 'AI & ML',
   },
 ];

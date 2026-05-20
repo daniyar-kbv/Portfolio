@@ -39,16 +39,18 @@ const projects = defineCollection({
     screenshots: z.array(z.string()).optional(),
     coverAlt: z.string().optional(),
     highlights: z.array(z.string()).optional(),
-    wix: z.object({
-      id: z.string(),
-      path: z.string(),
-      thumbnail: wixMediaSchema.optional(),
-      banners: z.array(wixMediaSchema).default([]),
-      manualSort: z.string().optional(),
-      status: z.string().optional(),
-      createdAt: z.string().optional(),
-      updatedAt: z.string().optional(),
-    }),
+    wix: z
+      .object({
+        id: z.string(),
+        path: z.string(),
+        thumbnail: wixMediaSchema.optional(),
+        banners: z.array(wixMediaSchema).default([]),
+        manualSort: z.string().optional(),
+        status: z.string().optional(),
+        createdAt: z.string().optional(),
+        updatedAt: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 

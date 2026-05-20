@@ -52,12 +52,22 @@ This file captures project knowledge and decisions that should survive across ch
 
 - Project content collection schema is in `src/content/config.ts`.
 - Project categories are defined in `src/data/site.ts`:
+  - `Recent`
   - `Flagship`
   - `Production`
   - `Backend`
   - `Legacy`
   - `AI`
 - Homepage section nav labels and ordering also live in `src/data/site.ts`.
+- Current homepage taxonomy is:
+  - `Recent Client Work`
+  - `Flagship Engineering`
+  - `iOS Apps & Product Builds`
+  - `Platforms & Backend`
+  - `Legacy & Libraries`
+  - `AI & ML Experiments`
+- Recent public client/project proof should be placed in `Recent` first when it represents active commercial delivery, launch support, or current client work.
+- `Meta Purchase Attribution Fix` should not be added as a public project page yet. Keep it as private/anonymized proposal knowledge unless a dedicated text-only/private case-study format is approved later.
 - Runtime rendering should use normalized Astro fields:
   - `title`
   - `subtitle`
@@ -79,6 +89,7 @@ This file captures project knowledge and decisions that should survive across ch
   - `coverAlt`
   - `highlights`
 - The `wix` frontmatter block is archival only.
+- The `wix` frontmatter block is optional for new hand-written project pages because they do not come from Wix imports.
 - `src/data/local-assets.json` is retained for legacy migration scripts only, not runtime rendering.
 
 ## Asset Conventions
@@ -96,12 +107,19 @@ This file captures project knowledge and decisions that should survive across ch
   - `public/assets/icons/*.png`
   - `public/assets/seo/seo-image.png`
 - If new Figma exports are added later, keep them under a `figma/` subfolder in that project folder.
+- Figma exports may be stored in project asset folders for archival/future use without being exposed in the UI.
 - If multiple banner source exports are added later, keep them under a `banners/` subfolder unless the runtime banner is the root `banner.png`.
 
 ## Existing Portfolio Projects
 
 Current MDX projects:
 
+- `blackville`: Recent. Black-owned marketplace iOS app plus PHP/CodeIgniter backend launch stabilization. Swift/UIKit, Stripe PaymentSheet, Apple Pay, Firebase Crashlytics, PHP, MySQL.
+- `mountainxperience-tracking`: Recent. Cross-platform mountain safety tracking app with Firebase backend automation, background location, late-back alerts, and OS map layers. SwiftUI, Kotlin/Compose, Firebase, Google Maps, Ordnance Survey tiles.
+- `kalyan-studio-apps`: Recent. Multi-target iOS music app suite modernization. StoreKit 2 migration, legacy paid-user restoration, Objective-C/Objective-C++ cleanup, Firebase Analytics, audio/catalog workflow support.
+- `end-of-day`: Recent. Minimal SwiftUI journaling app built from Figma to App Store. StoreKit 2 one-time unlock, local-only persistence, Lottie, TestFlight/App Store release support.
+- `stop-overthinking`: Recent. SwiftUI guided journaling app with SwiftData, private CloudKit sync, StoreKit 2, prompt rotation, writing history, and App Store release support.
+- `snowdon-summit-weather`: Recent. SwiftUI/WKWebView replacement for a broken production weather app plus native Android version. SwiftUI, WKWebView, Kotlin, Jetpack Compose.
 - `slackless`: Flagship. iOS Screen Time productivity app. Solo product/design/engineering. Swift, Screen Time APIs, RxSwift, Clean Architecture. App Store and GitHub links.
 - `apprevshare-ios-sdk`: Flagship. Passive StoreKit 2 revenue attribution SDK. Swift Package, StoreKit 2, networking. Client paused further SDK work.
 - `devicecluster`: Flagship. iOS + Rust proximity/P2P PoC. SwiftUI, Nearby Interaction, MPC, Rust, H3.

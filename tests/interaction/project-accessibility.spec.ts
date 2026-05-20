@@ -36,6 +36,112 @@ test('project banner opens with Enter and returns focus after Escape', async ({ 
   await expect(openButton).toBeFocused();
 });
 
+test('homepage and project pages do not overflow horizontally on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  for (const path of ['/', '/projects/slackless', '/projects/devicecluster', '/projects/swiftnetworkrouting']) {
+    await page.goto(path, { waitUntil: 'networkidle' });
+
+    await expect
+      .poll(() =>
+        page.evaluate(() => ({
+          viewportWidth: window.innerWidth,
+          documentWidth: document.documentElement.scrollWidth,
+        })),
+      )
+      .toEqual({ viewportWidth: 390, documentWidth: 390 });
+  }
+});
+
+test('homepage does not overflow horizontally at tablet nav breakpoint', async ({ page }) => {
+  await page.setViewportSize({ width: 834, height: 1112 });
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  await expect
+    .poll(() =>
+      page.evaluate(() => ({
+        viewportWidth: window.innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+      })),
+    )
+    .toEqual({ viewportWidth: 834, documentWidth: 834 });
+});
+
+test('mobile navigation opens, closes with Escape, and closes after link selection', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  const toggle = page.getByRole('button', { name: 'Open navigation menu' });
+  const navigation = page.getByRole('navigation', { name: 'Primary' });
+
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await toggle.click();
+
+  await expect(page.getByRole('button', { name: 'Close navigation menu' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+  await expect(navigation).toHaveClass(/is-open/);
+  const flagshipLink = navigation.getByRole('link', { name: 'Flagship' });
+  await expect(flagshipLink).toBeVisible();
+
+  const navBox = await navigation.boundingBox();
+  const flagshipBox = await flagshipLink.boundingBox();
+  if (!navBox || !flagshipBox) {
+    throw new Error('Expected mobile navigation and Flagship link to have visible bounds.');
+  }
+  expect(flagshipBox.x - navBox.x).toBeLessThan(24);
+
+  await page.keyboard.press('Escape');
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(navigation).not.toHaveClass(/is-open/);
+
+  await toggle.click();
+  await navigation.getByRole('link', { name: 'Contact' }).click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(navigation).not.toHaveClass(/is-open/);
+});
+
+test('mobile navigation can be opened from the keyboard', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  const toggle = page.getByRole('button', { name: 'Open navigation menu' });
+
+  for (let index = 0; index < 6; index += 1) {
+    if (await toggle.evaluate((button) => button === document.activeElement).catch(() => false)) {
+      break;
+    }
+
+    await page.keyboard.press('Tab');
+  }
+
+  await expect(toggle).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('button', { name: 'Close navigation menu' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+});
+
+test('tablet navigation uses the disclosure menu before desktop width', async ({ page }) => {
+  await page.setViewportSize({ width: 834, height: 1112 });
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  const toggle = page.getByRole('button', { name: 'Open navigation menu' });
+  const navigation = page.getByRole('navigation', { name: 'Primary' });
+
+  await expect(toggle).toBeVisible();
+  await expect(navigation).not.toHaveClass(/is-open/);
+
+  await toggle.click();
+  await expect(page.getByRole('button', { name: 'Close navigation menu' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+  await expect(navigation).toHaveClass(/is-open/);
+});
+
 test('project banner opens with Space and exposes zoom controls to keyboard users', async ({ page }) => {
   await openSlackLessProject(page);
 

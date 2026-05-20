@@ -39,7 +39,13 @@ test('project banner opens with Enter and returns focus after Escape', async ({ 
 test('homepage and project pages do not overflow horizontally on mobile', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
-  for (const path of ['/', '/projects/slackless', '/projects/devicecluster', '/projects/swiftnetworkrouting']) {
+  for (const path of [
+    '/',
+    '/projects/slackless',
+    '/projects/devicecluster',
+    '/projects/swiftnetworkrouting',
+    '/projects/uniclub',
+  ]) {
     await page.goto(path, { waitUntil: 'networkidle' });
 
     await expect
@@ -65,6 +71,48 @@ test('homepage does not overflow horizontally at tablet nav breakpoint', async (
       })),
     )
     .toEqual({ viewportWidth: 834, documentWidth: 834 });
+});
+
+test('project banner carousel switches slides and opens the active banner fullscreen', async ({ page }) => {
+  await page.setViewportSize({ width: 1512, height: 900 });
+  await page.goto('/projects/uniclub', { waitUntil: 'domcontentloaded' });
+
+  const webDot = page.getByRole('button', { name: 'Show UniClub web banner' });
+  await webDot.click();
+  await expect(webDot).toHaveAttribute('aria-current', 'true');
+
+  const openWebBannerButton = page.getByRole('button', { name: 'Open UniClub web banner fullscreen' });
+  await expect(openWebBannerButton).toBeVisible();
+  await openWebBannerButton.click();
+
+  const dialog = page.getByRole('dialog', { name: 'UniClub banner fullscreen' });
+  await expect(dialog).toBeVisible();
+  await expect(page.locator('[data-lightbox-image]')).toHaveAttribute('src', /banners\/web\.png/);
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(openWebBannerButton).toBeFocused();
+});
+
+test('project banner carousel supports pointer swipe between slides', async ({ page }) => {
+  await page.setViewportSize({ width: 1512, height: 900 });
+  await page.goto('/projects/uniclub', { waitUntil: 'domcontentloaded' });
+
+  const viewport = page.locator('[data-banner-viewport]');
+  const box = await viewport.boundingBox();
+  if (!box) {
+    throw new Error('Expected UniClub banner carousel viewport to have visible bounds.');
+  }
+
+  await page.mouse.move(box.x + box.width * 0.72, box.y + box.height * 0.5);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.25, box.y + box.height * 0.5);
+  await page.mouse.up();
+
+  await expect(page.getByRole('button', { name: 'Show UniClub web banner' })).toHaveAttribute(
+    'aria-current',
+    'true',
+  );
 });
 
 test('mobile navigation opens, closes with Escape, and closes after link selection', async ({ page }) => {

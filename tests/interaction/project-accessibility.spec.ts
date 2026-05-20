@@ -115,6 +115,26 @@ test('project banner carousel supports pointer swipe between slides', async ({ p
   );
 });
 
+test('project banner carousel supports video demo slides', async ({ page }) => {
+  await page.setViewportSize({ width: 1512, height: 900 });
+  await page.goto('/projects/driver-drowsiness-detection', { waitUntil: 'domcontentloaded' });
+
+  const openDemoButton = page.getByRole('button', {
+    name: 'Open Driver Drowsiness Detection demo video fullscreen',
+  });
+  await expect(openDemoButton).toBeVisible();
+  await expect(page.locator('[data-banner-slide]').first()).toHaveAttribute('data-banner-type', 'video');
+
+  await openDemoButton.click();
+
+  const dialog = page.getByRole('dialog', { name: 'Driver Drowsiness Detection banner fullscreen' });
+  await expect(dialog).toBeVisible();
+  await expect(page.locator('[data-lightbox-video]')).toHaveAttribute('src', /banners\/demo\.mp4/);
+  await expect(page.locator('[data-lightbox-video]')).toBeVisible();
+  await expect(page.locator('[data-lightbox-image]')).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Zoom in' })).toBeHidden();
+});
+
 test('mobile navigation opens, closes with Escape, and closes after link selection', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'networkidle' });

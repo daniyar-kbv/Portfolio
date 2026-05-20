@@ -47,7 +47,7 @@ This file captures project knowledge and decisions that should survive across ch
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.
 - Project screenshot/banner lightbox behavior lives in `src/scripts/project-lightbox.ts` and must stay keyboard accessible.
-- Project pages can render a multi-banner carousel from top-level MDX `banners`; it auto-swipes, supports pointer swipe/dots/arrows, and still opens the active banner in the fullscreen lightbox. Reduced motion disables auto-swipe.
+- Project pages can render a multi-banner carousel from top-level MDX `banners`; it auto-swipes, supports pointer swipe/dots/arrows, and still opens the active banner in the fullscreen lightbox. Banners can be still images or video demo slides. Reduced motion disables auto-swipe and autoplay video.
 - The `Case study` label is a normal-case section heading, not the old uppercase eyebrow.
 
 ## Content Architecture
@@ -113,7 +113,8 @@ This file captures project knowledge and decisions that should survive across ch
 - Figma exports may be stored in project asset folders for archival/future use without being exposed in the UI.
 - If multiple banner source exports are added later, keep them under a `banners/` subfolder unless the runtime banner is the root `banner.png`.
 - Top-level project `banners` should point to runtime files under `public/assets/projects/<project-slug>/banners/`. Order named platform banners as Mobile, then Web, then Telegram Bot.
-- Current multi-banner projects are `uniclub`, `istokhome`, `asl-recognition`, and `disaster-tweets`. Driver Drowsiness has a video plus one still banner; keep it out of the still-image carousel unless video carousel support is intentionally added.
+- Current multi-banner projects are `uniclub`, `istokhome`, `asl-recognition`, `disaster-tweets`, and `driver-drowsiness-detection`.
+- `driver-drowsiness-detection` uses a video demo as the first banner slide at `public/assets/projects/driver-drowsiness-detection/banners/demo.mp4`, followed by the still screenshot banner.
 
 ## Existing Portfolio Projects
 

@@ -99,7 +99,7 @@ To add or edit a project, update the relevant file in `src/content/projects/*.md
 
 To update project images or other runtime assets, add or replace files under `public/assets/`. Use those paths from the MDX frontmatter or page components.
 
-Project pages render their screenshot banner area when `showMediaBanner` is `true`. Use the top-level `banners` array for swipeable multi-banner projects, or fall back to the normalized `image` field for single-banner projects. Keep archived Wix metadata under the `wix` key for reference only; runtime rendering should use the Astro frontmatter fields.
+Project pages render their banner/media area when `showMediaBanner` is `true`. Use the top-level `banners` array for swipeable multi-banner projects, including still images or video demo slides, or fall back to the normalized `image` field for single-banner projects. Keep archived Wix metadata under the `wix` key for reference only; runtime rendering should use the Astro frontmatter fields.
 
 The live app reads explicit asset paths from Astro content and `src/data/site.ts`. `src/data/local-assets.json` is retained for the legacy Wix migration scripts only.
 

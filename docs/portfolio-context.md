@@ -1,0 +1,228 @@
+# Portfolio Context For Future Codex Sessions
+
+This file captures project knowledge and decisions that should survive across chats. Read it together with `AGENTS.md` and `README.md` before making portfolio, content, asset, or design changes.
+
+## Source Of Truth
+
+- The Astro workspace in this repository is the live portfolio source of truth.
+- Routine project edits should be made directly in `src/content/projects/*.mdx`, `src/data/site.ts`, and `public/assets/`.
+- The old Wix content/export flow is legacy migration tooling only. Do not regenerate runtime content from Wix unless explicitly requested.
+- The Work Portfolio Notes folder was a temporary source. Its useful detailed project notes have been captured in this repo/context. It is safe to delete after confirming this file is present.
+- Do not import the Notes items named `Icon sizes` or `Short project summaries`. The user said icon sizes are only personal reference, and short summaries were derived from detailed summaries.
+- Prefer detailed project summaries over short summaries when writing or revising case-study copy.
+
+## Identity And Positioning
+
+- Public-facing short brand: `Dan Kurman`.
+- Full/legal name: `Daniyar Kurmanbayev`.
+- Current homepage treatment intentionally makes `Dan Kurman` the primary hero name and uses `Daniyar Kurmanbayev` as secondary supporting identity.
+- Role line: `Senior iOS Developer / Technical PM`.
+- Location/contact data live in `src/data/site.ts`.
+- Tone: senior iOS/product engineer with production delivery, architecture cleanup, launch readiness, and client communication strength.
+
+## Design Direction
+
+- Keep the existing dark blue/orange palette. Do not replace the color palette without explicit approval.
+- Desired visual style: iOS-ish, Apple-ish, Human Interface Guidelines inspired.
+- Navigation inspiration: Apple public/global nav patterns such as Apple Store, Apple Developer, and App Store Connect.
+- Section icons are intentional and should remain prominent. They are meant to look like iOS app icons and were made with Icon Composer.
+- Keep the site as the actual portfolio experience, not a marketing landing page.
+- Avoid heavy ornamental design. Prefer compact, restrained hierarchy, fluid responsive layouts, subtle dividers, and Apple-like text CTAs.
+- Avoid visible Wix branding/promo UI on the live portfolio.
+- Keep the project content, routes, and schema stable unless the user explicitly asks for content/schema migration.
+
+## Current UI Implementation Notes
+
+- The site no longer uses the old fixed `width=980` viewport/min-width approach.
+- Layout containers use fluid widths with safe inline padding.
+- The header is a compact translucent Apple-style global nav on desktop.
+- Mobile/tablet nav is a disclosure panel with:
+  - 44px minimum tap targets,
+  - `aria-expanded`,
+  - Escape close,
+  - close on link click,
+  - left-aligned full-width menu rows.
+- The homepage hero keeps `/assets/hero/banner-apps.jpg`.
+- The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
+- Reduced motion must continue disabling parallax transforms.
+- Project screenshot/banner lightbox behavior lives in `src/scripts/project-lightbox.ts` and must stay keyboard accessible.
+- The `Case study` label is a normal-case section heading, not the old uppercase eyebrow.
+
+## Content Architecture
+
+- Project content collection schema is in `src/content/config.ts`.
+- Project categories are defined in `src/data/site.ts`:
+  - `Flagship`
+  - `Production`
+  - `Backend`
+  - `Legacy`
+  - `AI`
+- Homepage section nav labels and ordering also live in `src/data/site.ts`.
+- Runtime rendering should use normalized Astro fields:
+  - `title`
+  - `subtitle`
+  - `description`
+  - `category`
+  - `typeTags`
+  - `techTags`
+  - `status`
+  - `featured`
+  - `priority`
+  - `role`
+  - `stack`
+  - `links`
+  - `thumbnail`
+  - `image`
+  - `showMediaBanner`
+  - `media`
+  - `screenshots`
+  - `coverAlt`
+  - `highlights`
+- The `wix` frontmatter block is archival only.
+- `src/data/local-assets.json` is retained for legacy migration scripts only, not runtime rendering.
+
+## Asset Conventions
+
+- Asset folders and files under `public/assets` should stay snake case or already-established slug case where project slugs use hyphens.
+- Runtime project assets live under `public/assets/projects/<project-slug>/`.
+- Common runtime names:
+  - `thumbnail.png`
+  - `banner.png`
+  - `screenshots/screenshot-1.png`, etc.
+  - `media-1.mov`, etc. when a project uses video media
+- Current assets include:
+  - `public/assets/hero/banner-apps.jpg`
+  - `public/assets/logo/logo-horizontal.png`
+  - `public/assets/icons/*.png`
+  - `public/assets/seo/seo-image.png`
+- If new Figma exports are added later, keep them under a `figma/` subfolder in that project folder.
+- If multiple banner source exports are added later, keep them under a `banners/` subfolder unless the runtime banner is the root `banner.png`.
+
+## Existing Portfolio Projects
+
+Current MDX projects:
+
+- `slackless`: Flagship. iOS Screen Time productivity app. Solo product/design/engineering. Swift, Screen Time APIs, RxSwift, Clean Architecture. App Store and GitHub links.
+- `apprevshare-ios-sdk`: Flagship. Passive StoreKit 2 revenue attribution SDK. Swift Package, StoreKit 2, networking. Client paused further SDK work.
+- `devicecluster`: Flagship. iOS + Rust proximity/P2P PoC. SwiftUI, Nearby Interaction, MPC, Rust, H3.
+- `airbafresh`: Flagship. Production grocery delivery iOS app. UIKit, RxSwift, Moya, Firebase.
+- `hashtaggenerator`: Production. SwiftUI creator tool using text/image hashtag generation, StoreKit 2 credits, SwiftData.
+- `kex`: Production. Multi-brand food delivery iOS app rebuilt mid-project. UIKit, RxSwift, Moya, MVVM-C.
+- `24goals`: Production. Goal tracking app that reached Top-8 Productivity and Top-100 overall on launch. UIKit, RxSwift, StoreKit, Firebase.
+- `mentalmind`: Production. Meditation/self-development iOS app rebuilt from scratch. UIKit, StoreKit, AVFoundation, RxSwift.
+- `istokhome`: Backend. Django/DRF marketplace backend for interior designers and home services. Celery, CloudPayments.
+- `uniclub`: Backend. iOS app plus Django backend for children's class booking. UIKit, Alamofire, Django, Celery.
+- `kaz-tour-telegram-bot`: Backend. Telegram lead-generation bot synced to Bitrix24. Python, Django, Telegram API, SpeechKit.
+- `mig`: Legacy. Currency exchange app redesign and reservation features. UIKit, Alamofire, Firebase.
+- `magazinchik`: Legacy. 15-minute grocery delivery app concept. UIKit, RxSwift, Alamofire, Yandex Maps.
+- `swiftnetworkrouting`: Legacy. Lightweight Swift networking library on Alamofire. Open-source.
+- `driver-drowsiness-detection`: AI. YOLOv5 drowsiness/yawn/closed-eye detection with Flask/Docker demo.
+- `disaster-tweets`: AI. NLP classifier for disaster-related tweets. Python, TF-IDF, GRU, Django.
+- `asl-recognition`: AI. Computer vision pipeline for ASL hand sign detection/classification.
+
+## Additional Client Project Knowledge Captured From Notes
+
+These projects were supplied in detailed notes/conversation summaries and may be used for future case studies or private summaries. Do not include credentials, passwords, SSH details, or private client access information in portfolio copy.
+
+### MountainXperience Tracking
+
+- Client: Simon Pearce / MountainXperience.
+- Product: iOS/Android mountain tracking app with Firebase backend and Ordnance Survey map support.
+- Key iOS stack: SwiftUI, Firebase, Google Maps SDK, Ordnance Survey raster tiles, Lottie, SnapKit.
+- Key Android stack: Kotlin, Jetpack Compose, Material 3, Hilt, StateFlow/MVVM, Firebase, Google Maps Compose, WorkManager, foreground location service.
+- Backend: Firebase Cloud Functions v2, TypeScript, Node.js 24, `europe-west3`.
+- Important feature work:
+  - OS Leisure maps could not be plugged directly into Google tile overlays because Leisure tiles are British National Grid EPSG:27700, while Google overlays use Web Mercator EPSG:3857.
+  - Workaround implemented by fetching OS ZXY tiles, caching on disk, reprojecting BNG to Web Mercator, and using fallback behavior.
+  - Tracking session fields include `stoppedAt`, `stoppedAtServer`, and `lateMarkedAt` with distinct semantics.
+  - Active/late/stopped sessions shown live; stopped sessions remain as grey pins for 60 minutes.
+  - Position updates throttled to 5 minutes with buffering and background/significant-location resilience.
+  - Backend sends notifications and late-back emails using OS grid references.
+- Operational notes:
+  - Secrets/signing files must stay local and out of commits.
+  - Functions repo has strongest automated tests; iOS/Android rely more on manual/device testing.
+
+### Kalyan Studio Apps
+
+- Client: Aryan Prasad / Kalyan Studio Apps.
+- Product: Multi-target native iOS music practice/accompaniment app for Indian classical dance/music.
+- Targets:
+  - Lehra Studio Pro
+  - Kathak Studio
+  - Lehra Studio Sarangi
+  - Lehra Studio Ultimate
+- Stack: Objective-C, Objective-C++, C++, one Swift StoreKit bridge, UIKit storyboards, TheAmazingAudioEngine, custom C++ DSP/time-stretching, Firebase Analytics, legacy Flurry startup.
+- Core monetization work:
+  - Migrated from StoreKit 1/deprecated receipt-style logic to StoreKit 2.
+  - Added `AIStoreKit2Bridge.swift` and centralized purchase/restore/entitlement handling in `AIIapManager`.
+  - Added legacy paid-app unlock logic using StoreKit 2 `AppTransaction.originalPurchaseDate` for users who bought the app before it moved from paid to free with a non-consumable IAP.
+  - Important caveat: `originalAppVersion` on iOS is not reliable for marketing version comparison; original purchase date was the chosen path.
+  - Sandbox/TestFlight original purchase date behavior is limited, so real production validation was needed with legacy users.
+- Other work:
+  - Cleaned and reorganized a large legacy repo into clearer `Source`, `Audio`, `Core`, `Targets`, `Config`, `ThirdParty`, and `Tests` areas.
+  - Added data-driven color metadata for instruments, taals, and raags via plist keys.
+  - Added Firebase Analytics for instrument, taal, raag, playback start/stop, BPM, duration, and stop reason.
+  - Documented safe audio-library replacement workflow through Finder/Xcode and `data_pro.plist`.
+- Operational notes:
+  - Audio asset/library updates require exact file names unless plist file-name references are updated.
+  - Icon size notes were user reference only and should not be imported as portfolio content.
+
+### Blackville
+
+- Client: Julian Reefer / Blackville.
+- Product: Black-owned marketplace iOS app plus backend.
+- Repos:
+  - `Blackville-backend`: CodeIgniter/PHP backend with MySQL schema, buyer/vendor/admin APIs, Stripe, admin/vendor panels.
+  - `blackville-iOS`: Swift/UIKit buyer app.
+- Backend stack: CodeIgniter 3.1.5, MySQL, Composer, `stripe/stripe-php`, PHPMailer, PayPal payout SDK.
+- iOS stack: Swift 5, UIKit, CocoaPods, Alamofire, SnapKit, SDWebImage, Stripe PaymentSheet/Apple Pay, Firebase Messaging/Analytics, Google Sign-In, Facebook SDK, IQKeyboardManagerSwift, SkeletonView.
+- Major work:
+  - Reviewed launch readiness, stability risks, recurring bugs, Stripe/Apple Pay feasibility, and soft-launch strategy.
+  - Fixed category crash/state issues, product-not-found persistence, hidden beta-only features, product/store image scaling, Kulture Wall image fallback/variant issues, and admin product image attribution.
+  - Integrated Firebase Crashlytics.
+  - Set up TestFlight external testing and later App Store submission.
+  - Added Sign in with Apple and removed confusing phone/referral fields.
+  - Rebuilt checkout around server-side Stripe PaymentIntent creation, Stripe PaymentSheet, Apple Pay, address selection, order confirmation, and webhook recovery.
+  - Added order emails for admin/customer and fixed `My Orders`, delivery address visibility, order details, price mismatch, and checkout security gaps.
+  - Added expandable product images and improved order UX.
+  - Created deployment/local schema documentation and cleanup/refactor points.
+- Security incident:
+  - A malicious Xcode build phase was discovered in the iOS project, apparently introduced by a previous freelancer.
+  - It decoded and executed remote `curl | sh` style payloads during Xcode builds.
+  - Treat this as an incident in any future write-up. Do not include secret values.
+  - Recommended actions included revoking old TestFlight builds, rebuilding from a clean machine, rotating project secrets, and treating affected builds as untrusted.
+- Operational notes:
+  - Weekly cap later reduced to 10 hours/week.
+  - Focus priorities after launch were checkout/payments/order fulfillment UX before broader security/architecture cleanup.
+
+## Testing And QA
+
+Use these routinely:
+
+- `npm run test:content`
+- `npm run build`
+- `npm run test:interaction`
+- `npm run test:visual`
+- `npm test`
+
+Update visual baselines only when intentional:
+
+- `npm run test:visual:update`
+
+Important checks already covered:
+
+- no horizontal overflow at mobile/tablet widths,
+- mobile nav open/close/link-close/keyboard behavior,
+- project banner lightbox keyboard behavior,
+- reduced motion disables parallax,
+- visual snapshots for homepage and representative project pages.
+
+## Commit And Workflow Rules
+
+- Use commit prefixes from `AGENTS.md`:
+  - `feat: `
+  - `refactor: `
+  - `fix: `
+- If adding workflow rules or future-session guidance, update `AGENTS.md`.
+- Keep commits focused and split by intent.
+- Do not commit credentials, local signing files, private keys, or client passwords.

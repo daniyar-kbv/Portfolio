@@ -33,16 +33,24 @@ export function selectProjectCardImage(project: ProjectEntry): string | null {
 }
 
 export function selectProjectMediaBanner(project: ProjectEntry): string | null {
+  return selectProjectMediaBanners(project)[0] ?? null;
+}
+
+export function selectProjectMediaBanners(project: ProjectEntry): string[] {
   if (!project.data.showMediaBanner) {
-    return null;
+    return [];
   }
 
-  const candidate = project.data.image || project.data.thumbnail || null;
-  return isRenderableMediaRef(candidate) ? candidate : null;
+  const candidates =
+    project.data.banners && project.data.banners.length > 0
+      ? project.data.banners
+      : [project.data.image || project.data.thumbnail];
+
+  return candidates.filter((candidate): candidate is string => isRenderableMediaRef(candidate));
 }
 
 export function shouldRenderProjectMedia(project: ProjectEntry): boolean {
-  return selectProjectMediaBanner(project) !== null;
+  return selectProjectMediaBanners(project).length > 0;
 }
 
 export function shouldRenderProjectLinks(project: ProjectEntry): boolean {

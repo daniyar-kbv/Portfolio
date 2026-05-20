@@ -107,6 +107,9 @@ html.wix-lightbox-open body {
     will-change: auto;
   }
 
+  .wix-project-banner-track,
+  .wix-project-banner-nav,
+  .wix-project-banner-dot,
   .wix-project-banner-expand-icon,
   .wix-project-lightbox-control,
   .wix-project-lightbox-image {

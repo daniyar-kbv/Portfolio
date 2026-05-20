@@ -8,7 +8,7 @@ import CaseStudySection from '../../components/CaseStudySection.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import { homepageHero, siteAssets, siteOwner } from '../../data/site';
 import {
-  selectProjectMediaBanner,
+  selectProjectMediaBanners,
   shouldRenderProjectLinks,
   shouldRenderProjectMedia,
 } from '../../lib/projects';
@@ -25,7 +25,7 @@ const { project } = Astro.props;
 const { data } = project;
 const { Content } = await project.render();
 
-const mediaBanner = selectProjectMediaBanner(project);
+const mediaBanners = selectProjectMediaBanners(project);
 const hasMediaSection = shouldRenderProjectMedia(project);
 const hasLinksSection = shouldRenderProjectLinks(project);
 const seoImage = data.thumbnail || siteAssets.seoImage;
@@ -49,7 +49,7 @@ const seoImage = data.thumbnail || siteAssets.seoImage;
       bannerAlt={homepageHero.bannerAlt}
     />
 
-    {hasMediaSection && <ProjectMedia title={data.title} banner={mediaBanner} />}
+    {hasMediaSection && <ProjectMedia title={data.title} banners={mediaBanners} />}
 
     {hasLinksSection && <ProjectLinks links={data.links} />}
 

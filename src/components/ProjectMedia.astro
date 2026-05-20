@@ -1,36 +1,108 @@
 ---
-import { Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from '@lucide/astro';
+import { ChevronLeft, ChevronRight, Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from '@lucide/astro';
 import { isRenderableMediaRef } from '../lib/media';
 
 interface Props {
   title: string;
   banner?: string | null;
+  banners?: string[];
 }
 
-const { title, banner = null } = Astro.props as Props;
-const renderBanner = banner && isRenderableMediaRef(banner) ? banner : null;
+const { title, banner = null, banners = [] } = Astro.props as Props;
+const bannerCandidates = banners.length > 0 ? banners : [banner];
+const renderBanners = bannerCandidates.filter((candidate): candidate is string => isRenderableMediaRef(candidate));
+const hasMultipleBanners = renderBanners.length > 1;
+
+function getBannerLabel(src: string, index: number) {
+  const lowerSrc = src.toLowerCase();
+
+  if (lowerSrc.includes('mobile')) return 'mobile banner';
+  if (lowerSrc.includes('web')) return 'web banner';
+  if (lowerSrc.includes('telegram') || lowerSrc.includes('bot')) return 'Telegram bot banner';
+
+  return `banner ${index + 1}`;
+}
 ---
 
-{renderBanner && (
+{renderBanners.length > 0 && (
   <section class="wix-section-shell wix-project-media-section">
     <div class="wix-section-inner" data-project-lightbox>
-      <button
-        type="button"
-        class="wix-project-banner-button"
-        aria-label={`Open ${title} banner fullscreen`}
-        data-lightbox-open
+      <div
+        class:list={['wix-project-banner-carousel', { 'wix-project-banner-carousel--single': !hasMultipleBanners }]}
+        data-banner-carousel
+        data-banner-autoplay={hasMultipleBanners ? 'true' : 'false'}
       >
-        <img
-          src={renderBanner}
-          alt={`${title} banner`}
-          loading="lazy"
-          decoding="async"
-          class="wix-project-gallery-image"
-        />
-        <span class="wix-project-banner-expand-icon" aria-hidden="true">
-          <Maximize2 class="h-5 w-5" />
-        </span>
-      </button>
+        <div class="wix-project-banner-viewport" data-banner-viewport>
+          <div class="wix-project-banner-track" data-banner-track>
+            {renderBanners.map((renderBanner, index) => {
+              const bannerLabel = hasMultipleBanners ? getBannerLabel(renderBanner, index) : 'banner';
+              const alt = `${title} ${bannerLabel}`;
+
+              return (
+                <button
+                  type="button"
+                  class="wix-project-banner-button"
+                  aria-label={`Open ${alt} fullscreen`}
+                  aria-hidden={index === 0 ? undefined : 'true'}
+                  tabindex={index === 0 ? undefined : '-1'}
+                  data-lightbox-open
+                  data-banner-slide
+                  data-banner-index={index}
+                >
+                  <img
+                    src={renderBanner}
+                    alt={alt}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    class="wix-project-gallery-image"
+                    data-banner-image
+                  />
+                  <span class="wix-project-banner-expand-icon" aria-hidden="true">
+                    <Maximize2 class="h-5 w-5" />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {hasMultipleBanners && (
+          <>
+            <button
+              type="button"
+              class="wix-project-banner-nav wix-project-banner-nav--prev"
+              aria-label={`Show previous ${title} banner`}
+              data-banner-prev
+            >
+              <ChevronLeft class="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              class="wix-project-banner-nav wix-project-banner-nav--next"
+              aria-label={`Show next ${title} banner`}
+              data-banner-next
+            >
+              <ChevronRight class="h-5 w-5" aria-hidden="true" />
+            </button>
+            <div class="wix-project-banner-dots" aria-label={`${title} banner slides`}>
+              {renderBanners.map((renderBanner, index) => {
+                const bannerLabel = getBannerLabel(renderBanner, index);
+
+                return (
+                  <button
+                    type="button"
+                    class="wix-project-banner-dot"
+                    aria-label={`Show ${title} ${bannerLabel}`}
+                    aria-current={index === 0 ? 'true' : 'false'}
+                    data-banner-dot
+                    data-banner-index={index}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
+      </div>
 
       <dialog class="wix-project-lightbox" aria-label={`${title} banner fullscreen`} data-lightbox-dialog>
         <div class="wix-project-lightbox-toolbar" aria-label="Banner viewer controls">
@@ -49,8 +121,8 @@ const renderBanner = banner && isRenderableMediaRef(banner) ? banner : null;
         </div>
         <div class="wix-project-lightbox-stage" data-lightbox-stage>
           <img
-            src={renderBanner}
-            alt={`${title} banner`}
+            src={renderBanners[0]}
+            alt={`${title} ${hasMultipleBanners ? getBannerLabel(renderBanners[0], 0) : 'banner'}`}
             decoding="async"
             class="wix-project-lightbox-image"
             draggable="false"

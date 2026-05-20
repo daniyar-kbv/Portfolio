@@ -6,13 +6,13 @@
 
 .wix-footer-inner {
   width: 100%;
-  max-width: var(--site-width);
+  max-width: calc(var(--site-width) + (var(--site-padding) * 2));
   margin-inline: auto;
-  padding: 18px 0 24px;
+  padding: 18px var(--site-padding) 24px;
 }
 
 .wix-footer-inner.wix-contact-home-inner {
-  padding-block: 76px 314px;
+  padding-block: clamp(58px, 9vw, 96px) clamp(100px, 18vw, 220px);
 }
 
 .wix-contact-grid {

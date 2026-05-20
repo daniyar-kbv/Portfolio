@@ -16,7 +16,7 @@ const updateParallaxHeroes = () => {
 
     const travel = Number(hero.dataset.parallaxTravel || 36);
     const rect = hero.getBoundingClientRect();
-    const y = Math.max(-travel, Math.min(travel, -rect.top * 0.14));
+    const y = Math.max(-travel, Math.min(travel, -rect.top * 0.22));
     image.style.setProperty('--parallax-y', `${y.toFixed(2)}px`);
   }
 };

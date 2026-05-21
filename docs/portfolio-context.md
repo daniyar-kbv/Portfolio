@@ -39,6 +39,7 @@ This file captures project knowledge and decisions that should survive across ch
 - Native surface polish direction: make UI feel closer to iOS grouped surfaces and Apple product pages, not a generic web card grid. Prefer one filled primary action, secondary text links, small native-style glyphs, grouped inset action cells, softer borders, and subtle press/hover feedback.
 - Card UI should use shared semantic surface tokens in `src/styles/tokens.css` instead of one-off component mixes. Current card roles are feature tiles, selected-proof modules, archive/list cells, contact/action cells, and project-detail content groups.
 - Keep card chrome quiet: 8px system-like radius, low-contrast borders, subtle or no shadows, contained media wells, and small press/hover feedback. Selected proof can be more elevated than archive cards, but archive cards should remain scan-friendly list cells.
+- Apple card references from the saved PDFs lean toward media-first, borderless product tiles with generous interior whitespace, centered copy for product/archive cards, tiny metadata, and simple text CTAs. Preserve the repo’s 8px card radius constraint while borrowing that anatomy.
 - Avoid visible Wix branding/promo UI on the live portfolio.
 - Keep the project content, routes, and schema stable unless the user explicitly asks for content/schema migration.
 

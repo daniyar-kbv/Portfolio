@@ -49,7 +49,7 @@
 .wix-home-service-card,
 .wix-home-featured-proof-card,
 .wix-home-compact-proof-card {
-  border: 1px solid var(--border-card);
+  border: 0;
   border-radius: var(--radius-card);
   background: var(--surface-card-quiet);
 }
@@ -61,8 +61,6 @@
   min-height: 178px;
   padding: clamp(20px, 3vw, 28px);
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
     transform 160ms ease;
 }
 
@@ -80,7 +78,7 @@
   justify-content: center;
   width: 34px;
   height: 34px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   background: color-mix(in srgb, var(--color-accent) 15%, transparent);
   color: var(--color-accent-hover);
 }
@@ -88,7 +86,7 @@
 .wix-home-service-card--featured .wix-home-service-glyph {
   width: 42px;
   height: 42px;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
 }
 
 .wix-home-service-glyph-svg {
@@ -154,8 +152,6 @@
 .wix-home-compact-proof-card {
   overflow: hidden;
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
     transform 160ms ease;
 }
 
@@ -174,8 +170,6 @@
 .wix-home-featured-proof-card:focus-within,
 .wix-home-compact-proof-card:hover,
 .wix-home-compact-proof-card:focus-visible {
-  border-color: var(--border-card-strong);
-  background: var(--surface-card-strong);
   transform: translateY(var(--card-hover-lift));
 }
 

@@ -14,20 +14,16 @@
   min-width: 0;
   min-height: 58px;
   padding: 10px 14px;
-  border: 1px solid var(--border-card);
+  border: 0;
   border-radius: var(--radius-card);
   background: var(--surface-action);
   text-align: left;
   transition:
-    border-color 150ms ease,
-    background-color 150ms ease,
     transform 150ms ease;
 }
 
 .wix-contact-hero-link:hover,
 .wix-contact-hero-link:focus-visible {
-  border-color: var(--border-card-strong);
-  background: var(--surface-card);
   transform: translateY(var(--card-hover-lift));
 }
 
@@ -81,7 +77,7 @@
 }
 
 .wix-contact-card {
-  border: 1px solid var(--border-card);
+  border: 0;
   border-radius: var(--radius-card);
   padding: clamp(34px, 5.4vw, 54px) clamp(24px, 5.4vw, 60px);
   background: var(--surface-card);

@@ -34,7 +34,7 @@
   width: 100%;
   max-width: 100%;
   padding: clamp(20px, 2.8vw, 26px);
-  border: 1px solid var(--border-card);
+  border: 0;
   border-radius: var(--radius-card);
   background: var(--surface-card-quiet);
   box-shadow: none;

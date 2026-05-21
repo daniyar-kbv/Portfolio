@@ -1,12 +1,10 @@
 .wix-project-card {
   overflow: hidden;
-  border: 1px solid var(--border-card);
+  border: 0;
   border-radius: var(--radius-card);
   background: var(--surface-card-quiet);
   box-shadow: none;
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
     transform 160ms ease;
 }
 
@@ -151,8 +149,6 @@
 
 .wix-project-card:hover,
 .wix-project-card:focus-within {
-  border-color: var(--border-card-strong);
-  background: var(--surface-card);
   transform: translateY(var(--card-hover-lift));
 }
 
@@ -162,7 +158,7 @@
 
 .wix-project-card-link--text-only:hover,
 .wix-project-card-link--text-only:focus-visible {
-  background: color-mix(in srgb, var(--color-elevated-alt-2) 94%, transparent);
+  background: transparent;
 }
 
 @media (max-width: 520px) {

@@ -135,7 +135,7 @@
   justify-content: center;
   width: 100%;
   padding: var(--project-banner-padding-block) var(--project-banner-padding-inline);
-  border: 1px solid var(--border-card);
+  border: 0;
   color: var(--color-text);
   text-align: inherit;
   cursor: zoom-in;
@@ -144,8 +144,7 @@
   background: var(--surface-card);
   box-shadow: var(--shadow-card-soft);
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease;
+    transform 160ms ease;
 }
 
 .wix-project-banner-button[aria-hidden='true'] {
@@ -159,8 +158,7 @@
 
 .wix-project-banner-button:hover,
 .wix-project-banner-button:focus-visible {
-  border-color: var(--border-card-strong);
-  background: var(--surface-card-strong);
+  transform: translateY(var(--card-hover-lift));
 }
 
 .wix-project-banner-nav {
@@ -370,8 +368,8 @@
 .wix-media-strip-image {
   width: 100%;
   min-height: 160px;
-  border-radius: 10px;
-  border: 1px solid var(--border-card);
+  border: 0;
+  border-radius: var(--radius-card);
   object-fit: cover;
 }
 
@@ -392,7 +390,6 @@
 
 .wix-project-media {
   overflow: hidden;
-  border-bottom: 1px solid var(--border-card);
   background: var(--surface-media-well);
 }
 
@@ -412,20 +409,17 @@
   gap: 8px;
   min-height: 32px;
   padding: 5px 10px;
-  border: 1px solid var(--border-card);
-  border-radius: 10px;
+  border: 0;
+  border-radius: var(--radius-card);
   background: var(--surface-action);
   color: var(--color-text);
   transition:
     background-color 150ms ease,
-    border-color 150ms ease,
     color 150ms ease;
 }
 
 .wix-project-link-chip:hover,
 .wix-project-link-chip:focus-visible {
-  border-color: var(--border-card-strong);
-  background: var(--surface-card);
   color: var(--color-accent-hover);
 }
 

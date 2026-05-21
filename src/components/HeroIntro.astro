@@ -2,7 +2,8 @@
 import ButtonLink from './ButtonLink.astro';
 
 interface Props {
-  label: string;
+  roleLabel: string;
+  primaryName: string;
   headline: string;
   supporting: string;
   secondaryIdentity: string;
@@ -16,7 +17,8 @@ interface Props {
 }
 
 const {
-  label,
+  roleLabel,
+  primaryName,
   headline,
   supporting,
   secondaryIdentity,
@@ -41,7 +43,8 @@ const {
     />
     <div class="wix-home-banner-overlay">
       <div class="wix-home-banner-copy">
-        <p class="wix-home-banner-label">{label}</p>
+        <p class="wix-home-banner-label">{roleLabel}</p>
+        <p class="wix-home-banner-primary-name">{primaryName}</p>
         <h1 class="wix-home-banner-name">{headline}</h1>
         <p class="wix-home-banner-secondary-name">{secondaryIdentity}</p>
         <p class="wix-home-banner-role">{supporting}</p>

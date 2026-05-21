@@ -30,16 +30,17 @@ export const siteAssets = {
 export const homepageMeta = {
   title: 'Portfolio | Daniyar Kurmanbayev (Dan Kurman)',
   description:
-    'Daniyar Kurmanbayev (Dan Kurman), Senior iOS Developer & Technical Product Manager. I build Swift/SwiftUI apps with clean architecture, strong UX, and reliable delivery. View projects and case studies.',
+    'Dan Kurman (Daniyar Kurmanbayev), senior native iOS developer. I build reliable Swift/SwiftUI apps, AI-powered mobile features, payment flows, and App Store-ready products.',
   ogImageAlt: 'Portfolio SEO image',
 };
 
 export const homepageHero = {
-  label: 'Dan Kurman · Senior iOS specialist',
-  headline: 'I help founders ship, stabilize, and modernize iOS apps.',
+  roleLabel: 'Senior native iOS developer',
+  primaryName: 'Dan Kurman',
+  headline: 'I build reliable native iOS apps and AI-powered mobile features.',
   supporting:
-    'I turn inherited codebases, payment flows, release blockers, and product ideas into reliable App Store-ready software.',
-  secondaryIdentity: siteOwner.displayName,
+    'I turn inherited codebases, AI APIs, payment flows, backend integrations, and product ideas into polished App Store-ready software.',
+  secondaryIdentity: `${siteOwner.displayName} · ${siteOwner.location}`,
   bannerAlt: 'Portfolio banner',
   ctas: [
     {
@@ -58,43 +59,48 @@ export const homepageHero = {
 export const homepagePositioning = {
   role: siteOwner.role,
   summary:
-    'Senior iOS developer for product teams and founders who need production-quality app work, launch support, and calm technical judgment.',
+    'Senior native iOS developer for product teams and founders who need production-quality apps, AI API integration, launch support, and calm technical judgment.',
 };
 
 export const homepageProofPoints = [
   {
-    label: 'App Store launches',
-    description: 'From TestFlight cleanup to App Review-ready releases.',
+    label: 'Native iOS delivery',
+    description: 'SwiftUI/UIKit apps shaped from design, APIs, and product requirements.',
   },
   {
-    label: 'StoreKit 2 & entitlements',
-    description: 'Purchases, restores, legacy unlocks, and monetization fixes.',
+    label: 'AI API integration',
+    description: 'Text, image, and assistant features with native UX and reliable app plumbing.',
   },
   {
-    label: 'Stripe / Apple Pay checkout',
-    description: 'PaymentSheet, server-side intents, address flows, and order recovery.',
+    label: 'Payments & monetization',
+    description: 'StoreKit 2, credits, paywalls, Stripe, Apple Pay, and checkout recovery.',
   },
   {
-    label: 'Legacy codebase stabilization',
-    description: 'Inherited apps, crash fixes, release blockers, and safer architecture.',
+    label: 'Launch stabilization',
+    description: 'Inherited apps, crash fixes, release blockers, and App Review-ready cleanup.',
   },
 ];
 
 export const serviceAreas = [
   {
-    title: 'Launch readiness & stabilization',
+    title: 'Native iOS apps from design to release',
     description:
-      'Audit the risky parts, fix blockers, add monitoring, and get the app ready for real users.',
+      'Implement polished SwiftUI/UIKit experiences, wire APIs, handle QA, and support TestFlight or App Store submission.',
   },
   {
-    title: 'iOS app builds from design to release',
+    title: 'AI-powered mobile features',
     description:
-      'Implement polished SwiftUI/UIKit experiences, wire APIs, handle QA, and support App Store submission.',
+      'Turn AI APIs into native UX with backend proxy/API integration, persistence, usage limits, credits/paywalls, and clear failure states.',
   },
   {
     title: 'Payments, StoreKit & entitlements',
     description:
       'Build and debug IAP, subscriptions, legacy access, Stripe checkout, Apple Pay, and restore flows.',
+  },
+  {
+    title: 'Launch readiness & stabilization',
+    description:
+      'Audit risky flows, fix blockers, add monitoring, and get the app ready for real users.',
   },
   {
     title: 'Legacy app rescue & architecture cleanup',
@@ -110,8 +116,9 @@ export const serviceAreas = [
 
 export const featuredProofSlugs = [
   'blackville',
-  'mountainxperience-tracking',
   'kalyan-studio-apps',
+  'hashtaggenerator',
+  'mountainxperience-tracking',
 ] as const;
 
 export const compactProofSlugs = [
@@ -127,6 +134,8 @@ export const projectOutcomeCopy: Record<string, string> = {
     'Built iOS, Android, and Firebase safety tracking with background location, late-back alerts, OS map layers, and release support.',
   'kalyan-studio-apps':
     'Migrated a multi-target audio app suite to StoreKit 2 and restored lifetime access for legacy paid users after a freemium transition.',
+  hashtaggenerator:
+    'Built a SwiftUI AI hashtag app that turns text and image generation APIs into native UX with StoreKit 2 credit packs, SwiftData history, and Keychain-backed credits.',
   'end-of-day':
     'Built a focused SwiftUI journaling app from Figma to App Store with StoreKit 2 unlock and release support.',
   'stop-overthinking':

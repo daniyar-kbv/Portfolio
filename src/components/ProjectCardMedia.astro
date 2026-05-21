@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  image?: string | null;
+  alt: string;
+}
+
+const { title, subtitle, image, alt } = Astro.props as Props;
+---
+
+<div class="project-card-media">
+  {image ? (
+    <img
+      src={image}
+      alt={alt}
+      loading="eager"
+      decoding="async"
+      class="project-card-image"
+    />
+  ) : (
+    <div class="project-card-placeholder">
+      <span class="project-card-placeholder-kicker">{subtitle}</span>
+      <span class="project-card-placeholder-title">{title}</span>
+    </div>
+  )}
+</div>

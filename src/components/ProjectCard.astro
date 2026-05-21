@@ -1,4 +1,7 @@
 ---
+import ProjectCardContent from './ProjectCardContent.astro';
+import ProjectCardMedia from './ProjectCardMedia.astro';
+
 interface Props {
   slug: string;
   title: string;
@@ -33,32 +36,13 @@ const techLine = techTags.join(' · ');
     class:list={['project-card-link', !showVisual && 'project-card-link--text-only']}
     aria-label={`Open ${title} project`}
   >
-    {showVisual && (
-      <div class="project-card-media">
-        {image ? (
-          <img
-            src={image}
-            alt={alt}
-            loading="eager"
-            decoding="async"
-            class="project-card-image"
-          />
-        ) : (
-          <div class="project-card-placeholder">
-            <span class="project-card-placeholder-kicker">{subtitle}</span>
-            <span class="project-card-placeholder-title">{title}</span>
-          </div>
-        )}
-      </div>
-    )}
-
-    <div class="project-card-copy">
-      <h3 class="project-card-title">{title}</h3>
-      <p class="project-card-kicker">{subtitle}</p>
-      {status && <p class="project-card-status" title={status}>{status}</p>}
-      <p class="project-card-description">{description}</p>
-      {techLine && <p class="project-card-tech">{techLine}</p>}
-      <span class="project-card-button">View project <span aria-hidden="true">›</span></span>
-    </div>
+    {showVisual && <ProjectCardMedia title={title} subtitle={subtitle} image={image} alt={alt} />}
+    <ProjectCardContent
+      title={title}
+      subtitle={subtitle}
+      description={description}
+      techLine={techLine}
+      status={status}
+    />
   </a>
 </article>

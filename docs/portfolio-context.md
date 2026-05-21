@@ -146,6 +146,13 @@ This file captures project knowledge and decisions that should survive across ch
 
 ## Repository Structure Notes
 
+- Homepage-specific styles are split under `src/styles/components/home/` by responsibility:
+  - `proof.css`
+  - `misc.css`
+  - `services.css`
+  - `selected-proof.css`
+  - `archive.css`
+- Keep those imports grouped in `src/styles/global.css` before the general project-card styles so shared homepage card rules do not override selected-proof/archive refinements.
 - Project detail page styles are split under `src/styles/components/project/` by responsibility:
   - `hero.css`
   - `summary.css`
@@ -156,9 +163,15 @@ This file captures project knowledge and decisions that should survive across ch
 - Keep those imports grouped in `src/styles/global.css`; visual refactors should preserve import order unless snapshots are intentionally reviewed.
 - `ProfilePortrait.astro` and `ContactActions.astro` are shared contact UI primitives used by the homepage contact card and project-page CTA. Keep homepage/project wrappers distinct so each layout can evolve independently.
 - `ArchiveProjectCard.astro` owns compact archive card rendering. `ProjectCard.astro` is the default/general project card and should not regain archive-only variant branches.
+- `ProjectCardMedia.astro` and `ProjectCardContent.astro` are shared internals for default and archive project cards. Keep wrapper components separate and move shared card anatomy into these internals when it applies to both variants.
 - Archive-specific card CSS lives with homepage/archive styling, while general project-card CSS remains in `src/styles/components/project-card.css`.
 - Project media/lightbox behavior is split into `src/scripts/project-media/helpers.ts`, `carousel.ts`, `lightbox.ts`, and `init.ts`, with `src/scripts/project-lightbox.ts` kept as the stable entrypoint.
 - The live Wix promo runtime has been removed (`WixPromoBar.astro` and `wix-promo.css`). Legacy Wix importer scripts/docs stay because they are migration/archive material.
+- Runtime selectors have been renamed away from `.wix-*` to neutral names such as `.site-header-*`, `.section-*`, `.home-*`, `.project-*`, `.contact-*`, and `.case-study-*`. Do not introduce new `.wix-*` runtime selectors. Wix references should remain only in legacy migration/archive material or archival frontmatter.
+- Dead Wix-era runtime helpers such as old text classes, divider helpers, promo styles, and obsolete project/contact tile styles have been removed. Add new component-local styles instead of restoring those generic helpers.
+- `tests/content/content-integrity.test.ts` runs through `tsx` and imports the real TypeScript data modules for taxonomy/assets instead of parsing them with source-code regexes.
+- `npm run check` uses `astro check` and is part of `npm test`. Keep source and test TypeScript strict enough for this to stay useful.
+- Run Playwright visual and interaction suites sequentially. Both suites start a web server that rebuilds/serves `dist`, and running them in parallel can race on the generated output.
 
 ## Asset Conventions
 

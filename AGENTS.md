@@ -16,4 +16,6 @@ Automatically update `docs/portfolio-context.md` when new durable knowledge appe
 
 Do not wait for an explicit reminder to document this knowledge. Do not document secrets, credentials, private keys, tokens, or temporary access details.
 
+Run Playwright visual and interaction suites sequentially. They both rebuild and serve `dist`, so parallel runs can race on generated output.
+
 Update AGENTS.md file(s) if needed after each change.

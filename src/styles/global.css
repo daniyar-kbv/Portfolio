@@ -4,7 +4,12 @@
 @import './components/hero.css';
 @import './components/homepage.css';
 @import './components/project-card.css';
-@import './components/project-page.css';
+@import './components/project/hero.css';
+@import './components/project/summary.css';
+@import './components/project/media.css';
+@import './components/project/links.css';
+@import './components/project/contact.css';
+@import './components/project/misc.css';
 @import './components/lightbox.css';
 @import './components/case-study.css';
 @import './components/contact.css';

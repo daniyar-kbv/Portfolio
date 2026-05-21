@@ -7,8 +7,8 @@ import HomeServices from '../components/HomeServices.astro';
 import SelectedProofSection from '../components/SelectedProofSection.astro';
 import ProjectArchiveSection from '../components/ProjectArchiveSection.astro';
 import ContactSection from '../components/ContactSection.astro';
+import { siteAssets } from '../data/assets';
 import {
-  archiveSections,
   compactProofSlugs,
   featuredProofSlugs,
   homepageHero,
@@ -17,8 +17,8 @@ import {
   projectOutcomeCopy,
   projectOutcomeHeadlines,
   serviceAreas,
-  siteAssets,
-} from '../data/site';
+} from '../data/homepage';
+import { archiveSections } from '../data/project-taxonomy';
 import {
   groupProjectsByArchiveSection,
   indexProjectsBySlug,

@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import type { ProjectCategory } from '../data/site';
+import type { ProjectCategory } from '../data/project-taxonomy';
 import { isRenderableMediaRef } from './media';
 
 export type ProjectEntry = CollectionEntry<'projects'>;

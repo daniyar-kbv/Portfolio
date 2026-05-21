@@ -7,7 +7,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '../..');
 const projectsDir = path.join(repoRoot, 'src/content/projects');
-const siteDataFile = path.join(repoRoot, 'src/data/site.ts');
+const projectTaxonomyFile = path.join(repoRoot, 'src/data/project-taxonomy.ts');
+const dataDir = path.join(repoRoot, 'src/data');
 const localAssetsFile = path.join(repoRoot, 'src/data/local-assets.json');
 const publicDir = path.join(repoRoot, 'public');
 const rawWixMediaPattern = /wix:(image|video):\/\//;
@@ -44,7 +45,7 @@ function parseFrontmatter(filePath, source) {
 function readProjectCategories(source) {
   const match = source.match(/projectCategories\s*=\s*\[([\s\S]*?)\]\s+as const/);
   if (!match) {
-    addFailure('src/data/site.ts', 'could not read projectCategories');
+    addFailure('src/data/project-taxonomy.ts', 'could not read projectCategories');
     return new Set();
   }
 
@@ -147,9 +148,9 @@ function collectStringPaths(value, paths = []) {
   return paths;
 }
 
-const siteSource = await readFile(siteDataFile, 'utf8');
+const projectTaxonomySource = await readFile(projectTaxonomyFile, 'utf8');
 const localAssets = JSON.parse(await readFile(localAssetsFile, 'utf8'));
-const validCategories = readProjectCategories(siteSource);
+const validCategories = readProjectCategories(projectTaxonomySource);
 const priorityOwners = new Map();
 const projectFiles = await readProjectFiles();
 const projects = [];
@@ -202,8 +203,14 @@ for (const [index, assetPath] of collectStringPaths(localAssets.shared).entries(
   validateRenderFacingPath('src/data/local-assets.json', `shared asset ${index}`, assetPath);
 }
 
-for (const [, assetPath] of siteSource.matchAll(/['"]((?:\/assets\/)[^'"]+)['"]/g)) {
-  validateRenderFacingPath('src/data/site.ts', assetPath, assetPath);
+const dataFiles = await readdir(dataDir, { withFileTypes: true });
+for (const dataFile of dataFiles) {
+  if (!dataFile.isFile() || !dataFile.name.endsWith('.ts')) continue;
+
+  const dataSource = await readFile(path.join(dataDir, dataFile.name), 'utf8');
+  for (const [, assetPath] of dataSource.matchAll(/['"]((?:\/assets\/)[^'"]+)['"]/g)) {
+    validateRenderFacingPath(`src/data/${dataFile.name}`, assetPath, assetPath);
+  }
 }
 
 if (failures.length > 0) {

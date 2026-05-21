@@ -5,7 +5,7 @@ This file captures project knowledge and decisions that should survive across ch
 ## Source Of Truth
 
 - The Astro workspace in this repository is the live portfolio source of truth.
-- Routine project edits should be made directly in `src/content/projects/*.mdx`, `src/data/site.ts`, and `public/assets/`.
+- Routine project edits should be made directly in `src/content/projects/*.mdx`, the focused modules under `src/data/`, and `public/assets/`.
 - The old Wix content/export flow is legacy migration tooling only. Do not regenerate runtime content from Wix unless explicitly requested.
 - The Work Portfolio Notes folder was a temporary source. Its useful detailed project notes have been captured in this repo/context. It is safe to delete after confirming this file is present.
 - Do not import the Notes items named `Icon sizes` or `Short project summaries`. The user said icon sizes are only personal reference, and short summaries were derived from detailed summaries.
@@ -17,10 +17,10 @@ This file captures project knowledge and decisions that should survive across ch
 - Full/legal name: `Daniyar Kurmanbayev`.
 - Current homepage treatment intentionally makes `Dan Kurman` a visible primary hero identity and uses `Daniyar Kurmanbayev · Toronto, Canada` as secondary supporting identity.
 - Contact sections should also make `Dan Kurman` primary and use `Daniyar Kurmanbayev` as the secondary/full legal identity.
-- `siteOwner.publicName` and `siteOwner.legalName` in `src/data/site.ts` are the source for this public/legal identity split.
+- `siteOwner.publicName` and `siteOwner.legalName` in `src/data/identity.ts` are the source for this public/legal identity split.
 - Default formal role line: `Senior iOS Developer / Technical PM`.
 - Homepage hero role label: `Senior native iOS developer`.
-- Location/contact data live in `src/data/site.ts`.
+- Location/contact data live in `src/data/identity.ts`.
 - Tone: senior iOS/product engineer with production delivery, architecture cleanup, launch readiness, and client communication strength.
 - The homepage is intentionally client-first for Upwork, LinkedIn, and resume traffic while staying platform-neutral. It should persuade founders/clients first, with recruiter usefulness as a secondary benefit.
 - Homepage positioning is: `I build reliable native iOS apps and AI-powered mobile features.`
@@ -91,21 +91,26 @@ This file captures project knowledge and decisions that should survive across ch
 - Project detail heroes should use the first renderable project media item as the background when available, then fall back to the global hero image. Case-study bodies should read as editorial sections, with only `Quick facts` and `Hard problems solved` treated as elevated cards.
 - Project detail hero media should be darkened enough to protect the centered title from busy screenshots. Project pages include a small sticky `Back to projects` affordance that still reserves breathing room before the summary cards, center single/two project link buttons, and use broad final CTA copy (`app work`) rather than iOS-only wording.
 - Project detail link sections should use the labels `Resources` and `Project links`, not the more utilitarian `Open the project`.
-- Project screenshot/banner lightbox behavior lives in `src/scripts/project-lightbox.ts` and must stay keyboard accessible.
+- Project screenshot/banner lightbox behavior enters through `src/scripts/project-lightbox.ts`, which delegates to focused modules in `src/scripts/project-media/`, and must stay keyboard accessible.
 - Project pages can render a multi-banner carousel from top-level MDX `banners`; it auto-swipes, supports pointer swipe/dots/arrows, and still opens the active banner in the fullscreen lightbox. Banners can be still images or video demo slides. Reduced motion disables auto-swipe and autoplay video.
 - The `Case study` label is a normal-case section heading, not the old uppercase eyebrow.
 
 ## Content Architecture
 
 - Project content collection schema is in `src/content/config.ts`.
-- Project categories are defined in `src/data/site.ts`:
+- `src/data/site.ts` is now a compatibility barrel that re-exports the focused data modules. Prefer focused imports for new first-party code.
+- Project categories are defined in `src/data/project-taxonomy.ts`:
   - `Recent`
   - `Flagship`
   - `Production`
   - `Backend`
   - `Legacy`
   - `AI`
-- Homepage positioning, proof points, services, selected-proof slugs, project-outcome copy, and archive sections live in `src/data/site.ts`.
+- Homepage positioning, proof points, services, selected-proof slugs, and project-outcome copy live in `src/data/homepage.ts`.
+- Archive sections and category taxonomy live in `src/data/project-taxonomy.ts`.
+- Owner/contact/meta data live in `src/data/identity.ts`.
+- Runtime asset paths live in `src/data/assets.ts`.
+- Header navigation lives in `src/data/navigation.ts`.
 - Current archive taxonomy is:
   - `Flagship Engineering`
   - `iOS Apps & Product Builds`
@@ -138,6 +143,22 @@ This file captures project knowledge and decisions that should survive across ch
 - The `wix` frontmatter block is archival only.
 - The `wix` frontmatter block is optional for new hand-written project pages because they do not come from Wix imports.
 - `src/data/local-assets.json` is retained for legacy migration scripts only, not runtime rendering.
+
+## Repository Structure Notes
+
+- Project detail page styles are split under `src/styles/components/project/` by responsibility:
+  - `hero.css`
+  - `summary.css`
+  - `media.css`
+  - `links.css`
+  - `contact.css`
+  - `misc.css`
+- Keep those imports grouped in `src/styles/global.css`; visual refactors should preserve import order unless snapshots are intentionally reviewed.
+- `ProfilePortrait.astro` and `ContactActions.astro` are shared contact UI primitives used by the homepage contact card and project-page CTA. Keep homepage/project wrappers distinct so each layout can evolve independently.
+- `ArchiveProjectCard.astro` owns compact archive card rendering. `ProjectCard.astro` is the default/general project card and should not regain archive-only variant branches.
+- Archive-specific card CSS lives with homepage/archive styling, while general project-card CSS remains in `src/styles/components/project-card.css`.
+- Project media/lightbox behavior is split into `src/scripts/project-media/helpers.ts`, `carousel.ts`, `lightbox.ts`, and `init.ts`, with `src/scripts/project-lightbox.ts` kept as the stable entrypoint.
+- The live Wix promo runtime has been removed (`WixPromoBar.astro` and `wix-promo.css`). Legacy Wix importer scripts/docs stay because they are migration/archive material.
 
 ## Asset Conventions
 

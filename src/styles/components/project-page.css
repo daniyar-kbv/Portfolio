@@ -532,14 +532,22 @@
 
 .wix-project-contact-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.82fr);
-  gap: clamp(20px, 5vw, 58px);
+  grid-template-columns: auto minmax(0, 1fr) minmax(280px, 0.78fr);
+  gap: clamp(18px, 4vw, 42px);
   align-items: center;
   max-width: var(--site-width);
   margin-inline: auto;
   padding: clamp(24px, 4vw, 40px);
   border-radius: var(--radius-card);
   background: var(--surface-card);
+}
+
+.wix-project-contact-portrait {
+  width: 112px;
+  height: 112px;
+  border-radius: 28px;
+  object-fit: cover;
+  box-shadow: var(--shadow-icon);
 }
 
 .wix-project-contact-copy h2 {
@@ -557,6 +565,14 @@
   font-size: clamp(16px, 1.7vw, 18px);
   line-height: 1.5;
   color: var(--color-text-muted);
+}
+
+.wix-project-contact-copy .wix-project-contact-identity {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--color-text-soft);
 }
 
 .wix-project-contact-actions {
@@ -807,6 +823,18 @@
   .wix-project-contact-card {
     grid-template-columns: 1fr;
     padding: 22px;
+    text-align: center;
+  }
+
+  .wix-project-contact-portrait {
+    width: 88px;
+    height: 88px;
+    margin-inline: auto;
+    border-radius: 22px;
+  }
+
+  .wix-project-contact-copy p:not(.wix-project-section-kicker) {
+    margin-inline: auto;
   }
 }
 

@@ -4,6 +4,8 @@ export type ProjectCategory = (typeof projectCategories)[number];
 
 export const siteOwner = {
   displayName: 'Daniyar Kurmanbayev',
+  publicName: 'Dan Kurman',
+  legalName: 'Daniyar Kurmanbayev',
   portfolioName: 'Daniyar Kurmanbayev (Dan Kurman)',
   role: 'Senior iOS Developer / Technical PM',
   location: 'Toronto, Canada',
@@ -21,6 +23,8 @@ export const siteAssets = {
   heroImage: '/assets/hero/banner-apps.jpg',
   seoImage: '/assets/seo/seo-image.png',
   logo: '/assets/logo/logo-horizontal.png',
+  profilePortrait: '/assets/profile/portrait.png',
+  profilePortraitAlt: 'Portrait of Dan Kurman',
   icons: {
     contact: '/assets/icons/contact-icon.png',
     linkedin: '/assets/icons/linkedin-icon.png',
@@ -40,7 +44,7 @@ export const homepageHero = {
   headline: 'I build reliable native iOS apps and AI-powered mobile features.',
   supporting:
     'I turn inherited codebases, AI APIs, payment flows, backend integrations, and product ideas into polished App Store-ready software.',
-  secondaryIdentity: `${siteOwner.displayName} · ${siteOwner.location}`,
+  secondaryIdentity: `${siteOwner.legalName} · ${siteOwner.location}`,
   bannerAlt: 'Portfolio banner',
   ctas: [
     {

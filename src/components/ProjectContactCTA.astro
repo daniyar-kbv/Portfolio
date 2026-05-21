@@ -1,6 +1,6 @@
 ---
 import IconImage from './IconImage.astro';
-import { siteAssets, siteContact } from '../data/site';
+import { siteAssets, siteContact, siteOwner } from '../data/site';
 
 const contactActions = [
   {
@@ -21,10 +21,18 @@ const contactActions = [
 <section class="wix-section-shell wix-project-contact-section">
   <div class="wix-section-inner">
     <article class="wix-project-contact-card">
+      <img
+        src={siteAssets.profilePortrait}
+        alt={siteAssets.profilePortraitAlt}
+        class="wix-project-contact-portrait"
+        loading="lazy"
+        decoding="async"
+      />
       <div class="wix-project-contact-copy">
         <p class="wix-project-section-kicker">Contact</p>
         <h2>Need this kind of app work?</h2>
         <p>Tell me what you’re shipping, stabilizing, or modernizing.</p>
+        <p class="wix-project-contact-identity">{siteOwner.publicName} · {siteOwner.legalName}</p>
       </div>
 
       <div class="wix-project-contact-actions" aria-label="Contact options">

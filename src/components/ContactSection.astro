@@ -34,11 +34,23 @@ const links = [
   <div class="wix-footer-inner wix-contact-home-inner">
     <div class="wix-contact-main">
       <div class="wix-contact-card">
-        <p class="wix-contact-heading">Get in touch</p>
-        <h2 class="wix-contact-name">{siteOwner.displayName}</h2>
-        <p class="wix-contact-location">{siteOwner.location}</p>
+        <div class="wix-contact-profile">
+          <img
+            src={siteAssets.profilePortrait}
+            alt={siteAssets.profilePortraitAlt}
+            class="wix-contact-portrait"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="wix-contact-identity">
+            <p class="wix-contact-kicker">Contact</p>
+            <h2 class="wix-contact-heading">Need this kind of app work?</h2>
+            <p class="wix-contact-name">{siteOwner.publicName}</p>
+            <p class="wix-contact-location">{siteOwner.legalName} · {siteOwner.location}</p>
+          </div>
+        </div>
         {!compact && (
-          <p class="wix-contact-note">For native iOS builds, launch rescue, payments, or AI-powered app features.</p>
+          <p class="wix-contact-note">Tell me what you’re shipping, stabilizing, or modernizing.</p>
         )}
         <div class="wix-contact-hero-links">
           {links.map((link) => (

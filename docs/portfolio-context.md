@@ -83,7 +83,7 @@ This file captures project knowledge and decisions that should survive across ch
 - The generated portrait is approved only as a restrained trust cue near conversion points. Use it in the homepage contact card and project-page final CTA, not in the hero. Runtime portrait asset: `public/assets/profile/portrait.png`.
 - The homepage contact section should finish like a restrained iOS contact/business card: `Need this kind of app work?`, `Dan Kurman` as the main identity, `Daniyar Kurmanbayev · Toronto, Canada` secondary, short shipping/stabilizing/modernizing copy, portrait, and grouped action cells for Email and LinkedIn.
 - Project detail case-study sections should feel like grouped inset surfaces: softer fill, lower border contrast, readable width, and less aggressive orange headings.
-- The homepage hero keeps `/assets/hero/banner-apps.jpg`.
+- The homepage hero keeps `/assets/hero/banner-apps.png`.
 - Hero overlays should use black/elevated-color vignette gradients that fade into the `#000000` page background. Avoid bringing back the older blue-gray overlay tint because it clashes with the current Apple-like dark palette.
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.
@@ -149,7 +149,7 @@ This file captures project knowledge and decisions that should survive across ch
   - `screenshots/screenshot-1.png`, etc.
   - `media-1.mov`, etc. when a project uses video media
 - Current assets include:
-  - `public/assets/hero/banner-apps.jpg`
+  - `public/assets/hero/banner-apps.png`
   - `public/assets/profile/portrait.png`
   - `public/assets/logo/logo-horizontal.png`
   - `public/assets/icons/*.png`

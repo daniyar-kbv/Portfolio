@@ -70,7 +70,7 @@ This file captures project knowledge and decisions that should survive across ch
   - legacy app rescue and architecture cleanup,
   - mobile and backend integration.
 - The first two homepage services (`Native iOS apps from design to release` and `AI-powered mobile features`) are intentionally featured as larger Apple-style tiles. The remaining services are supporting tiles.
-- Homepage services use small service glyph markers from `@lucide/astro`, selected through `serviceAreas[].icon`; keep them subtle and SF-symbol-like rather than decorative.
+- Homepage services use small SF-symbol-style inline SVG glyph markers selected through `serviceAreas[].icon`; keep them subtle, monochrome, and HIG-like rather than decorative.
 - Selected homepage proof is intentionally curated:
   - large cards: `blackville`, `kalyan-studio-apps`, `hashtaggenerator`, `mountainxperience-tracking`;
   - compact cards: `end-of-day`, `stop-overthinking`, `snowdon-summit-weather`.

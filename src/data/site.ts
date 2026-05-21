@@ -84,39 +84,39 @@ export const homepageProofPoints = [
 export const serviceAreas = [
   {
     title: 'Native iOS apps from design to release',
-    icon: 'app',
+    icon: 'iphone.gen3',
     description:
       'Implement polished SwiftUI/UIKit experiences, wire APIs, handle QA, and support TestFlight or App Store submission.',
     featured: true,
   },
   {
     title: 'AI-powered mobile features',
-    icon: 'sparkles',
+    icon: 'wand.and.sparkles',
     description:
       'Turn AI APIs into native UX with backend proxy/API integration, persistence, usage limits, credits/paywalls, and clear failure states.',
     featured: true,
   },
   {
     title: 'Payments, StoreKit & entitlements',
-    icon: 'payments',
+    icon: 'creditcard',
     description:
       'Build and debug IAP, subscriptions, legacy access, Stripe checkout, Apple Pay, and restore flows.',
   },
   {
     title: 'Launch readiness & stabilization',
-    icon: 'launch',
+    icon: 'checkmark.seal',
     description:
       'Audit risky flows, fix blockers, add monitoring, and get the app ready for real users.',
   },
   {
     title: 'Legacy app rescue & architecture cleanup',
-    icon: 'rescue',
+    icon: 'wrench.and.screwdriver',
     description:
       'Untangle older projects, reduce fragile logic, remove dead flows, and make future changes safer.',
   },
   {
     title: 'Mobile + backend integration',
-    icon: 'backend',
+    icon: 'server.rack',
     description:
       'Connect apps to Firebase, PHP, Django, APIs, notifications, analytics, and release infrastructure.',
   },

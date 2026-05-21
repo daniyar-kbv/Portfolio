@@ -19,7 +19,7 @@ function getOutcome(project: ProjectEntry) {
 <SectionShell
   id="selected-work"
   title="Selected client outcomes"
-  description="Recent work chosen for the kinds of client problems it proves: launch risk, payments, entitlement logic, mobile/backend delivery, and App Store readiness."
+  description="Recent work chosen for the kinds of client problems it proves: launch risk, AI API integration, payments, entitlement logic, mobile/backend delivery, and App Store readiness."
   class="wix-home-selected-work-section"
 >
   <div class="wix-home-featured-proof-grid">
@@ -53,13 +53,29 @@ function getOutcome(project: ProjectEntry) {
   </div>
 
   <div class="wix-home-compact-proof-grid" aria-label="Additional recent proof">
-    {compactProjects.map((project) => (
-      <a href={`/projects/${project.slug}`} class="wix-home-compact-proof-card">
-        <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
-        <h3>{project.data.title}</h3>
-        <p>{getOutcome(project)}</p>
-        <span class="wix-home-text-cta">View project <span aria-hidden="true">›</span></span>
-      </a>
-    ))}
+    {compactProjects.map((project) => {
+      const image = selectProjectCardImage(project);
+
+      return (
+        <a href={`/projects/${project.slug}`} class="wix-home-compact-proof-card">
+          {image && (
+            <div class="wix-home-compact-proof-media">
+              <img
+                src={image}
+                alt={project.data.coverAlt || `${project.data.title} preview`}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          <div class="wix-home-compact-proof-copy">
+            <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
+            <h3>{project.data.title}</h3>
+            <p>{getOutcome(project)}</p>
+            <span class="wix-home-text-cta">View project <span aria-hidden="true">›</span></span>
+          </div>
+        </a>
+      );
+    })}
   </div>
 </SectionShell>

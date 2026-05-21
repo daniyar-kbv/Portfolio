@@ -92,6 +92,20 @@ function validateRenderFacingPathArray(scope, field, values) {
   values.forEach((value, index) => validateRenderFacingPath(scope, `${field}[${index}]`, value));
 }
 
+function hasRenderableProjectVisual(data) {
+  const screenshotCandidates = Array.isArray(data.screenshots) ? data.screenshots : [];
+  const candidates = [data.thumbnail, data.image, ...screenshotCandidates];
+
+  return candidates.some((candidate) => {
+    if (typeof candidate !== 'string') return false;
+
+    const trimmed = candidate.trim();
+    if (!trimmed || rawWixMediaPattern.test(trimmed)) return false;
+
+    return !trimmed.startsWith('/') || publicPathExists(trimmed);
+  });
+}
+
 function validateLink(scope, link, index) {
   const label = typeof link?.label === 'string' ? link.label.trim() : '';
   const url = typeof link?.url === 'string' ? link.url.trim() : '';
@@ -167,6 +181,10 @@ for (const filePath of projectFiles) {
 
   if (data.showMediaBanner && !data.image && !data.thumbnail) {
     addFailure(scope, 'showMediaBanner is true but neither image nor thumbnail is set');
+  }
+
+  if (data.category !== 'AI' && !hasRenderableProjectVisual(data)) {
+    addFailure(scope, 'non-AI projects must define at least one renderable thumbnail, image, or screenshot');
   }
 
   if (!Array.isArray(data.links)) {

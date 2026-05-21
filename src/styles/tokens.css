@@ -7,11 +7,11 @@
   --radius-card: 8px;
   --divider-thin: 1px;
   --divider-accent: 3px;
-  --color-background: #1e2a38;
-  --color-elevated: #29394c;
-  --color-elevated-alt: #243242;
-  --color-elevated-alt-2: #212e3d;
-  --color-elevated-2: #344a63;
+  --color-background: #000000;
+  --color-elevated: #1c1c1e;
+  --color-elevated-alt: #1c1c1e;
+  --color-elevated-alt-2: #111113;
+  --color-elevated-2: #2c2c2e;
   --color-accent: #ff6600;
   --color-accent-hover: #ff7a1a;
   --color-nav-active: #0d63d1;

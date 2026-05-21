@@ -28,7 +28,7 @@ This file captures project knowledge and decisions that should survive across ch
 
 ## Design Direction
 
-- Keep the existing dark blue/orange palette. Do not replace the color palette without explicit approval.
+- Current palette uses a true black background (`#000000`), iOS-style elevated surfaces (`#1C1C1E` family), and the existing orange accent. Do not replace the color palette again without explicit approval.
 - Desired visual style: iOS-ish, Apple-ish, Human Interface Guidelines inspired.
 - Navigation inspiration: Apple public/global nav patterns such as Apple Store, Apple Developer, and App Store Connect.
 - Section icons are intentional and should remain prominent. They are meant to look like iOS app icons and were made with Icon Composer.

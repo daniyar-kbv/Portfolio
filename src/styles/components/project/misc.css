@@ -5,34 +5,6 @@
   padding: 14px 0 0;
 }
 
-.wix-media-strip {
-  display: grid;
-  gap: 12px;
-}
-
-.wix-media-strip-image {
-  width: 100%;
-  min-height: 160px;
-  border: 0;
-  border-radius: var(--radius-card);
-  object-fit: cover;
-}
-
-.wix-media-strip-image--primary {
-  aspect-ratio: 980 / 366;
-}
-
-@media (min-width: 700px) {
-  .wix-media-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-  }
-
-  .wix-media-strip-image--primary {
-    grid-column: 1 / -1;
-  }
-}
-
 .wix-project-media {
   overflow: hidden;
   background: var(--surface-media-well);
@@ -40,53 +12,6 @@
 
 .wix-project-body {
   padding: 14px 16px 16px;
-}
-
-.wix-project-link-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.wix-project-link-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 32px;
-  padding: 5px 10px;
-  border: 0;
-  border-radius: var(--radius-card);
-  background: var(--surface-action);
-  color: var(--color-text);
-  transition:
-    background-color 150ms ease,
-    color 150ms ease;
-}
-
-.wix-project-link-chip:hover,
-.wix-project-link-chip:focus-visible {
-  color: var(--color-accent-hover);
-}
-
-.wix-project-link-icon {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  flex: none;
-}
-
-.wix-project-link-text {
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.wix-project-excerpt {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 
 @media (max-width: 640px) {

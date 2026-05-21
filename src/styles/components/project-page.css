@@ -23,6 +23,7 @@
   height: 100%;
   object-fit: cover;
   background: var(--color-background);
+  filter: brightness(0.66) saturate(0.82) contrast(0.96);
 }
 
 .wix-project-hero-overlay {
@@ -33,9 +34,9 @@
   justify-content: center;
   padding: clamp(54px, 8vw, 82px) var(--site-padding);
   background:
-    radial-gradient(ellipse at 50% 42%, rgba(28, 28, 30, 0.12), rgba(0, 0, 0, 0.48) 68%, rgba(0, 0, 0, 0.76)),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.48) 48%, rgba(0, 0, 0, 0.84)),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.46));
+    radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.58) 64%, rgba(0, 0, 0, 0.84)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.56) 48%, rgba(0, 0, 0, 0.9)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.12) 48%, rgba(0, 0, 0, 0.56));
 }
 
 .wix-project-hero-copy {
@@ -124,6 +125,56 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-text-soft);
+}
+
+.wix-project-back-affordance {
+  position: sticky;
+  top: calc(var(--header-height) + 10px);
+  z-index: 12;
+  width: 100%;
+  max-width: calc(var(--site-width) + (var(--site-padding) * 2));
+  height: 0;
+  margin: -20px auto 0;
+  padding-inline: var(--site-padding);
+  pointer-events: none;
+}
+
+.wix-project-back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 13px 8px 11px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-card) 82%, transparent);
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  pointer-events: auto;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
+}
+
+.wix-project-back-link::before {
+  margin-right: 6px;
+  color: var(--color-text-muted);
+  content: '\2039';
+  font-size: 18px;
+  line-height: 0.8;
+}
+
+.wix-project-back-link:hover,
+.wix-project-back-link:focus-visible {
+  background: color-mix(in srgb, var(--surface-card) 94%, transparent);
+  transform: translateY(var(--card-hover-lift));
+}
+
+.wix-project-back-link:active {
+  transform: scale(var(--card-active-scale));
 }
 
 .wix-project-media-stage {
@@ -709,7 +760,7 @@
   }
 
   .wix-project-section-heading {
-    text-align: left;
+    text-align: center;
   }
 
   .wix-project-gallery-image {
@@ -761,6 +812,7 @@
 @media (prefers-reduced-motion: reduce) {
   .wix-project-banner-button,
   .wix-project-link-tile,
+  .wix-project-back-link,
   .wix-project-contact-action {
     transition: none;
   }
@@ -768,6 +820,9 @@
   .wix-project-link-tile:hover,
   .wix-project-link-tile:focus-visible,
   .wix-project-link-tile:active,
+  .wix-project-back-link:hover,
+  .wix-project-back-link:focus-visible,
+  .wix-project-back-link:active,
   .wix-project-contact-action:hover,
   .wix-project-contact-action:focus-visible,
   .wix-project-contact-action:active {

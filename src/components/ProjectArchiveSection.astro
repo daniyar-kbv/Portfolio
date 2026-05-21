@@ -1,5 +1,5 @@
 ---
-import ProjectCard from './ProjectCard.astro';
+import ArchiveProjectCard from './ArchiveProjectCard.astro';
 import SectionShell from './SectionShell.astro';
 import type { ProjectCategory } from '../data/project-taxonomy';
 import type { ProjectEntry } from '../lib/projects';
@@ -61,7 +61,7 @@ const sectionIcons: Record<ProjectCategory, string> = {
               const image = selectProjectCardImage(project);
 
               return (
-                <ProjectCard
+                <ArchiveProjectCard
                   slug={project.slug}
                   title={project.data.title}
                   subtitle={project.data.subtitle}
@@ -70,7 +70,6 @@ const sectionIcons: Record<ProjectCategory, string> = {
                   image={image}
                   alt={project.data.coverAlt || `${project.data.title} preview`}
                   showVisual={section.category !== 'AI'}
-                  variant="archiveCompact"
                 />
               );
             })}

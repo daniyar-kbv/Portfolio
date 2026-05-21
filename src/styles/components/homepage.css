@@ -316,6 +316,63 @@
   filter: drop-shadow(var(--shadow-icon));
 }
 
+.wix-project-card--archive-compact .wix-project-card-link {
+  min-height: 0;
+}
+
+.wix-project-card--archive-compact .wix-project-card-link--text-only {
+  min-height: 190px;
+  padding: 20px;
+}
+
+.wix-project-card--archive-compact .wix-project-card-media {
+  height: clamp(142px, 14vw, 168px);
+}
+
+.wix-project-card--archive-compact .wix-project-card-image {
+  padding: 12px 12px 4px;
+}
+
+.wix-project-card--archive-compact .wix-project-card-copy {
+  padding: 12px 16px 18px;
+}
+
+.wix-project-card--archive-compact .wix-project-card-title {
+  font-size: 16px;
+  line-height: 1.28;
+}
+
+.wix-project-card--archive-compact .wix-project-card-kicker,
+.wix-project-card--archive-compact .wix-project-card-status {
+  font-size: 11px;
+}
+
+.wix-project-card--archive-compact .wix-project-card-description {
+  margin-top: 8px;
+  max-width: 250px;
+  font-size: 12px;
+  line-height: 1.45;
+  -webkit-line-clamp: 2;
+}
+
+.wix-project-card--archive-compact .wix-project-card-tech {
+  margin-top: 8px;
+  max-width: 250px;
+  font-size: 11px;
+}
+
+.wix-project-card--archive-compact .wix-project-card-link:not(.wix-project-card-link--text-only) .wix-project-card-button {
+  min-height: 30px;
+  padding-top: 8px;
+  font-size: 13px;
+}
+
+@media (max-width: 520px) {
+  .wix-project-card--archive-compact .wix-project-card-media {
+    height: 184px;
+  }
+}
+
 @media (max-width: 960px) {
   .wix-home-proof-inner,
   .wix-home-featured-proof-grid,

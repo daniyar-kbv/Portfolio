@@ -7,24 +7,27 @@ import ProjectMedia from '../../components/ProjectMedia.astro';
 import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
 import ProjectContactCTA from '../../components/ProjectContactCTA.astro';
+import RelatedProjects from '../../components/RelatedProjects.astro';
 import { siteAssets } from '../../data/assets';
 import { homepageHero } from '../../data/homepage';
-import { siteOwner } from '../../data/identity';
 import {
+  selectRelatedProjects,
   selectProjectMediaBanners,
   shouldRenderProjectLinks,
   shouldRenderProjectMedia,
+  sortProjectsByPriority,
 } from '../../lib/projects';
+import { absoluteUrl, buildProjectStructuredData, formatProjectSeoTitle } from '../../lib/seo';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const projects = sortProjectsByPriority(await getCollection('projects'));
   return projects.map((project) => ({
     params: { slug: project.slug },
-    props: { project },
+    props: { project, projects },
   }));
 }
 
-const { project } = Astro.props;
+const { project, projects } = Astro.props;
 const { data } = project;
 const { Content } = await project.render();
 
@@ -34,17 +37,29 @@ const hasLinksSection = shouldRenderProjectLinks(project);
 const seoImage = data.thumbnail || siteAssets.seoImage;
 const heroMedia = mediaBanners[0] ?? siteAssets.heroImage;
 const heroMediaAlt = mediaBanners[0] ? `${data.title} product visual` : homepageHero.bannerAlt;
+const projectSeoTitle = formatProjectSeoTitle(project);
+const canonicalUrl = absoluteUrl(`/projects/${project.slug}`, Astro.site);
+const siteUrl = absoluteUrl('/', Astro.site);
+const projectStructuredData = buildProjectStructuredData({
+  project,
+  pageUrl: canonicalUrl,
+  imageUrl: absoluteUrl(seoImage, Astro.site),
+  siteUrl,
+});
+const relatedProjects = selectRelatedProjects(project, projects);
 ---
 
 <BaseLayout
-  title={data.title}
+  title={projectSeoTitle}
   description={data.description}
   canonicalPath={`/projects/${project.slug}`}
   ogImage={seoImage}
   ogImageAlt={`${data.title} thumbnail`}
-  ogTitle={`${data.title} | ${siteOwner.portfolioName}`}
+  ogTitle={projectSeoTitle}
   ogDescription={data.description}
   ogType="article"
+  ogImageType={siteAssets.seoImageType}
+  structuredData={projectStructuredData}
 >
   <main id="content">
     <ProjectHero
@@ -74,6 +89,8 @@ const heroMediaAlt = mediaBanners[0] ? `${data.title} product visual` : homepage
     <CaseStudySection>
       <Content />
     </CaseStudySection>
+
+    <RelatedProjects currentTitle={data.title} projects={relatedProjects} />
 
     {hasLinksSection && <ProjectLinks links={data.links} />}
 

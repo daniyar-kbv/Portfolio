@@ -25,6 +25,7 @@ import {
   selectProjectsBySlug,
   sortProjectsByPriority,
 } from '../lib/projects';
+import { absoluteUrl, buildHomepageStructuredData } from '../lib/seo';
 
 const projects = sortProjectsByPriority(await getCollection('projects'));
 const projectsBySlug = indexProjectsBySlug(projects);
@@ -32,6 +33,12 @@ const featuredProofProjects = selectProjectsBySlug(projectsBySlug, featuredProof
 const compactProofProjects = selectProjectsBySlug(projectsBySlug, compactProofSlugs);
 const selectedProofSlugs = new Set([...featuredProofSlugs, ...compactProofSlugs]);
 const archiveProjectsByCategory = groupProjectsByArchiveSection(projects, archiveSections, selectedProofSlugs);
+const canonicalUrl = absoluteUrl('/', Astro.site);
+const homepageStructuredData = buildHomepageStructuredData({
+  pageUrl: canonicalUrl,
+  pageImageUrl: absoluteUrl(siteAssets.seoImage, Astro.site),
+  profileImageUrl: absoluteUrl(siteAssets.profilePortrait, Astro.site),
+});
 ---
 
 <BaseLayout
@@ -42,6 +49,10 @@ const archiveProjectsByCategory = groupProjectsByArchiveSection(projects, archiv
   ogImageAlt={homepageMeta.ogImageAlt}
   ogTitle={homepageMeta.title}
   ogDescription={homepageMeta.description}
+  ogImageWidth={siteAssets.seoImageWidth}
+  ogImageHeight={siteAssets.seoImageHeight}
+  ogImageType={siteAssets.seoImageType}
+  structuredData={homepageStructuredData}
 >
   <main id="content">
     <HeroIntro

@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type ProjectEntry = CollectionEntry<'projects'>;
+
+interface Props {
+  currentTitle: string;
+  projects: ProjectEntry[];
+}
+
+const { currentTitle, projects } = Astro.props as Props;
+---
+
+{projects.length > 0 && (
+  <section class="section-shell project-related-section" aria-labelledby="related-case-studies-heading">
+    <div class="section-inner">
+      <div class="project-section-heading project-section-heading--compact">
+        <p class="project-section-kicker">Keep exploring</p>
+        <h2 id="related-case-studies-heading">Related case studies</h2>
+      </div>
+
+      <div class="project-related-grid" aria-label={`Related case studies for ${currentTitle}`}>
+        {projects.map((project) => (
+          <a href={`/projects/${project.slug}`} class="project-related-card">
+            <span class="project-related-meta">{project.data.subtitle}</span>
+            <span class="project-related-title">{project.data.title}</span>
+            <span class="project-related-description">{project.data.description}</span>
+            <span class="project-related-link">View case study ›</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

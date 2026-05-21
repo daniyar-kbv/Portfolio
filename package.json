@@ -9,10 +9,11 @@
     "preview": "astro preview",
     "check": "astro check",
     "test:content": "tsx tests/content/content-integrity.test.ts",
+    "test:seo": "npm run build && tsx tests/content/seo-build.test.ts",
     "test:visual": "playwright test tests/visual/portfolio.visual.spec.ts",
     "test:interaction": "playwright test tests/interaction/project-accessibility.spec.ts",
     "test:visual:update": "playwright test tests/visual/portfolio.visual.spec.ts --update-snapshots",
-    "test": "npm run check && npm run test:content && npm run test:visual && npm run test:interaction",
+    "test": "npm run check && npm run test:content && npm run test:seo && npm run test:visual && npm run test:interaction",
     "legacy:wix:assets": "node scripts/legacy-wix/map-local-assets.mjs",
     "legacy:wix:import": "node scripts/legacy-wix/import-content.mjs",
     "legacy:wix:refresh": "npm run legacy:wix:assets && npm run legacy:wix:import"

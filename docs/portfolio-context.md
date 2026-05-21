@@ -144,6 +144,24 @@ This file captures project knowledge and decisions that should survive across ch
 - The `wix` frontmatter block is optional for new hand-written project pages because they do not come from Wix imports.
 - `src/data/local-assets.json` is retained for legacy migration scripts only, not runtime rendering.
 
+## SEO Conventions
+
+- Keep SEO platform-neutral for Upwork, LinkedIn, resume, search, and direct client traffic. Do not add keyword stuffing, fake ratings, fake testimonials, fake service pricing, or claims that are not backed by the portfolio content.
+- `astro.config.mjs` reads `SITE_URL` for canonical, Open Graph, sitemap, and JSON-LD URLs. Production deployment must set `SITE_URL` to the deployed domain.
+- Homepage title template: `Dan Kurman | Senior iOS Developer for Native & AI Apps`.
+- Homepage description should emphasize Swift/SwiftUI, AI-powered app features, StoreKit, Stripe/Apple Pay, and App Store-ready releases.
+- Project page title template: `{Project Title} Case Study | {Project Subtitle} | Dan Kurman`.
+- Project meta descriptions should continue to come from each project’s existing `description` field.
+- Base metadata should include author, canonical URL, Open Graph locale, Open Graph image dimensions/type when known, Twitter card metadata, and the favicon set.
+- JSON-LD is built in `src/lib/seo.ts`:
+  - homepage emits `Person`, `ProfilePage`, and `WebSite`;
+  - project pages emit `CreativeWork` and `BreadcrumbList`;
+  - `Daniyar Kurmanbayev` is the full/legal person name and `Dan Kurman` is the public/alternate name;
+  - LinkedIn is the stable `sameAs` URL;
+  - project `typeTags` and `techTags` are used as JSON-LD keywords.
+- Related project links on case-study pages are crawlable internal links. Selection is deterministic: same category is strongest, then shared `typeTags`, then shared `techTags`, with priority as the tie-breaker. Related sections must exclude the current project and point only to valid `/projects/<slug>` routes.
+- Favicon/search asset set should include `32x32`, `96x96`, and `180x180` Apple touch icon PNG files. Runtime `.DS_Store` files should not exist under `public/`.
+
 ## Repository Structure Notes
 
 - Homepage-specific styles are split under `src/styles/components/home/` by responsibility:
@@ -185,6 +203,7 @@ This file captures project knowledge and decisions that should survive across ch
 - Current assets include:
   - `public/assets/hero/banner-apps.png`
   - `public/assets/favicon/favicon-32.png`
+  - `public/assets/favicon/favicon-96.png`
   - `public/assets/favicon/apple-touch-icon.png`
   - `public/assets/profile/portrait.png`
   - `public/assets/logo/logo-horizontal.png`
@@ -305,6 +324,7 @@ These projects were supplied in detailed notes/conversation summaries and may be
 Use these routinely:
 
 - `npm run test:content`
+- `npm run test:seo`
 - `npm run build`
 - `npm run test:interaction`
 - `npm run test:visual`
@@ -321,6 +341,7 @@ Important checks already covered:
 - mobile nav open/close/link-close/keyboard behavior,
 - project banner lightbox keyboard behavior,
 - reduced motion disables parallax,
+- built HTML contains homepage/project SEO metadata, JSON-LD, canonical links, favicon links, and valid related case-study links,
 - visual snapshots for homepage and representative project pages.
 
 ## Commit And Workflow Rules

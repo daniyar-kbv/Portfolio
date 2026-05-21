@@ -155,6 +155,24 @@ function collectAssetPaths(value: unknown, paths: string[] = []): string[] {
   return paths;
 }
 
+async function findFilesByName(rootDir: string, fileName: string): Promise<string[]> {
+  const matches: string[] = [];
+  const entries = await readdir(rootDir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const entryPath = path.join(rootDir, entry.name);
+    if (entry.name === fileName) {
+      matches.push(entryPath);
+    }
+
+    if (entry.isDirectory()) {
+      matches.push(...(await findFilesByName(entryPath, fileName)));
+    }
+  }
+
+  return matches;
+}
+
 const localAssets = JSON.parse(await readFile(localAssetsFile, 'utf8')) as { shared?: unknown };
 const validCategories = new Set<string>(projectCategories);
 const priorityOwners = new Map<number, string>();
@@ -214,6 +232,11 @@ for (const [index, assetPath] of collectAssetPaths(localAssets.shared).entries()
 
 for (const [index, assetPath] of collectAssetPaths(siteAssets).entries()) {
   validateRenderFacingPath('src/data/assets.ts', `site asset ${index}`, assetPath);
+}
+
+const publicDsStoreFiles = await findFilesByName(publicDir, '.DS_Store');
+for (const filePath of publicDsStoreFiles) {
+  addFailure('public', `.DS_Store must not be committed or left in runtime assets: ${path.relative(repoRoot, filePath)}`);
 }
 
 if (failures.length > 0) {

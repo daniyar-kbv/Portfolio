@@ -25,6 +25,48 @@ export function sortProjectsByPriority(projects: readonly ProjectEntry[]): Proje
   return [...projects].sort((a, b) => a.data.priority - b.data.priority);
 }
 
+function normalizeTag(tag: string): string {
+  return tag.trim().toLowerCase();
+}
+
+function countSharedTags(a: readonly string[], b: readonly string[]): number {
+  const normalizedA = new Set(a.map(normalizeTag));
+  return b.reduce((count, tag) => count + (normalizedA.has(normalizeTag(tag)) ? 1 : 0), 0);
+}
+
+function scoreRelatedProject(currentProject: ProjectEntry, candidateProject: ProjectEntry): number {
+  const categoryScore = currentProject.data.category === candidateProject.data.category ? 8 : 0;
+  const typeTagScore = countSharedTags(currentProject.data.typeTags, candidateProject.data.typeTags) * 3;
+  const techTagScore = countSharedTags(currentProject.data.techTags, candidateProject.data.techTags);
+
+  return categoryScore + typeTagScore + techTagScore;
+}
+
+export function selectRelatedProjects(
+  currentProject: ProjectEntry,
+  projects: readonly ProjectEntry[],
+  limit = 3,
+): ProjectEntry[] {
+  const scoredProjects = projects
+    .filter((project) => project.slug !== currentProject.slug)
+    .map((project) => ({
+      project,
+      score: scoreRelatedProject(currentProject, project),
+    }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      if (a.project.data.priority !== b.project.data.priority) {
+        return a.project.data.priority - b.project.data.priority;
+      }
+      return a.project.data.title.localeCompare(b.project.data.title);
+    });
+
+  const relatedProjects = scoredProjects.filter(({ score }) => score > 0);
+  const candidates = relatedProjects.length > 0 ? relatedProjects : scoredProjects;
+
+  return candidates.slice(0, limit).map(({ project }) => project);
+}
+
 export function groupProjectsByHomepageSection(
   projects: readonly ProjectEntry[],
   sections: readonly ProjectSectionLike[],

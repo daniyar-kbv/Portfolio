@@ -19,9 +19,9 @@ export type ServiceArea = {
 };
 
 export const homepageMeta = {
-  title: 'Portfolio | Daniyar Kurmanbayev (Dan Kurman)',
+  title: 'Dan Kurman | Senior iOS Developer for Native & AI Apps',
   description:
-    'Dan Kurman (Daniyar Kurmanbayev), senior native iOS developer. I build reliable Swift/SwiftUI apps, AI-powered mobile features, payment flows, and App Store-ready products.',
+    'Senior native iOS developer building Swift/SwiftUI apps, AI-powered features, StoreKit monetization, Stripe/Apple Pay checkout, and App Store-ready releases.',
   ogImageAlt: 'Portfolio SEO image',
 };
 

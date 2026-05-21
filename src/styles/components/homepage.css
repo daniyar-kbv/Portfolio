@@ -89,12 +89,16 @@
   border-radius: var(--radius-card);
 }
 
-.wix-home-service-glyph-svg {
+.wix-home-service-glyph-symbol {
+  display: block;
   width: 22px;
   height: 22px;
+  background: currentColor;
+  mask: var(--service-symbol-url) center / contain no-repeat;
+  -webkit-mask: var(--service-symbol-url) center / contain no-repeat;
 }
 
-.wix-home-service-card--featured .wix-home-service-glyph-svg {
+.wix-home-service-card--featured .wix-home-service-glyph-symbol {
   width: 25px;
   height: 25px;
 }

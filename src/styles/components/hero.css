@@ -92,13 +92,28 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  margin-top: clamp(28px, 3.8vw, 40px);
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: clamp(26px, 3.5vw, 36px);
 }
 
 .wix-home-hero-action {
   min-height: 44px;
+  border-radius: 999px;
   padding-inline: 22px;
+}
+
+.wix-home-hero-action--secondary {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.wix-home-hero-action--secondary:hover,
+.wix-home-hero-action--secondary:focus-visible {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-accent-hover);
 }
 
 @media (max-width: 640px) {
@@ -135,5 +150,10 @@
   .wix-home-hero-action {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .wix-home-hero-action--secondary {
+    width: auto;
+    padding-inline: 0;
   }
 }

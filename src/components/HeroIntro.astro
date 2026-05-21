@@ -50,7 +50,7 @@ const {
         <p class="wix-home-banner-role">{supporting}</p>
         <div class="wix-home-hero-actions" aria-label="Primary actions">
           {ctas.map((cta) => (
-            <ButtonLink href={cta.href} variant={cta.variant} class="wix-home-hero-action">
+            <ButtonLink href={cta.href} variant={cta.variant} class={`wix-home-hero-action wix-home-hero-action--${cta.variant}`}>
               {cta.label}
             </ButtonLink>
           ))}

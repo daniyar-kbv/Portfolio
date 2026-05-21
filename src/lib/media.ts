@@ -1,4 +1,5 @@
 const WIX_MEDIA_PREFIX = 'wix:';
+const VIDEO_EXTENSIONS = ['.mp4', '.mov', '.webm', '.m4v'];
 
 function normalizeMediaRef(value: string | null | undefined): string {
   return String(value ?? '').trim();
@@ -38,4 +39,10 @@ export function isRenderableMediaRef(value: string | null | undefined): boolean 
   }
 
   return isLocalAssetPath(trimmed) || isExternalMediaUrl(trimmed);
+}
+
+export function getRenderableMediaType(value: string | null | undefined): 'image' | 'video' {
+  const cleanValue = normalizeMediaRef(value).split(/[?#]/)[0].toLowerCase();
+
+  return VIDEO_EXTENSIONS.some((extension) => cleanValue.endsWith(extension)) ? 'video' : 'image';
 }

@@ -1,19 +1,18 @@
 .wix-case-study-section {
-  padding-block: clamp(24px, 4vw, 42px) clamp(34px, 5vw, 56px);
+  padding-block: clamp(26px, 4vw, 44px) clamp(30px, 5vw, 54px);
 }
 
 .wix-case-study {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .wix-case-study-content {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 2vw, 14px);
   width: 100%;
-  max-width: var(--site-width);
+  max-width: min(100%, 860px);
   min-width: 0;
   margin-inline: auto;
 }
@@ -39,27 +38,47 @@
   color: var(--color-text-soft);
 }
 
+.wix-case-study-block {
+  width: 100%;
+  max-width: 100%;
+}
+
+.wix-case-study-block--editorial {
+  padding-block: clamp(24px, 4vw, 40px);
+  border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+
+.wix-case-study-card + .wix-case-study-block--editorial,
+.wix-case-study-block--editorial:first-child {
+  border-top-color: transparent;
+}
+
 .wix-case-study-card {
   width: 100%;
   max-width: 100%;
+  margin-block: clamp(10px, 2vw, 16px);
   padding: clamp(22px, 3.2vw, 34px);
   border: 0;
   border-radius: var(--radius-card);
-  background: var(--surface-card-quiet);
+  background: var(--surface-card);
   box-shadow: none;
 }
 
-.wix-case-study-card h2 {
+.wix-case-study-card--highlight {
+  margin-block: clamp(18px, 3vw, 28px);
+}
+
+.wix-case-study h2 {
   margin: 0 0 10px;
-  font-size: clamp(24px, 2.8vw, 34px);
+  font-size: clamp(26px, 3vw, 36px);
   line-height: 1.15;
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-text);
   text-wrap: balance;
 }
 
 .wix-case-study h3 {
-  margin: 12px 0 5px;
+  margin: 18px 0 6px;
   font-size: 18px;
   line-height: 1.4;
   font-weight: 600;
@@ -67,16 +86,16 @@
 }
 
 .wix-case-study p {
-  margin: 5px 0;
+  margin: 8px 0;
   max-width: none;
-  font-size: 16px;
-  line-height: 1.62;
+  font-size: clamp(16px, 1.5vw, 17px);
+  line-height: 1.68;
   color: var(--color-text-muted);
 }
 
 .wix-case-study ul,
 .wix-case-study ol {
-  margin: 5px 0 5px 18px;
+  margin: 10px 0 5px 18px;
   padding-left: 0;
   max-width: none;
   color: var(--color-text-muted);
@@ -91,10 +110,10 @@
 }
 
 .wix-case-study li {
-  margin: 5px 0;
+  margin: 8px 0;
   padding-left: 2px;
-  font-size: 16px;
-  line-height: 1.58;
+  font-size: clamp(16px, 1.5vw, 17px);
+  line-height: 1.62;
 }
 
 .wix-case-study li::marker {
@@ -118,21 +137,21 @@
 }
 
 .wix-case-study hr {
-  margin: 24px 0;
+  margin: 28px 0;
   border: 0;
-  border-top: 1px solid var(--border-card);
+  border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 }
 
 .wix-case-study blockquote {
-  margin: 16px 0;
-  padding-left: 16px;
+  margin: 18px 0;
+  padding-left: 18px;
   border-left: 2px solid var(--color-accent);
   color: var(--color-text-muted);
 }
 
 .wix-case-study pre {
   overflow-x: auto;
-  margin: 16px 0;
+  margin: 18px 0;
   padding: 16px;
   border-radius: var(--radius-card);
   background: var(--surface-card);

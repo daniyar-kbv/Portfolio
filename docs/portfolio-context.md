@@ -84,7 +84,8 @@ This file captures project knowledge and decisions that should survive across ch
 - Hero overlays should use black/elevated-color vignette gradients that fade into the `#000000` page background. Avoid bringing back the older blue-gray overlay tint because it clashes with the current Apple-like dark palette.
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.
-- Project detail pages should match the homepage system: editorial dark hero, compact tag chips, a summary/proof band, named media sections, subdued action-row links, and borderless elevated case-study cards.
+- Project detail pages should match the homepage system: editorial dark hero, compact tag chips, a compact summary/proof band, named media sections, bottom project links, and a compact contact CTA.
+- Project detail heroes should use the first renderable project media item as the background when available, then fall back to the global hero image. Case-study bodies should read as editorial sections, with only `Quick facts` and `Hard problems solved` treated as elevated cards.
 - Project screenshot/banner lightbox behavior lives in `src/scripts/project-lightbox.ts` and must stay keyboard accessible.
 - Project pages can render a multi-banner carousel from top-level MDX `banners`; it auto-swipes, supports pointer swipe/dots/arrows, and still opens the active banner in the fullscreen lightbox. Banners can be still images or video demo slides. Reduced motion disables auto-swipe and autoplay video.
 - The `Case study` label is a normal-case section heading, not the old uppercase eyebrow.

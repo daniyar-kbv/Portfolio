@@ -6,7 +6,7 @@ import ProjectSummary from '../../components/ProjectSummary.astro';
 import ProjectMedia from '../../components/ProjectMedia.astro';
 import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
-import ContactSection from '../../components/ContactSection.astro';
+import ProjectContactCTA from '../../components/ProjectContactCTA.astro';
 import { homepageHero, siteAssets, siteOwner } from '../../data/site';
 import {
   selectProjectMediaBanners,
@@ -30,6 +30,8 @@ const mediaBanners = selectProjectMediaBanners(project);
 const hasMediaSection = shouldRenderProjectMedia(project);
 const hasLinksSection = shouldRenderProjectLinks(project);
 const seoImage = data.thumbnail || siteAssets.seoImage;
+const heroMedia = mediaBanners[0] ?? siteAssets.heroImage;
+const heroMediaAlt = mediaBanners[0] ? `${data.title} product visual` : homepageHero.bannerAlt;
 ---
 
 <BaseLayout
@@ -50,8 +52,8 @@ const seoImage = data.thumbnail || siteAssets.seoImage;
       category={data.category}
       typeTags={data.typeTags}
       techTags={data.techTags}
-      banner={siteAssets.heroImage}
-      bannerAlt={homepageHero.bannerAlt}
+      banner={heroMedia}
+      bannerAlt={heroMediaAlt}
     />
 
     <ProjectSummary
@@ -63,12 +65,12 @@ const seoImage = data.thumbnail || siteAssets.seoImage;
 
     {hasMediaSection && <ProjectMedia title={data.title} banners={mediaBanners} />}
 
-    {hasLinksSection && <ProjectLinks links={data.links} />}
-
     <CaseStudySection>
       <Content />
     </CaseStudySection>
 
-    <ContactSection compact />
+    {hasLinksSection && <ProjectLinks links={data.links} />}
+
+    <ProjectContactCTA />
   </main>
 </BaseLayout>

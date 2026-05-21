@@ -1,0 +1,59 @@
+---
+import IconImage from './IconImage.astro';
+import { siteAssets, siteContact } from '../data/site';
+
+const contactActions = [
+  {
+    title: 'Email',
+    value: siteContact.email,
+    href: `mailto:${siteContact.email}`,
+    icon: siteAssets.icons.contact,
+  },
+  {
+    title: 'LinkedIn',
+    value: siteContact.linkedin.label,
+    href: siteContact.linkedin.url,
+    icon: siteAssets.icons.linkedin,
+  },
+];
+---
+
+<section class="wix-section-shell wix-project-contact-section">
+  <div class="wix-section-inner">
+    <article class="wix-project-contact-card">
+      <div class="wix-project-contact-copy">
+        <p class="wix-project-section-kicker">Contact</p>
+        <h2>Need this kind of iOS work?</h2>
+        <p>Tell me what you’re shipping, stabilizing, or modernizing.</p>
+      </div>
+
+      <div class="wix-project-contact-actions" aria-label="Contact options">
+        {contactActions.map((action) => {
+          const isExternal = action.href.startsWith('http');
+
+          return (
+            <a
+              href={action.href}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noreferrer noopener' : undefined}
+              aria-label={`${action.title}: ${action.value}`}
+              class="wix-project-contact-action group"
+            >
+              <span class="wix-project-contact-icon" aria-hidden="true">
+                <IconImage
+                  src={action.icon}
+                  class="absolute inset-0 h-full w-full object-contain transition-transform group-hover:scale-105"
+                  loading="lazy"
+                />
+              </span>
+              <span class="wix-project-contact-action-copy">
+                <span class="wix-project-contact-action-title">{action.title}</span>
+                <span class="wix-project-contact-action-value">{action.value}</span>
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </article>
+  </div>
+</section>

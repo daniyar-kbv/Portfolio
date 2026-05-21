@@ -21,32 +21,47 @@ const { class: className = '' } = Astro.props as Props;
 </section>
 
 <script>
+  function getCaseStudyBlockClass(headingText) {
+    const normalizedHeading = headingText.trim().toLowerCase();
+    const baseClass = 'wix-case-study-block';
+
+    if (normalizedHeading === 'quick facts') {
+      return `${baseClass} wix-case-study-card wix-case-study-card--facts`;
+    }
+
+    if (normalizedHeading === 'hard problems solved') {
+      return `${baseClass} wix-case-study-card wix-case-study-card--highlight`;
+    }
+
+    return `${baseClass} wix-case-study-block--editorial`;
+  }
+
   function splitCaseStudyCards() {
     document.querySelectorAll('.wix-case-study-content').forEach((content) => {
-      if (content.querySelector('.wix-case-study-card')) return;
+      if (content.querySelector('.wix-case-study-block')) return;
 
       const nodes = Array.from(content.childNodes);
       const fragment = document.createDocumentFragment();
-      let currentCard = null;
+      let currentBlock = null;
 
       nodes.forEach((node) => {
         if (node.nodeType === Node.ELEMENT_NODE && node instanceof HTMLElement && node.tagName === 'H2') {
-          currentCard = document.createElement('article');
-          currentCard.className = 'wix-case-study-card';
-          fragment.appendChild(currentCard);
+          currentBlock = document.createElement('article');
+          currentBlock.className = getCaseStudyBlockClass(node.textContent ?? '');
+          fragment.appendChild(currentBlock);
         }
 
-        if (!currentCard) {
+        if (!currentBlock) {
           if (node.textContent?.trim()) {
-            currentCard = document.createElement('article');
-            currentCard.className = 'wix-case-study-card';
-            fragment.appendChild(currentCard);
+            currentBlock = document.createElement('article');
+            currentBlock.className = 'wix-case-study-block wix-case-study-block--editorial';
+            fragment.appendChild(currentBlock);
           } else {
             return;
           }
         }
 
-        currentCard.appendChild(node);
+        currentBlock.appendChild(node);
       });
 
       content.appendChild(fragment);

@@ -1,6 +1,6 @@
 ---
 import { ChevronLeft, ChevronRight, Maximize2, RotateCcw, X, ZoomIn, ZoomOut } from '@lucide/astro';
-import { isRenderableMediaRef } from '../lib/media';
+import { getRenderableMediaType, isRenderableMediaRef } from '../lib/media';
 
 interface Props {
   title: string;
@@ -12,13 +12,6 @@ const { title, banner = null, banners = [] } = Astro.props as Props;
 const bannerCandidates = banners.length > 0 ? banners : [banner];
 const renderBanners = bannerCandidates.filter((candidate): candidate is string => isRenderableMediaRef(candidate));
 const hasMultipleBanners = renderBanners.length > 1;
-const videoExtensions = ['.mp4', '.mov', '.webm', '.m4v'];
-
-function getMediaType(src: string) {
-  const cleanSrc = src.split(/[?#]/)[0].toLowerCase();
-
-  return videoExtensions.some((extension) => cleanSrc.endsWith(extension)) ? 'video' : 'image';
-}
 
 function getBannerLabel(src: string, index: number) {
   const lowerSrc = src.toLowerCase();
@@ -32,8 +25,8 @@ function getBannerLabel(src: string, index: number) {
 }
 
 const firstBanner = renderBanners[0];
-const firstBannerType = firstBanner ? getMediaType(firstBanner) : 'image';
-const initialLightboxImage = renderBanners.find((renderBanner) => getMediaType(renderBanner) === 'image') ?? '';
+const firstBannerType = firstBanner ? getRenderableMediaType(firstBanner) : 'image';
+const initialLightboxImage = renderBanners.find((renderBanner) => getRenderableMediaType(renderBanner) === 'image') ?? '';
 const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
 ---
 
@@ -55,7 +48,7 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
             {renderBanners.map((renderBanner, index) => {
               const bannerLabel = hasMultipleBanners ? getBannerLabel(renderBanner, index) : 'banner';
               const alt = `${title} ${bannerLabel}`;
-              const mediaType = getMediaType(renderBanner);
+              const mediaType = getRenderableMediaType(renderBanner);
 
               return (
                 <button

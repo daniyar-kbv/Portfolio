@@ -1,4 +1,6 @@
 ---
+import { getRenderableMediaType } from '../lib/media';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -22,11 +24,25 @@ const {
 } = Astro.props as Props;
 
 const heroTags = [...typeTags, ...techTags].slice(0, 5);
+const bannerType = getRenderableMediaType(banner);
 ---
 
 <section class="wix-project-hero" data-parallax-hero data-parallax-travel="56">
   <div class="wix-parallax-frame">
-    {banner && (
+    {banner && bannerType === 'video' && (
+      <video
+        src={banner}
+        aria-label={bannerAlt}
+        muted
+        loop
+        autoplay
+        playsinline
+        preload="metadata"
+        class="wix-project-hero-image wix-parallax-image"
+        data-parallax-image
+      />
+    )}
+    {banner && bannerType === 'image' && (
       <img
         src={banner}
         alt={bannerAlt}

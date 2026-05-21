@@ -32,8 +32,9 @@
   justify-content: center;
   padding: clamp(28px, 6vw, 58px) var(--site-padding);
   background:
-    linear-gradient(180deg, rgba(30, 42, 56, 0.2), rgba(30, 42, 56, 0.68)),
-    linear-gradient(90deg, rgba(30, 42, 56, 0.34), rgba(30, 42, 56, 0.08));
+    radial-gradient(ellipse at 50% 42%, rgba(28, 28, 30, 0.12), rgba(0, 0, 0, 0.48) 68%, rgba(0, 0, 0, 0.76)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.48) 48%, rgba(0, 0, 0, 0.84)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.46));
 }
 
 .wix-project-hero-copy {

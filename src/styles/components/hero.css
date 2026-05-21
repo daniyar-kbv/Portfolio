@@ -20,8 +20,9 @@
   justify-content: center;
   padding: clamp(46px, 7vw, 72px) var(--site-padding);
   background:
-    linear-gradient(180deg, rgba(30, 42, 56, 0.18), rgba(30, 42, 56, 0.7)),
-    linear-gradient(90deg, rgba(30, 42, 56, 0.36), rgba(30, 42, 56, 0.08));
+    radial-gradient(ellipse at 50% 38%, rgba(28, 28, 30, 0.12), rgba(0, 0, 0, 0.5) 68%, rgba(0, 0, 0, 0.78)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.48) 48%, rgba(0, 0, 0, 0.88)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.48));
 }
 
 .wix-home-banner-copy {

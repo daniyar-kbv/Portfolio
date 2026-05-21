@@ -81,6 +81,7 @@ This file captures project knowledge and decisions that should survive across ch
 - The homepage contact section should finish like a restrained iOS contact/business card: clear identity, short contextual note, and grouped action cells for Email and LinkedIn, without a large portrait unless a final headshot asset is explicitly provided.
 - Project detail case-study sections should feel like grouped inset surfaces: softer fill, lower border contrast, readable width, and less aggressive orange headings.
 - The homepage hero keeps `/assets/hero/banner-apps.jpg`.
+- Hero overlays should use black/elevated-color vignette gradients that fade into the `#000000` page background. Avoid bringing back the older blue-gray overlay tint because it clashes with the current Apple-like dark palette.
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.
 - Project screenshot/banner lightbox behavior lives in `src/scripts/project-lightbox.ts` and must stay keyboard accessible.

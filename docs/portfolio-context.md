@@ -16,6 +16,8 @@ This file captures project knowledge and decisions that should survive across ch
 - Public-facing short brand: `Dan Kurman`.
 - Full/legal name: `Daniyar Kurmanbayev`.
 - Current homepage treatment intentionally makes `Dan Kurman` a visible primary hero identity and uses `Daniyar Kurmanbayev · Toronto, Canada` as secondary supporting identity.
+- Contact sections should also make `Dan Kurman` primary and use `Daniyar Kurmanbayev` as the secondary/full legal identity.
+- `siteOwner.publicName` and `siteOwner.legalName` in `src/data/site.ts` are the source for this public/legal identity split.
 - Default formal role line: `Senior iOS Developer / Technical PM`.
 - Homepage hero role label: `Senior native iOS developer`.
 - Location/contact data live in `src/data/site.ts`.
@@ -75,10 +77,11 @@ This file captures project knowledge and decisions that should survive across ch
   - large cards: `blackville`, `kalyan-studio-apps`, `hashtaggenerator`, `mountainxperience-tracking`;
   - compact cards: `end-of-day`, `stop-overthinking`, `snowdon-summit-weather`.
 - Selected proof cards should feel more editorial than the archive: larger visuals, outcome-first headlines from `projectOutcomeHeadlines`, subdued metadata, and text CTAs.
-- The lower project archive should exclude those selected recent projects and group the remaining non-recent work by archive category.
+- The lower project archive should exclude those selected recent projects and group the remaining non-recent work by archive category. It should stay visible but compact so it does not overpower the selected client outcomes section.
 - Homepage project cards should show visuals for every non-AI project, including compact selected proof cards. AI/ML experiment cards remain text-only in the archive unless the user explicitly changes that direction.
 - Archive cards are intentionally quieter than selected proof cards, but their visuals should still feel product-like and intentional: media should be large enough to read, bottom padding inside media wells should stay tight, and copy should start soon after the visual rather than leaving a large blank stage.
-- The homepage contact section should finish like a restrained iOS contact/business card: clear identity, short contextual note, and grouped action cells for Email and LinkedIn, without a large portrait unless a final headshot asset is explicitly provided.
+- The generated portrait is approved only as a restrained trust cue near conversion points. Use it in the homepage contact card and project-page final CTA, not in the hero. Runtime portrait asset: `public/assets/profile/portrait.png`.
+- The homepage contact section should finish like a restrained iOS contact/business card: `Need this kind of app work?`, `Dan Kurman` as the main identity, `Daniyar Kurmanbayev · Toronto, Canada` secondary, short shipping/stabilizing/modernizing copy, portrait, and grouped action cells for Email and LinkedIn.
 - Project detail case-study sections should feel like grouped inset surfaces: softer fill, lower border contrast, readable width, and less aggressive orange headings.
 - The homepage hero keeps `/assets/hero/banner-apps.jpg`.
 - Hero overlays should use black/elevated-color vignette gradients that fade into the `#000000` page background. Avoid bringing back the older blue-gray overlay tint because it clashes with the current Apple-like dark palette.
@@ -86,7 +89,8 @@ This file captures project knowledge and decisions that should survive across ch
 - Reduced motion must continue disabling parallax transforms.
 - Project detail pages should match the homepage system: editorial dark hero, compact tag chips, a compact summary/proof band, named media sections, bottom project links, and a compact contact CTA.
 - Project detail heroes should use the first renderable project media item as the background when available, then fall back to the global hero image. Case-study bodies should read as editorial sections, with only `Quick facts` and `Hard problems solved` treated as elevated cards.
-- Project detail hero media should be darkened enough to protect the centered title from busy screenshots. Project pages include a small sticky `All projects` affordance that still reserves breathing room before the summary cards, center single/two project link buttons, and use broad final CTA copy (`app work`) rather than iOS-only wording.
+- Project detail hero media should be darkened enough to protect the centered title from busy screenshots. Project pages include a small sticky `Back to projects` affordance that still reserves breathing room before the summary cards, center single/two project link buttons, and use broad final CTA copy (`app work`) rather than iOS-only wording.
+- Project detail link sections should use the labels `Resources` and `Project links`, not the more utilitarian `Open the project`.
 - Project screenshot/banner lightbox behavior lives in `src/scripts/project-lightbox.ts` and must stay keyboard accessible.
 - Project pages can render a multi-banner carousel from top-level MDX `banners`; it auto-swipes, supports pointer swipe/dots/arrows, and still opens the active banner in the fullscreen lightbox. Banners can be still images or video demo slides. Reduced motion disables auto-swipe and autoplay video.
 - The `Case study` label is a normal-case section heading, not the old uppercase eyebrow.
@@ -146,6 +150,7 @@ This file captures project knowledge and decisions that should survive across ch
   - `media-1.mov`, etc. when a project uses video media
 - Current assets include:
   - `public/assets/hero/banner-apps.jpg`
+  - `public/assets/profile/portrait.png`
   - `public/assets/logo/logo-horizontal.png`
   - `public/assets/icons/*.png`
   - `public/assets/seo/seo-image.png`

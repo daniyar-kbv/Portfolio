@@ -1,12 +1,27 @@
 ---
 interface Props {
   title: string;
+  subtitle?: string;
   description: string;
+  category?: string;
+  typeTags?: string[];
+  techTags?: string[];
   banner?: string | null;
   bannerAlt?: string;
 }
 
-const { title, description, banner, bannerAlt = `${title} banner` } = Astro.props as Props;
+const {
+  title,
+  subtitle,
+  description,
+  category = 'Project',
+  typeTags = [],
+  techTags = [],
+  banner,
+  bannerAlt = `${title} banner`,
+} = Astro.props as Props;
+
+const heroTags = [...typeTags, ...techTags].slice(0, 5);
 ---
 
 <section class="wix-project-hero" data-parallax-hero data-parallax-travel="56">
@@ -26,8 +41,17 @@ const { title, description, banner, bannerAlt = `${title} banner` } = Astro.prop
     )}
     <div class="wix-project-hero-overlay">
       <div class="wix-project-hero-copy">
+        <p class="wix-project-hero-label">{category} case study</p>
         <h1 class="wix-project-title">{title}</h1>
+        {subtitle && <p class="wix-project-subtitle">{subtitle}</p>}
         <p class="wix-project-description">{description}</p>
+        {heroTags.length > 0 && (
+          <ul class="wix-project-hero-tags" aria-label={`${title} tags`}>
+            {heroTags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   </div>

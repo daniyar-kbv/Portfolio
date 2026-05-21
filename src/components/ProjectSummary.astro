@@ -1,0 +1,47 @@
+---
+interface Props {
+  role?: string;
+  status?: string;
+  stack?: string[];
+  highlights?: string[];
+}
+
+const { role, status, stack = [], highlights = [] } = Astro.props as Props;
+const stackSummary = stack.slice(0, 5).join(' · ');
+const facts = [
+  { label: 'Role', value: role },
+  { label: 'Outcome', value: status },
+  { label: 'Stack', value: stackSummary },
+].filter((fact): fact is { label: string; value: string } => Boolean(fact.value));
+---
+
+{(facts.length > 0 || highlights.length > 0) && (
+  <section class="wix-section-shell wix-project-summary-section">
+    <div class="wix-section-inner">
+      {facts.length > 0 && (
+        <div class="wix-project-summary-grid" aria-label="Project summary">
+          {facts.map((fact) => (
+            <article class="wix-project-summary-card">
+              <p>{fact.label}</p>
+              <h2>{fact.value}</h2>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {highlights.length > 0 && (
+        <article class="wix-project-highlights-card">
+          <div class="wix-project-highlights-copy">
+            <p class="wix-project-section-kicker">What this proves</p>
+            <h2>Selected work from the build</h2>
+          </div>
+          <ul class="wix-project-highlights-list">
+            {highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
+        </article>
+      )}
+    </div>
+  </section>
+)}

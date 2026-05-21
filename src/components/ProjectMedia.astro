@@ -40,6 +40,11 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
 {renderBanners.length > 0 && (
   <section class="wix-section-shell wix-project-media-section">
     <div class="wix-section-inner" data-project-lightbox>
+      <div class="wix-project-section-heading">
+        <p class="wix-project-section-kicker">Visuals</p>
+        <h2>Product walkthrough</h2>
+        <p>Tap or click the preview to open it fullscreen.</p>
+      </div>
       <div
         class:list={['wix-project-banner-carousel', { 'wix-project-banner-carousel--single': !hasMultipleBanners }]}
         data-banner-carousel

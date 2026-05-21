@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectHero from '../../components/ProjectHero.astro';
+import ProjectSummary from '../../components/ProjectSummary.astro';
 import ProjectMedia from '../../components/ProjectMedia.astro';
 import ProjectLinks from '../../components/ProjectLinks.astro';
 import CaseStudySection from '../../components/CaseStudySection.astro';
@@ -44,9 +45,20 @@ const seoImage = data.thumbnail || siteAssets.seoImage;
   <main id="content">
     <ProjectHero
       title={data.title}
+      subtitle={data.subtitle}
       description={data.description}
+      category={data.category}
+      typeTags={data.typeTags}
+      techTags={data.techTags}
       banner={siteAssets.heroImage}
       bannerAlt={homepageHero.bannerAlt}
+    />
+
+    <ProjectSummary
+      role={data.role}
+      status={data.status}
+      stack={data.stack}
+      highlights={data.highlights}
     />
 
     {hasMediaSection && <ProjectMedia title={data.title} banners={mediaBanners} />}

@@ -50,7 +50,10 @@ function getLabel(type: string, label: string) {
   <section class="wix-section-shell wix-project-links-section">
     <div class="wix-section-inner">
       <div class="wix-project-links-wrap">
-        <div class="wix-project-links-heading">Links</div>
+        <div class="wix-project-section-heading wix-project-section-heading--compact">
+          <p class="wix-project-section-kicker">Links</p>
+          <h2>Open the project</h2>
+        </div>
         <div class="wix-project-links-grid wix-project-links-grid--project">
           {links.map((link) => {
             const icon = resolveIcon(link.type);
@@ -65,7 +68,7 @@ function getLabel(type: string, label: string) {
                 title={label}
                 class="wix-project-link-tile group"
               >
-                <span class="relative h-20 w-20 shrink-0">
+                <span class="relative h-20 w-20 shrink-0" aria-hidden="true">
                   <IconImage
                     src={icon.icon}
                     class="absolute inset-0 h-20 w-20 object-contain transition-transform group-hover:scale-105"

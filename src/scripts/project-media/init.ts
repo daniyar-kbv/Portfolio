@@ -16,7 +16,7 @@ export function initializeProjectMediaLightbox() {
 
     const slides = collectProjectMediaSlides(elements.openButtons);
     const state: ProjectMediaState = { activeIndex: 0 };
-    let syncLightboxMedia = () => undefined;
+    let syncLightboxMedia: () => void = () => {};
 
     const carousel = createBannerCarousel({
       elements,

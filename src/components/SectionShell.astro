@@ -4,14 +4,12 @@ interface Props {
   eyebrow?: string;
   title: string;
   description?: string;
-  count?: string;
   icon?: string;
   iconAlt?: string;
   class?: string;
 }
 
-const { id, eyebrow, title, description, count, icon, iconAlt = '', class: className = '' } =
-  Astro.props as Props;
+const { id, eyebrow, title, description, icon, iconAlt = '', class: className = '' } = Astro.props as Props;
 ---
 
 <section id={id} class:list={['section-shell', className]}>

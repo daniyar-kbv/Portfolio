@@ -1,5 +1,23 @@
 import { siteOwner } from './identity';
 
+export const serviceIconNames = [
+  'iphone.gen3',
+  'wand.and.sparkles',
+  'creditcard',
+  'checkmark.seal',
+  'wrench.and.screwdriver',
+  'server.rack',
+] as const;
+
+export type ServiceIcon = (typeof serviceIconNames)[number];
+
+export type ServiceArea = {
+  title: string;
+  icon: ServiceIcon;
+  description: string;
+  featured?: boolean;
+};
+
 export const homepageMeta = {
   title: 'Portfolio | Daniyar Kurmanbayev (Dan Kurman)',
   description:
@@ -54,7 +72,7 @@ export const homepageProofPoints = [
   },
 ];
 
-export const serviceAreas = [
+export const serviceAreas: ServiceArea[] = [
   {
     title: 'Native iOS apps from design to release',
     icon: 'iphone.gen3',

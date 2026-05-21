@@ -1,20 +1,6 @@
 ---
 import SectionShell from './SectionShell.astro';
-
-type ServiceIcon =
-  | 'iphone.gen3'
-  | 'wand.and.sparkles'
-  | 'creditcard'
-  | 'checkmark.seal'
-  | 'wrench.and.screwdriver'
-  | 'server.rack';
-
-interface ServiceArea {
-  title: string;
-  description: string;
-  icon: ServiceIcon;
-  featured?: boolean;
-}
+import type { ServiceArea, ServiceIcon } from '../data/homepage';
 
 interface Props {
   services: ServiceArea[];

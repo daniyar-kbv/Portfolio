@@ -268,9 +268,12 @@
 
 .wix-home-archive-heading {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: clamp(16px, 2.6vw, 22px);
+  text-align: center;
 }
 
 .wix-home-archive-icon {
@@ -343,7 +346,7 @@
   }
 
   .wix-home-archive-heading {
-    align-items: flex-start;
+    align-items: center;
   }
 }
 

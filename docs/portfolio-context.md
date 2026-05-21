@@ -36,6 +36,7 @@ This file captures project knowledge and decisions that should survive across ch
 - Keep the site as a portfolio credibility page: homepage for positioning/services/proof, project pages for deeper evidence.
 - Avoid heavy ornamental design. Prefer compact, restrained hierarchy, fluid responsive layouts, subtle dividers, and Apple-like text CTAs.
 - For Apple/HIG polish, prioritize clarity and editorial hierarchy over more decoration: calmer hero type, larger feature modules for the most important services, softer card chrome, stable tap targets, and restrained motion.
+- Native surface polish direction: make UI feel closer to iOS grouped surfaces and Apple product pages, not a generic web card grid. Prefer one filled primary action, secondary text links, small native-style glyphs, grouped inset action cells, softer borders, and subtle press/hover feedback.
 - Avoid visible Wix branding/promo UI on the live portfolio.
 - Keep the project content, routes, and schema stable unless the user explicitly asks for content/schema migration.
 
@@ -66,14 +67,16 @@ This file captures project knowledge and decisions that should survive across ch
   - legacy app rescue and architecture cleanup,
   - mobile and backend integration.
 - The first two homepage services (`Native iOS apps from design to release` and `AI-powered mobile features`) are intentionally featured as larger Apple-style tiles. The remaining services are supporting tiles.
+- Homepage services use small service glyph markers from `@lucide/astro`, selected through `serviceAreas[].icon`; keep them subtle and SF-symbol-like rather than decorative.
 - Selected homepage proof is intentionally curated:
   - large cards: `blackville`, `kalyan-studio-apps`, `hashtaggenerator`, `mountainxperience-tracking`;
   - compact cards: `end-of-day`, `stop-overthinking`, `snowdon-summit-weather`.
-- Selected proof cards should feel more editorial than the archive: larger visuals, outcome-first copy, subdued metadata, and text CTAs.
+- Selected proof cards should feel more editorial than the archive: larger visuals, outcome-first headlines from `projectOutcomeHeadlines`, subdued metadata, and text CTAs.
 - The lower project archive should exclude those selected recent projects and group the remaining non-recent work by archive category.
 - Homepage project cards should show visuals for every non-AI project, including compact selected proof cards. AI/ML experiment cards remain text-only in the archive unless the user explicitly changes that direction.
-- Archive cards are intentionally quieter than selected proof cards.
-- The contact section should finish like a restrained business card: clear identity, short contextual note, and contact links/icons, without a large portrait unless a final headshot asset is explicitly provided.
+- Archive cards are intentionally quieter than selected proof cards: smaller thumbnails, shorter clamped copy, lighter surfaces, and list-like scanability.
+- The homepage contact section should finish like a restrained iOS contact/business card: clear identity, short contextual note, and grouped action cells for Email and LinkedIn, without a large portrait unless a final headshot asset is explicitly provided.
+- Project detail case-study sections should feel like grouped inset surfaces: softer fill, lower border contrast, readable width, and less aggressive orange headings.
 - The homepage hero keeps `/assets/hero/banner-apps.jpg`.
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.

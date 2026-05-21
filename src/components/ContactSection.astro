@@ -1,5 +1,6 @@
 ---
-import IconImage from './IconImage.astro';
+import ContactActions from './ContactActions.astro';
+import ProfilePortrait from './ProfilePortrait.astro';
 import { siteAssets } from '../data/assets';
 import { siteContact, siteOwner } from '../data/identity';
 
@@ -36,13 +37,7 @@ const links = [
     <div class="wix-contact-main">
       <div class="wix-contact-card">
         <div class="wix-contact-profile">
-          <img
-            src={siteAssets.profilePortrait}
-            alt={siteAssets.profilePortraitAlt}
-            class="wix-contact-portrait"
-            loading="lazy"
-            decoding="async"
-          />
+          <ProfilePortrait class="wix-contact-portrait" />
           <div class="wix-contact-identity">
             <p class="wix-contact-kicker">Contact</p>
             <h2 class="wix-contact-heading">Need this kind of app work?</h2>
@@ -53,30 +48,12 @@ const links = [
         {!compact && (
           <p class="wix-contact-note">Tell me what you’re shipping, stabilizing, or modernizing.</p>
         )}
-        <div class="wix-contact-hero-links">
-          {links.map((link) => (
-            <a
-              href={link.href}
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.href.startsWith('http') ? 'noreferrer noopener' : undefined}
-              aria-label={`${link.title}: ${link.value}`}
-              class="wix-contact-hero-link group"
-            >
-              <span class="wix-contact-hero-icon">
-                <IconImage
-                  src={link.icon}
-                  class="absolute inset-0 h-full w-full object-contain transition-transform group-hover:scale-105"
-                  loading="eager"
-                />
-              </span>
-              <span class="wix-contact-hero-copy">
-                <span class="wix-contact-hero-title">{link.title}</span>
-                <span class="wix-contact-hero-label">{link.value}</span>
-              </span>
-              {!compact && <span class="wix-contact-hero-chevron" aria-hidden="true">›</span>}
-            </a>
-          ))}
-        </div>
+        <ContactActions
+          actions={links}
+          variant="home"
+          showChevron={!compact}
+          iconLoading="eager"
+        />
       </div>
     </div>
   </div>

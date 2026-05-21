@@ -1,5 +1,6 @@
 ---
-import IconImage from './IconImage.astro';
+import ContactActions from './ContactActions.astro';
+import ProfilePortrait from './ProfilePortrait.astro';
 import { siteAssets } from '../data/assets';
 import { siteContact, siteOwner } from '../data/identity';
 
@@ -22,13 +23,7 @@ const contactActions = [
 <section class="wix-section-shell wix-project-contact-section">
   <div class="wix-section-inner">
     <article class="wix-project-contact-card">
-      <img
-        src={siteAssets.profilePortrait}
-        alt={siteAssets.profilePortraitAlt}
-        class="wix-project-contact-portrait"
-        loading="lazy"
-        decoding="async"
-      />
+      <ProfilePortrait class="wix-project-contact-portrait" />
       <div class="wix-project-contact-copy">
         <p class="wix-project-section-kicker">Contact</p>
         <h2>Need this kind of app work?</h2>
@@ -36,33 +31,7 @@ const contactActions = [
         <p class="wix-project-contact-identity">{siteOwner.publicName} · {siteOwner.legalName}</p>
       </div>
 
-      <div class="wix-project-contact-actions" aria-label="Contact options">
-        {contactActions.map((action) => {
-          const isExternal = action.href.startsWith('http');
-
-          return (
-            <a
-              href={action.href}
-              target={isExternal ? '_blank' : undefined}
-              rel={isExternal ? 'noreferrer noopener' : undefined}
-              aria-label={`${action.title}: ${action.value}`}
-              class="wix-project-contact-action group"
-            >
-              <span class="wix-project-contact-icon" aria-hidden="true">
-                <IconImage
-                  src={action.icon}
-                  class="absolute inset-0 h-full w-full object-contain transition-transform group-hover:scale-105"
-                  loading="lazy"
-                />
-              </span>
-              <span class="wix-project-contact-action-copy">
-                <span class="wix-project-contact-action-title">{action.title}</span>
-                <span class="wix-project-contact-action-value">{action.value}</span>
-              </span>
-            </a>
-          );
-        })}
-      </div>
+      <ContactActions actions={contactActions} variant="project" ariaLabel="Contact options" />
     </article>
   </div>
 </section>

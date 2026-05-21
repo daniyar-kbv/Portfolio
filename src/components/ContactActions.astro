@@ -1,0 +1,74 @@
+---
+import IconImage from './IconImage.astro';
+
+interface ContactAction {
+  title: string;
+  value: string;
+  href: string;
+  icon: string;
+}
+
+interface Props {
+  actions: ContactAction[];
+  variant: 'home' | 'project';
+  showChevron?: boolean;
+  ariaLabel?: string;
+  iconLoading?: 'eager' | 'lazy';
+}
+
+const {
+  actions,
+  variant,
+  showChevron = false,
+  ariaLabel,
+  iconLoading = 'lazy',
+} = Astro.props as Props;
+
+const classNames = {
+  home: {
+    container: 'wix-contact-hero-links',
+    link: 'wix-contact-hero-link group',
+    icon: 'wix-contact-hero-icon',
+    copy: 'wix-contact-hero-copy',
+    title: 'wix-contact-hero-title',
+    value: 'wix-contact-hero-label',
+  },
+  project: {
+    container: 'wix-project-contact-actions',
+    link: 'wix-project-contact-action group',
+    icon: 'wix-project-contact-icon',
+    copy: 'wix-project-contact-action-copy',
+    title: 'wix-project-contact-action-title',
+    value: 'wix-project-contact-action-value',
+  },
+}[variant];
+---
+
+<div class={classNames.container} aria-label={ariaLabel}>
+  {actions.map((action) => {
+    const isExternal = action.href.startsWith('http');
+
+    return (
+      <a
+        href={action.href}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noreferrer noopener' : undefined}
+        aria-label={`${action.title}: ${action.value}`}
+        class={classNames.link}
+      >
+        <span class={classNames.icon} aria-hidden="true">
+          <IconImage
+            src={action.icon}
+            class="absolute inset-0 h-full w-full object-contain transition-transform group-hover:scale-105"
+            loading={iconLoading}
+          />
+        </span>
+        <span class={classNames.copy}>
+          <span class={classNames.title}>{action.title}</span>
+          <span class={classNames.value}>{action.value}</span>
+        </span>
+        {showChevron && <span class="wix-contact-hero-chevron" aria-hidden="true">›</span>}
+      </a>
+    );
+  })}
+</div>

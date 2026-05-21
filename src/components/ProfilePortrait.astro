@@ -1,0 +1,18 @@
+---
+import { siteAssets } from '../data/assets';
+
+interface Props {
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { class: className = '', loading = 'lazy' } = Astro.props as Props;
+---
+
+<img
+  src={siteAssets.profilePortrait}
+  alt={siteAssets.profilePortraitAlt}
+  class={className}
+  loading={loading}
+  decoding="async"
+/>

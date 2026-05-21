@@ -56,7 +56,7 @@ const sectionIcons: Record<ProjectCategory, string> = {
               <p>{section.description}</p>
             </div>
           </div>
-          <div class="wix-repeater-grid wix-repeater-grid--two">
+          <div class="wix-repeater-grid wix-repeater-grid--archive-compact">
             {projects.map((project) => {
               const image = selectProjectCardImage(project);
 
@@ -70,6 +70,7 @@ const sectionIcons: Record<ProjectCategory, string> = {
                   image={image}
                   alt={project.data.coverAlt || `${project.data.title} preview`}
                   showVisual={section.category !== 'AI'}
+                  variant="archiveCompact"
                 />
               );
             })}

@@ -164,6 +164,21 @@
   margin-inline: auto;
 }
 
+.wix-repeater-grid--archive-compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-content: stretch;
+  max-width: var(--site-width);
+  margin-inline: auto;
+  row-gap: clamp(14px, 2vw, 20px);
+  column-gap: clamp(14px, 2vw, 20px);
+}
+
+@media (max-width: 960px) {
+  .wix-repeater-grid--archive-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .wix-parallax-frame {
   position: relative;
   height: 100%;
@@ -187,6 +202,10 @@
 
 @media (max-width: 760px) {
   .wix-repeater-grid--two {
+    grid-template-columns: 1fr;
+  }
+
+  .wix-repeater-grid--archive-compact {
     grid-template-columns: 1fr;
   }
 

@@ -290,7 +290,7 @@
 
 .wix-home-archive-stack {
   display: grid;
-  gap: clamp(30px, 5vw, 48px);
+  gap: clamp(22px, 3.6vw, 34px);
 }
 
 .wix-home-archive-group {
@@ -304,13 +304,13 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: clamp(16px, 2.6vw, 22px);
+  margin-bottom: clamp(12px, 2vw, 18px);
   text-align: center;
 }
 
 .wix-home-archive-icon {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   flex: none;
   object-fit: contain;
   filter: drop-shadow(var(--shadow-icon));

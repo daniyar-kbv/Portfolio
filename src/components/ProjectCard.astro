@@ -9,6 +9,7 @@ interface Props {
   alt?: string;
   status?: string;
   showVisual?: boolean;
+  variant?: 'default' | 'archiveCompact';
 }
 
 const {
@@ -21,13 +22,14 @@ const {
   alt = `${title} preview`,
   status,
   showVisual = true,
+  variant = 'default',
 } = Astro.props as Props;
 
 const internalHref = `/projects/${slug}`;
 const techLine = techTags.join(' · ');
 ---
 
-<article class="wix-project-card">
+<article class:list={['wix-project-card', variant === 'archiveCompact' && 'wix-project-card--archive-compact']}>
   <a
     href={internalHref}
     class:list={['wix-project-card-link', !showVisual && 'wix-project-card-link--text-only']}

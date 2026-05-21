@@ -15,12 +15,15 @@ This file captures project knowledge and decisions that should survive across ch
 
 - Public-facing short brand: `Dan Kurman`.
 - Full/legal name: `Daniyar Kurmanbayev`.
-- Current homepage treatment intentionally makes `Dan Kurman` the primary hero name and uses `Daniyar Kurmanbayev` as secondary supporting identity.
-- Role line: `Senior iOS Developer / Technical PM`.
+- Current homepage treatment intentionally makes `Dan Kurman` a visible primary hero identity and uses `Daniyar Kurmanbayev · Toronto, Canada` as secondary supporting identity.
+- Default formal role line: `Senior iOS Developer / Technical PM`.
+- Homepage hero role label: `Senior native iOS developer`.
 - Location/contact data live in `src/data/site.ts`.
 - Tone: senior iOS/product engineer with production delivery, architecture cleanup, launch readiness, and client communication strength.
 - The homepage is intentionally client-first for Upwork, LinkedIn, and resume traffic while staying platform-neutral. It should persuade founders/clients first, with recruiter usefulness as a secondary benefit.
-- Homepage positioning is: `I help founders ship, stabilize, and modernize iOS apps.`
+- Homepage positioning is: `I build reliable native iOS apps and AI-powered mobile features.`
+- AI positioning should mean AI service/API integration for native products: native UX, backend proxy/API integration, persistence, usage limits, credits/paywalls, cost/failure-state handling, and App Store-ready delivery.
+- Do not position the user as an ML researcher, custom model-training engineer, or AI lab/research profile.
 - Main conversion path is Contact. Do not add Upwork-specific language, rates, availability claims, testimonials, or unverified metrics unless the user explicitly approves them.
 
 ## Design Direction
@@ -55,15 +58,17 @@ This file captures project knowledge and decisions that should survive across ch
   - `More selected work` archive,
   - contact.
 - Service areas are problem-based, not technology-category based:
-  - launch readiness and stabilization,
-  - iOS app builds from design to release,
+  - native iOS apps from design to release,
+  - AI-powered mobile features,
   - payments, StoreKit, and entitlements,
+  - launch readiness and stabilization,
   - legacy app rescue and architecture cleanup,
   - mobile and backend integration.
 - Selected homepage proof is intentionally curated:
-  - large cards: `blackville`, `mountainxperience-tracking`, `kalyan-studio-apps`;
+  - large cards: `blackville`, `kalyan-studio-apps`, `hashtaggenerator`, `mountainxperience-tracking`;
   - compact cards: `end-of-day`, `stop-overthinking`, `snowdon-summit-weather`.
 - The lower project archive should exclude those selected recent projects and group the remaining non-recent work by archive category.
+- Homepage project cards should show visuals for every non-AI project, including compact selected proof cards. AI/ML experiment cards remain text-only in the archive unless the user explicitly changes that direction.
 - The homepage hero keeps `/assets/hero/banner-apps.jpg`.
 - The hero parallax relies on `src/scripts/parallax-hero.ts` and CSS in `src/styles/layout.css`.
 - Reduced motion must continue disabling parallax transforms.
@@ -150,7 +155,7 @@ Current MDX projects:
 - `apprevshare-ios-sdk`: Flagship. Passive StoreKit 2 revenue attribution SDK. Swift Package, StoreKit 2, networking. Client paused further SDK work.
 - `devicecluster`: Flagship. iOS + Rust proximity/P2P PoC. SwiftUI, Nearby Interaction, MPC, Rust, H3.
 - `airbafresh`: Flagship. Production grocery delivery iOS app. UIKit, RxSwift, Moya, Firebase.
-- `hashtaggenerator`: Production. SwiftUI creator tool using text/image hashtag generation, StoreKit 2 credits, SwiftData.
+- `hashtaggenerator`: Production. SwiftUI creator tool using text/image AI API hashtag generation, StoreKit 2 credit packs, SwiftData history, and Keychain-backed credits. This is the main public proof for AI API integration in native iOS without claiming custom ML/model training.
 - `kex`: Production. Multi-brand food delivery iOS app rebuilt mid-project. UIKit, RxSwift, Moya, MVVM-C.
 - `24goals`: Production. Goal tracking app that reached Top-8 Productivity and Top-100 overall on launch. UIKit, RxSwift, StoreKit, Firebase.
 - `mentalmind`: Production. Meditation/self-development iOS app rebuilt from scratch. UIKit, StoreKit, AVFoundation, RxSwift.
@@ -256,6 +261,7 @@ Update visual baselines only when intentional:
 Important checks already covered:
 
 - no horizontal overflow at mobile/tablet widths,
+- non-AI project content must define at least one renderable visual path,
 - mobile nav open/close/link-close/keyboard behavior,
 - project banner lightbox keyboard behavior,
 - reduced motion disables parallax,

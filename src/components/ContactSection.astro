@@ -56,7 +56,11 @@ const links = [
                   loading="eager"
                 />
               </span>
-              <span class="wix-contact-hero-label">{link.value}</span>
+              <span class="wix-contact-hero-copy">
+                <span class="wix-contact-hero-title">{link.title}</span>
+                <span class="wix-contact-hero-label">{link.value}</span>
+              </span>
+              {!compact && <span class="wix-contact-hero-chevron" aria-hidden="true">›</span>}
             </a>
           ))}
         </div>

@@ -84,33 +84,39 @@ export const homepageProofPoints = [
 export const serviceAreas = [
   {
     title: 'Native iOS apps from design to release',
+    icon: 'app',
     description:
       'Implement polished SwiftUI/UIKit experiences, wire APIs, handle QA, and support TestFlight or App Store submission.',
     featured: true,
   },
   {
     title: 'AI-powered mobile features',
+    icon: 'sparkles',
     description:
       'Turn AI APIs into native UX with backend proxy/API integration, persistence, usage limits, credits/paywalls, and clear failure states.',
     featured: true,
   },
   {
     title: 'Payments, StoreKit & entitlements',
+    icon: 'payments',
     description:
       'Build and debug IAP, subscriptions, legacy access, Stripe checkout, Apple Pay, and restore flows.',
   },
   {
     title: 'Launch readiness & stabilization',
+    icon: 'launch',
     description:
       'Audit risky flows, fix blockers, add monitoring, and get the app ready for real users.',
   },
   {
     title: 'Legacy app rescue & architecture cleanup',
+    icon: 'rescue',
     description:
       'Untangle older projects, reduce fragile logic, remove dead flows, and make future changes safer.',
   },
   {
     title: 'Mobile + backend integration',
+    icon: 'backend',
     description:
       'Connect apps to Firebase, PHP, Django, APIs, notifications, analytics, and release infrastructure.',
   },
@@ -144,6 +150,13 @@ export const projectOutcomeCopy: Record<string, string> = {
     'Implemented a private SwiftUI journaling app with SwiftData, CloudKit sync, StoreKit 2, and App Store-ready polish.',
   'snowdon-summit-weather':
     'Rebuilt a broken weather utility as native iOS and Android apps with cleaner release-ready user flows.',
+};
+
+export const projectOutcomeHeadlines: Record<string, string> = {
+  blackville: 'Stabilized checkout and launch flow for a live marketplace.',
+  'kalyan-studio-apps': 'Restored lifetime access while modernizing StoreKit.',
+  hashtaggenerator: 'Turned AI generation APIs into a monetized native app.',
+  'mountainxperience-tracking': 'Built safety tracking across mobile and Firebase.',
 };
 
 export const archiveSections: Array<{

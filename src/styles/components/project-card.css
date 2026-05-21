@@ -1,9 +1,9 @@
 .wix-project-card {
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-border) 66%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 44%, transparent);
   border-radius: var(--radius-card);
-  background: color-mix(in srgb, var(--color-elevated) 78%, transparent);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+  background: color-mix(in srgb, var(--color-elevated) 58%, transparent);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
@@ -12,27 +12,27 @@
 
 .wix-project-card-link {
   display: grid;
-  grid-template-columns: minmax(84px, 104px) minmax(0, 1fr);
-  gap: clamp(16px, 2.4vw, 22px);
-  min-height: 232px;
-  padding: clamp(16px, 2.6vw, 20px);
+  grid-template-columns: minmax(76px, 92px) minmax(0, 1fr);
+  gap: clamp(15px, 2.2vw, 20px);
+  min-height: 198px;
+  padding: clamp(15px, 2.4vw, 18px);
 }
 
 .wix-project-card-link--text-only {
   display: block;
-  min-height: 158px;
-  padding: 20px 22px 22px;
+  min-height: 142px;
+  padding: 18px 20px 20px;
 }
 
 .wix-project-card-media {
   width: 100%;
-  max-width: 104px;
+  max-width: 92px;
   height: auto;
   aspect-ratio: 120 / 241;
   align-self: center;
   overflow: hidden;
   border-radius: 14px;
-  background: color-mix(in srgb, var(--color-background) 28%, transparent);
+  background: color-mix(in srgb, var(--color-background) 20%, transparent);
 }
 
 .wix-project-card-image {
@@ -98,7 +98,7 @@
   line-height: 1.55;
   color: var(--color-text-muted);
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
 }
 
 .wix-project-card-tech {
@@ -112,7 +112,7 @@
   color: var(--color-text-soft);
   white-space: normal;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 
 .wix-project-card-button {
@@ -139,9 +139,9 @@
 
 .wix-project-card:hover,
 .wix-project-card:focus-within {
-  border-color: color-mix(in srgb, var(--color-border-strong) 82%, transparent);
-  background: color-mix(in srgb, var(--color-elevated-2) 64%, var(--color-elevated));
-  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-border-strong) 64%, transparent);
+  background: color-mix(in srgb, var(--color-elevated-2) 50%, var(--color-elevated));
+  transform: translateY(-1px);
 }
 
 .wix-project-card-link--text-only:hover,

@@ -7,12 +7,17 @@ interface Props {
   featuredProjects: ProjectEntry[];
   compactProjects: ProjectEntry[];
   outcomes: Record<string, string>;
+  outcomeHeadlines?: Record<string, string>;
 }
 
-const { featuredProjects, compactProjects, outcomes } = Astro.props as Props;
+const { featuredProjects, compactProjects, outcomes, outcomeHeadlines = {} } = Astro.props as Props;
 
 function getOutcome(project: ProjectEntry) {
   return outcomes[project.slug] ?? project.data.description;
+}
+
+function getOutcomeHeadline(project: ProjectEntry) {
+  return outcomeHeadlines[project.slug] ?? project.data.title;
 }
 ---
 
@@ -40,7 +45,8 @@ function getOutcome(project: ProjectEntry) {
               </div>
             )}
             <div class="wix-home-featured-proof-copy">
-              <h3>{project.data.title}</h3>
+              <p class="wix-home-proof-project-label">{project.data.title}</p>
+              <h3>{getOutcomeHeadline(project)}</h3>
               <p class="wix-home-featured-proof-outcome">{getOutcome(project)}</p>
               <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
               {project.data.status && <p class="wix-home-featured-proof-status">{project.data.status}</p>}

@@ -15,6 +15,7 @@ import {
   homepageMeta,
   homepageProofPoints,
   projectOutcomeCopy,
+  projectOutcomeHeadlines,
   serviceAreas,
   siteAssets,
 } from '../data/site';
@@ -60,6 +61,7 @@ const archiveProjectsByCategory = groupProjectsByArchiveSection(projects, archiv
       featuredProjects={featuredProofProjects}
       compactProjects={compactProofProjects}
       outcomes={projectOutcomeCopy}
+      outcomeHeadlines={projectOutcomeHeadlines}
     />
     <ProjectArchiveSection sections={archiveSections} projectsByCategory={archiveProjectsByCategory} />
 

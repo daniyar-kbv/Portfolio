@@ -1,9 +1,13 @@
 ---
+import { AppWindow, CreditCard, Hammer, Server, ShieldCheck, Sparkles } from '@lucide/astro';
 import SectionShell from './SectionShell.astro';
+
+type ServiceIcon = 'app' | 'sparkles' | 'payments' | 'launch' | 'rescue' | 'backend';
 
 interface ServiceArea {
   title: string;
   description: string;
+  icon: ServiceIcon;
   featured?: boolean;
 }
 
@@ -12,6 +16,15 @@ interface Props {
 }
 
 const { services } = Astro.props as Props;
+
+const serviceIcons = {
+  app: AppWindow,
+  sparkles: Sparkles,
+  payments: CreditCard,
+  launch: ShieldCheck,
+  rescue: Hammer,
+  backend: Server,
+};
 ---
 
 <SectionShell
@@ -21,11 +34,20 @@ const { services } = Astro.props as Props;
   class="wix-home-services-section"
 >
   <div class="wix-home-service-grid">
-    {services.map((service) => (
-      <article class:list={['wix-home-service-card', service.featured && 'wix-home-service-card--featured']}>
-        <h3>{service.title}</h3>
-        <p>{service.description}</p>
-      </article>
-    ))}
+    {services.map((service) => {
+      const Icon = serviceIcons[service.icon];
+
+      return (
+        <article class:list={['wix-home-service-card', service.featured && 'wix-home-service-card--featured']}>
+          <span class="wix-home-service-glyph" aria-hidden="true">
+            <Icon class="wix-home-service-glyph-svg" stroke-width={2.1} />
+          </span>
+          <div class="wix-home-service-copy">
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </div>
+        </article>
+      );
+    })}
   </div>
 </SectionShell>

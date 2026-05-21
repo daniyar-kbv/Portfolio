@@ -2,24 +2,35 @@ import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { siteAssets } from '../../src/data/assets';
+import { projectCategories } from '../../src/data/project-taxonomy';
+
+type ProjectFrontmatter = {
+  priority?: unknown;
+  category?: unknown;
+  thumbnail?: unknown;
+  image?: unknown;
+  media?: unknown;
+  screenshots?: unknown;
+  showMediaBanner?: unknown;
+  links?: unknown;
+};
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '../..');
 const projectsDir = path.join(repoRoot, 'src/content/projects');
-const projectTaxonomyFile = path.join(repoRoot, 'src/data/project-taxonomy.ts');
-const dataDir = path.join(repoRoot, 'src/data');
 const localAssetsFile = path.join(repoRoot, 'src/data/local-assets.json');
 const publicDir = path.join(repoRoot, 'public');
 const rawWixMediaPattern = /wix:(image|video):\/\//;
 
-const failures = [];
+const failures: string[] = [];
 
-function addFailure(scope, message) {
+function addFailure(scope: string, message: string) {
   failures.push(`${scope}: ${message}`);
 }
 
-async function readProjectFiles() {
+async function readProjectFiles(): Promise<string[]> {
   const entries = await readdir(projectsDir, { withFileTypes: true });
   return entries
     .filter((entry) => entry.isFile() && entry.name.endsWith('.mdx'))
@@ -27,7 +38,7 @@ async function readProjectFiles() {
     .sort();
 }
 
-function parseFrontmatter(filePath, source) {
+function parseFrontmatter(filePath: string, source: string): ProjectFrontmatter | null {
   const match = source.match(/^---\n([\s\S]*?)\n---/);
   if (!match) {
     addFailure(path.relative(repoRoot, filePath), 'missing JSON frontmatter fence');
@@ -35,29 +46,22 @@ function parseFrontmatter(filePath, source) {
   }
 
   try {
-    return JSON.parse(match[1]);
+    return JSON.parse(match[1]) as ProjectFrontmatter;
   } catch (error) {
-    addFailure(path.relative(repoRoot, filePath), `invalid JSON frontmatter: ${error.message}`);
+    addFailure(
+      path.relative(repoRoot, filePath),
+      `invalid JSON frontmatter: ${error instanceof Error ? error.message : String(error)}`
+    );
     return null;
   }
 }
 
-function readProjectCategories(source) {
-  const match = source.match(/projectCategories\s*=\s*\[([\s\S]*?)\]\s+as const/);
-  if (!match) {
-    addFailure('src/data/project-taxonomy.ts', 'could not read projectCategories');
-    return new Set();
-  }
-
-  return new Set(Array.from(match[1].matchAll(/'([^']+)'/g), ([, category]) => category));
-}
-
-function publicPathExists(value) {
+function publicPathExists(value: string): boolean {
   const publicPath = path.join(publicDir, value.replace(/^\//, ''));
   return existsSync(publicPath);
 }
 
-function validateRenderFacingPath(scope, field, value) {
+function validateRenderFacingPath(scope: string, field: string, value: unknown) {
   if (typeof value !== 'string') {
     addFailure(scope, `${field} must be a string`);
     return;
@@ -78,12 +82,12 @@ function validateRenderFacingPath(scope, field, value) {
   }
 }
 
-function validateOptionalRenderFacingPath(scope, field, value) {
+function validateOptionalRenderFacingPath(scope: string, field: string, value: unknown) {
   if (value === undefined || value === null) return;
   validateRenderFacingPath(scope, field, value);
 }
 
-function validateRenderFacingPathArray(scope, field, values) {
+function validateRenderFacingPathArray(scope: string, field: string, values: unknown) {
   if (values === undefined || values === null) return;
   if (!Array.isArray(values)) {
     addFailure(scope, `${field} must be an array`);
@@ -93,7 +97,7 @@ function validateRenderFacingPathArray(scope, field, values) {
   values.forEach((value, index) => validateRenderFacingPath(scope, `${field}[${index}]`, value));
 }
 
-function hasRenderableProjectVisual(data) {
+function hasRenderableProjectVisual(data: ProjectFrontmatter): boolean {
   const screenshotCandidates = Array.isArray(data.screenshots) ? data.screenshots : [];
   const candidates = [data.thumbnail, data.image, ...screenshotCandidates];
 
@@ -107,9 +111,10 @@ function hasRenderableProjectVisual(data) {
   });
 }
 
-function validateLink(scope, link, index) {
-  const label = typeof link?.label === 'string' ? link.label.trim() : '';
-  const url = typeof link?.url === 'string' ? link.url.trim() : '';
+function validateLink(scope: string, link: unknown, index: number) {
+  const candidate = link && typeof link === 'object' ? (link as Record<string, unknown>) : {};
+  const label = typeof candidate.label === 'string' ? candidate.label.trim() : '';
+  const url = typeof candidate.url === 'string' ? candidate.url.trim() : '';
 
   if (!label) {
     addFailure(scope, `links[${index}].label must not be empty`);
@@ -130,30 +135,31 @@ function validateLink(scope, link, index) {
   }
 }
 
-function collectStringPaths(value, paths = []) {
+function collectAssetPaths(value: unknown, paths: string[] = []): string[] {
   if (typeof value === 'string') {
-    paths.push(value);
+    if (value.startsWith('/assets/')) {
+      paths.push(value);
+    }
     return paths;
   }
 
   if (Array.isArray(value)) {
-    value.forEach((item) => collectStringPaths(item, paths));
+    value.forEach((item) => collectAssetPaths(item, paths));
     return paths;
   }
 
   if (value && typeof value === 'object') {
-    Object.values(value).forEach((item) => collectStringPaths(item, paths));
+    Object.values(value).forEach((item) => collectAssetPaths(item, paths));
   }
 
   return paths;
 }
 
-const projectTaxonomySource = await readFile(projectTaxonomyFile, 'utf8');
-const localAssets = JSON.parse(await readFile(localAssetsFile, 'utf8'));
-const validCategories = readProjectCategories(projectTaxonomySource);
-const priorityOwners = new Map();
+const localAssets = JSON.parse(await readFile(localAssetsFile, 'utf8')) as { shared?: unknown };
+const validCategories = new Set<string>(projectCategories);
+const priorityOwners = new Map<number, string>();
 const projectFiles = await readProjectFiles();
-const projects = [];
+const projects: Array<{ scope: string; data: ProjectFrontmatter }> = [];
 
 for (const filePath of projectFiles) {
   const source = await readFile(filePath, 'utf8');
@@ -171,8 +177,11 @@ for (const filePath of projectFiles) {
     priorityOwners.set(data.priority, scope);
   }
 
-  if (!validCategories.has(data.category)) {
-    addFailure(scope, `category "${data.category}" is not one of: ${Array.from(validCategories).join(', ')}`);
+  const category = typeof data.category === 'string' ? data.category : '';
+  if (!category) {
+    addFailure(scope, 'category must be a string');
+  } else if (!validCategories.has(category)) {
+    addFailure(scope, `category "${category}" is not one of: ${Array.from(validCategories).join(', ')}`);
   }
 
   validateOptionalRenderFacingPath(scope, 'thumbnail', data.thumbnail);
@@ -184,7 +193,7 @@ for (const filePath of projectFiles) {
     addFailure(scope, 'showMediaBanner is true but neither image nor thumbnail is set');
   }
 
-  if (data.category !== 'AI' && !hasRenderableProjectVisual(data)) {
+  if (category !== 'AI' && !hasRenderableProjectVisual(data)) {
     addFailure(scope, 'non-AI projects must define at least one renderable thumbnail, image, or screenshot');
   }
 
@@ -199,18 +208,12 @@ if (projects.length === 0) {
   addFailure('src/content/projects', 'no project MDX files found');
 }
 
-for (const [index, assetPath] of collectStringPaths(localAssets.shared).entries()) {
+for (const [index, assetPath] of collectAssetPaths(localAssets.shared).entries()) {
   validateRenderFacingPath('src/data/local-assets.json', `shared asset ${index}`, assetPath);
 }
 
-const dataFiles = await readdir(dataDir, { withFileTypes: true });
-for (const dataFile of dataFiles) {
-  if (!dataFile.isFile() || !dataFile.name.endsWith('.ts')) continue;
-
-  const dataSource = await readFile(path.join(dataDir, dataFile.name), 'utf8');
-  for (const [, assetPath] of dataSource.matchAll(/['"]((?:\/assets\/)[^'"]+)['"]/g)) {
-    validateRenderFacingPath(`src/data/${dataFile.name}`, assetPath, assetPath);
-  }
+for (const [index, assetPath] of collectAssetPaths(siteAssets).entries()) {
+  validateRenderFacingPath('src/data/assets.ts', `site asset ${index}`, assetPath);
 }
 
 if (failures.length > 0) {

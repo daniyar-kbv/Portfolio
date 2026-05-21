@@ -1,9 +1,9 @@
 .wix-project-card {
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-border) 44%, transparent);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-card);
-  background: color-mix(in srgb, var(--color-elevated) 58%, transparent);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  background: var(--surface-card-quiet);
+  box-shadow: none;
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
@@ -14,7 +14,7 @@
   display: grid;
   grid-template-columns: minmax(76px, 92px) minmax(0, 1fr);
   gap: clamp(15px, 2.2vw, 20px);
-  min-height: 198px;
+  min-height: 184px;
   padding: clamp(15px, 2.4vw, 18px);
 }
 
@@ -32,7 +32,7 @@
   align-self: center;
   overflow: hidden;
   border-radius: 14px;
-  background: color-mix(in srgb, var(--color-background) 20%, transparent);
+  background: var(--surface-media-well);
 }
 
 .wix-project-card-image {
@@ -139,9 +139,13 @@
 
 .wix-project-card:hover,
 .wix-project-card:focus-within {
-  border-color: color-mix(in srgb, var(--color-border-strong) 64%, transparent);
-  background: color-mix(in srgb, var(--color-elevated-2) 50%, var(--color-elevated));
-  transform: translateY(-1px);
+  border-color: var(--border-card-strong);
+  background: var(--surface-card);
+  transform: translateY(var(--card-hover-lift));
+}
+
+.wix-project-card:active {
+  transform: scale(var(--card-active-scale));
 }
 
 .wix-project-card-link--text-only:hover,
@@ -152,7 +156,7 @@
 @media (max-width: 520px) {
   .wix-project-card-link {
     grid-template-columns: 88px minmax(0, 1fr);
-    min-height: 216px;
+    min-height: 202px;
     gap: 14px;
   }
 

@@ -14,9 +14,9 @@
   min-width: 0;
   min-height: 54px;
   padding: 8px 12px;
-  border: 1px solid color-mix(in srgb, var(--color-border) 52%, transparent);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-card);
-  background: color-mix(in srgb, var(--color-elevated) 54%, transparent);
+  background: var(--surface-action);
   text-align: left;
   transition:
     border-color 150ms ease,
@@ -26,9 +26,13 @@
 
 .wix-contact-hero-link:hover,
 .wix-contact-hero-link:focus-visible {
-  border-color: color-mix(in srgb, var(--color-border-strong) 70%, transparent);
-  background: color-mix(in srgb, var(--color-elevated-2) 56%, var(--color-elevated));
-  transform: translateY(-1px);
+  border-color: var(--border-card-strong);
+  background: var(--surface-card);
+  transform: translateY(var(--card-hover-lift));
+}
+
+.wix-contact-hero-link:active {
+  transform: scale(var(--card-active-scale));
 }
 
 .wix-contact-hero-icon {
@@ -77,11 +81,11 @@
 }
 
 .wix-contact-card {
-  border: 1px solid color-mix(in srgb, var(--color-border) 58%, transparent);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-card);
   padding: clamp(30px, 5vw, 48px) clamp(22px, 5vw, 54px);
-  background: color-mix(in srgb, var(--color-elevated) 46%, transparent);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.12);
+  background: var(--surface-card-quiet);
+  box-shadow: var(--shadow-card-soft);
 }
 
 .wix-contact-heading {
@@ -152,6 +156,10 @@
   transform: none;
 }
 
+.wix-contact-section--compact .wix-contact-hero-link:active {
+  transform: scale(var(--card-active-scale));
+}
+
 .wix-contact-section--compact .wix-contact-hero-icon {
   width: 96px;
   height: 96px;
@@ -172,5 +180,18 @@
 @media (max-width: 560px) {
   .wix-contact-hero-links {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wix-contact-hero-link {
+    transition: none;
+  }
+
+  .wix-contact-hero-link:hover,
+  .wix-contact-hero-link:focus-visible,
+  .wix-contact-hero-link:active,
+  .wix-contact-section--compact .wix-contact-hero-link:active {
+    transform: none;
   }
 }

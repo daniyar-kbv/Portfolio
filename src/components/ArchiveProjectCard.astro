@@ -27,38 +27,38 @@ const internalHref = `/projects/${slug}`;
 const techLine = techTags.join(' · ');
 ---
 
-<article class="wix-project-card wix-project-card--archive-compact">
+<article class="project-card project-card--archive-compact">
   <a
     href={internalHref}
-    class:list={['wix-project-card-link', !showVisual && 'wix-project-card-link--text-only']}
+    class:list={['project-card-link', !showVisual && 'project-card-link--text-only']}
     aria-label={`Open ${title} project`}
   >
     {showVisual && (
-      <div class="wix-project-card-media">
+      <div class="project-card-media">
         {image ? (
           <img
             src={image}
             alt={alt}
             loading="eager"
             decoding="async"
-            class="wix-project-card-image"
+            class="project-card-image"
           />
         ) : (
-          <div class="wix-project-card-placeholder">
-            <span class="wix-project-card-placeholder-kicker">{subtitle}</span>
-            <span class="wix-project-card-placeholder-title">{title}</span>
+          <div class="project-card-placeholder">
+            <span class="project-card-placeholder-kicker">{subtitle}</span>
+            <span class="project-card-placeholder-title">{title}</span>
           </div>
         )}
       </div>
     )}
 
-    <div class="wix-project-card-copy">
-      <h3 class="wix-project-card-title">{title}</h3>
-      <p class="wix-project-card-kicker">{subtitle}</p>
-      {status && <p class="wix-project-card-status" title={status}>{status}</p>}
-      <p class="wix-project-card-description">{description}</p>
-      {techLine && <p class="wix-project-card-tech">{techLine}</p>}
-      <span class="wix-project-card-button">View project <span aria-hidden="true">›</span></span>
+    <div class="project-card-copy">
+      <h3 class="project-card-title">{title}</h3>
+      <p class="project-card-kicker">{subtitle}</p>
+      {status && <p class="project-card-status" title={status}>{status}</p>}
+      <p class="project-card-description">{description}</p>
+      {techLine && <p class="project-card-tech">{techLine}</p>}
+      <span class="project-card-button">View project <span aria-hidden="true">›</span></span>
     </div>
   </a>
 </article>

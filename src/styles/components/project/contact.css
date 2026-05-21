@@ -1,8 +1,8 @@
-.wix-project-contact-section {
+.project-contact-section {
   padding-block: clamp(18px, 3vw, 28px) clamp(68px, 8vw, 112px);
 }
 
-.wix-project-contact-card {
+.project-contact-card {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) minmax(280px, 0.78fr);
   gap: clamp(18px, 4vw, 42px);
@@ -14,7 +14,7 @@
   background: var(--surface-card);
 }
 
-.wix-project-contact-portrait {
+.project-contact-portrait {
   width: 112px;
   height: 112px;
   border-radius: 28px;
@@ -22,7 +22,7 @@
   box-shadow: var(--shadow-icon);
 }
 
-.wix-project-contact-copy h2 {
+.project-contact-copy h2 {
   margin: 7px 0 0;
   font-size: clamp(28px, 3.6vw, 42px);
   line-height: 1.12;
@@ -31,7 +31,7 @@
   text-wrap: balance;
 }
 
-.wix-project-contact-copy p:not(.wix-project-section-kicker) {
+.project-contact-copy p:not(.project-section-kicker) {
   max-width: 520px;
   margin: 10px 0 0;
   font-size: clamp(16px, 1.7vw, 18px);
@@ -39,7 +39,7 @@
   color: var(--color-text-muted);
 }
 
-.wix-project-contact-copy .wix-project-contact-identity {
+.project-contact-copy .project-contact-identity {
   margin-top: 14px;
   font-size: 13px;
   line-height: 1.35;
@@ -47,12 +47,12 @@
   color: var(--color-text-soft);
 }
 
-.wix-project-contact-actions {
+.project-contact-actions {
   display: grid;
   gap: 10px;
 }
 
-.wix-project-contact-action {
+.project-contact-action {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -64,16 +64,16 @@
     transform 150ms ease;
 }
 
-.wix-project-contact-action:hover,
-.wix-project-contact-action:focus-visible {
+.project-contact-action:hover,
+.project-contact-action:focus-visible {
   transform: translateY(var(--card-hover-lift));
 }
 
-.wix-project-contact-action:active {
+.project-contact-action:active {
   transform: scale(var(--card-active-scale));
 }
 
-.wix-project-contact-icon {
+.project-contact-icon {
   position: relative;
   width: 42px;
   height: 42px;
@@ -81,20 +81,20 @@
   filter: drop-shadow(var(--shadow-icon));
 }
 
-.wix-project-contact-action-copy {
+.project-contact-action-copy {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-.wix-project-contact-action-title {
+.project-contact-action-title {
   font-size: 15px;
   line-height: 1.25;
   font-weight: 600;
   color: var(--color-text);
 }
 
-.wix-project-contact-action-value {
+.project-contact-action-value {
   overflow: hidden;
   color: var(--color-text-muted);
   font-size: 13px;

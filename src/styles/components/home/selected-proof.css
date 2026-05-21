@@ -1,4 +1,4 @@
-.wix-home-featured-proof-grid {
+.home-featured-proof-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(18px, 3vw, 26px);
@@ -6,16 +6,16 @@
   margin-inline: auto;
 }
 
-.wix-home-featured-proof-card {
+.home-featured-proof-card {
   background: var(--surface-card);
   box-shadow: var(--shadow-card-selected);
 }
 
-.wix-home-compact-proof-card {
+.home-compact-proof-card {
   background: var(--surface-card-quiet);
 }
 
-.wix-home-featured-proof-media {
+.home-featured-proof-media {
   display: grid;
   align-items: end;
   justify-items: center;
@@ -24,19 +24,19 @@
   background: var(--surface-media-well);
 }
 
-.wix-home-featured-proof-media img {
+.home-featured-proof-media img {
   max-height: clamp(238px, 26vw, 328px);
   object-fit: contain;
   filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.16));
 }
 
-.wix-home-featured-proof-copy,
-.wix-home-compact-proof-copy {
+.home-featured-proof-copy,
+.home-compact-proof-copy {
   padding: clamp(18px, 2.6vw, 24px);
   text-align: center;
 }
 
-.wix-home-featured-proof-copy {
+.home-featured-proof-copy {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -44,7 +44,7 @@
   padding: clamp(18px, 2.8vw, 28px) clamp(24px, 3.6vw, 38px) clamp(24px, 3.6vw, 36px);
 }
 
-.wix-home-proof-project-label {
+.home-proof-project-label {
   margin: 0 0 10px;
   font-size: 13px;
   line-height: 1.35;
@@ -52,14 +52,14 @@
   color: var(--color-accent);
 }
 
-.wix-home-proof-kicker {
+.home-proof-kicker {
   margin: 12px 0 0;
   font-size: 12px;
   line-height: 1.35;
   color: var(--color-text-soft);
 }
 
-.wix-home-featured-proof-outcome {
+.home-featured-proof-outcome {
   margin-top: 12px;
   max-width: 420px;
   font-size: clamp(15px, 1.5vw, 17px);
@@ -67,14 +67,14 @@
   color: var(--color-text-muted);
 }
 
-.wix-home-featured-proof-status {
+.home-featured-proof-status {
   margin-top: 8px;
   font-size: 12px;
   line-height: 1.4;
   color: var(--color-text-soft);
 }
 
-.wix-home-text-cta {
+.home-text-cta {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -85,7 +85,7 @@
   font-weight: 600;
 }
 
-.wix-home-compact-proof-grid {
+.home-compact-proof-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(14px, 2.4vw, 20px);
@@ -93,11 +93,11 @@
   margin: clamp(18px, 3vw, 26px) auto 0;
 }
 
-.wix-home-compact-proof-card p {
+.home-compact-proof-card p {
   margin-top: 10px;
 }
 
-.wix-home-compact-proof-media {
+.home-compact-proof-media {
   display: grid;
   align-items: end;
   justify-items: center;
@@ -106,7 +106,7 @@
   background: var(--surface-media-well);
 }
 
-.wix-home-compact-proof-media img {
+.home-compact-proof-media img {
   width: 100%;
   max-height: clamp(132px, 15vw, 162px);
   object-fit: contain;
@@ -114,31 +114,31 @@
 }
 
 @media (max-width: 960px) {
-  .wix-home-featured-proof-grid,
-  .wix-home-compact-proof-grid {
+  .home-featured-proof-grid,
+  .home-compact-proof-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .wix-home-featured-proof-grid,
-  .wix-home-compact-proof-grid {
+  .home-featured-proof-grid,
+  .home-compact-proof-grid {
     grid-template-columns: 1fr;
   }
 
-  .wix-home-featured-proof-media {
+  .home-featured-proof-media {
     min-height: 246px;
   }
 
-  .wix-home-featured-proof-media img {
+  .home-featured-proof-media img {
     max-height: 228px;
   }
 
-  .wix-home-compact-proof-media {
+  .home-compact-proof-media {
     min-height: 150px;
   }
 
-  .wix-home-compact-proof-media img {
+  .home-compact-proof-media img {
     max-height: 132px;
   }
 }

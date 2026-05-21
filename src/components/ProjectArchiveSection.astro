@@ -33,21 +33,21 @@ const sectionIcons: Record<ProjectCategory, string> = {
   id="projects"
   title="More selected work"
   description="A compact archive of older production builds, platform work, libraries, and experiments."
-  class="wix-home-project-archive-section"
+  class="home-project-archive-section"
 >
-  <div class="wix-home-archive-stack">
+  <div class="home-archive-stack">
     {sections.map((section) => {
       const projects = projectsByCategory[section.category] ?? [];
 
       if (projects.length === 0) return null;
 
       return (
-        <section id={section.id} class="wix-home-archive-group" aria-labelledby={`${section.id}-heading`}>
-          <div class="wix-home-archive-heading">
+        <section id={section.id} class="home-archive-group" aria-labelledby={`${section.id}-heading`}>
+          <div class="home-archive-heading">
             <img
               src={sectionIcons[section.category]}
               alt=""
-              class="wix-home-archive-icon"
+              class="home-archive-icon"
               loading="lazy"
               decoding="async"
             />
@@ -56,7 +56,7 @@ const sectionIcons: Record<ProjectCategory, string> = {
               <p>{section.description}</p>
             </div>
           </div>
-          <div class="wix-repeater-grid wix-repeater-grid--archive-compact">
+          <div class="project-grid project-grid--archive-compact">
             {projects.map((project) => {
               const image = selectProjectCardImage(project);
 

@@ -1,9 +1,9 @@
-.wix-home-proof-strip {
+.home-proof-strip {
   width: 100%;
   background: color-mix(in srgb, var(--color-background) 94%, black);
 }
 
-.wix-home-proof-inner {
+.home-proof-inner {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
@@ -12,18 +12,18 @@
   padding-block: clamp(16px, 2.6vw, 22px);
 }
 
-.wix-home-proof-item {
+.home-proof-item {
   min-width: 0;
   padding: 0 clamp(12px, 2vw, 20px);
   border-left: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
 }
 
-.wix-home-proof-item:first-child {
+.home-proof-item:first-child {
   border-left: 0;
   padding-left: 0;
 }
 
-.wix-home-proof-label {
+.home-proof-label {
   font-size: clamp(14px, 1.45vw, 17px);
   line-height: 1.2;
   font-weight: 600;
@@ -31,7 +31,7 @@
   text-wrap: balance;
 }
 
-.wix-home-proof-description {
+.home-proof-description {
   margin-top: 6px;
   font-size: 12px;
   line-height: 1.45;
@@ -39,23 +39,23 @@
 }
 
 @media (max-width: 960px) {
-  .wix-home-proof-inner {
+  .home-proof-inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .wix-home-proof-inner {
+  .home-proof-inner {
     grid-template-columns: 1fr;
   }
 
-  .wix-home-proof-item {
+  .home-proof-item {
     padding: 16px 0 0;
     border-top: 1px solid var(--color-border);
     border-left: 0;
   }
 
-  .wix-home-proof-item:first-child {
+  .home-proof-item:first-child {
     padding-top: 0;
     border-top: 0;
   }

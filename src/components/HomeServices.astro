@@ -36,21 +36,21 @@ const serviceSymbols: Record<ServiceIcon, string> = {
   id="services"
   title="How I can help"
   description="Focused support for founders and teams who need senior iOS execution without losing product judgment."
-  class="wix-home-services-section"
+  class="home-services-section"
 >
-  <div class="wix-home-service-grid">
+  <div class="home-service-grid">
     {services.map((service) => {
       const symbol = serviceSymbols[service.icon];
 
       return (
-        <article class:list={['wix-home-service-card', service.featured && 'wix-home-service-card--featured']}>
-          <span class="wix-home-service-glyph" aria-hidden="true">
+        <article class:list={['home-service-card', service.featured && 'home-service-card--featured']}>
+          <span class="home-service-glyph" aria-hidden="true">
             <span
-              class="wix-home-service-glyph-symbol"
+              class="home-service-glyph-symbol"
               style={`--service-symbol-url: url('${symbol}')`}
             />
           </span>
-          <div class="wix-home-service-copy">
+          <div class="home-service-copy">
             <h3>{service.title}</h3>
             <p>{service.description}</p>
           </div>

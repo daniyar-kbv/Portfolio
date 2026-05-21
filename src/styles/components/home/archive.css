@@ -1,14 +1,14 @@
-.wix-home-archive-stack {
+.home-archive-stack {
   display: grid;
   gap: clamp(22px, 3.6vw, 34px);
 }
 
-.wix-home-archive-group {
+.home-archive-group {
   max-width: var(--site-width);
   margin-inline: auto;
 }
 
-.wix-home-archive-heading {
+.home-archive-heading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-.wix-home-archive-icon {
+.home-archive-icon {
   width: 44px;
   height: 44px;
   flex: none;
@@ -26,38 +26,38 @@
   filter: drop-shadow(var(--shadow-icon));
 }
 
-.wix-project-card--archive-compact .wix-project-card-link {
+.project-card--archive-compact .project-card-link {
   min-height: 0;
 }
 
-.wix-project-card--archive-compact .wix-project-card-link--text-only {
+.project-card--archive-compact .project-card-link--text-only {
   min-height: 190px;
   padding: 20px;
 }
 
-.wix-project-card--archive-compact .wix-project-card-media {
+.project-card--archive-compact .project-card-media {
   height: clamp(142px, 14vw, 168px);
 }
 
-.wix-project-card--archive-compact .wix-project-card-image {
+.project-card--archive-compact .project-card-image {
   padding: 12px 12px 4px;
 }
 
-.wix-project-card--archive-compact .wix-project-card-copy {
+.project-card--archive-compact .project-card-copy {
   padding: 12px 16px 18px;
 }
 
-.wix-project-card--archive-compact .wix-project-card-title {
+.project-card--archive-compact .project-card-title {
   font-size: 16px;
   line-height: 1.28;
 }
 
-.wix-project-card--archive-compact .wix-project-card-kicker,
-.wix-project-card--archive-compact .wix-project-card-status {
+.project-card--archive-compact .project-card-kicker,
+.project-card--archive-compact .project-card-status {
   font-size: 11px;
 }
 
-.wix-project-card--archive-compact .wix-project-card-description {
+.project-card--archive-compact .project-card-description {
   margin-top: 8px;
   max-width: 250px;
   font-size: 12px;
@@ -65,26 +65,26 @@
   -webkit-line-clamp: 2;
 }
 
-.wix-project-card--archive-compact .wix-project-card-tech {
+.project-card--archive-compact .project-card-tech {
   margin-top: 8px;
   max-width: 250px;
   font-size: 11px;
 }
 
-.wix-project-card--archive-compact .wix-project-card-link:not(.wix-project-card-link--text-only) .wix-project-card-button {
+.project-card--archive-compact .project-card-link:not(.project-card-link--text-only) .project-card-button {
   min-height: 30px;
   padding-top: 8px;
   font-size: 13px;
 }
 
 @media (max-width: 520px) {
-  .wix-project-card--archive-compact .wix-project-card-media {
+  .project-card--archive-compact .project-card-media {
     height: 184px;
   }
 }
 
 @media (max-width: 640px) {
-  .wix-home-archive-heading {
+  .home-archive-heading {
     align-items: center;
   }
 }

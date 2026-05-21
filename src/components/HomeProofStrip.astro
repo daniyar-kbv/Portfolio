@@ -11,13 +11,13 @@ interface Props {
 const { proofPoints } = Astro.props as Props;
 ---
 
-<section class="wix-home-proof-strip" aria-label="Selected proof points">
-  <div class="wix-section-divider"></div>
-  <div class="wix-home-proof-inner">
+<section class="home-proof-strip" aria-label="Selected proof points">
+  <div class="section-divider"></div>
+  <div class="home-proof-inner">
     {proofPoints.map((proofPoint) => (
-      <div class="wix-home-proof-item">
-        <p class="wix-home-proof-label">{proofPoint.label}</p>
-        <p class="wix-home-proof-description">{proofPoint.description}</p>
+      <div class="home-proof-item">
+        <p class="home-proof-label">{proofPoint.label}</p>
+        <p class="home-proof-description">{proofPoint.description}</p>
       </div>
     ))}
   </div>

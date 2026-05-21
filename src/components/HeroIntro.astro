@@ -28,8 +28,8 @@ const {
 } = Astro.props as Props;
 ---
 
-<section class="wix-home-hero" data-parallax-hero data-parallax-travel="72">
-  <div class="wix-parallax-frame">
+<section class="home-hero" data-parallax-hero data-parallax-travel="72">
+  <div class="parallax-frame">
     <img
       src={bannerImage}
       alt={bannerAlt}
@@ -38,19 +38,19 @@ const {
       loading="eager"
       decoding="async"
       fetchpriority="high"
-      class="wix-home-banner wix-parallax-image"
+      class="home-banner parallax-image"
       data-parallax-image
     />
-    <div class="wix-home-banner-overlay">
-      <div class="wix-home-banner-copy">
-        <p class="wix-home-banner-label">{roleLabel}</p>
-        <p class="wix-home-banner-primary-name">{primaryName}</p>
-        <h1 class="wix-home-banner-name">{headline}</h1>
-        <p class="wix-home-banner-secondary-name">{secondaryIdentity}</p>
-        <p class="wix-home-banner-role">{supporting}</p>
-        <div class="wix-home-hero-actions" aria-label="Primary actions">
+    <div class="home-banner-overlay">
+      <div class="home-banner-copy">
+        <p class="home-banner-label">{roleLabel}</p>
+        <p class="home-banner-primary-name">{primaryName}</p>
+        <h1 class="home-banner-name">{headline}</h1>
+        <p class="home-banner-secondary-name">{secondaryIdentity}</p>
+        <p class="home-banner-role">{supporting}</p>
+        <div class="home-hero-actions" aria-label="Primary actions">
           {ctas.map((cta) => (
-            <ButtonLink href={cta.href} variant={cta.variant} class={`wix-home-hero-action wix-home-hero-action--${cta.variant}`}>
+            <ButtonLink href={cta.href} variant={cta.variant} class={`home-hero-action home-hero-action--${cta.variant}`}>
               {cta.label}
             </ButtonLink>
           ))}

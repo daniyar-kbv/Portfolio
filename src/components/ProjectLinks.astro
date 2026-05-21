@@ -47,14 +47,14 @@ function getLabel(type: string, label: string) {
 ---
 
 {links.length > 0 && (
-  <section class="wix-section-shell wix-project-links-section">
-    <div class="wix-section-inner">
-      <div class="wix-project-links-wrap">
-        <div class="wix-project-section-heading wix-project-section-heading--compact">
-          <p class="wix-project-section-kicker">Resources</p>
+  <section class="section-shell project-links-section">
+    <div class="section-inner">
+      <div class="project-links-wrap">
+        <div class="project-section-heading project-section-heading--compact">
+          <p class="project-section-kicker">Resources</p>
           <h2>Project links</h2>
         </div>
-        <div class="wix-project-links-grid wix-project-links-grid--project">
+        <div class="project-links-grid project-links-grid--project">
           {links.map((link) => {
             const icon = resolveIcon(link.type);
             const label = getLabel(link.type, link.label);
@@ -66,7 +66,7 @@ function getLabel(type: string, label: string) {
                 rel={isExternal ? 'noreferrer noopener' : undefined}
                 aria-label={`Open ${label}`}
                 title={label}
-                class="wix-project-link-tile group"
+                class="project-link-tile group"
               >
                 <span class="relative h-20 w-20 shrink-0" aria-hidden="true">
                   <IconImage
@@ -75,7 +75,7 @@ function getLabel(type: string, label: string) {
                     loading="lazy"
                   />
                 </span>
-                <span class="wix-project-link-tile-label">{label}</span>
+                <span class="project-link-tile-label">{label}</span>
               </a>
             );
           })}

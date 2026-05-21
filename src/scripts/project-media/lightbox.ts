@@ -108,7 +108,7 @@ export function createProjectLightboxDialog({
       dialog.close();
     } else {
       dialog.removeAttribute('open');
-      document.documentElement.classList.remove('wix-lightbox-open');
+      document.documentElement.classList.remove('lightbox-open');
     }
   };
 
@@ -116,7 +116,7 @@ export function createProjectLightboxDialog({
     resetZoom();
     stopAutoSwipe();
     syncLightboxMedia();
-    document.documentElement.classList.add('wix-lightbox-open');
+    document.documentElement.classList.add('lightbox-open');
 
     if (typeof dialog.showModal === 'function') {
       dialog.showModal();
@@ -150,14 +150,14 @@ export function createProjectLightboxDialog({
     });
 
     dialog.addEventListener('close', () => {
-      document.documentElement.classList.remove('wix-lightbox-open');
+      document.documentElement.classList.remove('lightbox-open');
       video.pause();
       slides[state.activeIndex]?.button.focus();
       startAutoSwipe();
     });
 
     dialog.addEventListener('cancel', () => {
-      document.documentElement.classList.remove('wix-lightbox-open');
+      document.documentElement.classList.remove('lightbox-open');
       video.pause();
       startAutoSwipe();
     });

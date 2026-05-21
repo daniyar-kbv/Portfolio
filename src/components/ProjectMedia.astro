@@ -31,20 +31,20 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
 ---
 
 {renderBanners.length > 0 && (
-  <section class="wix-section-shell wix-project-media-section">
-    <div class="wix-section-inner" data-project-lightbox>
-      <div class="wix-project-section-heading">
-        <p class="wix-project-section-kicker">Visuals</p>
+  <section class="section-shell project-media-section">
+    <div class="section-inner" data-project-lightbox>
+      <div class="project-section-heading">
+        <p class="project-section-kicker">Visuals</p>
         <h2>Product walkthrough</h2>
         <p>Tap or click the preview to open it fullscreen.</p>
       </div>
       <div
-        class:list={['wix-project-banner-carousel', { 'wix-project-banner-carousel--single': !hasMultipleBanners }]}
+        class:list={['project-banner-carousel', { 'project-banner-carousel--single': !hasMultipleBanners }]}
         data-banner-carousel
         data-banner-autoplay={hasMultipleBanners ? 'true' : 'false'}
       >
-        <div class="wix-project-banner-viewport" data-banner-viewport>
-          <div class="wix-project-banner-track" data-banner-track>
+        <div class="project-banner-viewport" data-banner-viewport>
+          <div class="project-banner-track" data-banner-track>
             {renderBanners.map((renderBanner, index) => {
               const bannerLabel = hasMultipleBanners ? getBannerLabel(renderBanner, index) : 'banner';
               const alt = `${title} ${bannerLabel}`;
@@ -53,7 +53,7 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
               return (
                 <button
                   type="button"
-                  class="wix-project-banner-button"
+                  class="project-banner-button"
                   aria-label={`Open ${alt} fullscreen`}
                   aria-hidden={index === 0 ? undefined : 'true'}
                   tabindex={index === 0 ? undefined : '-1'}
@@ -69,7 +69,7 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
                       loop
                       playsinline
                       preload={index === 0 ? 'metadata' : 'none'}
-                      class="wix-project-gallery-image wix-project-gallery-video"
+                      class="project-gallery-image project-gallery-video"
                       data-banner-media
                     />
                   ) : (
@@ -78,11 +78,11 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
                       alt={alt}
                       loading={index === 0 ? 'eager' : 'lazy'}
                       decoding="async"
-                      class="wix-project-gallery-image"
+                      class="project-gallery-image"
                       data-banner-media
                     />
                   )}
-                  <span class="wix-project-banner-expand-icon" aria-hidden="true">
+                  <span class="project-banner-expand-icon" aria-hidden="true">
                     <Maximize2 class="h-5 w-5" />
                   </span>
                 </button>
@@ -95,7 +95,7 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
           <>
             <button
               type="button"
-              class="wix-project-banner-nav wix-project-banner-nav--prev"
+              class="project-banner-nav project-banner-nav--prev"
               aria-label={`Show previous ${title} banner`}
               data-banner-prev
             >
@@ -103,20 +103,20 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
             </button>
             <button
               type="button"
-              class="wix-project-banner-nav wix-project-banner-nav--next"
+              class="project-banner-nav project-banner-nav--next"
               aria-label={`Show next ${title} banner`}
               data-banner-next
             >
               <ChevronRight class="h-5 w-5" aria-hidden="true" />
             </button>
-            <div class="wix-project-banner-dots" aria-label={`${title} banner slides`}>
+            <div class="project-banner-dots" aria-label={`${title} banner slides`}>
               {renderBanners.map((renderBanner, index) => {
                 const bannerLabel = getBannerLabel(renderBanner, index);
 
                 return (
                   <button
                     type="button"
-                    class="wix-project-banner-dot"
+                    class="project-banner-dot"
                     aria-label={`Show ${title} ${bannerLabel}`}
                     aria-current={index === 0 ? 'true' : 'false'}
                     data-banner-dot
@@ -129,11 +129,11 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
         )}
       </div>
 
-      <dialog class="wix-project-lightbox" aria-label={`${title} banner fullscreen`} data-lightbox-dialog>
-        <div class="wix-project-lightbox-toolbar" aria-label="Banner viewer controls">
+      <dialog class="project-lightbox" aria-label={`${title} banner fullscreen`} data-lightbox-dialog>
+        <div class="project-lightbox-toolbar" aria-label="Banner viewer controls">
           <button
             type="button"
-            class="wix-project-lightbox-control"
+            class="project-lightbox-control"
             aria-label="Zoom out"
             data-lightbox-image-control
             data-lightbox-zoom-out
@@ -142,7 +142,7 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
           </button>
           <button
             type="button"
-            class="wix-project-lightbox-control"
+            class="project-lightbox-control"
             aria-label="Zoom in"
             data-lightbox-image-control
             data-lightbox-zoom-in
@@ -151,30 +151,30 @@ const initialLightboxVideo = firstBannerType === 'video' ? firstBanner : '';
           </button>
           <button
             type="button"
-            class="wix-project-lightbox-control"
+            class="project-lightbox-control"
             aria-label="Reset zoom"
             data-lightbox-image-control
             data-lightbox-reset
           >
             <RotateCcw class="h-5 w-5" aria-hidden="true" />
           </button>
-          <button type="button" class="wix-project-lightbox-control" aria-label="Close fullscreen banner" data-lightbox-close>
+          <button type="button" class="project-lightbox-control" aria-label="Close fullscreen banner" data-lightbox-close>
             <X class="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
-        <div class="wix-project-lightbox-stage" data-lightbox-stage>
+        <div class="project-lightbox-stage" data-lightbox-stage>
           <img
             src={initialLightboxImage}
             alt={`${title} ${hasMultipleBanners ? getBannerLabel(renderBanners[0], 0) : 'banner'}`}
             decoding="async"
-            class="wix-project-lightbox-image"
+            class="project-lightbox-image"
             draggable="false"
             data-lightbox-image
             hidden={firstBannerType === 'video'}
           />
           <video
             src={initialLightboxVideo}
-            class="wix-project-lightbox-video"
+            class="project-lightbox-video"
             controls
             playsinline
             preload="metadata"

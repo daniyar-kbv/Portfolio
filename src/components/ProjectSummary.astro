@@ -16,12 +16,12 @@ const facts = [
 ---
 
 {(facts.length > 0 || highlights.length > 0) && (
-  <section class="wix-section-shell wix-project-summary-section">
-    <div class="wix-section-inner">
+  <section class="section-shell project-summary-section">
+    <div class="section-inner">
       {facts.length > 0 && (
-        <div class="wix-project-summary-grid" aria-label="Project summary">
+        <div class="project-summary-grid" aria-label="Project summary">
           {facts.map((fact) => (
-            <article class="wix-project-summary-card">
+            <article class="project-summary-card">
               <p>{fact.label}</p>
               <h2>{fact.value}</h2>
             </article>
@@ -30,12 +30,12 @@ const facts = [
       )}
 
       {highlights.length > 0 && (
-        <article class="wix-project-highlights-card">
-          <div class="wix-project-highlights-copy">
-            <p class="wix-project-section-kicker">What this proves</p>
+        <article class="project-highlights-card">
+          <div class="project-highlights-copy">
+            <p class="project-section-kicker">What this proves</p>
             <h2>Selected work from the build</h2>
           </div>
-          <ul class="wix-project-highlights-list">
+          <ul class="project-highlights-list">
             {highlights.map((highlight) => (
               <li>{highlight}</li>
             ))}

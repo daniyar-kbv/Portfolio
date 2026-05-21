@@ -15,15 +15,15 @@ interface Props {
 const { navItems = headerNavItems } = Astro.props as Props;
 ---
 
-<header class="wix-header-shell">
-  <div class="wix-header-inner">
-    <a href="/" class="wix-logo-link" aria-label={`${siteOwner.displayName} home`}>
+<header class="site-header-shell">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo-link" aria-label={`${siteOwner.displayName} home`}>
       <img
         src={siteAssets.logo}
         alt={siteOwner.displayName}
         width="324"
         height="128"
-        class="wix-logo-image"
+        class="site-logo-image"
         loading="eager"
         decoding="async"
       />
@@ -31,21 +31,21 @@ const { navItems = headerNavItems } = Astro.props as Props;
 
     <button
       type="button"
-      class="wix-nav-toggle"
+      class="site-nav-toggle"
       aria-label="Open navigation menu"
       aria-controls="site-primary-navigation"
       aria-expanded="false"
       data-nav-toggle
     >
-      <span class="wix-nav-toggle-line"></span>
-      <span class="wix-nav-toggle-line"></span>
+      <span class="site-nav-toggle-line"></span>
+      <span class="site-nav-toggle-line"></span>
     </button>
 
-    <nav id="site-primary-navigation" aria-label="Primary" class="wix-nav" data-nav-menu>
+    <nav id="site-primary-navigation" aria-label="Primary" class="site-nav" data-nav-menu>
       {navItems.map((item) => (
         <a
           href={item.href}
-          class="wix-nav-link"
+          class="site-nav-link"
         >
           {item.label}
         </a>
@@ -66,7 +66,7 @@ const { navItems = headerNavItems } = Astro.props as Props;
     navToggle.setAttribute('aria-expanded', String(isOpen));
     navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     navMenu.classList.toggle('is-open', isOpen);
-    document.documentElement.classList.toggle('wix-nav-open', isOpen);
+    document.documentElement.classList.toggle('site-nav-open', isOpen);
   };
 
   navToggle?.addEventListener('click', () => {

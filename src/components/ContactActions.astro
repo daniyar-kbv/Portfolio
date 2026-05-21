@@ -26,20 +26,20 @@ const {
 
 const classNames = {
   home: {
-    container: 'wix-contact-hero-links',
-    link: 'wix-contact-hero-link group',
-    icon: 'wix-contact-hero-icon',
-    copy: 'wix-contact-hero-copy',
-    title: 'wix-contact-hero-title',
-    value: 'wix-contact-hero-label',
+    container: 'contact-hero-links',
+    link: 'contact-hero-link group',
+    icon: 'contact-hero-icon',
+    copy: 'contact-hero-copy',
+    title: 'contact-hero-title',
+    value: 'contact-hero-label',
   },
   project: {
-    container: 'wix-project-contact-actions',
-    link: 'wix-project-contact-action group',
-    icon: 'wix-project-contact-icon',
-    copy: 'wix-project-contact-action-copy',
-    title: 'wix-project-contact-action-title',
-    value: 'wix-project-contact-action-value',
+    container: 'project-contact-actions',
+    link: 'project-contact-action group',
+    icon: 'project-contact-icon',
+    copy: 'project-contact-action-copy',
+    title: 'project-contact-action-title',
+    value: 'project-contact-action-value',
   },
 }[variant];
 ---
@@ -67,7 +67,7 @@ const classNames = {
           <span class={classNames.title}>{action.title}</span>
           <span class={classNames.value}>{action.value}</span>
         </span>
-        {showChevron && <span class="wix-contact-hero-chevron" aria-hidden="true">›</span>}
+        {showChevron && <span class="contact-hero-chevron" aria-hidden="true">›</span>}
       </a>
     );
   })}

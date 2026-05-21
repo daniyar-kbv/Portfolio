@@ -1,15 +1,15 @@
-.wix-case-study-section {
+.case-study-section {
   padding-block: clamp(10px, 2vw, 24px) clamp(30px, 5vw, 54px);
 }
 
-.wix-case-study {
+.case-study {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.wix-case-study-content {
+.case-study-content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -18,7 +18,7 @@
   margin-inline: auto;
 }
 
-.wix-case-study-heading {
+.case-study-heading {
   align-self: center;
   width: 100%;
   margin: 0 auto;
@@ -32,7 +32,7 @@
   color: var(--color-text);
 }
 
-.wix-case-study-description {
+.case-study-description {
   max-width: 560px;
   margin: 0 auto clamp(16px, 3vw, 24px);
   text-align: center;
@@ -41,22 +41,22 @@
   color: var(--color-text-soft);
 }
 
-.wix-case-study-block {
+.case-study-block {
   width: 100%;
   max-width: 100%;
 }
 
-.wix-case-study-block--editorial {
+.case-study-block--editorial {
   padding-block: clamp(24px, 4vw, 40px);
   border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
 }
 
-.wix-case-study-card + .wix-case-study-block--editorial,
-.wix-case-study-block--editorial:first-child {
+.case-study-card + .case-study-block--editorial,
+.case-study-block--editorial:first-child {
   border-top-color: transparent;
 }
 
-.wix-case-study-card {
+.case-study-card {
   width: 100%;
   max-width: 100%;
   margin-block: clamp(10px, 2vw, 16px);
@@ -67,11 +67,11 @@
   box-shadow: none;
 }
 
-.wix-case-study-card--highlight {
+.case-study-card--highlight {
   margin-block: clamp(18px, 3vw, 28px);
 }
 
-.wix-case-study h2 {
+.case-study h2 {
   margin: 0 0 10px;
   font-size: clamp(26px, 3vw, 36px);
   line-height: 1.15;
@@ -80,7 +80,7 @@
   text-wrap: balance;
 }
 
-.wix-case-study h3 {
+.case-study h3 {
   margin: 18px 0 6px;
   font-size: 18px;
   line-height: 1.4;
@@ -88,7 +88,7 @@
   color: var(--color-text);
 }
 
-.wix-case-study p {
+.case-study p {
   margin: 8px 0;
   max-width: none;
   font-size: clamp(16px, 1.5vw, 17px);
@@ -96,63 +96,63 @@
   color: var(--color-text-muted);
 }
 
-.wix-case-study ul,
-.wix-case-study ol {
+.case-study ul,
+.case-study ol {
   margin: 10px 0 5px 18px;
   padding-left: 0;
   max-width: none;
   color: var(--color-text-muted);
 }
 
-.wix-case-study ul {
+.case-study ul {
   list-style: disc;
 }
 
-.wix-case-study ol {
+.case-study ol {
   list-style: decimal;
 }
 
-.wix-case-study li {
+.case-study li {
   margin: 8px 0;
   padding-left: 2px;
   font-size: clamp(16px, 1.5vw, 17px);
   line-height: 1.62;
 }
 
-.wix-case-study li::marker {
+.case-study li::marker {
   color: var(--color-accent);
 }
 
-.wix-case-study strong {
+.case-study strong {
   color: var(--color-text);
   font-weight: 600;
 }
 
-.wix-case-study a {
+.case-study a {
   color: var(--color-accent);
   text-decoration: none;
   transition: color 150ms ease;
 }
 
-.wix-case-study a:hover,
-.wix-case-study a:focus-visible {
+.case-study a:hover,
+.case-study a:focus-visible {
   color: var(--color-accent-hover);
 }
 
-.wix-case-study hr {
+.case-study hr {
   margin: 28px 0;
   border: 0;
   border-top: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
 }
 
-.wix-case-study blockquote {
+.case-study blockquote {
   margin: 18px 0;
   padding-left: 18px;
   border-left: 2px solid var(--color-accent);
   color: var(--color-text-muted);
 }
 
-.wix-case-study pre {
+.case-study pre {
   overflow-x: auto;
   margin: 18px 0;
   padding: 16px;
@@ -161,14 +161,14 @@
   color: var(--color-text);
 }
 
-.wix-case-study code {
+.case-study code {
   padding: 0.1em 0.25em;
   border-radius: 4px;
   background: var(--surface-card);
   color: var(--color-text);
 }
 
-.wix-case-study pre code {
+.case-study pre code {
   padding: 0;
   background: transparent;
 }

@@ -184,6 +184,8 @@ This file captures project knowledge and decisions that should survive across ch
   - `media-1.mov`, etc. when a project uses video media
 - Current assets include:
   - `public/assets/hero/banner-apps.png`
+  - `public/assets/favicon/favicon-32.png`
+  - `public/assets/favicon/apple-touch-icon.png`
   - `public/assets/profile/portrait.png`
   - `public/assets/logo/logo-horizontal.png`
   - `public/assets/icons/*.png`

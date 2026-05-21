@@ -40,6 +40,8 @@ const ogImageHref = ogImage && Astro.site ? new URL(ogImage, Astro.site).toStrin
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="icon" href={siteAssets.favicon} type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href={siteAssets.appleTouchIcon} sizes="180x180" />
     <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
     {canonicalHref && <link rel="canonical" href={canonicalHref} />}
     <meta property="og:title" content={ogTitle} />

@@ -1,4 +1,6 @@
 export const siteAssets = {
+  favicon: '/assets/favicon/favicon-32.png',
+  appleTouchIcon: '/assets/favicon/apple-touch-icon.png',
   heroImage: '/assets/hero/banner-apps.png',
   seoImage: '/assets/seo/seo-image.png',
   logo: '/assets/logo/logo-horizontal.png',

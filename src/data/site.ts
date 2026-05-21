@@ -86,11 +86,13 @@ export const serviceAreas = [
     title: 'Native iOS apps from design to release',
     description:
       'Implement polished SwiftUI/UIKit experiences, wire APIs, handle QA, and support TestFlight or App Store submission.',
+    featured: true,
   },
   {
     title: 'AI-powered mobile features',
     description:
       'Turn AI APIs into native UX with backend proxy/API integration, persistence, usage limits, credits/paywalls, and clear failure states.',
+    featured: true,
   },
   {
     title: 'Payments, StoreKit & entitlements',

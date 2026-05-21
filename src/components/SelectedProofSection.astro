@@ -40,9 +40,9 @@ function getOutcome(project: ProjectEntry) {
               </div>
             )}
             <div class="wix-home-featured-proof-copy">
-              <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
               <h3>{project.data.title}</h3>
               <p class="wix-home-featured-proof-outcome">{getOutcome(project)}</p>
+              <p class="wix-home-proof-kicker">{project.data.subtitle}</p>
               {project.data.status && <p class="wix-home-featured-proof-status">{project.data.status}</p>}
               <span class="wix-home-text-cta">View case study <span aria-hidden="true">›</span></span>
             </div>

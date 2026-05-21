@@ -4,6 +4,7 @@ import SectionShell from './SectionShell.astro';
 interface ServiceArea {
   title: string;
   description: string;
+  featured?: boolean;
 }
 
 interface Props {
@@ -21,7 +22,7 @@ const { services } = Astro.props as Props;
 >
   <div class="wix-home-service-grid">
     {services.map((service) => (
-      <article class="wix-home-service-card">
+      <article class:list={['wix-home-service-card', service.featured && 'wix-home-service-card--featured']}>
         <h3>{service.title}</h3>
         <p>{service.description}</p>
       </article>

@@ -28,7 +28,7 @@
 .wix-project-card-media {
   width: 100%;
   max-width: none;
-  height: 196px;
+  height: clamp(212px, 22vw, 238px);
   aspect-ratio: auto;
   align-self: stretch;
   overflow: hidden;
@@ -40,7 +40,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 18px 18px 12px;
+  padding: 18px 18px 6px;
 }
 
 .wix-project-card-placeholder {
@@ -82,7 +82,7 @@
   flex-direction: column;
   align-items: center;
   min-width: 0;
-  padding: 18px 22px 24px;
+  padding: 14px 22px 24px;
   text-align: center;
 }
 
@@ -167,7 +167,7 @@
   }
 
   .wix-project-card-media {
-    height: 170px;
+    height: 196px;
   }
 
   .wix-project-card-title {

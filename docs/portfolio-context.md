@@ -77,7 +77,7 @@ This file captures project knowledge and decisions that should survive across ch
 - Selected proof cards should feel more editorial than the archive: larger visuals, outcome-first headlines from `projectOutcomeHeadlines`, subdued metadata, and text CTAs.
 - The lower project archive should exclude those selected recent projects and group the remaining non-recent work by archive category.
 - Homepage project cards should show visuals for every non-AI project, including compact selected proof cards. AI/ML experiment cards remain text-only in the archive unless the user explicitly changes that direction.
-- Archive cards are intentionally quieter than selected proof cards: smaller thumbnails, shorter clamped copy, lighter surfaces, and list-like scanability.
+- Archive cards are intentionally quieter than selected proof cards, but their visuals should still feel product-like and intentional: media should be large enough to read, bottom padding inside media wells should stay tight, and copy should start soon after the visual rather than leaving a large blank stage.
 - The homepage contact section should finish like a restrained iOS contact/business card: clear identity, short contextual note, and grouped action cells for Email and LinkedIn, without a large portrait unless a final headshot asset is explicitly provided.
 - Project detail case-study sections should feel like grouped inset surfaces: softer fill, lower border contrast, readable width, and less aggressive orange headings.
 - The homepage hero keeps `/assets/hero/banner-apps.jpg`.
